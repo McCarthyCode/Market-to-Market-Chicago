@@ -1,0 +1,28 @@
+#sidebar
+  position: absolute
+  background-color: $gray
+  color: $white
+  margin: 0
+  border-right: 1px solid $lighter-gray
+
+  ul.topics
+    li
+      padding: 0.25rem 0
+      background-color: $light-gray
+      border-right: 0.25rem solid $light-gray
+      border-bottom: 1px solid $lighter-gray
+      border-left: 0.25rem solid $light-gray
+      @include transition-border-left(0.5s)
+      text-align: center
+      cursor: pointer
+
+    li:hover, li.active
+      border-left: 0.25rem solid $cyan
+
+@media screen and (min-width: $breakpoint-md)
+  #sidebar
+    position: relative
+    grid-column-start: 1
+    grid-column-end: 2
+    grid-row-start: 2
+    grid-row-end: 3

@@ -1,0 +1,96 @@
+@import '_variables'
+
+nav
+  grid-column-start: 1
+  grid-column-end: 3
+  grid-row-start: 1
+  grid-row-end: 2
+  background-color: $dark-gray
+  position: relative
+  height: 70px
+
+  .navbar-brand
+    font-family: $font-title
+    @include transition-color(0.5s)
+    color: $yellow !important
+
+  .navbar-brand:hover
+    color: $white !important
+
+  .social
+    position: absolute
+    right: 4rem
+    top: 23px
+
+    li
+      display: inline
+
+      a
+        padding: 0 0.25rem
+        color: $cyan
+        @include transition-color(0.5s)
+
+      a:hover
+        color: $white
+
+  button
+    border: none !important
+    color: $blue !important
+    background-color: $dark-gray
+    @include transition-color(0.5s)
+    cursor: pointer
+
+  button:hover
+    color: $white !important
+
+  #navbarCollapse
+    display: none
+    position: absolute
+    top: 70px
+    right: 0
+    left: 0
+    background-color: $dark-gray
+    padding: 0.5rem
+    z-index: 2
+
+    ul
+      font-family: $font-body
+
+      .nav-item:not(:first-child)
+        margin-top: 0.5rem
+      
+      .nav-item
+        text-align: center
+
+        a.nav-link:not(:first-child)
+          margin-top: 0.5rem
+
+        a.nav-link
+          background-color: $gray
+          border-radius: 0.25rem
+          color: $white !important
+
+@media screen and (min-width: $breakpoint-md)
+  nav
+    .social
+      right: 14rem
+
+    #navbarCollapse
+      display: inline
+      position: unset
+      padding: 0
+
+      ul
+        .nav-item:not(:first-child)
+          margin-top: 0
+
+        .nav-item
+          a.nav-link
+            background-color: unset
+            padding: 0 0.5rem
+            vertical-align: middle
+            color: $blue !important
+            @include transition-color(0.5s)
+
+          a.nav-link:hover
+            color: $white !important

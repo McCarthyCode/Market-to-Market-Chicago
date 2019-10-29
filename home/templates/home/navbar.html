@@ -1,0 +1,48 @@
+{% load static %}<nav id="navbar" class="navbar navbar-default navbar-expand-md navbar-dark">
+  <ul class="social">
+    <li>
+      <a href="https://facebook.com/OutAtWrigley"><i class="fab fa-facebook-f"></i></a>
+    </li>
+    <li>
+      <a href="https://twitter.com/OutAtWrigley"><i class="fab fa-twitter"></i></a>
+    </li>
+    <li>
+      <a href="https://instagram.com/OutAtWrigley/"><i class="fab fa-instagram"></i></a>
+    </li>
+  </ul>
+  <a class="navbar-brand" href="{% url 'home:index' %}">MTM Chicago</a>
+  <button id="navbarMenuButton" class="d-md-none ml-auto" type="button">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div id="navbarCollapse" class="ml-auto">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home:index' %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About Us/Contact</a>
+      </li>
+      <li class="d-md-none nav-item">
+        <a class="nav-link" href="#">Nightlife</a>
+      </li>
+      <li class="d-md-none nav-item">
+        <a class="nav-link" href="#">Restaurants</a>
+      </li>
+      <li class="d-md-none nav-item">
+        <a class="nav-link" href="#">Arts & Entertainment</a>
+      </li>
+      <li class="d-md-none nav-item">
+        <a class="nav-link" href="#">Health & Fitness</a>
+      </li>
+      <li class="d-md-none nav-item">
+        <a class="nav-link" href="#">Sports</a>
+      </li>
+      <li class="d-md-none nav-item">
+        <a class="nav-link" href="#">Non-profit</a>
+      </li>
+      <li class="d-md-none nav-item">
+        <a class="nav-link" href="#">Autos</a>
+      </li>
+    </ul>
+  </div>
+</nav>

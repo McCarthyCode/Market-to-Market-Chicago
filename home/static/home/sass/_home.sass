@@ -1,0 +1,19 @@
+#grid
+  display: grid
+  grid-template-columns: 15rem auto
+  grid-template-rows: 70px auto 24px 62px
+  height: 100%
+
+  #content
+    grid-column-start: 1
+    grid-column-end: 3
+    grid-row-start: 2
+    grid-row-end: 4
+    background-color: $gray
+
+@media screen and (min-width: $breakpoint-md)
+  #grid #content
+    grid-column-start: 2
+    grid-column-end: 3
+    grid-row-start: 2
+    grid-row-end: 5

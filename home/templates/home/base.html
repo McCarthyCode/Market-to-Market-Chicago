@@ -1,0 +1,73 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Title & Favicon -->
+  <title>Market to Market Chicago</title>
+  <link rel="icon" href="{% static 'home/img/favicon.ico' %}" type="image/x-icon">
+
+  <!-- Stylesheets -->
+
+  <!-- Internal Stylesheets (compressed) -->
+  <link rel="stylesheet" href="{% static 'home/css/reset.min.css' %}"><!-- Reset CSS -->
+  <link rel="stylesheet" href="{% static 'home/css/style.min.css' %}"><!-- Home App CSS -->
+
+  <!-- Internal Stylesheet Libraries (compressed) -->
+  <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}"><!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'home/css/font-awesome.min.css' %}"><!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="{% static 'home/css/jquery.fancybox.min.css' %}"><!-- fancybox CSS -->
+
+  <!-- External Stylesheet Libraries (compressed) -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous"><!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"><!-- Font Awesome CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"><!-- fancybox CSS -->
+
+  <!-- Scripts -->
+
+  <!-- Internal Script Libraries (compressed) -->
+  <script src="{% static 'home/js/jquery-3.3.1.min.js' %}"></script><!-- jQuery JS -->
+  <script src="{% static 'home/js/bootstrap.min.js' %}"></script><!-- Bootstrap JS -->
+  <script src="{% static 'home/js/3c68f13de5.js' %}"></script><!-- Font Awesome JS -->
+  <script src="{% static 'home/js/jquery.fancybox.min.js' %}"></script><!-- fancybox JS -->
+
+  <!-- Internal Scripts (compressed) -->
+  <script src="{% static 'home/js/script.min.js' %}"></script><!-- Home App -->
+
+  <!-- External Script Libraries (compressed) -->
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script><!-- jQuery JS -->
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script><!-- Bootstrap JS -->
+  <script src="https://kit.fontawesome.com/3c68f13de5.js"></script><!-- Font Awesome JS -->
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><!-- fancybox JS -->
+</head>
+<body>
+  <div id="grid">
+    {% include 'home/navbar.html' %}
+    <section id="sidebar" class="d-none d-md-block">
+      {% include 'home/sidebar.html' %}
+    </section>
+    <section id="content">
+      {% block content %}
+      {% endblock %}
+    </section>
+    {% include 'home/footer.html' %}
+  </div>
+</body>
+</html>

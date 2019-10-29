@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css?family=Patua+One|Roboto");
+nav {
+  background-color: #1e1e1e;
+  position: relative;
+  height: 70px;
+}
+nav .navbar-brand {
+  font-family: "Patua One", Helvetica, Arial, sans-serif;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+  color: #dcdcaa !important;
+}
+nav .navbar-brand:hover {
+  color: #ffffff !important;
+}
+nav .social {
+  position: absolute;
+  right: 4rem;
+  top: 23px;
+}
+nav .social li {
+  display: inline;
+}
+nav .social li a {
+  padding: 0 0.25rem;
+  color: #97d5f7;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+}
+nav .social li a:hover {
+  color: #ffffff !important;
+}
+nav button {
+  border: none !important;
+  color: #bb846e !important;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+}
+nav button:hover {
+  color: #ffffff !important;
+}
+nav ul {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+nav ul .nav-item {
+  text-align: center;
+}
+nav ul .nav-item a.nav-link {
+  background-color: #333333;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+  color: #bb846e !important;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+}
+nav ul .nav-item a.nav-link:hover {
+  color: #ffffff !important;
+}
+
+@media screen and (min-width: 768px) {
+  nav .social {
+    right: 14rem;
+  }
+  nav ul .nav-item a.nav-link {
+    background-color: unset;
+    margin-top: 0;
+    padding: 0 0.5rem;
+    vertical-align: middle;
+    -webkit-transition: color 0.5s;
+    transition: color 0.5s;
+  }
+  nav ul .nav-item a.nav-link:hover {
+    color: #bf82ba !important;
+  }
+}
+#grid {
+  display: grid;
+  grid-template-columns: 30rem auto;
+  grid-template-rows: auto;
+}
+#grid #content {
+  background-color: #bb846e;
+}
+
+/*# sourceMappingURL=style.css.map */
