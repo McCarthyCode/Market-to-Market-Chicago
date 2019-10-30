@@ -1,6 +1,6 @@
 footer.footer
   position: fixed
-  padding: 0.5rem 0
+  padding: 0.5rem
   background-color: $dark-gray
   right: 0
   bottom: 0
@@ -44,8 +44,8 @@ footer.footer
 @media screen and (min-width: $breakpoint-md)
   footer.footer
     position: relative
-    grid-column-start: 1
-    grid-column-end: 2
-    grid-row-start: 3
-    grid-row-end: 5
+    grid-column-start: left
+    grid-column-end: sidebar-width
+    grid-row-start: footer-tall-top
+    grid-row-end: bottom
     border-right: 1px solid $lighter-gray

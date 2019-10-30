@@ -1,5 +1,5 @@
 #sidebar
-  position: absolute
+  display: none
   background-color: $gray
   color: $white
   margin: 0
@@ -57,10 +57,14 @@
     li:nth-child(7):hover, li:nth-child(7).active
       border-right: 0.25rem solid $blue
 
+  #skyscraper
+    margin: auto (240px - 160px) / 2
+
 @media screen and (min-width: $breakpoint-md)
   #sidebar
+    display: block
     position: relative
-    grid-column-start: 1
-    grid-column-end: 2
-    grid-row-start: 2
-    grid-row-end: 3
+    grid-column-start: left
+    grid-column-end: sidebar-width
+    grid-row-start: nav-bottom
+    grid-row-end: footer-tall-top
