@@ -45,6 +45,9 @@
   <!-- Internal Scripts (compressed) -->
   <script src="{% static 'home/js/script.min.js' %}"></script><!-- Home App -->
 
+  <!-- Internal Scripts (uncompressed) -->
+  <!-- <script src="{% static 'home/js/script.js' %}"></script> --><!-- Home App -->
+
   <!-- External Script Libraries (compressed) -->
   <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -64,8 +67,10 @@
       {% include 'home/sidebar.html' %}
     </section>
     <section id="content">
-      {% block content %}
-      {% endblock %}
+      <div class="container">
+        {% block content %}
+        {% endblock %}
+      </div>
     </section>
     {% include 'home/footer.html' %}
   </div>

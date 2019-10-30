@@ -1,10 +1,11 @@
 footer.footer
-  position: absolute
+  position: fixed
   padding: 0.5rem 0
   background-color: $dark-gray
   right: 0
   bottom: 0
   left: 0
+  z-index: 2
 
   p
     margin: 0
@@ -42,7 +43,7 @@ footer.footer
 
 @media screen and (min-width: $breakpoint-md)
   footer.footer
-    position: unset
+    position: relative
     grid-column-start: 1
     grid-column-end: 2
     grid-row-start: 3

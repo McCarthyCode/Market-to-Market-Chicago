@@ -8,12 +8,67 @@
     grid-column-start: 1
     grid-column-end: 3
     grid-row-start: 2
-    grid-row-end: 4
+    grid-row-end: 5
     background-color: $gray
+    overflow-y: auto
+
+    .h1
+      margin-top: 2rem
+
+    article
+      border: 1px solid $lighter-gray
+      padding: 1rem
+      background-color: $light-gray
+      margin-bottom: 1rem
+
+      p
+        color: $white
+
+    article.nightlife
+      border-left: 0.25rem solid $magenta
+
+    article.restaurants
+      border-left: 0.25rem solid $orange
+
+    article.arts-and-entertainment
+      border-left: 0.25rem solid $yellow
+
+    article.health-and-fitness
+      border-left: 0.25rem solid $green
+
+    article.sports
+      border-left: 0.25rem solid $pale-green
+
+    article.non-profit
+      border-left: 0.25rem solid $cyan
+
+    article.autos
+      border-left: 0.25rem solid $blue
+
+  #content::before, #content::after
+    content: ''
+    position: fixed
+    right: 0
+    left: 0
+    height: 2rem
+    z-index: 1
+
+  #content::before
+    @include linear-gradient(to bottom, $gray, transparent)
+    top: 70px
+
+  #content::after
+    @include linear-gradient(to top, $gray, transparent)
+    bottom: 0
+
 
 @media screen and (min-width: $breakpoint-md)
-  #grid #content
-    grid-column-start: 2
-    grid-column-end: 3
-    grid-row-start: 2
-    grid-row-end: 5
+  #grid
+    #content
+      grid-column-start: 2
+      grid-column-end: 3
+      grid-row-start: 2
+      grid-row-end: 5
+
+    #content::before, #content::after
+      left: 15rem

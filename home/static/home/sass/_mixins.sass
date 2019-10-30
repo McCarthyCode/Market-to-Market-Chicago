@@ -9,9 +9,9 @@
   -webkit-transition: color $time
   transition: color $time
 
-@mixin transition-border-left($time)
-  -webkit-transition: border-left $time
-  transition: border-left $time
+@mixin transition-border-right($time)
+  -webkit-transition: border-right $time
+  transition: border-right $time
 
 @mixin transform($properties...)
   -webkit-transform: $properties
@@ -19,3 +19,10 @@
   -ms-transform: $properties
   -o-transform: $properties
   transform: $properties
+
+@mixin linear-gradient($direction, $colors...)
+  background: -webkit-linear-gradient($direction, $colors)
+  background: -moz-linear-gradient($direction, $colors)
+  background: -ms-linear-gradient($direction, $colors)
+  background: -o-linear-gradient($direction, $colors)
+  background: linear-gradient($direction, $colors)

@@ -11,13 +11,51 @@
       background-color: $light-gray
       border-right: 0.25rem solid $light-gray
       border-bottom: 1px solid $lighter-gray
-      border-left: 0.25rem solid $light-gray
-      @include transition-border-left(0.5s)
+      @include transition-border-right(0.5s)
       text-align: center
       cursor: pointer
 
-    li:hover, li.active
+    li:nth-child(1)
+      border-left: 0.25rem solid $magenta
+
+    li:nth-child(1):hover, li:nth-child(1).active
+      border-right: 0.25rem solid $magenta
+
+    li:nth-child(2)
+      border-left: 0.25rem solid $orange
+
+    li:nth-child(2):hover, li:nth-child(2).active
+      border-right: 0.25rem solid $orange
+
+    li:nth-child(3)
+      border-left: 0.25rem solid $yellow
+
+    li:nth-child(3):hover, li:nth-child(3).active
+      border-right: 0.25rem solid $yellow
+
+    li:nth-child(4)
+      border-left: 0.25rem solid $green
+
+    li:nth-child(4):hover, li:nth-child(4).active
+      border-right: 0.25rem solid $green
+
+    li:nth-child(5)
+      border-left: 0.25rem solid $pale-green
+
+    li:nth-child(5):hover, li:nth-child(5).active
+      border-right: 0.25rem solid $pale-green
+
+    li:nth-child(6)
       border-left: 0.25rem solid $cyan
+
+    li:nth-child(6):hover, li:nth-child(6).active
+      border-right: 0.25rem solid $cyan
+
+    li:nth-child(7)
+      border-left: 0.25rem solid $blue
+
+    li:nth-child(7):hover, li:nth-child(7).active
+      border-right: 0.25rem solid $blue
 
 @media screen and (min-width: $breakpoint-md)
   #sidebar
