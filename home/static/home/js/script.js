@@ -25,7 +25,7 @@ $(document).ready(() => {
       } else if (position !== 0 && !hidden) {
         // similar to $footer.hide();
         $footer.animate({
-          'bottom': '-62px',
+          'bottom': '-49px',
         }, 500);
 
         hidden = !hidden;
