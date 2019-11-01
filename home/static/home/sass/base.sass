@@ -38,6 +38,11 @@ h3.h3
 
 #grid
   display: grid
-  grid-template-columns: [left] 301px [sidebar-width] auto [right]
-  grid-template-rows: [top] 70px [nav-bottom] 231px [topics-top] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
+  grid-template-columns: [left] 301px [sidebar-right] auto [right]
+  grid-template-rows: [top] 69px [nav-bottom] 231px [topics-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
   height: 100vh
+  min-height: 669px
+
+@media screen and (min-width: $breakpoint-xl)
+  #grid
+    grid-template-columns: [left] 301px [sidebar-right] auto [skyscraper-left] 160px [right]

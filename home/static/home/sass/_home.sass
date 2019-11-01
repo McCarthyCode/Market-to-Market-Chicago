@@ -49,7 +49,7 @@
 #content::before
   @include linear-gradient(to bottom, $gray, transparent)
   position: absolute
-  top: 70px
+  top: 69px
 
 #content::after
   @include linear-gradient(to top, $gray, transparent)
@@ -58,9 +58,34 @@
   grid-row-end: bottom
   bottom: 0
 
+#skyscraperContainer
+  display: none
+  position: relative
+  grid-column-start: skyscraper-left
+  grid-column-end: right
+  grid-row-start: nav-bottom
+  grid-row-end: bottom
+  background-color: $light-gray
+
+  #skyscraper
+    position: absolute
+    top: 50%
+    left: 50%
+    @include transform(translate(-50%, -50%))
+
 @media screen and (min-width: $breakpoint-md)
   #content
-    grid-column-start: sidebar-width
+    grid-column-start: sidebar-right
 
   #content::before, #content::after
     left: 301px
+
+@media screen and (min-width: $breakpoint-xl)
+  #content
+    grid-column-end: skyscraper-left
+
+  #content::before, #content::after
+    right: 192px
+
+  #skyscraperContainer
+    display: block

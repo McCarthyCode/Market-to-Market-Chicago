@@ -1,11 +1,18 @@
-#sidebar
+#topics
   display: none
+  position: relative
+  grid-column-start: left
+  grid-column-end: sidebar-right
+  grid-row-start: nav-bottom
+  grid-row-end: topics-bottom
   background-color: $gray
   color: $white
   margin: 0
   border-right: 1px solid $lighter-gray
 
   ul.topics
+    margin: 0
+
     li
       padding: 0.25rem 0
       background-color: $light-gray
@@ -57,14 +64,20 @@
     li:nth-child(7):hover, li:nth-child(7).active
       border-right: 0.25rem solid $blue
 
-  #skyscraper
-    margin: auto (240px - 160px) / 2
+#mediumRectangleContainer
+  position: relative
+  grid-column-start: left
+  grid-column-end: sidebar-right
+  grid-row-start: topics-bottom
+  grid-row-end: footer-tall-top
+  background-color: $gray
+  border-right: 1px solid $lighter-gray
+
+  #mediumRectangle
+    position: absolute
+    top: 50%
+    @include transform(translateY(-50%))
 
 @media screen and (min-width: $breakpoint-md)
-  #sidebar
+  #topics
     display: block
-    position: relative
-    grid-column-start: left
-    grid-column-end: sidebar-width
-    grid-row-start: nav-bottom
-    grid-row-end: footer-tall-top
