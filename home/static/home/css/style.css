@@ -277,6 +277,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #679452;
   text-decoration: underline;
 }
+#content article p.read-more {
+  margin: 0;
+}
 #content article.nightlife {
   border-left: 0.25rem solid #bf82ba;
 }
