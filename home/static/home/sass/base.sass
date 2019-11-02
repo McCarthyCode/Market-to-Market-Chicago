@@ -12,9 +12,8 @@
 html, body
   height: 100%
 
+// anchor rules added to body tag for higher specificity
 body
-  background-color: $dark-gray
-
   a, a:hover
     color: $cyan
 
@@ -32,6 +31,13 @@ h1.h1
 
 h3.h3
   color: $orange
+
+.fa-external-link-alt
+  display: inline
+  vertical-align: 1px
+  font-size: 8px
+  color: $cyan
+  cursor: pointer
 
 #content .container
   padding: 0  1rem

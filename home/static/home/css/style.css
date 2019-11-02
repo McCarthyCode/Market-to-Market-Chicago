@@ -212,7 +212,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
 }
 #footer .footer-list {
-  max-width: 13rem;
+  max-width: 14.5rem;
   position: relative;
   margin: auto;
   overflow: hidden;
@@ -376,9 +376,6 @@ html, body {
   height: 100%;
 }
 
-body {
-  background-color: #1e1e1e;
-}
 body a, body a:hover {
   color: #97d5f7;
 }
@@ -399,6 +396,14 @@ h1.h1 {
 
 h3.h3 {
   color: #bb846e;
+}
+
+.fa-external-link-alt {
+  display: inline;
+  vertical-align: 1px;
+  font-size: 8px;
+  color: #97d5f7;
+  cursor: pointer;
 }
 
 #content .container {
