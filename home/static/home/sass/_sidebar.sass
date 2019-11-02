@@ -65,6 +65,7 @@
       border-right: 0.25rem solid $blue
 
 #mediumRectangleContainer
+  display: none
   position: relative
   grid-column-start: left
   grid-column-end: sidebar-right
@@ -79,5 +80,5 @@
     @include transform(translateY(-50%))
 
 @media screen and (min-width: $breakpoint-md)
-  #topics
+  #topics, #mediumRectangleContainer
     display: block

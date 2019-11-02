@@ -2,7 +2,7 @@ $(document).ready(() => {
   console.log('This site brought to you by McCarthy Web Design.');
   console.log('https://mccarthywebdesign.com/');
 
-  var breakpointMd = 768;
+  let breakpointMd = 768;
 
   $('#navbarMenuButton').click(() => {
     $('#navbarCollapse').slideToggle();
@@ -10,7 +10,7 @@ $(document).ready(() => {
 
   let hidden = false;
   function showHideFooter() {
-    let $footer = $('footer.footer');
+    let $footer = $('#footer');
     let width = $(window).width();
     let position = $('#content').scrollTop();
 
@@ -38,4 +38,12 @@ $(document).ready(() => {
 
   $(window).on('scroll resize orientationchange', showHideFooter);
   $('#content').scroll(showHideFooter);
+
+  $(window).on('resize orientationchange', () => {
+    if ($(this).width() >= breakpointMd) {
+      $('#navbarCollapse').css('display', 'inline');
+    } else {
+      $('#navbarCollapse').hide();
+    }
+  });
 });
