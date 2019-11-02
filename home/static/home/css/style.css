@@ -337,6 +337,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   grid-row-start: nav-bottom;
   grid-row-end: bottom;
   background-color: #444444;
+  border-left: 1px solid #818181;
 }
 #skyscraperContainer #skyscraper {
   position: absolute;
@@ -364,7 +365,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   }
 
   #content::before, #content::after {
-    right: 192px;
+    right: 193px;
   }
 
   #skyscraperContainer {
@@ -419,7 +420,7 @@ h3.h3 {
 }
 @media screen and (min-width: 1200px) {
   #grid {
-    grid-template-columns: [left] 301px [sidebar-right] auto [skyscraper-left] 192px [right];
+    grid-template-columns: [left] 301px [sidebar-right] auto [skyscraper-left] 193px [right];
   }
 }
 
