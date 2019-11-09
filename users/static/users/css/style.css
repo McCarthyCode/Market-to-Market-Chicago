@@ -152,8 +152,20 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   grid-row-end: footer-top;
   background-color: #333333;
 }
-#content .h1 {
+#content .container {
+  max-width: 320px;
+}
+#content .container .h1 {
   margin: 2rem 0;
+}
+#content .container p {
+  color: #ffffff;
+}
+#content .container form input[type=email], #content .container form input[type=password] {
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+  border-color: #818181;
+  background-color: #1e1e1e;
 }
 
 html, body {
