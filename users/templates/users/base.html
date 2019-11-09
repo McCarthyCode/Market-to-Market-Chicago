@@ -14,7 +14,7 @@
 
   <!-- Internal Stylesheets (compressed) -->
   <link rel="stylesheet" href="{% static 'home/css/reset.min.css' %}"><!-- Reset CSS -->
-  <link rel="stylesheet" href="{% static 'home/css/style.min.css' %}"><!-- Home App CSS -->
+  <link rel="stylesheet" href="{% static 'users/css/style.min.css' %}"><!-- Users App CSS -->
 
   <!-- Internal Stylesheet Libraries (compressed) -->
   <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}"><!-- Bootstrap CSS -->
@@ -44,10 +44,10 @@
 
   <!-- Internal Scripts (uncompressed) -->
   <script src="{% static 'home/js/global.js' %}"></script><!-- Cross-App JS -->
-  <!-- <script src="{% static 'home/js/script.js' %}"></script> --><!-- Home App JS -->
+  <!-- <script src="{% static 'users/js/script.js' %}"></script> --><!-- Users App -->
 
   <!-- Internal Scripts (compressed) -->
-  <script src="{% static 'home/js/script.min.js' %}"></script><!-- Home App JS -->
+  <script src="{% static 'users/js/script.min.js' %}"></script><!-- Users App -->
 
   <!-- External Script Libraries (compressed) -->
   <script
@@ -64,20 +64,11 @@
 <body>
   <div id="grid">
     {% include 'home/navbar.html' %}
-    <section id="topics">
-      {% include 'home/topics.html' %}
-    </section>
-    <section id="mediumRectangleContainer">
-      {% include 'home/ads/medium_rectangle.html' %}
-    </section>
     <section id="content">
       <div class="container">
         {% block content %}
         {% endblock %}
       </div>
-    </section>
-    <section id="skyscraperContainer">
-      {% include 'home/ads/skyscraper.html' %}
     </section>
     {% include 'home/footer.html' %}
   </div>

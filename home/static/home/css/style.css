@@ -75,7 +75,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 
 @media screen and (min-width: 768px) {
   nav .social {
-    right: 14rem;
+    right: 20.75rem;
   }
   nav #navbarCollapse {
     display: inline;
