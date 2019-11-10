@@ -251,7 +251,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   grid-row-start: nav-bottom;
   grid-row-end: bottom;
   background-color: #333333;
-  overflow-y: auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 #content .h1 {
   margin: 2rem 0;
@@ -302,36 +303,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-left: 0.25rem solid #569cd6;
 }
 
-#content::before, #content::after {
-  content: "";
-  right: 0;
-  left: 0;
-  height: 2rem;
-  z-index: 1;
-}
-
-#content::before {
-  background: -webkit-linear-gradient(to bottom, #333333, transparent);
-  background: -moz-linear-gradient(to bottom, #333333, transparent);
-  background: -ms-linear-gradient(to bottom, #333333, transparent);
-  background: -o-linear-gradient(to bottom, #333333, transparent);
-  background: linear-gradient(to bottom, #333333, transparent);
-  position: absolute;
-  top: 69px;
-}
-
-#content::after {
-  background: -webkit-linear-gradient(to top, #333333, transparent);
-  background: -moz-linear-gradient(to top, #333333, transparent);
-  background: -ms-linear-gradient(to top, #333333, transparent);
-  background: -o-linear-gradient(to top, #333333, transparent);
-  background: linear-gradient(to top, #333333, transparent);
-  position: fixed;
-  grid-row-start: gradient-top;
-  grid-row-end: bottom;
-  bottom: 0;
-}
-
 #skyscraperContainer {
   display: none;
   position: relative;
@@ -357,18 +328,10 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   #content {
     grid-column-start: sidebar-right;
   }
-
-  #content::before, #content::after {
-    left: 301px;
-  }
 }
 @media screen and (min-width: 1200px) {
   #content {
     grid-column-end: skyscraper-left;
-  }
-
-  #content::before, #content::after {
-    right: 193px;
   }
 
   #skyscraperContainer {
