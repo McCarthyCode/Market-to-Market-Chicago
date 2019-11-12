@@ -1,7 +1,21 @@
-{% extends 'users/base.html' %}{% load static %}{% block content %}<h1 class="h1 text-center">Login</h1>
-<p class="text-center">This page is intended for authors and site administators. If you would like to continue reading articles, you may go back to the <a href="{% url 'home:index' %}">home page</a>.</p>
-<form method="POST" action="#">
-  <input class="form-control" placeholder="Email" type="email" name="email">
-  <input class="form-control" placeholder="Password" type="password" name="password">
-  <input value="Submit" class="form-control btn btn-primary" type="submit">
-</form>{% endblock %}
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+{% if profile == None %}
+<div class="container logged-out">
+  {% include 'users/messages.html' %}
+  <h1 class="h1 text-center">Login</h1>
+  <p class="text-center">This page is intended for authors and site administators. If you would like to continue reading articles, you may go back to the <a href="{% url 'home:index' %}">home page</a>.</p>
+  <form method="POST" action="{% url 'users:login' %}">
+    {% csrf_token %}
+    <input class="form-control" placeholder="Username" type="text" name="username">
+    <input class="form-control" placeholder="Password" type="password" name="password">
+    <input value="Submit" class="form-control btn btn-primary" type="submit">
+  </form>
+</div>
+{% else %}
+<div class="container logged-in">
+  {% include 'users/messages.html' %}
+</div>
+{% endif %}
+{% endblock %}

@@ -152,17 +152,17 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   grid-row-end: footer-top;
   background-color: #333333;
 }
-#content .container {
+#content .container.logged-out {
   max-width: 320px;
   padding: 2rem 1rem;
 }
-#content .container .h1 {
+#content .container.logged-out .h1 {
   margin-bottom: 1rem;
 }
-#content .container p {
+#content .container.logged-out p {
   color: #ffffff;
 }
-#content .container form input[type=email], #content .container form input[type=password] {
+#content .container.logged-out form input[type=text], #content .container.logged-out form input[type=password] {
   color: #ffffff;
   margin-bottom: 0.25rem;
   border-color: #818181;
