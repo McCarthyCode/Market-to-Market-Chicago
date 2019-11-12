@@ -5,9 +5,20 @@
   grid-row-end: footer-top
   background-color: $gray
 
-  .container.logged-out
-    max-width: 320px
+  .container
     padding: 2rem 1rem
+
+    .alert p
+      margin: 0
+
+    .alert-danger p
+      color: #721c24
+
+    .alert-success p
+      color: #155724
+
+    .alert-info p
+      color: #0c5460
 
     .h1
       margin-bottom: 1rem
@@ -21,3 +32,6 @@
         margin-bottom: 0.25rem
         border-color: $lighter-gray
         background-color: $dark-gray
+
+  .container.logged-out
+    max-width: 320px

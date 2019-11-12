@@ -15,6 +15,7 @@ def index(request):
 
     return render(request, 'users/index.html', Profile.objects.index(request))
 
+
 def login(request):
     if request.method != 'POST':
         return HttpResponseBadRequest()
@@ -29,4 +30,14 @@ def login(request):
     profile = Profile.objects.get(pk=response)
     messages.success(request, 'Welcome back, %s!' % profile.user.first_name)
     request.session['id'] = response
+    return redirect('users:index')
+
+
+def logout(request):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    del request.session['id']
+    messages.success(request, 'You have successfully signed out.')
+
     return redirect('users:index')
