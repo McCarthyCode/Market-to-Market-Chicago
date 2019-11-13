@@ -33,14 +33,14 @@ nav
       a:hover
         color: $white
 
-  button
+  #navbarMenuButton
     border: none !important
     color: $blue !important
     background-color: $dark-gray
     @include transition-color(0.5s)
     cursor: pointer
 
-  button:hover
+  #navbarMenuButton:hover
     color: $white !important
 
   #navbarCollapse
@@ -50,7 +50,7 @@ nav
     right: 0
     left: 0
     background-color: $dark-gray
-    padding: 0.5rem
+    padding: 0 0.5rem 0.5rem 0.5rem
     z-index: 2
 
     ul
@@ -76,7 +76,7 @@ nav
       right: 20.75rem
 
     .social.logged-in
-      right: 18rem
+      right: 22rem
 
     #navbarCollapse
       display: inline

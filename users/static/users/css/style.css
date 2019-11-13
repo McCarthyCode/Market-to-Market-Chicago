@@ -34,7 +34,7 @@ nav .social li a {
 nav .social li a:hover {
   color: #ffffff;
 }
-nav button {
+nav #navbarMenuButton {
   border: none !important;
   color: #569cd6 !important;
   background-color: #1e1e1e;
@@ -42,7 +42,7 @@ nav button {
   transition: color 0.5s;
   cursor: pointer;
 }
-nav button:hover {
+nav #navbarMenuButton:hover {
   color: #ffffff !important;
 }
 nav #navbarCollapse {
@@ -52,7 +52,7 @@ nav #navbarCollapse {
   right: 0;
   left: 0;
   background-color: #1e1e1e;
-  padding: 0.5rem;
+  padding: 0 0.5rem 0.5rem 0.5rem;
   z-index: 2;
 }
 nav #navbarCollapse ul {
@@ -78,7 +78,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     right: 20.75rem;
   }
   nav .social.logged-in {
-    right: 18rem;
+    right: 22rem;
   }
   nav #navbarCollapse {
     display: inline;

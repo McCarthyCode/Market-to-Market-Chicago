@@ -1,3 +1,5 @@
 $(document).ready(() => {
-  // code goes here
+  $('#navbarMenuButton').click(() => {
+    $('#navbarCollapse').slideToggle();
+  });
 });
