@@ -1,10 +1,6 @@
 $(document).ready(() => {
   let breakpointMd = 768;
 
-  $('#navbarMenuButton').click(() => {
-    $('#navbarCollapse').slideToggle();
-  });
-
   let hidden = false;
   function showHideFooter() {
     let $footer = $('#footer');

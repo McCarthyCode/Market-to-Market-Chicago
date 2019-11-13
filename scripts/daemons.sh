@@ -10,6 +10,9 @@ sass_output_users_compressed="users/static/users/css/style.min.css"
 
 closure_compiler="/opt/closure-compiler/closure-compiler-v20190929.jar"
 
+js_input_global="home/static/home/js/global.js"
+js_output_global="home/static/home/js/global.min.js"
+
 js_input_home="home/static/home/js/script.js"
 js_output_home="home/static/home/js/script.min.js"
 
@@ -23,6 +26,7 @@ declare -a daemons=(
   "sass --watch --style=compressed $sass_input_home:$sass_output_home_compressed"
   "sass --watch $sass_input_users:$sass_output_users"
   "sass --watch --style=compressed $sass_input_users:$sass_output_users_compressed"
+  "watch java -jar $closure_compiler --js $js_input_global --js_output_file $js_output_global"
   "watch java -jar $closure_compiler --js $js_input_home --js_output_file $js_output_home"
   "watch java -jar $closure_compiler --js $js_input_users --js_output_file $js_output_users"
 )
