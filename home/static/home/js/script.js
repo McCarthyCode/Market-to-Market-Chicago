@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  let breakpointMd = 768;
+  const breakpointMd = 768;
 
   let hidden = false;
   function showHideFooter() {
@@ -14,16 +14,17 @@ $(document).ready(() => {
           'bottom': '0px',
         }, 500);
 
-        hidden = !hidden;
+        hidden = false;
       } else if (position !== 0 && !hidden) {
         // similar to $footer.hide();
         $footer.animate({
           'bottom': '-49px',
         }, 500);
 
-        hidden = !hidden;
+        hidden = true;
       }
     } else {
+      hidden = false;
       $footer.css('bottom', '0px');
       $footer.show();
     }
