@@ -53,7 +53,7 @@ nav #navbarCollapse {
   left: 0;
   background-color: #1e1e1e;
   padding: 0 0.5rem 0.5rem 0.5rem;
-  z-index: 2;
+  z-index: 3;
 }
 nav #navbarCollapse ul {
   font-family: "Roboto", Helvetica, Arial, sans-serif;

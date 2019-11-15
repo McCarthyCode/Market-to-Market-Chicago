@@ -12,15 +12,19 @@
 
   ul.topics
     margin: 0
+    padding-bottom: 1px
+    background-color: $lighter-gray
 
     li
       padding: 0.25rem 0
       background-color: $light-gray
       border-right: 0.25rem solid $light-gray
-      border-bottom: 1px solid $lighter-gray
       @include transition-border-right(0.5s)
       text-align: center
       cursor: pointer
+
+    li:not(:last-child)
+      margin-bottom: 1px
 
     li:nth-child(1)
       border-left: 0.25rem solid $magenta
@@ -63,6 +67,12 @@
 
     li:nth-child(7):hover, li:nth-child(7).active
       border-right: 0.25rem solid $blue
+
+    li:nth-child(8)
+      border-left: 0.25rem solid $purple
+
+    li:nth-child(8):hover, li:nth-child(8).active
+      border-right: 0.25rem solid $purple
 
 #mediumRectangleContainer
   display: none

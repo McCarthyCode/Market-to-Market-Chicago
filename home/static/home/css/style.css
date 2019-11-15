@@ -53,7 +53,7 @@ nav #navbarCollapse {
   left: 0;
   background-color: #1e1e1e;
   padding: 0 0.5rem 0.5rem 0.5rem;
-  z-index: 2;
+  z-index: 3;
 }
 nav #navbarCollapse ul {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
@@ -114,16 +114,20 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 #topics ul.topics {
   margin: 0;
+  padding-bottom: 1px;
+  background-color: #818181;
 }
 #topics ul.topics li {
   padding: 0.25rem 0;
   background-color: #444444;
   border-right: 0.25rem solid #444444;
-  border-bottom: 1px solid #818181;
   -webkit-transition: border-right 0.5s;
   transition: border-right 0.5s;
   text-align: center;
   cursor: pointer;
+}
+#topics ul.topics li:not(:last-child) {
+  margin-bottom: 1px;
 }
 #topics ul.topics li:nth-child(1) {
   border-left: 0.25rem solid #bf82ba;
@@ -166,6 +170,12 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 #topics ul.topics li:nth-child(7):hover, #topics ul.topics li:nth-child(7).active {
   border-right: 0.25rem solid #569cd6;
+}
+#topics ul.topics li:nth-child(8) {
+  border-left: 0.25rem solid #9f62c2;
+}
+#topics ul.topics li:nth-child(8):hover, #topics ul.topics li:nth-child(8).active {
+  border-right: 0.25rem solid #9f62c2;
 }
 
 #mediumRectangleContainer {
@@ -388,7 +398,7 @@ h3.h3 {
 
 @media screen and (min-width: 768px) {
   #grid {
-    grid-template-rows: [top] 69px [nav-bottom] 231px [topics-bottom] auto [footer-tall-top] 19.2px [footer-short-top] 17px [gradient-top] 32px [bottom];
+    grid-template-rows: [top] 69px [nav-bottom] 264px [topics-bottom] auto [footer-tall-top] 19.2px [footer-short-top] 17px [gradient-top] 32px [bottom];
     min-height: 669px;
   }
 }
