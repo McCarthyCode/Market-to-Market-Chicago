@@ -52,27 +52,11 @@
   article.non-profit
     border-left: 0.25rem solid $cyan
 
-  article.autos
+  article.events
     border-left: 0.25rem solid $blue
 
-// #content::before, #content::after
-//   content: ''
-//   right: 0
-//   left: 0
-//   height: 2rem
-//   z-index: 1
-
-// #content::before
-//   @include linear-gradient(to bottom, $gray, transparent)
-//   position: absolute
-//   top: 69px
-
-// #content::after
-//   @include linear-gradient(to top, $gray, transparent)
-//   position: fixed
-//   grid-row-start: gradient-top
-//   grid-row-end: bottom
-//   bottom: 0
+  article.people-to-know
+    border-left: 0.25rem solid $purple
 
 #skyscraperContainer
   display: none
@@ -94,15 +78,9 @@
   #content
     grid-column-start: sidebar-right
 
-  // #content::before, #content::after
-  //   left: 301px
-
 @media screen and (min-width: $breakpoint-xl)
   #content
     grid-column-end: skyscraper-left
-
-  // #content::before, #content::after
-  //   right: 193px
 
   #skyscraperContainer
     display: block

@@ -312,8 +312,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content article.non-profit {
   border-left: 0.25rem solid #97d5f7;
 }
-#content article.autos {
+#content article.events {
   border-left: 0.25rem solid #569cd6;
+}
+#content article.people-to-know {
+  border-left: 0.25rem solid #9f62c2;
 }
 
 #skyscraperContainer {
