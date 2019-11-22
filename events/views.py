@@ -7,7 +7,7 @@ def index(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    return render(request, 'home/index.html', {
+    return render(request, 'events/index.html', {
         'name': NAME,
         'year': datetime.now(TZ).year,
     })

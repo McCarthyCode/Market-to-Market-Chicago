@@ -1,0 +1,86 @@
+#content
+  grid-column-start: left
+  grid-column-end: right
+  grid-row-start: nav-bottom
+  grid-row-end: bottom
+  background-color: $gray
+  overflow-y: scroll
+  -webkit-overflow-scrolling: touch
+
+  .h1
+    margin: 2rem 0
+
+  article
+    border: 1px solid $lighter-gray
+    padding: 1rem
+    background-color: $light-gray
+    margin-bottom: 1rem
+
+    .h3 a
+      color: $orange
+
+    p
+      color: $white
+
+    p.info
+      color: $green
+      font-style: italic
+      margin-bottom: 0.5rem
+
+      a
+        color: $green
+        text-decoration: underline
+
+    p.read-more
+      margin: 0
+
+  article.nightlife
+    border-left: 0.25rem solid $magenta
+
+  article.restaurants
+    border-left: 0.25rem solid $orange
+
+  article.arts-and-entertainment
+    border-left: 0.25rem solid $yellow
+
+  article.health-and-fitness
+    border-left: 0.25rem solid $green
+
+  article.sports
+    border-left: 0.25rem solid $pale-green
+
+  article.non-profit
+    border-left: 0.25rem solid $cyan
+
+  article.events
+    border-left: 0.25rem solid $blue
+
+  article.people-to-know
+    border-left: 0.25rem solid $purple
+
+#skyscraperContainer
+  display: none
+  position: relative
+  grid-column-start: skyscraper-left
+  grid-column-end: right
+  grid-row-start: nav-bottom
+  grid-row-end: bottom
+  background-color: $light-gray
+  border-left: 1px solid $lighter-gray
+
+  #skyscraper
+    position: absolute
+    top: 50%
+    left: 50%
+    @include transform(translate(-50%, -50%))
+
+@media screen and (min-width: $breakpoint-md)
+  #content
+    grid-column-start: sidebar-right
+
+@media screen and (min-width: $breakpoint-xl)
+  #content
+    grid-column-end: skyscraper-left
+
+  #skyscraperContainer
+    display: block
