@@ -74,6 +74,145 @@
     left: 50%
     @include transform(translate(-50%, -50%))
 
+#calendarControls
+  position: relative
+
+#prev, #next
+  position: absolute
+  top: 0
+  bottom: 0
+  font-size: 1.5rem
+  color: $white
+  cursor: pointer
+
+#prev
+  left: 0
+
+#next
+  right: 0
+
+#calendar
+  width: 100%
+  height: 544px + 32px
+  background-color: $lighter-gray
+  display: grid
+  grid-template-columns: [0] 1fr [1] 1fr [2] 1fr [3] 1fr [4] 1fr [5] 1fr [6] 1fr [7]
+  grid-template-rows: [top] 2rem [row0] 1fr [row1] 1fr [row2] 1fr [row3] 1fr [row4] 1fr [row5] 1fr [row6]
+  grid-gap: 1px
+  padding: 1px
+
+  .header
+    grid-row-start: top
+    grid-row-end: row0
+    padding: 0.25rem
+    text-align: center
+    font-weight: bold
+    text-shadow: 0px 0px 2px $dark-gray
+
+  .header.col0
+    background-color: $magenta
+
+  .header.col1
+    background-color: $orange
+
+  .header.col2
+    background-color: $yellow
+
+  .header.col3
+    background-color: $green
+
+  .header.col4
+    background-color: $cyan
+
+  .header.col5
+    background-color: $blue
+
+  .header.col6
+    background-color: $purple
+
+
+  .row0
+    grid-row-start: row0
+    grid-row-end: row1
+
+  .row1
+    grid-row-start: row1
+    grid-row-end: row2
+
+  .row2
+    grid-row-start: row2
+    grid-row-end: row3
+
+  .row3
+    grid-row-start: row3
+    grid-row-end: row4
+
+  .row4
+    grid-row-start: row4
+    grid-row-end: row5
+
+  .row5
+    grid-row-start: row5
+    grid-row-end: row6
+
+  .col0
+    grid-column-start: 0
+    grid-column-end: 1
+
+  .col1
+    grid-column-start: 1
+    grid-column-end: 2
+
+  .col2
+    grid-column-start: 2
+    grid-column-end: 3
+
+  .col3
+    grid-column-start: 3
+    grid-column-end: 4
+
+  .col4
+    grid-column-start: 4
+    grid-column-end: 5
+
+  .col5
+    grid-column-start: 5
+    grid-column-end: 6
+
+  .col6
+    grid-column-start: 6
+    grid-column-end: 7
+
+#calendar > div
+  position: relative
+  background-color: $light-gray
+  color: $white
+  @include user-select-none
+  cursor: pointer
+
+  span.date
+    padding-left: 0.25rem
+
+  ul.events
+    position: absolute
+    top: 1.5rem
+    right: 0
+    left: 0
+
+    li
+      background-color: $blue
+      border-radius: 0.5rem
+      padding: 0 0.5rem
+      margin-bottom: 4px
+      height: 1rem
+      line-height: 1
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+
+      small
+        vertical-align: 1px
+
 @media screen and (min-width: $breakpoint-md)
   #content
     grid-column-start: sidebar-right

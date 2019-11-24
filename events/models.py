@@ -1,5 +1,6 @@
 from django.db import models
 from home.models import TimestampedModel
+from .managers import EventManager
 
 class Location(TimestampedModel):
     name = models.CharField(max_length=200)
@@ -12,13 +13,13 @@ class Location(TimestampedModel):
     def __str__(self):
         return self.name
 
-
 class Event(TimestampedModel):
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     date_start = models.DateTimeField()
     date_end = models.DateTimeField(null=True, blank=True)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    events = EventManager()
 
     def __str__(self):
         return self.title
