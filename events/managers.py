@@ -24,8 +24,6 @@ class EventManager(models.Manager):
                 date_start__date=date,
             )
 
-            print(i)
-
             calendar.append({
                 'date': date,
                 'events': events,

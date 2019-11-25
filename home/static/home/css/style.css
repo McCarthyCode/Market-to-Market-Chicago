@@ -271,6 +271,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
+#content .container {
+  padding: 0 1rem;
+}
 #content .h1 {
   margin: 2rem 0;
 }

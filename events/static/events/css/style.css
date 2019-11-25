@@ -208,33 +208,33 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   }
 }
 #footer {
-  position: fixed;
+  display: none;
+}
+
+#footer, #footerContent {
   padding: 0.25rem;
   background-color: #1e1e1e;
-  right: 0;
-  bottom: 0;
-  left: 0;
   z-index: 2;
 }
-#footer p {
+#footer p, #footerContent p {
   margin: 0;
   text-align: center;
   color: #ffffff;
   line-height: 1.2;
 }
-#footer a {
+#footer a, #footerContent a {
   color: #97d5f7;
 }
-#footer p, #footer a {
+#footer p, #footer a, #footerContent p, #footerContent a {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
 }
-#footer .footer-list {
+#footer .footer-list, #footerContent .footer-list {
   max-width: 14.5rem;
   position: relative;
   margin: auto;
   overflow: hidden;
 }
-#footer .footer-list ul {
+#footer .footer-list ul, #footerContent .footer-list ul {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -243,7 +243,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   list-style: none;
   padding-left: 0;
 }
-#footer .footer-list ul li {
+#footer .footer-list ul li, #footerContent .footer-list ul li {
   line-height: 80%;
   flex: 1 0 auto;
   margin: 0.25em 0;
@@ -254,6 +254,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 
 @media screen and (min-width: 768px) {
   #footer {
+    display: block;
     position: relative;
     grid-column-start: left;
     grid-column-end: sidebar-right;
@@ -270,6 +271,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   background-color: #333333;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+}
+#content .container {
+  padding: 0;
 }
 #content .h1 {
   margin: 2rem 0;
@@ -358,11 +362,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 
 #prev {
-  left: 0;
+  left: 1rem;
 }
 
 #next {
-  right: 0;
+  right: 1rem;
 }
 
 #calendar {
@@ -468,6 +472,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   user-select: none;
   cursor: pointer;
 }
+#calendar > div .container {
+  padding: 0;
+}
 #calendar > div span.date {
   padding-left: 0.25rem;
 }
@@ -495,6 +502,17 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 @media screen and (min-width: 768px) {
   #content {
     grid-column-start: sidebar-right;
+  }
+  #content .container {
+    padding: 0 1rem;
+  }
+
+  #prev {
+    left: 0;
+  }
+
+  #next {
+    right: 0;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -538,10 +556,6 @@ h3.h3 {
   font-size: 8px;
   color: #97d5f7;
   cursor: pointer;
-}
-
-#content .container {
-  padding: 0 1rem;
 }
 
 #grid {
