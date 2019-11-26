@@ -96,10 +96,10 @@
 
 #calendar
   width: 100%
-  height: 544px + 32px
+  height: 576px
   background-color: $lighter-gray
   display: grid
-  grid-template-columns: [0] 1fr [1] 1fr [2] 1fr [3] 1fr [4] 1fr [5] 1fr [6] 1fr [7]
+  grid-template-columns: [col0] 1fr [col1] 1fr [col2] 1fr [col3] 1fr [col4] 1fr [col5] 1fr [col6] 1fr [end]
   grid-template-rows: [top] 2rem [row0] 1fr [row1] 1fr [row2] 1fr [row3] 1fr [row4] 1fr [row5] 1fr [row6]
   grid-gap: 1px
   padding: 1px
@@ -133,7 +133,6 @@
   .header.col6
     background-color: $purple
 
-
   .row0
     grid-row-start: row0
     grid-row-end: row1
@@ -159,32 +158,32 @@
     grid-row-end: row6
 
   .col0
-    grid-column-start: 0
-    grid-column-end: 1
+    grid-column-start: col0
+    grid-column-end: col1
 
   .col1
-    grid-column-start: 1
-    grid-column-end: 2
+    grid-column-start: col1
+    grid-column-end: col2
 
   .col2
-    grid-column-start: 2
-    grid-column-end: 3
+    grid-column-start: col2
+    grid-column-end: col3
 
   .col3
-    grid-column-start: 3
-    grid-column-end: 4
+    grid-column-start: col3
+    grid-column-end: col4
 
   .col4
-    grid-column-start: 4
-    grid-column-end: 5
+    grid-column-start: col4
+    grid-column-end: col5
 
   .col5
-    grid-column-start: 5
-    grid-column-end: 6
+    grid-column-start: col5
+    grid-column-end: col6
 
   .col6
-    grid-column-start: 6
-    grid-column-end: 7
+    grid-column-start: col6
+    grid-column-end: end
 
 #calendar > div
   position: relative
@@ -193,13 +192,11 @@
   @include user-select-none
   cursor: pointer
 
-  .container
-    padding: 0
-
   span.date
     padding-left: 0.25rem
 
   ul.events
+    max-width: 100%
     position: absolute
     top: 1.5rem
     right: 0

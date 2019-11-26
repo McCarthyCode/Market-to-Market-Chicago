@@ -374,7 +374,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   height: 576px;
   background-color: #818181;
   display: grid;
-  grid-template-columns: [0] 1fr [1] 1fr [2] 1fr [3] 1fr [4] 1fr [5] 1fr [6] 1fr [7];
+  grid-template-columns: [col0] 1fr [col1] 1fr [col2] 1fr [col3] 1fr [col4] 1fr [col5] 1fr [col6] 1fr [end];
   grid-template-rows: [top] 2rem [row0] 1fr [row1] 1fr [row2] 1fr [row3] 1fr [row4] 1fr [row5] 1fr [row6];
   grid-gap: 1px;
   padding: 1px;
@@ -433,32 +433,32 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   grid-row-end: row6;
 }
 #calendar .col0 {
-  grid-column-start: 0;
-  grid-column-end: 1;
+  grid-column-start: col0;
+  grid-column-end: col1;
 }
 #calendar .col1 {
-  grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-start: col1;
+  grid-column-end: col2;
 }
 #calendar .col2 {
-  grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-start: col2;
+  grid-column-end: col3;
 }
 #calendar .col3 {
-  grid-column-start: 3;
-  grid-column-end: 4;
+  grid-column-start: col3;
+  grid-column-end: col4;
 }
 #calendar .col4 {
-  grid-column-start: 4;
-  grid-column-end: 5;
+  grid-column-start: col4;
+  grid-column-end: col5;
 }
 #calendar .col5 {
-  grid-column-start: 5;
-  grid-column-end: 6;
+  grid-column-start: col5;
+  grid-column-end: col6;
 }
 #calendar .col6 {
-  grid-column-start: 6;
-  grid-column-end: 7;
+  grid-column-start: col6;
+  grid-column-end: end;
 }
 
 #calendar > div {
@@ -472,13 +472,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   user-select: none;
   cursor: pointer;
 }
-#calendar > div .container {
-  padding: 0;
-}
 #calendar > div span.date {
   padding-left: 0.25rem;
 }
 #calendar > div ul.events {
+  max-width: 100%;
   position: absolute;
   top: 1.5rem;
   right: 0;
