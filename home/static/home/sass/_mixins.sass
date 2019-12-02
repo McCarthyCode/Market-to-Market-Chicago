@@ -5,13 +5,9 @@
   -o-user-select: none
   user-select: none
 
-@mixin transition-color($time)
-  -webkit-transition: color $time
-  transition: color $time
-
-@mixin transition-border-right($time)
-  -webkit-transition: border-right $time
-  transition: border-right $time
+@mixin transition($property, $duration)
+  -webkit-transition: $property $duration
+  transition: $property $duration
 
 @mixin transform($properties...)
   -webkit-transform: $properties

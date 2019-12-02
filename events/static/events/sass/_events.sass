@@ -38,7 +38,7 @@
       margin: 0
 
   article.nightlife
-    border-left: 0.25rem solid $magenta
+    border-left: 0.25rem solid $red
 
   article.restaurants
     border-left: 0.25rem solid $orange
@@ -77,16 +77,38 @@
     left: 50%
     @include transform(translate(-50%, -50%))
 
+#tabs
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+  grid-gap: 0.25rem
+  margin-bottom: 1rem
+
+  li
+    border-radius: 0.25rem
+    color: $white
+    background-color: $lighter-gray
+    text-align: center
+    line-height: 2
+    cursor: pointer
+    @include transition(background-color, 0.5s)
+
+  li.active, li:hover
+    background-color: $blue
+
 #calendarControls
   position: relative
 
 #prev, #next
   position: absolute
-  top: 0
+  top: 6px
   bottom: 0
   font-size: 1.5rem
   color: $white
   cursor: pointer
+
+#prev.disabled, #next.disabled
+  color: $white-50
+  cursor: not-allowed
 
 #prev
   left: 1rem
@@ -99,8 +121,7 @@
   height: 576px
   background-color: $lighter-gray
   display: grid
-  grid-template-columns: [col0] 1fr [col1] 1fr [col2] 1fr [col3] 1fr [col4] 1fr [col5] 1fr [col6] 1fr [end]
-  grid-template-rows: [top] 2rem [row0] 1fr [row1] 1fr [row2] 1fr [row3] 1fr [row4] 1fr [row5] 1fr [row6]
+  grid-template: [top] 2rem [row0] 1fr [row1] 1fr [row2] 1fr [row3] 1fr [row4] 1fr [row5] 1fr [row6] / [col0] 1fr [col1] 1fr [col2] 1fr [col3] 1fr [col4] 1fr [col5] 1fr [col6] 1fr [end]
   grid-gap: 1px
   padding: 1px
 
@@ -113,7 +134,7 @@
     text-shadow: 0px 0px 2px $dark-gray
 
   .header.col0
-    background-color: $magenta
+    background-color: $red
 
   .header.col1
     background-color: $orange

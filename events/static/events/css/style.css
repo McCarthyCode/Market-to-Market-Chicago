@@ -134,10 +134,10 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-bottom: 1px;
 }
 #topics ul.topics li:nth-child(1) {
-  border-left: 0.25rem solid #bf82ba;
+  border-left: 0.25rem solid #d5697d;
 }
 #topics ul.topics li:nth-child(1):hover, #topics ul.topics li:nth-child(1).active {
-  border-right: 0.25rem solid #bf82ba;
+  border-right: 0.25rem solid #d5697d;
 }
 #topics ul.topics li:nth-child(2) {
   border-left: 0.25rem solid #bb846e;
@@ -303,7 +303,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin: 0;
 }
 #content article.nightlife {
-  border-left: 0.25rem solid #bf82ba;
+  border-left: 0.25rem solid #d5697d;
 }
 #content article.restaurants {
   border-left: 0.25rem solid #bb846e;
@@ -348,17 +348,42 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   transform: translate(-50%, -50%);
 }
 
+#tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+#tabs li {
+  border-radius: 0.25rem;
+  color: #ffffff;
+  background-color: #818181;
+  text-align: center;
+  line-height: 2;
+  cursor: pointer;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+#tabs li.active, #tabs li:hover {
+  background-color: #569cd6;
+}
+
 #calendarControls {
   position: relative;
 }
 
 #prev, #next {
   position: absolute;
-  top: 0;
+  top: 6px;
   bottom: 0;
   font-size: 1.5rem;
   color: #ffffff;
   cursor: pointer;
+}
+
+#prev.disabled, #next.disabled {
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
 }
 
 #prev {
@@ -374,8 +399,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   height: 576px;
   background-color: #818181;
   display: grid;
-  grid-template-columns: [col0] 1fr [col1] 1fr [col2] 1fr [col3] 1fr [col4] 1fr [col5] 1fr [col6] 1fr [end];
-  grid-template-rows: [top] 2rem [row0] 1fr [row1] 1fr [row2] 1fr [row3] 1fr [row4] 1fr [row5] 1fr [row6];
+  grid-template: [top] 2rem [row0] 1fr [row1] 1fr [row2] 1fr [row3] 1fr [row4] 1fr [row5] 1fr [row6]/[col0] 1fr [col1] 1fr [col2] 1fr [col3] 1fr [col4] 1fr [col5] 1fr [col6] 1fr [end];
   grid-gap: 1px;
   padding: 1px;
 }
@@ -388,7 +412,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   text-shadow: 0px 0px 2px #1e1e1e;
 }
 #calendar .header.col0 {
-  background-color: #bf82ba;
+  background-color: #d5697d;
 }
 #calendar .header.col1 {
   background-color: #bb846e;

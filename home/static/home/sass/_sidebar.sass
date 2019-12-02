@@ -19,7 +19,7 @@
       padding: 0.25rem 0
       background-color: $light-gray
       border-right: 0.25rem solid $light-gray
-      @include transition-border-right(0.5s)
+      @include transition(border-right, 0.5s)
       text-align: center
       cursor: pointer
 
@@ -34,10 +34,10 @@
       margin-bottom: 1px
 
     li:nth-child(1)
-      border-left: 0.25rem solid $magenta
+      border-left: 0.25rem solid $red
 
     li:nth-child(1):hover, li:nth-child(1).active
-      border-right: 0.25rem solid $magenta
+      border-right: 0.25rem solid $red
 
     li:nth-child(2)
       border-left: 0.25rem solid $orange

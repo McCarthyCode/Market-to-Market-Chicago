@@ -1,7 +1,7 @@
-{% for day in calendar.days_of_week %}
+{% for day in days_of_week %}
 <div class="header col{{ day.col }}">{{ day.dow }}</div>
 {% endfor %}
-{% for cell in calendar.calendar %}
+{% for cell in calendar %}
 <div class="row{{ cell.row }} col{{ cell.col }}">
   <span class="date">{{ cell.date.day }}</span>
   <ul class="events">

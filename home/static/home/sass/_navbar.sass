@@ -11,7 +11,7 @@ nav
 
   .navbar-brand
     font-family: $font-title
-    @include transition-color(0.5s)
+    @include transition(color, 0.5s)
     color: $yellow !important
 
   .navbar-brand:hover
@@ -28,7 +28,7 @@ nav
       a
         padding: 0 0.25rem
         color: $cyan
-        @include transition-color(0.5s)
+        @include transition(color, 0.5s)
 
       a:hover
         color: $white
@@ -37,7 +37,7 @@ nav
     border: none !important
     color: $blue !important
     background-color: $dark-gray
-    @include transition-color(0.5s)
+    @include transition(color, 0.5s)
     cursor: pointer
 
   #navbarMenuButton:hover
@@ -90,7 +90,7 @@ nav
             padding: 0 0.5rem
             vertical-align: middle
             color: $blue !important
-            @include transition-color(0.5s)
+            @include transition(color, 0.5s)
 
           a.nav-link:hover
             color: $white !important

@@ -134,10 +134,10 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-bottom: 1px;
 }
 #topics ul.topics li:nth-child(1) {
-  border-left: 0.25rem solid #bf82ba;
+  border-left: 0.25rem solid #d5697d;
 }
 #topics ul.topics li:nth-child(1):hover, #topics ul.topics li:nth-child(1).active {
-  border-right: 0.25rem solid #bf82ba;
+  border-right: 0.25rem solid #d5697d;
 }
 #topics ul.topics li:nth-child(2) {
   border-left: 0.25rem solid #bb846e;
@@ -300,30 +300,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 #content article p.read-more {
   margin: 0;
-}
-#content article.nightlife {
-  border-left: 0.25rem solid #bf82ba;
-}
-#content article.restaurants {
-  border-left: 0.25rem solid #bb846e;
-}
-#content article.arts-and-entertainment {
-  border-left: 0.25rem solid #dcdcaa;
-}
-#content article.health-and-fitness {
-  border-left: 0.25rem solid #679452;
-}
-#content article.sports {
-  border-left: 0.25rem solid #48b6a0;
-}
-#content article.non-profit {
-  border-left: 0.25rem solid #97d5f7;
-}
-#content article.events {
-  border-left: 0.25rem solid #569cd6;
-}
-#content article.people-to-know {
-  border-left: 0.25rem solid #9f62c2;
 }
 
 #skyscraperContainer {
