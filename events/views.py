@@ -11,6 +11,7 @@ def index(request):
     return render(request, 'events/index.html', {
         'calendar': Event.objects.calendar(request),
         'by_date': Event.objects.by_date(request),
+        'by_location': Event.objects.by_location(request),
         'name': NAME,
         'year': datetime.now(TZ).year,
     })

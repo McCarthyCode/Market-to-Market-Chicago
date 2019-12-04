@@ -106,6 +106,36 @@ class EventManager(models.Manager):
             'calendar': calendar,
         }
 
+    def by_location(self, request):
+        from events.models import Event, Location
+
+        today = datetime.now(TZ)
+        year = int(request.GET.get('year', today.year))
+        month = int(request.GET.get('month', today.month))
+
+        date = first_of_month = datetime(year, month, 1, tzinfo=TZ)
+        locations = []
+
+        for location in Location.objects.filter(
+            event__date_start__gte=first_of_month,
+            event__date_start__lt=first_of_month + relativedelta(months=+1),
+        ):
+            events = Event.objects.filter(
+                location=location,
+            ).order_by('date_start')
+
+            locations.append({
+                'location': location,
+                'events': events,
+            })
+
+            date = date + timedelta(days=1)
+
+        return {
+            'date': first_of_month,
+            'locations': locations,
+        }
+
     def prev(self, request):
         this_month = datetime.now(tz).replace(
             hour=0, minute=0, second=0, microsecond=0)

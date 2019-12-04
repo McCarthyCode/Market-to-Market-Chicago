@@ -197,7 +197,7 @@
       background-color: $blue
       border-radius: 0.5rem
       padding: 0 0.5rem
-      margin-bottom: 4px
+      margin-bottom: 0.25rem
       height: 1rem
       line-height: 1
       white-space: nowrap
@@ -221,29 +221,38 @@
     margin-bottom: 0.5rem
     position: relative
 
-    h3
-      position: absolute
-      top: 1rem
-      left: 1rem
-      width: 3rem
-      color: $green
-      font-weight: bold
-
     ul.events
-      margin: 0.25rem 0 0 4rem
+      margin: 0.25rem 0 0 3rem
 
       li
         h5
           color: $blue
 
-        h5.all-day
-          color: $purple
+        .all-day
+          color: $orange
 
         p
           margin-bottom: 0.5rem
 
         p:last-child
           margin: 0
+
+#byDate .card h3
+  position: absolute
+  top: 1rem
+  left: 1rem
+  width: 2rem
+  color: $yellow
+
+#byLocation .card ul li
+  position: relative
+
+  h3
+    position: absolute
+    top: -0.25rem
+    left: -3rem
+    width: 2rem
+    color: $yellow
 
 
 @media screen and (min-width: $breakpoint-md)
