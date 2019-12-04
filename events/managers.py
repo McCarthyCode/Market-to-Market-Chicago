@@ -88,10 +88,8 @@ class EventManager(models.Manager):
 
         date = first_of_month = datetime(year, month, 1, tzinfo=TZ)
         calendar = []
-        while date.weekday() != 6:
-            date = date - timedelta(days=1)
 
-        for i in range(42):
+        while date.month == first_of_month.month:
             events = Event.objects.filter(
                 date_start__date=date,
             ).order_by('date_start')

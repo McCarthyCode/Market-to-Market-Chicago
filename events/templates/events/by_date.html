@@ -1,9 +1,9 @@
-{% for cell in by_date.calendar %}
-{% if cell.events|length > 0 and cell.events.0.date_start.year == by_date.date.year and cell.events.0.date_start.month == by_date.date.month %}
+{% for card in by_date.calendar %}
+{% if card.events|length > 0 %}
 <div class="card">
-  <h3 id="{{ cell.date.day }}" class="h3 text-center">{{ cell.date.day }}</h3>
+  <h3 id="{{ card.date.day }}" class="h3 text-center">{{ card.date.day }}</h3>
   <ul class="events">
-    {% for event in cell.events %}
+    {% for event in card.events %}
     <li>
       {% if event.date_start.hour == 0 and event.date_end == None %}
       <h5 class="h5 all-day">{{ event.name }}</h5>
