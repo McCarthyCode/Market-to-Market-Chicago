@@ -6,12 +6,12 @@
 </ul>
 <div id="calendarControls">
   <i id="prev" class="fas fa-arrow-left disabled"></i>
-  <h3 class="h3 text-center month">{{ date|date:"F" }}</h3>
+  <h3 class="h3 text-center month">{{ calendar.date|date:"F" }}</h3>
   <i id="next" class="fas fa-arrow-right"></i>
 </div>
 <div id="calendarDate">
-  <input type="hidden" name="year" value="{{ date.year }}">
-  <input type="hidden" name="month" value="{{ date.month }}">
+  <input type="hidden" name="year" value="{{ calendar.date.year }}">
+  <input type="hidden" name="month" value="{{ calendar.date.month }}">
 </div>
 <div id="calendar">
   {% include 'events/month.html' %}

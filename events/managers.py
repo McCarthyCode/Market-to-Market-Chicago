@@ -38,8 +38,16 @@ DOW = [
 ]
 
 
+class LocationManager(models.Manager):
+    def create_location(self, name, address1):
+        return self.create(name=name, address1=address1)
+
+
 class EventManager(models.Manager):
-    def calendar_month(self, request):
+    def create_event(self, name, date_start):
+        return self.create(name=name, date_start=date_start)
+
+    def calendar(self, request):
         from events.models import Event
 
         today = datetime.now(TZ)
@@ -52,13 +60,13 @@ class EventManager(models.Manager):
             date = date - timedelta(days=1)
 
         for i in range(42):
-            events = Event.events.filter(
+            events = Event.objects.filter(
                 date_start__date=date,
-            )
+            ).order_by('date_start')
 
             calendar.append({
                 'date': date,
-                'events': events,
+                'events': events if len(events) < 4 else events[:3],
                 'row': int(i / 7),
                 'col': i % 7,
             })
@@ -69,6 +77,35 @@ class EventManager(models.Manager):
             'date': first_of_month,
             'calendar': calendar,
             'days_of_week': DOW,
+        }
+
+    def by_date(self, request):
+        from events.models import Event
+
+        today = datetime.now(TZ)
+        year = int(request.GET.get('year', today.year))
+        month = int(request.GET.get('month', today.month))
+
+        date = first_of_month = datetime(year, month, 1, tzinfo=TZ)
+        calendar = []
+        while date.weekday() != 6:
+            date = date - timedelta(days=1)
+
+        for i in range(42):
+            events = Event.objects.filter(
+                date_start__date=date,
+            ).order_by('date_start')
+
+            calendar.append({
+                'date': date,
+                'events': events,
+            })
+
+            date = date + timedelta(days=1)
+
+        return {
+            'date': first_of_month,
+            'calendar': calendar,
         }
 
     def prev(self, request):

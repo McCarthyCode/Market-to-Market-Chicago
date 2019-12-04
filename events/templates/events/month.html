@@ -1,13 +1,17 @@
-{% for day in days_of_week %}
+{% for day in calendar.days_of_week %}
 <div class="header col{{ day.col }}">{{ day.dow }}</div>
 {% endfor %}
-{% for cell in calendar %}
+{% for cell in calendar.calendar %}
 <div class="row{{ cell.row }} col{{ cell.col }}">
   <span class="date">{{ cell.date.day }}</span>
   <ul class="events">
   {% for event in cell.events %}
-    <li><small>{{ event.title }}</small></li>
-    {% endfor %}
+  {% if event.date_start.hour == 0 and event.date_end == None %}
+    <li class="all-day"><small>{{ event.name }}</small></li>
+  {% else %}
+    <li><small>{{ event.name }}</small></li>
+  {% endif %}
+  {% endfor %}
   </ul>
 </div>
 {% endfor %}

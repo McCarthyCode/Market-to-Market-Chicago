@@ -13,12 +13,6 @@
   .h1
     margin: 2rem 0
 
-  article
-    border: 1px solid $lighter-gray
-    padding: 1rem
-    background-color: $light-gray
-    margin-bottom: 1rem
-
     .h3 a
       color: $orange
 
@@ -36,30 +30,6 @@
 
     p.read-more
       margin: 0
-
-  article.nightlife
-    border-left: 0.25rem solid $red
-
-  article.restaurants
-    border-left: 0.25rem solid $orange
-
-  article.arts-and-entertainment
-    border-left: 0.25rem solid $yellow
-
-  article.health-and-fitness
-    border-left: 0.25rem solid $green
-
-  article.sports
-    border-left: 0.25rem solid $pale-green
-
-  article.non-profit
-    border-left: 0.25rem solid $cyan
-
-  article.events
-    border-left: 0.25rem solid $blue
-
-  article.people-to-know
-    border-left: 0.25rem solid $purple
 
 #skyscraperContainer
   display: none
@@ -236,6 +206,45 @@
 
       small
         vertical-align: 1px
+
+    .all-day
+      background-color: $purple
+
+#byDate, #byLocation
+  display: none
+
+  .card
+    background-color: $light-gray
+    border-color: $lighter-gray
+    color: $white
+    padding: 1rem
+    margin-bottom: 0.5rem
+    position: relative
+
+    h3
+      position: absolute
+      top: 1rem
+      left: 1rem
+      width: 3rem
+      color: $green
+      font-weight: bold
+
+    ul.events
+      margin: 0.25rem 0 0 4rem
+
+      li
+        h5
+          color: $blue
+
+        h5.all-day
+          color: $purple
+
+        p
+          margin-bottom: 0.5rem
+
+        p:last-child
+          margin: 0
+
 
 @media screen and (min-width: $breakpoint-md)
   #content

@@ -278,53 +278,23 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .h1 {
   margin: 2rem 0;
 }
-#content article {
-  border: 1px solid #818181;
-  padding: 1rem;
-  background-color: #444444;
-  margin-bottom: 1rem;
-}
-#content article .h3 a {
+#content .h1 .h3 a {
   color: #bb846e;
 }
-#content article p {
+#content .h1 p {
   color: #ffffff;
 }
-#content article p.info {
+#content .h1 p.info {
   color: #679452;
   font-style: italic;
   margin-bottom: 0.5rem;
 }
-#content article p.info a {
+#content .h1 p.info a {
   color: #679452;
   text-decoration: underline;
 }
-#content article p.read-more {
+#content .h1 p.read-more {
   margin: 0;
-}
-#content article.nightlife {
-  border-left: 0.25rem solid #d5697d;
-}
-#content article.restaurants {
-  border-left: 0.25rem solid #bb846e;
-}
-#content article.arts-and-entertainment {
-  border-left: 0.25rem solid #dcdcaa;
-}
-#content article.health-and-fitness {
-  border-left: 0.25rem solid #679452;
-}
-#content article.sports {
-  border-left: 0.25rem solid #48b6a0;
-}
-#content article.non-profit {
-  border-left: 0.25rem solid #97d5f7;
-}
-#content article.events {
-  border-left: 0.25rem solid #569cd6;
-}
-#content article.people-to-know {
-  border-left: 0.25rem solid #9f62c2;
 }
 
 #skyscraperContainer {
@@ -519,6 +489,44 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 #calendar > div ul.events li small {
   vertical-align: 1px;
+}
+#calendar > div ul.events .all-day {
+  background-color: #9f62c2;
+}
+
+#byDate, #byLocation {
+  display: none;
+}
+#byDate .card, #byLocation .card {
+  background-color: #444444;
+  border-color: #818181;
+  color: #ffffff;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+#byDate .card h3, #byLocation .card h3 {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 3rem;
+  color: #679452;
+  font-weight: bold;
+}
+#byDate .card ul.events, #byLocation .card ul.events {
+  margin: 0.25rem 0 0 4rem;
+}
+#byDate .card ul.events li h5, #byLocation .card ul.events li h5 {
+  color: #569cd6;
+}
+#byDate .card ul.events li h5.all-day, #byLocation .card ul.events li h5.all-day {
+  color: #9f62c2;
+}
+#byDate .card ul.events li p, #byLocation .card ul.events li p {
+  margin-bottom: 0.5rem;
+}
+#byDate .card ul.events li p:last-child, #byLocation .card ul.events li p:last-child {
+  margin: 0;
 }
 
 @media screen and (min-width: 768px) {
