@@ -17,6 +17,7 @@ class Location(TimestampedModel):
 class Event(TimestampedModel):
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
+    all_day = models.BooleanField(default=False)
     date_start = models.DateTimeField()
     date_end = models.DateTimeField(null=True, blank=True)
     location = models.ForeignKey(Location, null=True, blank=True, on_delete=models.CASCADE)

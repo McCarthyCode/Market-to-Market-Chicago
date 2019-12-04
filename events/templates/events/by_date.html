@@ -5,7 +5,7 @@
   <ul class="events">
     {% for event in card.events %}
     <li>
-      {% if event.date_start.hour == 0 and event.date_end == None %}
+      {% if event.all_day %}
       <h5 class="h5 all-day">{{ event.name }}</h5>
       {% else %}
       <h5 class="h5">{{ event.name }}{% if event.location %} &ndash; <span data-id="{{ event.location.id }}">{{ event.location.name }}</span>{% endif %}</h5>

@@ -6,7 +6,7 @@
   <span class="date">{{ cell.date.day }}</span>
   <ul class="events">
   {% for event in cell.events %}
-  {% if event.date_start.hour == 0 and event.date_end == None %}
+  {% if event.all_day %}
     <li class="all-day"><small>{{ event.name }}</small></li>
   {% else %}
     <li><small>{{ event.name }}</small></li>
