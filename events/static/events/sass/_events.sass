@@ -221,12 +221,19 @@
     margin-bottom: 0.5rem
     position: relative
 
+    h3
+      line-height: 1
+
     ul.events
-      margin: 0.25rem 0 0 3rem
+      margin-bottom: 0
+      margin-left: 3rem
 
       li
+        margin-bottom: 0.5rem
+
         h5
           color: $blue
+          line-height: 28px
 
         .all-day
           color: $orange
@@ -234,25 +241,32 @@
         p
           margin-bottom: 0.5rem
 
-        p:last-child
-          margin: 0
+        *:last-child
+          margin-bottom: 0
 
-#byDate .card h3
-  position: absolute
-  top: 1rem
-  left: 1rem
-  width: 2rem
-  color: $yellow
+      li:last-child
+        margin-bottom: 0
 
-#byLocation .card ul li
-  position: relative
-
+#byDate .card
   h3
     position: absolute
-    top: -0.25rem
-    left: -3rem
+    top: 15px
+    left: 1rem
     width: 2rem
     color: $yellow
+
+#byLocation .card ul.events
+  margin: 0 0 0 3rem
+
+  li
+    position: relative
+
+    h3
+      position: absolute
+      top: -1px
+      left: -3rem
+      width: 2rem
+      color: $yellow
 
 
 @media screen and (min-width: $breakpoint-md)

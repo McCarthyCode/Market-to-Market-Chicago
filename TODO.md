@@ -1,7 +1,7 @@
 # To Do
 
 - Events page
-  - align li's with date
+  - remove duplicate dates in by location view
   - events
     - create event function
     - create event form
