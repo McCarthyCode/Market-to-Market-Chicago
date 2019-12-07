@@ -1,19 +1,18 @@
 # To Do
 
 - Events page
-  - remove duplicate dates in by location view
   - events
-    - create event function
-    - create event form
-    - update event function
-    - update event form
-    - delete event function
-    - delete event form
+    - create event back end
+    - create event front end
+    - update event back end
+    - update event front end
+    - delete event back end
+    - delete event front end
   - recurring events
-    - create recurring events function (complete)
-    - create recurring events form
-    - update recurring events function
-    - update recurring events form
-    - delete recurring events function
-    - delete recurring events form
+    - create recurring events back end (complete)
+    - create recurring events front end
+    - update recurring events back end
+    - update recurring events front end
+    - delete recurring events back end
+    - delete recurring events front end
   - click calendar cell to view events by date

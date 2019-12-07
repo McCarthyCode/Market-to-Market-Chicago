@@ -1,18 +1,22 @@
 {% for location in by_location.locations %}
-{# if location.events|length > 0 and cell.events.0.date_start.year == by_date.date.year and cell.events.0.date_start.month == by_date.date.month #}
 <div class="card">
   <h3 id="{{ location.location.id }}" class="h3">{{ location.location.name }}</h3>
-  <ul class="events">
-    {% for event in location.events %}
+  {% for day in location.event_tree %}
+  <ul class="day">
     <li>
-      <h3 class="h3 text-center">{{ event.date_start.day }}</h3>
-      <h5 class="h5">{{ event.name }} ({{ event.date_start|date:"g:ia" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:ia" }}{% endif %})</h5>
-      {% if event.description %}
-      {{ event.description|linebreaks }}
-      {% endif %}
+      <h3 class="h3 text-center">{{ day.date|date:"j" }}</h3>
+      <ul class="events">
+      {% for event in day.events %}
+        <li>
+          <h5 class="h5">{{ event.name }} ({{ event.date_start|date:"g:ia" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:ia" }}{% endif %})</h5>
+          {% if event.description %}
+          {{ event.description|linebreaks }}
+          {% endif %}
+        </li>
+      {% endfor %}
+      </ul>
     </li>
-    {% endfor %}
   </ul>
+  {% endfor %}
 </div>
-{# endif #}
 {% endfor %}

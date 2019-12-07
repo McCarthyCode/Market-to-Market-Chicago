@@ -114,17 +114,32 @@ class EventManager(models.Manager):
         date = first_of_month = datetime(year, month, 1, tzinfo=TZ)
         locations = []
 
-        for location in Location.objects.all().order_by('name'):
-            events = Event.objects.filter(
+        for location in Location.objects.all().order_by('name')[:30]:
+            if Event.objects.filter(
                 location=location,
                 date_start__gte=first_of_month,
                 date_start__lt=first_of_month + relativedelta(months=+1),
-            ).order_by('date_start')
+            ):
+                day = first_of_month
+                event_tree = []
+                while day < first_of_month + relativedelta(months=+1):
+                    events_on_day = Event.objects.filter(
+                        location=location,
+                        date_start__gte=day,
+                        date_start__lt=day + relativedelta(days=+1),
+                    ).order_by('date_start')
 
-            if len(events) > 0:
+                    if len(events_on_day) > 0:
+                        event_tree.append({
+                            'date': day,
+                            'events': events_on_day,
+                        })
+
+                    day = day + relativedelta(days=+1)
+
                 locations.append({
                     'location': location,
-                    'events': events,
+                    'event_tree': event_tree,
                 })
 
         return {
