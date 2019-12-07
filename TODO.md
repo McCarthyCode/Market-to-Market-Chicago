@@ -1,7 +1,6 @@
 # To Do
 
 - Events page
-  - add times to events by date and location
   - align li's with date
   - events
     - create event function

@@ -6,7 +6,7 @@
     {% for event in location.events %}
     <li>
       <h3 class="h3 text-center">{{ event.date_start.day }}</h3>
-      <h5 class="h5">{{ event.name }}</h5>
+      <h5 class="h5">{{ event.name }} ({{ event.date_start|date:"g:ia" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:ia" }}{% endif %})</h5>
       {% if event.description %}
       {{ event.description|linebreaks }}
       {% endif %}
