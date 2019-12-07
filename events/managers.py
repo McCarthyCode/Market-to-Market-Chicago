@@ -1,5 +1,3 @@
-# import pytz
-
 from django.db import models
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
@@ -116,20 +114,18 @@ class EventManager(models.Manager):
         date = first_of_month = datetime(year, month, 1, tzinfo=TZ)
         locations = []
 
-        for location in Location.objects.filter(
-            event__date_start__gte=first_of_month,
-            event__date_start__lt=first_of_month + relativedelta(months=+1),
-        ):
+        for location in Location.objects.all().order_by('name'):
             events = Event.objects.filter(
                 location=location,
+                date_start__gte=first_of_month,
+                date_start__lt=first_of_month + relativedelta(months=+1),
             ).order_by('date_start')
 
-            locations.append({
-                'location': location,
-                'events': events,
-            })
-
-            date = date + timedelta(days=1)
+            if len(events) > 0:
+                locations.append({
+                    'location': location,
+                    'events': events,
+                })
 
         return {
             'date': first_of_month,
@@ -184,3 +180,137 @@ class EventManager(models.Manager):
                 'month': next_month.month,
             }
         })
+
+class RecurringEventManager(models.Manager):
+    def create_recurring_event(self, name, date_start, frequency, frequency_units, ends, **kwargs):
+        from .models import RecurringEvent
+
+        date = date_start
+        max_duration = relativedelta(months=+6)
+        date_max = date + max_duration
+
+        rd_values = [
+            relativedelta(days=+frequency),
+            relativedelta(days=+(7 * frequency)),
+            relativedelta(months=+frequency),
+            relativedelta(years=+frequency),
+        ]
+
+        first_occurence = None
+
+        if ends == 0: # ends after max. duration
+            if 'date_end' in kwargs:
+                date_end = kwargs['date_end']
+
+                while date <= date_max:
+                    event = self.create(name=name, date_start=date, date_end=date_end)
+
+                    if first_occurence == None:
+                        first_occurence = event.first_occurence = event
+                    else:
+                        event.first_occurence = first_occurence
+
+                    if 'location' in kwargs:
+                        event.location = kwargs['location']
+
+                    event.save()
+
+                    date = date + rd_values[frequency_units]
+                    date_end = date_end + rd_values[frequency_units]
+            else:
+                while date <= date_max:
+                    event = self.create(name=name, date_start=date)
+
+                    if first_occurence == None:
+                        first_occurence = event.first_occurence = event
+                    else:
+                        event.first_occurence = first_occurence
+
+                    if 'location' in kwargs:
+                        event.location = kwargs['location']
+
+                    event.save()
+
+                    date = date + rd_values[frequency_units]
+        elif ends == 1: # ends on date
+            if 'ends_on' not in kwargs:
+                raise TypeError("create_recurring_event() missing 1 required keyword argument 'ends_on'")
+
+            if 'date_end' in kwargs:
+                date_end = kwargs['date_end']
+
+                while date <= kwargs['ends_on'] and date <= date_max:
+                    event = self.create(name=name, date_start=date, date_end=date_end)
+
+                    if first_occurence == None:
+                        first_occurence = event.first_occurence = event
+                    else:
+                        event.first_occurence = first_occurence
+
+                    if 'location' in kwargs:
+                        event.location = kwargs['location']
+
+                    event.save()
+
+                    date = date + rd_values[frequency_units]
+                    date_end = date_end + rd_values[frequency_units]
+            else:
+                while date <= kwargs['ends_on'] and date <= date_max:
+                    event = self.create(name=name, date_start=date)
+
+                    if first_occurence == None:
+                        first_occurence = event.first_occurence = event
+                    else:
+                        event.first_occurence = first_occurence
+
+                    if 'location' in kwargs:
+                        event.location = kwargs['location']
+
+                    event.save()
+
+                    date = date + rd_values[frequency_units]
+        elif ends == 2: # ends after a number of occurences
+            if 'ends_after' not in kwargs:
+                raise TypeError("create_recurring_event() missing 1 required keyword argument 'ends_after'")
+
+            if 'date_end' in kwargs:
+                date_end = kwargs['date_end']
+
+                for _ in range(kwargs['ends_after']):
+                    if date > date_max:
+                        break
+
+                    event = self.create(name=name, date_start=date, date_end=date_end)
+
+                    if first_occurence == None:
+                        first_occurence = event.first_occurence = event
+                    else:
+                        event.first_occurence = first_occurence
+
+                    if 'location' in kwargs:
+                        event.location = kwargs['location']
+
+                    event.save()
+
+                    date = date + rd_values[frequency_units]
+                    date_end = date_end + rd_values[frequency_units]
+            else:
+                for _ in range(kwargs['ends_after']):
+                    if date > date_max:
+                        break
+
+                    event = self.create(name=name, date_start=date)
+
+                    if first_occurence == None:
+                        first_occurence = event.first_occurence = event
+                    else:
+                        event.first_occurence = first_occurence
+
+                    if 'location' in kwargs:
+                        event.location = kwargs['location']
+
+                    event.save()
+
+                    date = date + rd_values[frequency_units]
+
+        return RecurringEvent.objects.filter(first_occurence=first_occurence)
