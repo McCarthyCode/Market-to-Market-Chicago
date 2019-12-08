@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Patua+One|Roboto')
+
+@import '_variables'
+@import '_mixins'
+
+@import '_navbar'
+@import '_footer'
+
+@import '_users'
+
+html, body
+  height: 100%
+
+// anchor rules added to body tag for higher specificity
+body
+  a, a:hover
+    color: $cyan
+
+  a
+    text-decoration: none
+
+  a:hover
+    text-decoration: underline
+
+h1.h1, h3.h3
+  font-family: $font-title
+
+h1.h1
+  color: $yellow
+
+h3.h3
+  color: $orange
+
+.fa-external-link-alt
+  display: inline
+  vertical-align: 1px
+  font-size: 8px
+  color: $cyan
+  cursor: pointer
+
+#grid
+  display: grid
+  grid-template-columns: [left] auto [right]
+  grid-template-rows: [top] 69px [nav-bottom] auto [footer-top] 49px [bottom]
+  height: 100vh

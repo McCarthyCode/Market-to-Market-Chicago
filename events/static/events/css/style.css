@@ -74,8 +74,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 
 @media screen and (min-width: 768px) {
-  nav .social {
+  nav .social.logged-out {
     right: 14rem;
+  }
+  nav .social.logged-in {
+    right: 18rem;
   }
   nav #navbarCollapse {
     display: inline;

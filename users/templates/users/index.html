@@ -1,0 +1,22 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+{% if user == None %}
+<div class="container logged-out">
+  {% include 'users/messages.html' %}
+  <h1 class="h1 text-center">Login</h1>
+  <p class="text-center">This page is intended for authors and site administators. If you would like to return to the home page, you may do so by clicking <a href="{% url 'home:index' %}">here</a>.</p>
+  <form method="POST" action="{% url 'users:login' %}">
+    {% csrf_token %}
+    <input class="form-control" placeholder="Username" type="text" name="username">
+    <input class="form-control" placeholder="Password" type="password" name="password">
+    <input value="Submit" class="form-control btn btn-primary" type="submit">
+  </form>
+</div>
+{% else %}
+<div class="container logged-in">
+  {% include 'users/messages.html' %}
+  <h1 class="h1 text-center">Dashboard</h1>
+</div>
+{% endif %}
+{% endblock %}
