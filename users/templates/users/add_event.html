@@ -1,0 +1,26 @@
+<h3 class="h3">Create Event</h3>
+<form id="addEvent" action="{% url 'users:add_event' %}" method="POST">
+  {% csrf_token %}
+  <input class="form-control" type="text" name="name" placeholder="Name">
+  <textarea class="form-control" name="description" placeholder="Description (optional)" rows="5" maxlength="1000"></textarea>
+  <div class="location-container">
+    <input class="form-control" type="text" name="location" placeholder="Location">
+    <img id="addEventButton" src="{% load static %}{% static 'users/img/plus.png' %}" alt="">
+  </div>
+  <div class="input-group" id="dateStart" data-target-input="nearest">
+    <input type="text" class="form-control datetimepicker-input" placeholder="Start Date/Time" data-target="#dateStart">
+    <div class="input-group-append" data-target="#dateStart" data-toggle="datetimepicker">
+      <div class="form-control input-group-text"><i class="fa fa-calendar"></i></div>
+    </div>
+  </div>
+  <div class="input-group" id="dateEnd" data-target-input="nearest">
+    <input type="text" class="form-control datetimepicker-input" placeholder="End Date/Time (optional)" data-target="#dateEnd">
+    <div class="input-group-append" data-target="#dateEnd" data-toggle="datetimepicker">
+      <div class="form-control input-group-text"><i class="fa fa-calendar"></i></div>
+    </div>
+  </div>
+  <div class="location-collapse">
+
+  </div>
+  <input class="btn btn-primary" type="submit" value="Submit">
+</form>

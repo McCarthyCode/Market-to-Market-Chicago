@@ -27,11 +27,36 @@
       color: $white
 
     form
-      input[type="text"], input[type="password"]
+      input[type="text"], input[type="password"], textarea
         color: $white
         margin-bottom: 0.25rem
         border-color: $lighter-gray
-        background-color: $dark-gray
+        background-color: $gray
+
+    .card
+      background-color: $light-gray
+      border: 1px solid $lighter-gray
+      padding: 1rem
 
   .container.logged-out
     max-width: 320px
+
+#addEvent
+  .location-container
+    width: 100%
+    display: grid
+    grid-template-columns: [left] calc(100% - 28px) [divider] 28px [right]
+
+    input[name="location"]
+      grid-column-start: left
+      grid-column-end: divider
+
+    img
+      grid-column-start: divider
+      grid-column-end: right
+      text-align: center
+      margin: 7px 0 7px 4px
+      cursor: pointer
+
+  .location-collapse
+    // display: none

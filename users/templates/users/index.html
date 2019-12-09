@@ -15,8 +15,11 @@
 </div>
 {% else %}
 <div class="container logged-in">
-  {% include 'users/messages.html' %}
   <h1 class="h1 text-center">Dashboard</h1>
+  {% include 'users/messages.html' %}
+  <div class="card">
+    {% include 'users/add_event.html' %}
+  </div>
 </div>
 {% endif %}
 {% endblock %}

@@ -42,7 +42,10 @@ class LocationManager(models.Manager):
 
 
 class EventManager(models.Manager):
-    def create_event(self, name, date_start):
+    def create_event(self, request):
+        return (True, 'You have successfully added an event.')
+
+    def create_single_event(self, name, date_start):
         return self.create(name=name, date_start=date_start)
 
     def calendar(self, request):
