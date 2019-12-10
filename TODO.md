@@ -1,6 +1,5 @@
 # To Do
 
-- Add `type="text/javascript"` to `<script>` tags in `base.html` files
 - Events page
   - Events
     - Create events back end (partially complete)
