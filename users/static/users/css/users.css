@@ -78,7 +78,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     right: 14rem;
   }
   nav .social.logged-in {
-    right: 18rem;
+    right: 24rem;
   }
   nav #navbarCollapse {
     display: inline;
@@ -176,36 +176,118 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container p {
   color: #ffffff;
 }
-#content .container form input[type=text], #content .container form input[type=password], #content .container form textarea {
-  color: #ffffff;
-  margin-bottom: 0.25rem;
-  border-color: #818181;
-  background-color: #333333;
-}
 #content .container .card {
   background-color: #444444;
   border: 1px solid #818181;
   padding: 1rem;
 }
+#content .container .card form input[type=text], #content .container .card form input[type=number], #content .container .card form input[type=password],
+#content .container .card form textarea, #content .container .card form select, #content .container .card form label {
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  border-color: #818181;
+  background-color: #333333;
+}
+#content .container .card form .input-group-append {
+  height: 38px;
+  z-index: 3;
+}
+#content .container .card form .input-group-append:not(.default-cursor) {
+  cursor: pointer;
+}
+#content .container .card form .input-group-append:not(.default-cursor) .input-group-text {
+  color: #ffffff;
+  border-color: #818181;
+  background-color: #818181;
+}
+#content .container .card form .input-group-append:not(.default-cursor) .input-group-text i {
+  min-width: 14px;
+}
 #content .container.logged-out {
   max-width: 320px;
 }
 
-#addEvent .location-container {
-  width: 100%;
-  display: grid;
-  grid-template-columns: [left] calc(100% - 28px) [divider] 28px [right];
+#addEvent input[name=address1] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
-#addEvent .location-container input[name=location] {
-  grid-column-start: left;
-  grid-column-end: divider;
+#addEvent input[name=address2] {
+  margin-top: -9px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
-#addEvent .location-container img {
-  grid-column-start: divider;
-  grid-column-end: right;
+#addEvent input[name=frequency], #addEvent input[name=state] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#addEvent select[name=frequency-units], #addEvent input[name=zip-code] {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#addEvent button {
+  color: #ffffff;
+  background-color: #818181;
+  margin-bottom: 0.5rem;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+#addEvent button:hover {
+  background-color: #007bff;
+}
+
+#allDayInputGroup .input-group-append {
+  border-color: #818181;
+  background-color: #818181;
+  padding: 11px 0.75rem 11px 0.75rem;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+#advancedRepeatCollapse, #locationCollapse {
+  display: block;
+}
+
+#weekdayList {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 0.5rem auto;
+  max-width: 520px;
+}
+#weekdayList li label {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 1.25rem;
+  line-height: 2.5rem;
+  vertical-align: middle;
   text-align: center;
-  margin: 7px 0 7px 4px;
+  background-color: #818181 !important;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
   cursor: pointer;
+}
+#weekdayList li label.active, #weekdayList li label:hover {
+  background-color: #007bff !important;
+}
+#weekdayList li input[type=checkbox] {
+  visibility: hidden;
+}
+
+@media screen and (min-width: 576px) {
+  #weekdayList li {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 1.25rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  #addEvent label[for=frequency], #addEvent input[name=city] {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  #addEvent input[name=frequency], #addEvent input[name=state] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 }
 html, body {
   height: 100%;

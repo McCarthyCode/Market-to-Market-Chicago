@@ -26,37 +26,110 @@
     p
       color: $white
 
-    form
-      input[type="text"], input[type="password"], textarea
-        color: $white
-        margin-bottom: 0.25rem
-        border-color: $lighter-gray
-        background-color: $gray
-
     .card
       background-color: $light-gray
       border: 1px solid $lighter-gray
       padding: 1rem
 
+      form
+        input[type="text"], input[type="number"], input[type="password"],
+        textarea, select, label
+          margin-bottom: 0.5rem
+          color: $white
+          border-color: $lighter-gray
+          background-color: $gray
+
+        .input-group-append
+          height: 38px
+          z-index: 3
+
+        .input-group-append:not(.default-cursor)
+          cursor: pointer
+
+          .input-group-text
+            color: $white
+            border-color: $lighter-gray
+            background-color: $lighter-gray
+
+            i
+              min-width: 14px
+
   .container.logged-out
     max-width: 320px
 
 #addEvent
-  .location-container
-    width: 100%
-    display: grid
-    grid-template-columns: [left] calc(100% - 28px) [divider] 28px [right]
+  input[name="address1"]
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 0
 
-    input[name="location"]
-      grid-column-start: left
-      grid-column-end: divider
+  input[name="address2"]
+    margin-top: -9px
+    border-top-left-radius: 0
+    border-top-right-radius: 0
 
-    img
-      grid-column-start: divider
-      grid-column-end: right
+  input[name="frequency"], input[name="state"]
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0
+
+  select[name="frequency-units"], input[name="zip-code"]
+    border-top-left-radius: 0
+    border-bottom-left-radius: 0
+
+  button
+    color: $white
+    background-color: $lighter-gray
+    margin-bottom: 0.5rem
+    @include transition(background-color, 0.5s)
+
+  button:hover
+    background-color: $blue
+
+#allDayInputGroup .input-group-append
+  border-color: $lighter-gray
+  background-color: $lighter-gray
+  padding: 11px 0.75rem 11px 0.75rem
+  border-top-right-radius: 0.25rem
+  border-bottom-right-radius: 0.25rem
+
+#advancedRepeatCollapse, #locationCollapse
+  display: block
+
+#weekdayList
+  display: flex
+  justify-content: space-between
+  margin: 0 auto 0.5rem auto
+  max-width: 520px
+
+  li
+    label
+      width: 2.5rem
+      height: 2.5rem
+      border-radius: 1.25rem
+      line-height: 2.5rem
+      vertical-align: middle
       text-align: center
-      margin: 7px 0 7px 4px
+      background-color: $lighter-gray !important
+      @include transition(background-color, 0.5s)
       cursor: pointer
 
-  .location-collapse
-    // display: none
+    label.active, label:hover
+      background-color: $blue !important
+
+    input[type="checkbox"]
+      visibility: hidden
+
+@media screen and (min-width: $breakpoint-sm)
+  #weekdayList li
+    width: 2.5rem
+    height: 2.5rem
+    border-radius: 1.25rem
+
+@media screen and (min-width: $breakpoint-md)
+  #addEvent
+    label[for="frequency"], input[name="city"]
+      border-top-right-radius: 0
+      border-bottom-right-radius: 0
+
+    input[name="frequency"], input[name="state"]
+      border-top-left-radius: 0
+      border-bottom-left-radius: 0

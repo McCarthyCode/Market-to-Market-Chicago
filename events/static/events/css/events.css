@@ -78,7 +78,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     right: 14rem;
   }
   nav .social.logged-in {
-    right: 18rem;
+    right: 24rem;
   }
   nav #navbarCollapse {
     display: inline;
@@ -338,7 +338,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   transition: background-color 0.5s;
 }
 #tabs li.active, #tabs li:hover {
-  background-color: #569cd6;
+  background-color: #007bff;
 }
 
 #calendarControls {
@@ -480,7 +480,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   left: 0;
 }
 #calendar > div ul.events li {
-  background-color: #569cd6;
+  background-color: #007bff;
   border-radius: 0.5rem;
   padding: 0 0.5rem;
   margin-bottom: 0.25rem;

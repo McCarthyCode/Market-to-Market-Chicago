@@ -34,17 +34,6 @@ class Event(TimestampedModel):
             return self.name + ' - ' + self.date_start.strftime('%a. %b. %-d, %Y (%-I:%S %p)')
 
 class RecurringEvent(Event):
-    FREQUENCY_UNITS_CHOICES = (
-        (0, 'Days'),
-        (1, 'Weeks'),
-        (2, 'Months'),
-        (3, 'Years'),
-    )
-    ENDS_CHOICES = (
-        (0, 'after max. duration (6 months)'),
-        (1, 'on ___'),
-        (2, 'after ___ occurences'),
-    )
     first_occurence = models.ForeignKey('self', null=True, blank=True, editable=False, default=None, on_delete=models.SET_NULL)
     objects = RecurringEventManager()
 

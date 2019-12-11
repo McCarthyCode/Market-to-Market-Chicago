@@ -204,7 +204,7 @@ class RecurringEventManager(models.Manager):
         from .models import RecurringEvent
 
         date = date_start
-        max_duration = relativedelta(months=+6)
+        max_duration = relativedelta(years=+5)
         date_max = date + max_duration
 
         rd_values = [
