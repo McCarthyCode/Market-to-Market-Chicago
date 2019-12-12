@@ -243,8 +243,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-bottom-right-radius: 0.25rem;
 }
 
-#advancedRepeatCollapse, #locationCollapse {
-  display: block;
+#advancedRepeatCollapse, #locationCollapse, #endsOn, #endsAfter {
+  display: none;
 }
 
 #weekdayList {

@@ -6,24 +6,28 @@
   <div id="allDayInputGroup" class="input-group" data-target-input="nearest">
     <label class="form-control" for="allDay">All Day</label>
     <div class="input-group-append">
-      <input id="allDay" type="checkbox" name="all-day">
+      <input id="allDay" type="checkbox" name="all-day" autocomplete="off">
     </div>
   </div>
-  <div id="dateStart" class="input-group" data-target-input="nearest">
-    <input type="text" class="form-control datetimepicker-input" placeholder="Start Date/Time (click icon to show date picker)" data-target="#dateStart" required>
-    <div class="input-group-append" data-target="#dateStart" data-toggle="datetimepicker">
-      <div class="form-control input-group-text"><i class="fa fa-calendar text-center"></i></div>
+  <div id="dateStartInputGroup" class="input-group" data-target-input="nearest">
+    <input id="dateStart" type="text" class="form-control datetimepicker-input" placeholder="Start Date/Time (click icon to show date picker)" data-target="#dateStartInputGroup" required>
+    <div class="input-group-append" data-target="#dateStartInputGroup" data-toggle="datetimepicker">
+      <div class="form-control input-group-text">
+        <i class="fa fa-calendar text-center"></i>
+      </div>
     </div>
   </div>
-  <div id="dateEnd" class="input-group" data-target-input="nearest">
-    <input type="text" class="form-control datetimepicker-input" placeholder="End Date/Time (optional)" data-target="#dateEnd">
-    <div class="input-group-append" data-target="#dateEnd" data-toggle="datetimepicker">
-      <div class="form-control input-group-text"><i class="fa fa-calendar"></i></div>
+  <div id="dateEndInputGroup" class="input-group" data-target-input="nearest">
+    <input id="dateEnd" type="text" class="form-control datetimepicker-input" placeholder="End Date/Time (optional)" data-target="#dateEndInputGroup">
+    <div class="input-group-append" data-target="#dateEndInputGroup" data-toggle="datetimepicker">
+      <div class="form-control input-group-text">
+        <i class="fa fa-calendar"></i>
+      </div>
     </div>
   </div>
   <div class="form-inline">
     <label class="form-control col-12 col-md-4" for="frequency">Repeat every:</label>
-    <input id="frequency" class="form-control col-6 col-md-4" type="number" name="frequency" min="0" value="1" required>
+    <input id="frequency" class="form-control col-6 col-md-4" type="number" name="frequency" min="1" value="1" required>
     <select class="form-control col-6 col-md-4" name="frequency-units">
       <option value="0">No Repeat</option>
       <option value="1">Day(s)</option>
@@ -32,7 +36,7 @@
       <option value="4">Year(s)</option>
     </select>
   </div>
-  <button class="btn form-control">Advanced Repeat Options <i class="fa fa-chevron-down"></i></button>
+  <button id="advancedRepeatToggle" class="btn form-control">Advanced Repeat Options <i class="fa fa-chevron-down"></i></button>
   <div id="advancedRepeatCollapse">
     <label class="form-control" for="weekdayList">On weekday(s):</label>
     <ul id="weekdayList">
@@ -65,23 +69,27 @@
         <input id="saturday" type="checkbox" name="saturday">
       </li>
     </ul>
-  </div>
-  <select id="ends" class="form-control col-12" name="ends">
-    <option value="0">Ends after maximum duration (5 years)</option>
-    <option value="1">Ends on date</option>
-    <option value="2">Ends after number of occurences</option>
-  </select>
-  <div id="endsOn" class="input-group" data-target-input="nearest">
-    <input type="text" class="form-control datetimepicker-input" placeholder="Ends on" data-target="#endsOn" required>
-    <div class="input-group-append" data-target="#endsOn" data-toggle="datetimepicker">
-      <div class="form-control input-group-text"><i class="fa fa-calendar text-center"></i></div>
+    <select id="ends" class="form-control col-12" name="ends" autocomplete="off">
+      <option value="0">Ends after maximum duration (5 years)</option>
+      <option value="1">Ends on date</option>
+      <option value="2">Ends after number of occurences</option>
+    </select>
+    <div id="endsOn" class="input-group" data-target-input="nearest">
+      <input type="text" class="form-control datetimepicker-input" placeholder="Ends on" data-target="#endsOn" required>
+      <div class="input-group-append" data-target="#endsOn" data-toggle="datetimepicker">
+        <div class="form-control input-group-text">
+          <i class="fa fa-calendar text-center"></i>
+        </div>
+      </div>
     </div>
+    <input id="endsAfter" class="form-control" name="ends-after" type="number" min="1" placeholder="Number of occurences">
   </div>
-  <input id="endsAfter" class="form-control" name="ends-after" type="number" min="1" placeholder="Number of occurences">
-  <div class="input-group" data-target-input="nearest">
-    <input type="text" name="location-name" class="form-control" placeholder="Location (search for existing or click icon to create new)" data-target="#location">
-    <div class="input-group-append">
-      <div class="form-control input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+  <div id="locationInputGroup" class="input-group" data-target-input="nearest">
+    <input id="locationName" class="form-control" type="text" name="location-name" placeholder="Location (search for existing or click icon to create new)" autocomplete="off">
+    <div id="locationToggle" class="input-group-append">
+      <div class="form-control input-group-text">
+        <i class="fas fa-map-marker-alt"></i>
+      </div>
     </div>
   </div>
   <div id="locationCollapse">
