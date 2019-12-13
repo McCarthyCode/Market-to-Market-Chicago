@@ -8,17 +8,6 @@ def index(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    # RecurringEvent.objects.create_recurring_event(
-    #     'Karaoke',
-    #     datetime(2019, 12, 8, 20, 0, 0),
-    #     1,
-    #     1,
-    #     1,
-    #     date_end=datetime(2019, 12, 9, 0, 0, 0),
-    #     ends_on=datetime(2020, 1, 26, 20, 0, 0),
-    #     location=Location.objects.get(name='Bobby Love\'s'),
-    # )
-
     return render(request, 'events/index.html', {
         'calendar': Event.objects.calendar(request),
         'by_date': Event.objects.by_date(request),
@@ -44,3 +33,13 @@ def next(request):
         return HttpResponseBadRequest()
 
     return render(request, 'events/month.html', Event.objects.next(request))
+
+def locations(request):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    q = request.GET.get('q', '')
+
+    return render(request, 'events/location_dropdown.html',
+        Location.objects.get_locations(request)
+    )

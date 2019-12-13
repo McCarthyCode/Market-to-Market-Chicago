@@ -24,7 +24,6 @@ $(document).ready(() => {
   $('#weekdayList label').click(function (event) {
     event.stopPropagation();
 
-    console.log($(this));
     $(this).toggleClass('active');
   });
 
@@ -41,10 +40,12 @@ $(document).ready(() => {
         $endsOn.hide();
         $endsAfter.hide();
         break;
+
       case 1:
         $endsOn.css('display', 'flex');
         $endsAfter.hide();
         break;
+
       case 2:
         $endsOn.hide();
         $endsAfter.show();
@@ -53,23 +54,79 @@ $(document).ready(() => {
   });
 
   // Show/hide new location input
-  $('#locationToggle').click(() => $('#locationCollapse').slideToggle(500));
+  let $locationCollapse = $('#locationCollapse');
+  $('#locationToggle').click(() => $locationCollapse.slideToggle(500));
 
-  // Search for existing locations
-  $('#locationName').on('input', () => {
-    let text = $('#locationName').val();
-    console.log(text);
+  // Search for existing locations;
+  // select from autocomplete list on arrow key event
+  let $locationId = $('#locationId');
+  let $locationName = $('#locationName');
 
-    // $.get('/events/locations', {'q': text}, () => {
+  let position = -1;
+  let length = 0;
+  let $locationAutocomplete = $('#locationAutocomplete');
 
-    // });
+  $locationName.on('input', function (event) {
+    $('#locationAutocomplete ul').remove();
+
+    let text = $(this).val();
+    if (text === '') {
+      $locationId.val(0);
+    } else {
+      $.get('/events/locations', {'q': text}, function (response) {
+        $locationAutocomplete.append(response);
+
+        length = $('#locationAutocomplete li').length;
+        position = -1;
+      });
+    }
   });
-});
 
-// Make labels active when corresponding checkbox is checked
-$('#weekdayList li label').click((event) => {
-  event.stopPropagation();
+  // Select from autocomplete from arrow or enter key event
+  $locationName.keydown(function (event) {
+    switch (event.keyCode) {
+      case 13: // enter
+        event.preventDefault();
+        console.log('enter');
+        let $active = $('#locationAutocomplete li.active');
+        if ($('#locationAutocomplete li').length === 1) {
+          $active = $('#locationAutocomplete li:first-child');
+        }
+        $locationId.val($active.data('id'));
+        $locationName.val($active.text());
 
-  console.log($(this));
-  $(this).children('label').toggleClass('active');
+        $('#locationAutocomplete ul').remove();
+        $locationCollapse.slideUp();
+        break;
+
+      case 38: // arrow up
+        console.log('arrow up');
+        position = position === -1 ? length - 1 : (position + 1) % length;
+        $('#locationAutocomplete li').removeClass('active');
+        $(`#locationAutocomplete li:nth-child(${position + 1})`).addClass('active');
+        break;
+
+      case 40: // arrow down
+        console.log('arrow down');
+        position = position === -1 ? 0 : (position + length - 1) % length;
+        $('#locationAutocomplete li').removeClass('active');
+        $(`#locationAutocomplete li:nth-child(${position + 1})`).addClass('active');
+        break;
+    }
+  });
+
+  // Select from autocomplete from click event
+  $locationAutocomplete.on('click', 'ul li', function () {
+    $locationId.val($(this).data('id'));
+    $locationName.val($(this).text());
+
+    $('#locationAutocomplete ul').remove();
+  });
+
+  // Show new location form if existing location is not selected
+  $locationName.focusout(function () {
+    if (Number($locationId.val()) === 0) {
+      $locationCollapse.slideDown();
+    }
+  });
 });

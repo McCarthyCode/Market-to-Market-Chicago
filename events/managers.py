@@ -40,6 +40,24 @@ class LocationManager(models.Manager):
     def create_location(self, name, address1):
         return self.create(name=name, address1=address1)
 
+    def get_locations(self, request):
+        from events.models import Location
+
+        query = request.GET.get('q', '')
+        locations = []
+
+        if query == '':
+            return {'locations': locations}
+
+        for location in Location.objects.filter(name__contains=query) \
+        .order_by('name')[:5]:
+            locations.append({
+                'id': location.id,
+                'name': location.name,
+            })
+
+        return {'locations': locations}
+
 
 class EventManager(models.Manager):
     def create_event(self, request):
