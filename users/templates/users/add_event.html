@@ -1,5 +1,5 @@
-<h3 class="h3">Create Event</h3>
-<form id="addEvent" action="{% url 'users:add_event' %}" method="POST">
+<h3 class="h3">Create Event <i class="fa fa-chevron-down"></i></h3>
+<form id="addEventForm" action="{% url 'users:add_event' %}" method="POST">
   {% csrf_token %}
   <input class="form-control" type="text" name="name" placeholder="Name" required>
   <textarea class="form-control" name="description" placeholder="Description (optional)" rows="5" maxlength="1000"></textarea>
@@ -74,11 +74,13 @@
       <option value="1">Ends on date</option>
       <option value="2">Ends after number of occurences</option>
     </select>
-    <div id="endsOn" class="input-group" data-target-input="nearest">
-      <input type="text" class="form-control datetimepicker-input" placeholder="Ends on" data-target="#endsOn" required>
-      <div class="input-group-append" data-target="#endsOn" data-toggle="datetimepicker">
-        <div class="form-control input-group-text">
-          <i class="fa fa-calendar text-center"></i>
+    <div id="endsOnContainer">
+      <div id="endsOn" class="input-group" data-target-input="nearest">
+        <input id="endsOnInput" type="text" class="form-control datetimepicker-input" placeholder="Ends on" data-target="#endsOn">
+        <div class="input-group-append" data-target="#endsOn" data-toggle="datetimepicker">
+          <div class="form-control input-group-text">
+            <i class="fa fa-calendar text-center"></i>
+          </div>
         </div>
       </div>
     </div>
@@ -86,7 +88,7 @@
   </div>
   <input id="locationId" type="hidden" name="location-id" value="0" autocomplete="off">
   <div id="locationInputGroup" class="input-group" data-target-input="nearest">
-    <input id="locationName" class="form-control" type="text" name="location-name" placeholder="Location (search for existing or click icon to create new)" autocomplete="off">
+    <input id="locationName" class="form-control" type="text" name="location-name" placeholder="Location (search for existing or click icon to create new)" autocomplete="off" required>
     <div id="locationToggle" class="input-group-append">
       <div class="form-control input-group-text">
         <i class="fas fa-map-marker-alt"></i>

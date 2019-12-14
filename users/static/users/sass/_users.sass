@@ -7,6 +7,7 @@
 
   .container
     padding: 2rem 1rem
+    max-width: 720px
 
     .alert p
       margin: 0
@@ -23,18 +24,28 @@
     .h1
       margin-bottom: 1rem
 
+    .h3
+      cursor: pointer
+      @include user-select-none
+
+      i
+        float: right
+
     p
       color: $white
 
     .card
       background-color: $light-gray
       border: 1px solid $lighter-gray
-      padding: 1rem
+      padding: 1rem 1rem 0.5rem 1rem
 
       form
         input[type="text"], input[type="number"], input[type="password"],
-        textarea, select, label
+        input[type="submit"], textarea, select, label
           margin-bottom: 0.5rem
+
+        input[type="text"], input[type="number"], input[type="password"],
+        textarea, select, label
           color: $white
           border-color: $lighter-gray
           background-color: $gray
@@ -57,7 +68,9 @@
   .container.logged-out
     max-width: 320px
 
-#addEvent
+#addEventForm
+  display: none
+
   input[name="address1"]
     border-bottom-left-radius: 0
     border-bottom-right-radius: 0
@@ -84,14 +97,18 @@
   button:hover
     background-color: $blue
 
-#allDayInputGroup .input-group-append
-  border-color: $lighter-gray
-  background-color: $lighter-gray
-  padding: 11px 0.75rem 11px 0.75rem
-  border-top-right-radius: 0.25rem
-  border-bottom-right-radius: 0.25rem
+#allDayInputGroup
+  label
+    cursor: pointer
 
-#advancedRepeatCollapse, #locationCollapse, #endsOn, #endsAfter
+  .input-group-append
+    border-color: $lighter-gray
+    background-color: $lighter-gray
+    padding: 11px 0.75rem 11px 0.75rem
+    border-top-right-radius: 0.25rem
+    border-bottom-right-radius: 0.25rem
+
+#advancedRepeatCollapse, #locationCollapse, #endsOnContainer, #endsAfter
   display: none
 
 #weekdayList
@@ -110,6 +127,7 @@
       text-align: center
       background-color: $lighter-gray !important
       @include transition(background-color, 0.5s)
+      @include user-select-none
       cursor: pointer
 
     label.active, label:hover
@@ -152,7 +170,7 @@
     border-radius: 1.25rem
 
 @media screen and (min-width: $breakpoint-md)
-  #addEvent
+  #addEventForm
     label[for="frequency"], input[name="city"]
       border-top-right-radius: 0
       border-bottom-right-radius: 0

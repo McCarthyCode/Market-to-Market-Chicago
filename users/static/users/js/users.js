@@ -4,6 +4,16 @@ $(document).ready(() => {
   $("#dateEnd").datetimepicker();
   $("#endsOn").datetimepicker();
 
+  // Show/hide Create Event form
+  $('#addEvent .h3').click(function () {
+    $('#addEventForm').slideToggle(500);
+
+    setTimeout(() => {
+      $('#addEvent .h3 i')
+        .toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+    }, 500);
+  });
+
   // Hide End Date/Time on All Day checked
   $('#allDay').change(() => $('#dateEndInputGroup').slideToggle(500));
 
@@ -31,37 +41,90 @@ $(document).ready(() => {
   let $ends = $('#ends');
   $ends.change(() => {
     let value = Number($ends.val());
-    let $endsOn = $('#endsOn');
+    let $endsOnContainer = $('#endsOnContainer');
+    let $endsOnInput = $('#endsOnInput');
     let $endsAfter = $('#endsAfter');
 
     switch (value) {
       default:
       case 0:
-        $endsOn.hide();
-        $endsAfter.hide();
+        $endsOnInput.prop('required', false);
+        $endsAfter.prop('required', false);
+
+        $endsOnContainer.slideUp(500);
+        $endsAfter.slideUp(500);
         break;
 
       case 1:
-        $endsOn.css('display', 'flex');
-        $endsAfter.hide();
+        $endsOnInput.prop('required', true);
+        $endsAfter.prop('required', false);
+
+        if ($endsAfter.is(':visible')) {
+          $endsAfter.slideUp(500);
+          setTimeout(() => {
+            $endsOnContainer.slideDown(500);
+          }, 500);
+        } else {
+          $endsOnContainer.slideDown(500);
+        }
         break;
 
       case 2:
-        $endsOn.hide();
-        $endsAfter.show();
+        $endsOnInput.prop('required', false);
+        $endsAfter.prop('required', true);
+
+        if ($endsOnContainer.is(':visible')) {
+          $endsOnContainer.slideUp();
+          setTimeout(() => {
+            $endsAfter.slideDown(500);
+          }, 500);
+        } else {
+          $endsAfter.slideDown(500);
+        }
         break;
     }
   });
 
   // Show/hide new location input
+  let $locationId = $('#locationId');
+  let $locationName = $('#locationName');
   let $locationCollapse = $('#locationCollapse');
-  $('#locationToggle').click(() => $locationCollapse.slideToggle(500));
+  let $locationAddress1 = $('#locationCollapse input[name="address1"]');
+  let $locationCity = $('#locationCollapse input[name="city"]');
+  let $locationState = $('#locationCollapse input[name="state"]');
+
+  function locationExpand() {
+    $locationCollapse.slideDown(500);
+
+    $locationName.prop('required', true);
+    $locationAddress1.prop('required', true);
+    $locationCity.prop('required', true);
+    $locationState.prop('required', true);
+  }
+
+  function locationContract() {
+    $locationCollapse.slideUp(500);
+
+    if (Number($locationId.val()) !== 0) {
+      $locationName.prop('required', false);
+      $locationAddress1.prop('required', false);
+      $locationCity.prop('required', false);
+      $locationState.prop('required', false);
+    }
+  }
+
+  function locationToggle() {
+    if ($locationCollapse.is(':visible')) {
+      locationContract();
+    } else {
+      locationExpand();
+    }
+  }
+
+  $('#locationToggle').click(locationToggle);
 
   // Search for existing locations;
   // select from autocomplete list on arrow key event
-  let $locationId = $('#locationId');
-  let $locationName = $('#locationName');
-
   let position = -1;
   let length = 0;
   let $locationAutocomplete = $('#locationAutocomplete');
@@ -87,7 +150,6 @@ $(document).ready(() => {
     switch (event.keyCode) {
       case 13: // enter
         event.preventDefault();
-        console.log('enter');
         let $active = $('#locationAutocomplete li.active');
         if ($('#locationAutocomplete li').length === 1) {
           $active = $('#locationAutocomplete li:first-child');
@@ -96,18 +158,16 @@ $(document).ready(() => {
         $locationName.val($active.text());
 
         $('#locationAutocomplete ul').remove();
-        $locationCollapse.slideUp();
+        locationContract();
         break;
 
       case 38: // arrow up
-        console.log('arrow up');
         position = position === -1 ? length - 1 : (position + 1) % length;
         $('#locationAutocomplete li').removeClass('active');
         $(`#locationAutocomplete li:nth-child(${position + 1})`).addClass('active');
         break;
 
       case 40: // arrow down
-        console.log('arrow down');
         position = position === -1 ? 0 : (position + length - 1) % length;
         $('#locationAutocomplete li').removeClass('active');
         $(`#locationAutocomplete li:nth-child(${position + 1})`).addClass('active');
@@ -121,12 +181,13 @@ $(document).ready(() => {
     $locationName.val($(this).text());
 
     $('#locationAutocomplete ul').remove();
+    locationContract();
   });
 
   // Show new location form if existing location is not selected
   $locationName.focusout(function () {
-    if (Number($locationId.val()) === 0) {
-      $locationCollapse.slideDown();
+    if ($(this).val() !== '' && Number($locationId.val()) === 0) {
+      locationContract();
     }
   });
 });

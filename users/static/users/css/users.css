@@ -157,6 +157,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 #content .container {
   padding: 2rem 1rem;
+  max-width: 720px;
 }
 #content .container .alert p {
   margin: 0;
@@ -173,17 +174,31 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container .h1 {
   margin-bottom: 1rem;
 }
+#content .container .h3 {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+#content .container .h3 i {
+  float: right;
+}
 #content .container p {
   color: #ffffff;
 }
 #content .container .card {
   background-color: #444444;
   border: 1px solid #818181;
-  padding: 1rem;
+  padding: 1rem 1rem 0.5rem 1rem;
+}
+#content .container .card form input[type=text], #content .container .card form input[type=number], #content .container .card form input[type=password],
+#content .container .card form input[type=submit], #content .container .card form textarea, #content .container .card form select, #content .container .card form label {
+  margin-bottom: 0.5rem;
 }
 #content .container .card form input[type=text], #content .container .card form input[type=number], #content .container .card form input[type=password],
 #content .container .card form textarea, #content .container .card form select, #content .container .card form label {
-  margin-bottom: 0.5rem;
   color: #ffffff;
   border-color: #818181;
   background-color: #333333;
@@ -207,34 +222,40 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   max-width: 320px;
 }
 
-#addEvent input[name=address1] {
+#addEventForm {
+  display: none;
+}
+#addEventForm input[name=address1] {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-#addEvent input[name=address2] {
+#addEventForm input[name=address2] {
   margin-top: -9px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-#addEvent input[name=frequency], #addEvent input[name=state] {
+#addEventForm input[name=frequency], #addEventForm input[name=state] {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-#addEvent select[name=frequency-units], #addEvent input[name=zip-code] {
+#addEventForm select[name=frequency-units], #addEventForm input[name=zip-code] {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-#addEvent button {
+#addEventForm button {
   color: #ffffff;
   background-color: #818181;
   margin-bottom: 0.5rem;
   -webkit-transition: background-color 0.5s;
   transition: background-color 0.5s;
 }
-#addEvent button:hover {
+#addEventForm button:hover {
   background-color: #007bff;
 }
 
+#allDayInputGroup label {
+  cursor: pointer;
+}
 #allDayInputGroup .input-group-append {
   border-color: #818181;
   background-color: #818181;
@@ -243,7 +264,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-bottom-right-radius: 0.25rem;
 }
 
-#advancedRepeatCollapse, #locationCollapse, #endsOn, #endsAfter {
+#advancedRepeatCollapse, #locationCollapse, #endsOnContainer, #endsAfter {
   display: none;
 }
 
@@ -263,6 +284,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   background-color: #818181 !important;
   -webkit-transition: background-color 0.5s;
   transition: background-color 0.5s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
   cursor: pointer;
 }
 #weekdayList li label.active, #weekdayList li label:hover {
@@ -309,11 +335,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   }
 }
 @media screen and (min-width: 768px) {
-  #addEvent label[for=frequency], #addEvent input[name=city] {
+  #addEventForm label[for=frequency], #addEventForm input[name=city] {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
-  #addEvent input[name=frequency], #addEvent input[name=state] {
+  #addEventForm input[name=frequency], #addEventForm input[name=state] {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
