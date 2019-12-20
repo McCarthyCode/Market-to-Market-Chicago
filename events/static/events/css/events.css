@@ -493,7 +493,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #calendar > div ul.events li small {
   vertical-align: 1px;
 }
-#calendar > div ul.events .all-day {
+#calendar > div ul.events .holiday {
   background-color: #9f62c2;
 }
 
@@ -528,7 +528,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #569cd6;
   line-height: 28px;
 }
-#byDate .card ul.events li .all-day {
+#byDate .card ul.events li .holiday {
   color: #bb846e;
 }
 #byDate .card ul.events li p {
@@ -566,7 +566,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #569cd6;
   line-height: 28px;
 }
-#byLocation .card ul.day li ul.events li .all-day {
+#byLocation .card ul.day li ul.events li .holiday {
   color: #bb846e;
 }
 #byLocation .card ul.day li ul.events li p {

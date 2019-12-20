@@ -183,11 +183,4 @@ $(document).ready(() => {
     $('#locationAutocomplete ul').remove();
     locationContract();
   });
-
-  // Show new location form if existing location is not selected
-  $locationName.focusout(function () {
-    if ($(this).val() !== '' && Number($locationId.val()) === 0) {
-      locationContract();
-    }
-  });
 });

@@ -1,4 +1,3 @@
-<h3 class="h3">Create Event <i class="fa fa-chevron-down"></i></h3>
 <form id="addEventForm" action="{% url 'users:add_event' %}" method="POST">
   {% csrf_token %}
   <input class="form-control" type="text" name="name" placeholder="Name" required>
@@ -6,11 +5,11 @@
   <div id="allDayInputGroup" class="input-group" data-target-input="nearest">
     <label class="form-control" for="allDay">All Day</label>
     <div class="input-group-append">
-      <input id="allDay" type="checkbox" name="all-day" autocomplete="off">
+      <input id="allDay" type="checkbox" name="all-day" value="true" autocomplete="off">
     </div>
   </div>
   <div id="dateStartInputGroup" class="input-group" data-target-input="nearest">
-    <input id="dateStart" type="text" class="form-control datetimepicker-input" placeholder="Start Date/Time (click icon to show date picker)" data-target="#dateStartInputGroup" required>
+    <input id="dateStart" class="form-control datetimepicker-input" type="text" name="date-start" placeholder="Start Date/Time (click icon to show date picker)" data-target="#dateStartInputGroup" required>
     <div class="input-group-append" data-target="#dateStartInputGroup" data-toggle="datetimepicker">
       <div class="form-control input-group-text">
         <i class="fa fa-calendar text-center"></i>
@@ -18,7 +17,7 @@
     </div>
   </div>
   <div id="dateEndInputGroup" class="input-group" data-target-input="nearest">
-    <input id="dateEnd" type="text" class="form-control datetimepicker-input" placeholder="End Date/Time (optional)" data-target="#dateEndInputGroup">
+    <input id="dateEnd" class="form-control datetimepicker-input" type="text" name="date-end" placeholder="End Date/Time (optional)" data-target="#dateEndInputGroup">
     <div class="input-group-append" data-target="#dateEndInputGroup" data-toggle="datetimepicker">
       <div class="form-control input-group-text">
         <i class="fa fa-calendar"></i>
@@ -42,41 +41,41 @@
     <ul id="weekdayList">
       <li>
         <label for="sunday">S</label>
-        <input id="sunday" type="checkbox" name="sunday">
+        <input id="sunday" type="checkbox" name="weekday-list" value="sunday" autocomplete="off">
       </li>
       <li>
         <label for="monday">M</label>
-        <input id="monday" type="checkbox" name="monday">
+        <input id="monday" type="checkbox" name="weekday-list" value="monday" autocomplete="off">
       </li>
       <li>
         <label for="tuesday">T</label>
-        <input id="tuesday" type="checkbox" name="tuesday">
+        <input id="tuesday" type="checkbox" name="weekday-list" value="tuesday" autocomplete="off">
       </li>
       <li>
         <label for="wednesday">W</label>
-        <input id="wednesday" type="checkbox" name="wednesday">
+        <input id="wednesday" type="checkbox" name="weekday-list" value="wednesday" autocomplete="off">
       </li>
       <li>
         <label for="thursday">T</label>
-        <input id="thursday" type="checkbox" name="thursday">
+        <input id="thursday" type="checkbox" name="weekday-list" value="thursday" autocomplete="off">
       </li>
       <li>
         <label for="friday">F</label>
-        <input id="friday" type="checkbox" name="friday">
+        <input id="friday" type="checkbox" name="weekday-list" value="friday" autocomplete="off">
       </li>
       <li>
         <label for="saturday">S</label>
-        <input id="saturday" type="checkbox" name="saturday">
+        <input id="saturday" type="checkbox" name="weekday-list" value="saturday" autocomplete="off">
       </li>
     </ul>
     <select id="ends" class="form-control col-12" name="ends" autocomplete="off">
-      <option value="0">Ends after maximum duration (5 years)</option>
+      <option value="0" selected>Ends after maximum duration (1 year)</option>
       <option value="1">Ends on date</option>
       <option value="2">Ends after number of occurences</option>
     </select>
     <div id="endsOnContainer">
       <div id="endsOn" class="input-group" data-target-input="nearest">
-        <input id="endsOnInput" type="text" class="form-control datetimepicker-input" placeholder="Ends on" data-target="#endsOn">
+        <input id="endsOnInput" class="form-control datetimepicker-input" type="text" name="ends-on" placeholder="Ends on" data-target="#endsOn">
         <div class="input-group-append" data-target="#endsOn" data-toggle="datetimepicker">
           <div class="form-control input-group-text">
             <i class="fa fa-calendar text-center"></i>
@@ -84,7 +83,7 @@
         </div>
       </div>
     </div>
-    <input id="endsAfter" class="form-control" name="ends-after" type="number" min="1" placeholder="Number of occurences">
+    <input id="endsAfter" class="form-control" type="number" name="ends-after" min="1" placeholder="Number of occurences">
   </div>
   <input id="locationId" type="hidden" name="location-id" value="0" autocomplete="off">
   <div id="locationInputGroup" class="input-group" data-target-input="nearest">
@@ -102,7 +101,7 @@
     <div class="form-inline">
       <input class="form-control col-12 col-md-6" type="text" value="Chicago" name="city">
       <input class="form-control col-6 col-md-3" type="text" value="IL" maxlength="2" name="state" placeholder="State">
-      <input class="form-control col-6 col-md-3" type="text" maxlength="2" name="zip-code" placeholder="Zip Code (optional)">
+      <input class="form-control col-6 col-md-3" type="text" maxlength="5" name="zip-code" placeholder="Zip Code (optional)">
     </div>
   </div>
   <input class="btn btn-primary" type="submit" value="Submit">

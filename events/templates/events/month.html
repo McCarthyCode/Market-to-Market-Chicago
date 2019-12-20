@@ -6,8 +6,8 @@
   <span class="date">{{ cell.date.day }}</span>
   <ul class="events">
   {% for event in cell.events %}
-  {% if event.all_day %}
-    <li class="all-day"><small>{{ event.name }}</small></li>
+  {% if event.all_day and event.location == None %}
+    <li class="holiday"><small>{{ event.name }}</small></li>
   {% else %}
     <li><small>{{ event.name }}</small></li>
   {% endif %}

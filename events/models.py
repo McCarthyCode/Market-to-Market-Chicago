@@ -1,6 +1,7 @@
 from django.db import models
 from home.models import TimestampedModel
 from .managers import LocationManager, EventManager, RecurringEventManager
+from mtm.settings import TZ
 
 class Location(TimestampedModel):
     name = models.CharField(max_length=200)
@@ -24,25 +25,37 @@ class Event(TimestampedModel):
     objects = EventManager()
 
     def __str__(self):
-        if self.location and self.date_end:
-            return self.name + ' at ' + self.location.name + ' - ' + self.date_start.strftime('%a. %b. %-d, %Y (%-I:%S %p–') + self.date_end.strftime('%-I:%S %p)')
-        elif self.location and not self.date_end:
-            return self.name + ' at ' + self.location.name + ' - ' + self.date_start.strftime('%a. %b. %-d, %Y (%-I:%S %p)')
-        elif not self.location and self.date_end:
-            return self.name + ' - ' + self.date_start.strftime('%a. %b. %-d, %Y (%-I:%S %p–') +self.date_end.strftime('%-I:%S %p)')
+        if self.location:
+            if self.date_end:
+                return self.name + ' at ' + self.location.name + ' - ' + self.date_start.astimezone(TZ).strftime('%a. %b. %-d, %Y (%-I:%M %p–') + self.date_end.astimezone(TZ).strftime('%-I:%M %p)')
+            elif self.all_day:
+                return self.name + ' at ' + self.location.name + ' - ' + self.date_start.astimezone(TZ).strftime('%a. %b. %-d, %Y (All Day)')
+            else:
+                return self.name + ' at ' + self.location.name + ' - ' + self.date_start.astimezone(TZ).strftime('%a. %b. %-d, %Y (%-I:%M %p)')
         else:
-            return self.name + ' - ' + self.date_start.strftime('%a. %b. %-d, %Y (%-I:%S %p)')
+            if self.date_end:
+                return self.name + ' - ' + self.date_start.astimezone(TZ).strftime('%a. %b. %-d, %Y (%-I:%M %p–') + self.date_end.astimezone(TZ).strftime('%-I:%M %p)')
+            elif self.all_day:
+                return self.name + ' - ' + self.date_start.astimezone(TZ).strftime('%a. %b. %-d, %Y (All Day)')
+            else:
+                return self.name + ' - ' + self.date_start.astimezone(TZ).strftime('%a. %b. %-d, %Y (%-I:%M %p)')
 
 class RecurringEvent(Event):
-    first_occurence = models.ForeignKey('self', null=True, blank=True, editable=False, default=None, on_delete=models.SET_NULL)
+    first_occurence = models.ForeignKey('self', null=True, blank=True, default=None, on_delete=models.SET_NULL)
     objects = RecurringEventManager()
 
     def __str__(self):
-        if self.location and self.date_end:
-            return self.name + ' at ' + self.location.name + ' - ' + self.date_start.strftime('%a. %b. %-d, %Y (%-I:%S %p–') + self.date_end.strftime('%-I:%S %p)')
-        elif self.location and not self.date_end:
-            return self.name + ' at ' + self.location.name + ' - ' + self.date_start.strftime('%a. %b. %-d, %Y (%-I:%S %p)')
-        elif not self.location and self.date_end:
-            return self.name + ' - ' + self.date_start.strftime('%a. %b. %-d, %Y (%-I:%S %p–') +self.date_end.strftime('%-I:%S %p)')
+        if self.location:
+            if self.date_end:
+                return self.name + ' at ' + self.location.name + ' - ' + self.date_start.astimezone(TZ).strftime('%a. %b. %-d, %Y (%-I:%M %p–') + self.date_end.astimezone(TZ).strftime('%-I:%M %p)')
+            elif self.all_day:
+                return self.name + ' at ' + self.location.name + ' - ' + self.date_start.astimezone(TZ).strftime('%a. %b. %-d, %Y (All Day)')
+            else:
+                return self.name + ' at ' + self.location.name + ' - ' + self.date_start.astimezone(TZ).strftime('%a. %b. %-d, %Y (%-I:%M %p)')
         else:
-            return self.name + ' - ' + self.date_start.strftime('%a. %b. %-d, %Y (%-I:%S %p)')
+            if self.date_end:
+                return self.name + ' - ' + self.date_start.astimezone(TZ).strftime('%a. %b. %-d, %Y (%-I:%M %p–') + self.date_end.astimezone(TZ).strftime('%-I:%M %p)')
+            elif self.all_day:
+                return self.name + ' - ' + self.date_start.astimezone(TZ).strftime('%a. %b. %-d, %Y (All Day)')
+            else:
+                return self.name + ' - ' + self.date_start.astimezone(TZ).strftime('%a. %b. %-d, %Y (%-I:%M %p)')

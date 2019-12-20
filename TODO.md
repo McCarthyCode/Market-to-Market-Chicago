@@ -3,15 +3,18 @@
 - Change 0.* units to .* units
 - Events page
   - Events
-    - Create events back end (partially complete)
-    - Create events front end (partially complete)
+    - Regex for time input
+    - Create events back end (needs testing)
+      - All-day events
+    - Create events front end (needs testing)
+      - Allow for holiday creation?
     - Update events back end
     - Update events front end
     - Delete events back end
     - Delete events front end
   - Recurring Events
-    - Create recurring events back end (partially complete)
-    - Create recurring events front end
+    - Create recurring events back end (needs testing)
+    - Create recurring events front end (needs testing)
     - Update recurring events back end
     - Update recurring events front end
     - Delete recurring events back end

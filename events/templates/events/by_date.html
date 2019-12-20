@@ -6,7 +6,7 @@
     {% for event in card.events %}
     <li>
       {% if event.all_day %}
-      <h5 class="h5 all-day">{{ event.name }}</h5>
+      <h5 class="h5 holiday">{{ event.name }}</h5>
       {% else %}
       <h5 class="h5">{{ event.name }}{% if event.location %} at <span data-id="{{ event.location.id }}">{{ event.location.name }}</span>{% endif %} ({{ event.date_start|date:"g:ia" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:ia" }}{% endif %})</h5>
       {% endif %}
