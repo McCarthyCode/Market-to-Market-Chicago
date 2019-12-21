@@ -1,16 +1,12 @@
 # To Do
 
-- Change 0.* units to .* units
-- Hide past events
 - Events page
+  - Hide past events
   - Navigation
+    - Month
+    - Tabs
   - Space before a.m./p.m.
   - Events/Recurring Events
-    - Create events back end (needs testing)
-      - All-day events
-    - Create events front end (needs testing)
-      - Allow for holiday creation?
-      - Make location optional
     - Update events back end
     - Update events front end
     - Delete events back end
