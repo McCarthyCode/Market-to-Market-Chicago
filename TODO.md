@@ -4,7 +4,6 @@
   - Hide past events
   - Navigation
     - Month
-    - Tabs
   - Space before a.m./p.m.
   - Events/Recurring Events
     - Update events back end

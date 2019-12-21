@@ -1,17 +1,19 @@
-{% for day in calendar.days_of_week %}
-<div class="header col{{ day.col }}">{{ day.dow }}</div>
-{% endfor %}
-{% for cell in calendar.calendar %}
-<div class="row{{ cell.row }} col{{ cell.col }}">
-  <span class="date">{{ cell.date.day }}</span>
-  <ul class="events">
-  {% for event in cell.events %}
-  {% if event.all_day and event.location == None %}
-    <li class="holiday"><small>{{ event.name }}</small></li>
-  {% else %}
-    <li><small>{{ event.name }}</small></li>
-  {% endif %}
+<div id="calendarGrid">
+  {% for day in calendar.days_of_week %}
+  <div class="header col{{ day.col }}">{{ day.dow }}</div>
   {% endfor %}
-  </ul>
+  {% for cell in calendar.calendar %}
+  <div class="row{{ cell.row }} col{{ cell.col }}">
+    <span class="date">{{ cell.date.day }}</span>
+    <ul class="events">
+    {% for event in cell.events %}
+    {% if event.all_day and event.location == None %}
+      <li class="holiday"><small>{{ event.name }}</small></li>
+    {% else %}
+      <li><small>{{ event.name }}</small></li>
+    {% endif %}
+    {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
 </div>
-{% endfor %}

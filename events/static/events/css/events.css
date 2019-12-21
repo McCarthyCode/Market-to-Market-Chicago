@@ -367,7 +367,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   right: 1rem;
 }
 
-#calendar {
+#calendarGrid {
   width: 100%;
   height: 576px;
   background-color: #818181;
@@ -376,7 +376,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   grid-gap: 1px;
   padding: 1px;
 }
-#calendar .header {
+#calendarGrid .header {
   grid-row-start: top;
   grid-row-end: row0;
   padding: 0.25rem;
@@ -384,81 +384,81 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   font-weight: bold;
   text-shadow: 0px 0px 2px #1e1e1e;
 }
-#calendar .header.col0 {
+#calendarGrid .header.col0 {
   background-color: #d5697d;
 }
-#calendar .header.col1 {
+#calendarGrid .header.col1 {
   background-color: #bb846e;
 }
-#calendar .header.col2 {
+#calendarGrid .header.col2 {
   background-color: #dcdcaa;
 }
-#calendar .header.col3 {
+#calendarGrid .header.col3 {
   background-color: #679452;
 }
-#calendar .header.col4 {
+#calendarGrid .header.col4 {
   background-color: #97d5f7;
 }
-#calendar .header.col5 {
+#calendarGrid .header.col5 {
   background-color: #569cd6;
 }
-#calendar .header.col6 {
+#calendarGrid .header.col6 {
   background-color: #9f62c2;
 }
-#calendar .row0 {
+#calendarGrid .row0 {
   grid-row-start: row0;
   grid-row-end: row1;
 }
-#calendar .row1 {
+#calendarGrid .row1 {
   grid-row-start: row1;
   grid-row-end: row2;
 }
-#calendar .row2 {
+#calendarGrid .row2 {
   grid-row-start: row2;
   grid-row-end: row3;
 }
-#calendar .row3 {
+#calendarGrid .row3 {
   grid-row-start: row3;
   grid-row-end: row4;
 }
-#calendar .row4 {
+#calendarGrid .row4 {
   grid-row-start: row4;
   grid-row-end: row5;
 }
-#calendar .row5 {
+#calendarGrid .row5 {
   grid-row-start: row5;
   grid-row-end: row6;
 }
-#calendar .col0 {
+#calendarGrid .col0 {
   grid-column-start: col0;
   grid-column-end: col1;
 }
-#calendar .col1 {
+#calendarGrid .col1 {
   grid-column-start: col1;
   grid-column-end: col2;
 }
-#calendar .col2 {
+#calendarGrid .col2 {
   grid-column-start: col2;
   grid-column-end: col3;
 }
-#calendar .col3 {
+#calendarGrid .col3 {
   grid-column-start: col3;
   grid-column-end: col4;
 }
-#calendar .col4 {
+#calendarGrid .col4 {
   grid-column-start: col4;
   grid-column-end: col5;
 }
-#calendar .col5 {
+#calendarGrid .col5 {
   grid-column-start: col5;
   grid-column-end: col6;
 }
-#calendar .col6 {
+#calendarGrid .col6 {
   grid-column-start: col6;
   grid-column-end: end;
 }
 
-#calendar > div {
+#calendarGrid > div {
   position: relative;
   background-color: #444444;
   color: #ffffff;
@@ -469,17 +469,17 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   user-select: none;
   cursor: pointer;
 }
-#calendar > div span.date {
+#calendarGrid > div span.date {
   padding-left: 0.25rem;
 }
-#calendar > div ul.events {
+#calendarGrid > div ul.events {
   max-width: 100%;
   position: absolute;
   top: 1.5rem;
   right: 0;
   left: 0;
 }
-#calendar > div ul.events li {
+#calendarGrid > div ul.events li {
   background-color: #007bff;
   border-radius: 0.5rem;
   padding: 0 0.5rem;
@@ -490,17 +490,17 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#calendar > div ul.events li small {
+#calendarGrid > div ul.events li small {
   vertical-align: 1px;
 }
-#calendar > div ul.events .holiday {
+#calendarGrid > div ul.events .holiday {
   background-color: #9f62c2;
 }
 
-#byDate, #byLocation {
+#calendar, #byDate, #byLocation {
   display: none;
 }
-#byDate .card, #byLocation .card {
+#calendar .card, #byDate .card, #byLocation .card {
   background-color: #444444;
   border-color: #818181;
   color: #ffffff;

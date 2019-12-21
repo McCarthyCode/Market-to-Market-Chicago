@@ -1,4 +1,25 @@
 $(document).ready(() => {
+  // prevent page from scrolling to document hash
+  if (document.location.hash) {
+    setTimeout(function () {
+      window.scrollTo(0, 0);
+    }, 1);
+  }
+
+  // show appropriate view based on document hash
+  if (document.location.hash === '' ||
+      document.location.hash === '#' ||
+      document.location.hash === '#calendar') {
+      $('#calendar').show();
+      $('#tabsCalendar').addClass('active');
+  } else if (document.location.hash === '#byDate') {
+      $('#byDate').show();
+      $('#tabsByDate').addClass('active');
+  } else if (document.location.hash === '#byLocation') {
+      $('#byLocation').show();
+      $('#tabsByLocation').addClass('active');
+  }
+
   // define tabs behavior
   var $tabs = $('#tabs');
   var $tabsChildren = $('#tabs > li');
@@ -17,17 +38,8 @@ $(document).ready(() => {
     });
 
     let view = $tab.data('href');
-    $activeTab = $tab;
-
-    $($activeTab.data('href')).show();
-
-    // if (view === '#gallery') {
-    //   updateGalleryFilters();
-    // } else if (view === '#archive') {
-    //   updateArchiveFilters();
-    // }
-
-    // getView($activeTab);
+    document.location.hash = view;
+    $(view).show();
   }
 
   $tabsChildren.on('click touchstart', function (event) {

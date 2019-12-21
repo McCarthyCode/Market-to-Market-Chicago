@@ -1,8 +1,8 @@
 {% extends 'events/base.html' %}{% load static %}{% block content %}<h1 class="h1 text-center">Market to Market Chicago (<span id="page">Events</span>)</h1>
 <ul id="tabs">
-  <li class="active" data-href="#calendar">Calendar</li>
-  <li data-href="#byDate">by Date</li>
-  <li data-href="#byLocation">by Location</li>
+  <li id="tabsCalendar" data-href="#calendar">Calendar</li>
+  <li id="tabsByDate" data-href="#byDate">by Date</li>
+  <li id="tabsByLocation" data-href="#byLocation">by Location</li>
 </ul>
 <div id="calendarControls">
   <i id="prev" class="fas fa-arrow-left disabled"></i>
