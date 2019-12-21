@@ -1,22 +1,21 @@
 # To Do
 
 - Change 0.* units to .* units
+- Hide past events
 - Events page
-  - Events
-    - Regex for time input
+  - Navigation
+  - Space before a.m./p.m.
+  - Events/Recurring Events
     - Create events back end (needs testing)
       - All-day events
     - Create events front end (needs testing)
       - Allow for holiday creation?
+      - Make location optional
     - Update events back end
     - Update events front end
     - Delete events back end
     - Delete events front end
-  - Recurring Events
-    - Create recurring events back end (needs testing)
-    - Create recurring events front end (needs testing)
-    - Update recurring events back end
-    - Update recurring events front end
-    - Delete recurring events back end
-    - Delete recurring events front end
   - Click calendar cell to view events by date
+- Bars
+- Restaurants
+- Theaters

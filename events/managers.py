@@ -68,7 +68,7 @@ class EventManager(models.Manager):
         # Data collection
         name = request.POST.get('name', '')
         description = request.POST.get('description', '')
-        all_day = request.POST.get('all-day', '')
+        all_day_value = request.POST.get('all-day', '')
         date_start_str = request.POST.get('date-start', '')
         date_end_str = request.POST.get('date-end', '')
         frequency = request.POST.get('frequency', -1)
@@ -84,6 +84,9 @@ class EventManager(models.Manager):
         city = request.POST.get('city', '')
         state = request.POST.get('state', '')
         zip_code = request.POST.get('zip-code', '')
+
+        # Data restructuring
+        all_day = all_day_value == 'true'
 
         if frequency:
             frequency = int(frequency)
@@ -127,12 +130,7 @@ class EventManager(models.Manager):
         if ends == '':
             errors.append('Please enter an end condition.')
 
-        if not location_name:
-            errors.append('Please search for an existing location or click the map pin icon to create a new one.')
-
-        if location_id == '':
-            errors.append('There was an error getting location data. Please try again.')
-        elif location_id == 0:
+        if location_id == 0 and location_name:
             if not address1:
                 errors.append('Please enter an address.')
 
@@ -160,14 +158,16 @@ class EventManager(models.Manager):
             date_end = TZ.localize(datetime.strptime(date_end_str, '%m/%d/%Y %I:%M %p'))
 
         if all_day:
-            date_start.replace(hour=0, minute=0, second=0, microsecond=0)
+            date_start = date_start.replace(hour=0, minute=0, second=0, microsecond=0)
 
         if ends == 1:
             add_leading_zero_hour(ends_on_str)
             ends_on = TZ.localize(datetime.strptime(ends_on_str, '%m/%d/%Y %I:%M %p'))
 
-        # Grab location object or create new one
-        if location_id > 0:
+        # Grab location object, create new one, or set to None
+        if location_id <= 0 and location_name == '':
+            location = None
+        elif location_id > 0:
             location = Location.objects.get(id=location_id)
         else:
             location = Location.objects.create_location(
@@ -185,106 +185,33 @@ class EventManager(models.Manager):
 
             location.save()
 
-        if frequency_units == 0:
-            if location:
-                if date_end_str:
-                    kwargs = {
-                        'date_end': date_end,
-                        'location': location,
-                    }
-                else:
-                    kwargs = {
-                        'location': location,
-                    }
-            else:
-                if date_end_str:
-                    kwargs = {
-                        'date_end': date_end,
-                    }
-                else:
-                    kwargs = {}
+        kwargs = {}
+        if all_day:
+            kwargs['all_day'] = all_day
 
+        if date_end_str:
+            kwargs['date_end'] = date_end
+
+        if location:
+            kwargs['location'] = location
+
+        if frequency_units == 0:
             event = Event.objects.create_single_event(
                 name=name,
                 date_start=date_start,
-                all_day=True if all_day == 'true' else False,
                 **kwargs
             )
         else:
             if weekday_list:
-                if date_end_str:
-                    if ends == 0:
-                        kwargs = {
-                            'date_end': date_end,
-                            'location': location,
-                            'weekday_list': weekday_list,
-                        }
-                    elif ends == 1:
-                        kwargs = {
-                            'date_end': date_end,
-                            'location': location,
-                            'ends_on': ends_on,
-                            'weekday_list': weekday_list,
-                        }
-                    elif ends == 2:
-                        kwargs = {
-                            'date_end': date_end,
-                            'location': location,
-                            'ends_after': ends_after,
-                            'weekday_list': weekday_list,
-                        }
-                else:
-                    if ends == 0:
-                        kwargs = {
-                            'location': location,
-                            'weekday_list': weekday_list,
-                        }
-                    elif ends == 1:
-                        kwargs = {
-                            'location': location,
-                            'ends_on': ends_on,
-                            'weekday_list': weekday_list,
-                        }
-                    elif ends == 2:
-                        kwargs = {
-                            'location': location,
-                            'ends_after': ends_after,
-                            'weekday_list': weekday_list,
-                        }
-            else:
-                if date_end_str:
-                    if ends == 0:
-                        kwargs = {
-                            'date_end': date_end,
-                            'location': location,
-                        }
-                    elif ends == 1:
-                        kwargs = {
-                            'date_end': date_end,
-                            'location': location,
-                            'ends_on': ends_on,
-                        }
-                    elif ends == 2:
-                        kwargs = {
-                            'date_end': date_end,
-                            'location': location,
-                            'ends_after': ends_after,
-                        }
-                else:
-                    if ends == 0:
-                        kwargs = {
-                            'location': location,
-                        }
-                    elif ends == 1:
-                        kwargs = {
-                            'location': location,
-                            'ends_on': ends_on,
-                        }
-                    elif ends == 2:
-                        kwargs = {
-                            'location': location,
-                            'ends_after': ends_after,
-                        }
+                kwargs['weekday_list'] = weekday_list
+
+            if date_end_str:
+                kwargs['date_end'] = date_end
+
+            if ends == 1:
+                kwargs['ends_on'] = ends_on.replace(hour=23, minute=59, second=59, microsecond=999999)
+            elif ends == 2:
+                kwargs['ends_after'] = ends_after
 
             events = RecurringEvent.objects.create_recurring_event(
                 name=name,
@@ -295,9 +222,13 @@ class EventManager(models.Manager):
                 **kwargs
             )
 
-        return (True, 'You have successfully added an event.')
+            events_len = len(events)
+            return (True, 'You have successfully added %d event%s.' %
+                (events_len, '' if events_len == 1 else 's'))
+        
+        return (True, 'You have successfully added 1 event.')
 
-    def create_single_event(self, name, date_start, all_day, **kwargs):
+    def create_single_event(self, name, date_start, all_day=False, **kwargs):
         event = self.create(name=name, date_start=date_start.astimezone(pytz.utc), all_day=all_day)
 
         if not all_day and 'date_end' in kwargs:
@@ -475,7 +406,7 @@ class RecurringEventManager(models.Manager):
         from .models import RecurringEvent
 
         date = date_start
-        max_duration = relativedelta(years=+1)
+        max_duration = relativedelta(months=+1)
         date_max = date + max_duration
         frequency_units -= 1
 
@@ -545,6 +476,11 @@ class RecurringEventManager(models.Manager):
                         if days_of_week[date.weekday()] in kwargs['weekday_list']:
                             event = self.create(name=name, date_start=date.astimezone(pytz.utc))
 
+                            if 'all_day' in kwargs:
+                                event.all_day = kwargs['all_day']
+                            else:
+                                event.all_day = False
+
                             if first_occurence == None:
                                 first_occurence = event.first_occurence = event
                             else:
@@ -559,6 +495,11 @@ class RecurringEventManager(models.Manager):
                 else:
                     while date <= date_max:
                         event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+
+                        if 'all_day' in kwargs:
+                            event.all_day = kwargs['all_day']
+                        else:
+                            event.all_day = False
 
                         if first_occurence == None:
                             first_occurence = event.first_occurence = event
@@ -621,6 +562,11 @@ class RecurringEventManager(models.Manager):
                         if days_of_week[date.weekday()] in kwargs['weekday_list']:
                             event = self.create(name=name, date_start=date.astimezone(pytz.utc))
 
+                            if 'all_day' in kwargs:
+                                event.all_day = kwargs['all_day']
+                            else:
+                                event.all_day = False
+
                             if first_occurence == None:
                                 first_occurence = event.first_occurence = event
                             else:
@@ -635,6 +581,11 @@ class RecurringEventManager(models.Manager):
                 else:
                     while date <= kwargs['ends_on'] and date <= date_max:
                         event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+
+                        if 'all_day' in kwargs:
+                            event.all_day = kwargs['all_day']
+                        else:
+                            event.all_day = False
 
                         if first_occurence == None:
                             first_occurence = event.first_occurence = event
@@ -703,6 +654,11 @@ class RecurringEventManager(models.Manager):
                         if days_of_week[date.weekday()] in kwargs['weekday_list']:
                             event = self.create(name=name, date_start=date.astimezone(pytz.utc))
 
+                            if 'all_day' in kwargs:
+                                event.all_day = kwargs['all_day']
+                            else:
+                                event.all_day = False
+
                             if first_occurence == None:
                                 first_occurence = event.first_occurence = event
                             else:
@@ -720,6 +676,11 @@ class RecurringEventManager(models.Manager):
                     i = 0
                     while i < kwargs['ends_after'] and date <= date_max:
                         event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+
+                        if 'all_day' in kwargs:
+                            event.all_day = kwargs['all_day']
+                        else:
+                            event.all_day = False
 
                         if first_occurence == None:
                             first_occurence = event.first_occurence = event

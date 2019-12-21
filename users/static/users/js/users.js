@@ -105,12 +105,10 @@ $(document).ready(() => {
   function locationContract() {
     $locationCollapse.slideUp(500);
 
-    if (Number($locationId.val()) !== 0) {
-      $locationName.prop('required', false);
-      $locationAddress1.prop('required', false);
-      $locationCity.prop('required', false);
-      $locationState.prop('required', false);
-    }
+    $locationName.prop('required', false);
+    $locationAddress1.prop('required', false);
+    $locationCity.prop('required', false);
+    $locationState.prop('required', false);
   }
 
   function locationToggle() {
@@ -132,10 +130,10 @@ $(document).ready(() => {
   $locationName.on('input', function (event) {
     $('#locationAutocomplete ul').remove();
 
+    $locationId.val(0);
+
     let text = $(this).val();
-    if (text === '') {
-      $locationId.val(0);
-    } else {
+    if (text !== '') {
       $.get('/events/locations', {'q': text}, function (response) {
         $locationAutocomplete.append(response);
 
