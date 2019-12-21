@@ -1,15 +1,8 @@
 $(document).ready(() => {
-  // prevent page from scrolling to document hash
-  if (document.location.hash) {
-    setTimeout(function () {
-      window.scrollTo(0, 0);
-    }, 1);
-  }
-
   // show appropriate view based on document hash
-  let $calendar = $('#calendar');
-  let $byDate = $('#byDate');
-  let $byLocation = $('#byLocation');
+  let $calendar = $('#calendarView');
+  let $byDate = $('#byDateView');
+  let $byLocation = $('#byLocationView');
 
   if (document.location.hash === '' ||
     document.location.hash === '#' ||
@@ -29,7 +22,7 @@ $(document).ready(() => {
   var $tabsChildren = $('#tabs > li');
   var $activeTab = $('#tabs > li.active');
 
-  $($activeTab.data('href')).show();
+  $($activeTab.data('href') + 'View').show();
 
   function tabsChildrenClick($tab) {
     $activeTab.addClass('active');
@@ -37,13 +30,13 @@ $(document).ready(() => {
     galleryEmpty = archiveEmpty = false;
 
     $tabsChildren.each(function () {
-      $($(this).data('href')).hide();
+      $($(this).data('href') + 'View').hide();
       $(this).removeClass('active')
     });
 
     let view = $tab.data('href');
     document.location.hash = view;
-    $(view).show();
+    $(view + 'View').show();
   }
 
   $tabsChildren.on('click touchstart', function (event) {
@@ -56,11 +49,11 @@ $(document).ready(() => {
       tabsChildrenClick($(this));
 
       $tabsChildren.each(function () {
-        $($(this).data('href')).hide();
+        $($(this).data('href') + 'View').hide();
       });
 
       $activeTab = $(this);
-      $($(this).data('href')).show();
+      $($(this).data('href') + 'View').show();
     } else {
       $(this).addClass('active');
     }
@@ -76,12 +69,12 @@ $(document).ready(() => {
       $tabsChildren
         .removeClass('active')
         .each(function () {
-          $($(this).data('href')).hide();
+          $($(this).data('href') + 'View').hide();
         });
 
       $activeTab = $endElement;
       $endElement.addClass('active');
-      $($endElement.data('href')).show();
+      $($endElement.data('href') + 'View').show();
       event.stopPropagation();
     }
   });

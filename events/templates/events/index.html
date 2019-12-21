@@ -13,13 +13,13 @@
   <input type="hidden" name="year" value="{{ calendar.date.year }}">
   <input type="hidden" name="month" value="{{ calendar.date.month }}">
 </div>
-<div id="calendar">
+<div id="calendarView">
   {% include 'events/month.html' %}
 </div>
-<div id="byDate">
+<div id="byDateView">
   {% include 'events/by_date.html' %}
 </div>
-<div id="byLocation">
+<div id="byLocationView">
   {% include 'events/by_location.html' %}
 </div>
 {% endblock %}
