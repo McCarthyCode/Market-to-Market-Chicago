@@ -5,11 +5,11 @@
   <li id="tabsByLocation" data-href="#byLocation">by Location</li>
 </ul>
 <div id="calendarControls">
-  <i id="prev" class="fas fa-arrow-left disabled"></i>
-  <h3 class="h3 text-center month">{{ calendar.date|date:"F" }}</h3>
-  <i id="next" class="fas fa-arrow-right"></i>
+  <i id="prev" class="fas fa-arrow-left disabled" data-year="{{ prev|date:'Y' }}" data-month="{{ prev|date:'n' }}"></i>
+  <h3 class="h3 text-center month">{{ calendar.date|date:"F Y" }}</h3>
+  <i id="next" class="fas fa-arrow-right" data-year="{{ next|date:'Y' }}" data-month="{{ next|date:'n' }}"></i>
 </div>
-<div id="calendarDate">
+<div id="month">
   <input type="hidden" name="year" value="{{ calendar.date.year }}">
   <input type="hidden" name="month" value="{{ calendar.date.month }}">
 </div>

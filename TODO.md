@@ -3,7 +3,8 @@
 - Events page
   - Hide past events
   - Navigation
-    - Month
+    - Disabled next button
+  - Empty responses
   - Space before a.m./p.m.
   - Events/Recurring Events
     - Update events back end

@@ -225,7 +225,7 @@ class EventManager(models.Manager):
             events_len = len(events)
             return (True, 'You have successfully added %d event%s.' %
                 (events_len, '' if events_len == 1 else 's'))
-        
+
         return (True, 'You have successfully added 1 event.')
 
     def create_single_event(self, name, date_start, all_day=False, **kwargs):
@@ -353,53 +353,53 @@ class EventManager(models.Manager):
         }
 
     def prev(self, request):
-        this_month = datetime.now(tz).replace(
-            hour=0, minute=0, second=0, microsecond=0)
+        this_month = datetime.now(TZ).replace(
+            day=1, hour=0, minute=0, second=0, microsecond=0)
 
-        try:
-            month = datetime(
-                int(request.GET.get('year', today.year)),
-                int(request.GET.get('month', today.month)),
-                1, 0, 0, 0, 0,
-            )
-            month = tz.localize(month)
-        except TypeError:
-            return (False, None)
+        month = datetime(
+            int(request.GET.get('year', this_month.year)),
+            int(request.GET.get('month', this_month.month)),
+            1, 0, 0, 0, 0,
+        )
+        month = TZ.localize(month)
 
         prev_month = month + relativedelta(months=-1)
 
         if month == this_month:
-            return (True, {
+            return {
                 'disabled': True,
-            })
+            }
         else:
-            return (True, {
+            return {
                 'disabled': False,
                 'date': {
                     'year': prev_month.year,
                     'month': prev_month.month,
                 }
-            })
+            }
 
     def next(self, request):
+        this_month = datetime.now(TZ).replace(
+            day=1, hour=0, minute=0, second=0, microsecond=0)
+
         try:
             month = datetime(
-                int(request.GET.get('year', today.year)),
-                int(request.GET.get('month', today.month)),
+                int(request.GET.get('year', this_month.year)),
+                int(request.GET.get('month', this_month.month)),
                 1, 0, 0, 0, 0,
             )
-            month = tz.localize(month)
+            month = TZ.localize(month)
         except TypeError:
             return (False, None)
 
         next_month = month + relativedelta(months=+1)
 
-        return (True, {
+        return {
             'date': {
                 'year': next_month.year,
                 'month': next_month.month,
             }
-        })
+        }
 
 class RecurringEventManager(models.Manager):
     def create_recurring_event(self, name, date_start, frequency, frequency_units, ends, **kwargs):
