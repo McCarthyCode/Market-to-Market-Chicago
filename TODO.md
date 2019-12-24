@@ -1,7 +1,7 @@
 # To Do
 
 - Events page
-  - Hide past events
+  - Delete past events
   - Add no wrap to times
   - Prevent scroll to top on tab selection
   - Navigation

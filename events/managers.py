@@ -244,7 +244,7 @@ class EventManager(models.Manager):
     def calendar(self, request):
         from .models import Event
 
-        today = datetime.now(TZ)
+        today = datetime.now(TZ).replace(hour=0, minute=0, second=0, microsecond=0)
         year = int(request.GET.get('year', today.year))
         month = int(request.GET.get('month', today.month))
 
@@ -256,6 +256,7 @@ class EventManager(models.Manager):
         for i in range(42):
             events = Event.objects.filter(
                 date_start__date=date,
+                date_start__gte=today,
             ).order_by('date_start')[:3]
 
             events_tz_adjusted = []
@@ -285,7 +286,7 @@ class EventManager(models.Manager):
     def by_date(self, request):
         from .models import Event
 
-        today = datetime.now(TZ)
+        today = datetime.now(TZ).replace(hour=0, minute=0, second=0, microsecond=0)
         year = int(request.GET.get('year', today.year))
         month = int(request.GET.get('month', today.month))
 
@@ -295,6 +296,7 @@ class EventManager(models.Manager):
         while date.month == first_of_month.month:
             events = Event.objects.filter(
                 date_start__date=date,
+                date_start__gte=today,
             ).order_by('date_start')
 
             calendar.append({
@@ -312,7 +314,7 @@ class EventManager(models.Manager):
     def by_location(self, request):
         from .models import Event, Location
 
-        today = datetime.now(TZ)
+        today = datetime.now(TZ).replace(hour=0, minute=0, second=0, microsecond=0)
         year = int(request.GET.get('year', today.year))
         month = int(request.GET.get('month', today.month))
 
@@ -332,6 +334,8 @@ class EventManager(models.Manager):
                         location=location,
                         date_start__gte=day,
                         date_start__lt=day + relativedelta(days=+1),
+                    ).filter(
+                        date_start__gte=today,
                     ).order_by('date_start')
 
                     if len(events_on_day) > 0:
