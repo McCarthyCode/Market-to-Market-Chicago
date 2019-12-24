@@ -1,8 +1,5 @@
 # To Do
 
-- Navbar
-  - Make dropdown scrollable on mobile
-  - Fix user authentication bug
 - Events page
   - Delete past events
   - Prevent scroll to top on tab selection

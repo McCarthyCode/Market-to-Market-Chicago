@@ -53,6 +53,8 @@ nav #navbarCollapse {
   left: 0;
   background-color: #1e1e1e;
   padding: 0 0.5rem 0.5rem 0.5rem;
+  max-height: calc(100vh - 69px);
+  overflow-y: auto;
   z-index: 3;
 }
 nav #navbarCollapse ul {
