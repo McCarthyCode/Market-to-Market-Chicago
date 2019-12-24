@@ -2,7 +2,6 @@
 
 - Events page
   - Delete past events
-  - Add no wrap to times
   - Prevent scroll to top on tab selection
   - Navigation
     - Disabled next button
