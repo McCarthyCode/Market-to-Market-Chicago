@@ -326,6 +326,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 0.25rem;
   margin-bottom: 1rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 #tabs li {
   border-radius: 0.25rem;
