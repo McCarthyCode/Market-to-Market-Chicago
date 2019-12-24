@@ -1,16 +1,69 @@
 # To Do
 
-- Events page
-  - Delete past events
-  - Prevent scroll to top on tab selection
-  - Navigation
-    - Disabled next button
-  - Empty responses
-  - Events/Recurring Events
+- Home page
+  - News Feed
+    - Articles
+    - Locations
+    - Events
+    - Albums
+  - Infinite scrolling
+- Events
+  - All events page
+    - Prevent scroll to top on tab selection
+    - Navigation
+      - Disabled next button
+    - Empty responses
+  - Individual event page
+    - Title
+    - Description
+    - Images
+    - Date/Time(s)
+    - Location
+      - Name
+      - Address
+      - City/State/Zip
+      - Google Maps widget
+    - Update events front end (event page)
     - Update events back end
-    - Update events front end
+    - Delete events front end (event page)
     - Delete events back end
-    - Delete events front end
-- Bars
-- Restaurants
-- Theaters
+  - Weekly updates (commands/crontab)
+    - Delete past events
+    - Create future events
+- Locations
+  - Create location front end (dashboard)
+  - Create location back end
+  - Individual location page
+    - Name
+    - Address
+    - City/State/Zip
+    - Google Maps widget
+    - Events
+    - Update location front end (location page)
+    - Update location back end
+    - Delete location front end (location page)
+    - Delete location back end
+  - Add categories to Location model
+    - Nightlife
+    - Restaurants
+    - Arts & Entertainment
+    - Health & Fitness
+    - Sports
+    - Non-profit
+- Articles
+  - Title
+  - Author
+  - Date
+  - Body
+  - Images
+- Images
+  - Resize on input
+  - Image model
+  - Album model
+    - One album to many images
+  - Gallery view
+- Ads
+  - Leaderboard (top)
+  - 3 Leaderboard/mobile leaderboard (between news items)
+  - Medium rectangle (sidebar)
+  - Skyscraper (sidebar)
