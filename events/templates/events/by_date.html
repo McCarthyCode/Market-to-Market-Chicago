@@ -1,7 +1,7 @@
 {% for card in by_date.calendar %}
 {% if card.events|length > 0 %}
-<div class="card">
-  <h3 id="{{ card.date.day }}" class="h3 text-center">{{ card.date.day }}</h3>
+<div id="{{ card.date.day }}" class="card">
+  <h3 class="h3 text-center">{{ card.date.day }}</h3>
   <ul class="events">
     {% for event in card.events %}
     <li>

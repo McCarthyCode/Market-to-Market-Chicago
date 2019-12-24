@@ -1,20 +1,22 @@
-$(document).ready(() => {
+$(document).ready(function () {
   // show appropriate view based on document hash
   let $calendar = $('#calendarView');
   let $byDate = $('#byDateView');
   let $byLocation = $('#byLocationView');
 
-  if (document.location.hash === '' ||
-    document.location.hash === '#' ||
-    document.location.hash === '#calendar') {
-    $calendar.show();
-    $('#tabsCalendar').addClass('active');
-  } else if (document.location.hash === '#byDate') {
+  let $tabsCalendar = $('#tabsCalendar');
+  let $tabsByDate = $('#tabsByDate');
+  let $tabsByLocation = $('#tabsByLocation');
+
+  if (document.location.hash === '#byDate') {
     $byDate.show();
-    $('#tabsByDate').addClass('active');
+    $tabsByDate.addClass('active');
   } else if (document.location.hash === '#byLocation') {
     $byLocation.show();
-    $('#tabsByLocation').addClass('active');
+    $tabsByLocation.addClass('active');
+  } else {
+    $calendar.show();
+    $tabsCalendar.addClass('active');
   }
 
   // define tabs behavior
@@ -96,7 +98,7 @@ $(document).ready(() => {
 
   // show month and year in header and populate calendar with slots
   // for that month
-  function displayMonth(context) {
+  function updateMonth(context) {
     $('#month input[name="year"]').val(context['year']);
     $('#month input[name="month"]').val(context['month']);
 
@@ -161,14 +163,34 @@ $(document).ready(() => {
     });
   }
 
-  function displayByDate(context) {
+  function updateByDate(context) {
     $.get('/events/by-date/', context, function (response) {
       $byDate.empty();
       $byDate.append(response);
     });
   }
 
-  function displayByLocation(context) {
+  function updateAndShowByDate(context) {
+    $.get('/events/by-date/', context, function (response) {
+      $byDate.empty();
+      $byDate.append(response);
+
+      $tabsChildren
+        .removeClass('active')
+        .each(function () {
+          $($(this).data('href') + 'View').hide();
+        });
+
+      $activeTab = $tabsByDate;
+
+      $byDate.show();
+      $tabsByDate.addClass('active');
+
+      document.location.href = '#' + context['day'];
+    });
+  }
+
+  function updateByLocation(context) {
     $.get('/events/by-location/', context, function (response) {
       $byLocation.empty();
       $byLocation.append(response);
@@ -184,11 +206,8 @@ $(document).ready(() => {
     showLoadingIcon();
 
     $.get('/events/prev/', context, function (response) {
-      // debugger;
       let $prev = $('#prev');
       let date = response['date'];
-
-      console.log(response);
 
       if (response['disabled']) {
         $prev.addClass('disabled');
@@ -211,8 +230,6 @@ $(document).ready(() => {
       let $next = $('#next');
       let date = response['date'];
 
-      console.log(response);
-
       $next.data('year', date['year']);
       $next.data('month', date['month']);
 
@@ -221,6 +238,24 @@ $(document).ready(() => {
 
       $next.removeClass('disabled');
     });
+  }
+
+  function updateDate(context) {
+    updateMonth(context);
+    updateByDate(context);
+    updateByLocation(context);
+
+    updatePrev(context);
+    updateNext(context);
+  }
+
+  function updateAndShowDate(context) {
+    updateMonth(context);
+    updateAndShowByDate(context);
+    updateByLocation(context);
+
+    updatePrev(context);
+    updateNext(context);
   }
 
   // navigate to previous/next day
@@ -232,21 +267,58 @@ $(document).ready(() => {
       return;
     }
 
-    let year = $button.data('year');
-    let month = $button.data('month');
-
     $navButtons.removeClass('disabled');
 
-    let context = {
+    updateDate({
+      'year': $button.data('year'),
+      'month': $button.data('month'),
+    });
+  });
+
+  // navigate to by date view on calendar cell click
+  function showDate(context) {
+    let currentYear = Number($('#month input[name="year"]').val());
+    let currentMonth = Number($('#month input[name="month"]').val());
+
+    if (currentYear !== context['year'] || currentMonth !== context['month']) {
+      updateAndShowDate(context);
+    } else {
+      $tabsChildren
+        .removeClass('active')
+        .each(function () {
+          $($(this).data('href') + 'View').hide();
+        });
+
+      $activeTab = $tabsByDate;
+
+      $byDate.show();
+      $tabsByDate.addClass('active');
+
+      document.location.href = '#' + context['day'];
+    }
+  }
+
+  $('#calendarView').on('click', '#calendarGrid > div:not(.header)', function () {
+    let year = $(this).data('year');
+    let month = $(this).data('month');
+    let day = $(this).data('day');
+
+    let date = new Date(year, month - 1, day);
+    let today = new Date();
+
+    today.setHours(0)
+    today.setMinutes(0)
+    today.setSeconds(0)
+    today.setMilliseconds(0);
+
+    if (date < today) {
+      return;
+    }
+
+    showDate({
       'year': year,
       'month': month,
-    };
-
-    displayMonth(context);
-    displayByDate(context);
-    displayByLocation(context);
-
-    updatePrev(context);
-    updateNext(context);
+      'day': day,
+    });
   });
 });

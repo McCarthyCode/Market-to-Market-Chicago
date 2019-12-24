@@ -3,7 +3,7 @@
   <div class="header col{{ day.col }}">{{ day.dow }}</div>
   {% endfor %}
   {% for cell in calendar.calendar %}
-  <div class="row{{ cell.row }} col{{ cell.col }}">
+  <div class="row{{ cell.row }} col{{ cell.col }}" data-year="{{ cell.date.year }}" data-month="{{ cell.date.month }}" data-day="{{ cell.date.day }}">
     <span class="date">{{ cell.date.day }}</span>
     <ul class="events">
     {% for event in cell.events %}

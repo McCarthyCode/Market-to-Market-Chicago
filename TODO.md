@@ -11,7 +11,6 @@
     - Update events front end
     - Delete events back end
     - Delete events front end
-  - Click calendar cell to view events by date
 - Bars
 - Restaurants
 - Theaters
