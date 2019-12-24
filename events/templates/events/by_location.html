@@ -8,7 +8,7 @@
       <ul class="events">
       {% for event in day.events %}
         <li>
-          <h5 class="h5">{{ event.name }} <span class="text-nowrap">{% if event.all_day %}(All Day){% else %}({{ event.date_start|date:"g:ia" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:ia" }}{% endif %}){% endif %}</span></h5>
+          <h5 class="h5">{{ event.name }} <span class="text-nowrap">{% if event.all_day %}(All Day){% else %}({{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}){% endif %}</span></h5>
           {% if event.description %}
           {{ event.description|linebreaks }}
           {% endif %}

@@ -1,12 +1,14 @@
 # To Do
 
+- Navbar
+  - Make dropdown scrollable on mobile
+  - Fix user authentication bug
 - Events page
   - Delete past events
   - Prevent scroll to top on tab selection
   - Navigation
     - Disabled next button
   - Empty responses
-  - Space before a.m./p.m.
   - Events/Recurring Events
     - Update events back end
     - Update events front end
