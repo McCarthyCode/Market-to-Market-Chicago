@@ -2,6 +2,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.shortcuts import render
 from django.http import HttpResponseBadRequest, JsonResponse
+from django.contrib.auth.models import User
 from mtm.settings import TZ, NAME
 from .models import Location, Event, RecurringEvent
 
@@ -12,6 +13,8 @@ def index(request):
     current_month = datetime.now(TZ).replace(day=1, hour=0, minute=0, second=0, microsecond=0)
 
     return render(request, 'events/index.html', {
+        'user': User.objects.get(pk=request.session['id']) \
+            if 'id' in request.session else None,
         'calendar': Event.objects.calendar(request),
         'by_date': Event.objects.by_date(request),
         'by_location': Event.objects.by_location(request),
