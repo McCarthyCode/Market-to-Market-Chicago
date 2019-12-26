@@ -42,7 +42,7 @@ class LocationManager(models.Manager):
     def create_location(self, name, address1, city, state):
         return self.create(name=name, address1=address1, city=city, state=state)
 
-    def get_locations(self, request):
+    def locations_autocomplete(self, request):
         from .models import Location
 
         query = request.GET.get('q', '')

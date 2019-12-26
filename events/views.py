@@ -1,7 +1,7 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.shortcuts import render
-from django.http import HttpResponseBadRequest, JsonResponse
+from django.http import HttpResponseBadRequest, JsonResponse, HttpResponse
 from django.contrib.auth.models import User
 from mtm.settings import TZ, NAME
 from .models import Location, Event, RecurringEvent
@@ -60,12 +60,18 @@ def next(request):
 
     return JsonResponse(Event.objects.next(request))
 
-def locations(request):
+def locations_autocomplete(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    q = request.GET.get('q', '')
-
-    return render(request, 'events/location_dropdown.html',
-        Location.objects.get_locations(request)
+    return render(request, 'events/locations_autocomplete.html',
+        Location.objects.locations_autocomplete(request)
     )
+
+def event(request, id, slug):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    msg = 'slug: %s; id: %d' % (slug, int(id))
+
+    return HttpResponse(msg, content_type='text/plain')

@@ -4,7 +4,17 @@ from .managers import LocationManager, EventManager, RecurringEventManager
 from mtm.settings import TZ
 
 class Location(TimestampedModel):
-    name = models.CharField(max_length=200)
+    CATEGORY_CHOICES = [
+        (0, 'Nightlife'),
+        (1, 'Restaurants'),
+        (2, 'Arts & Entertainment'),
+        (3, 'Health & Fitness'),
+        (4, 'Sports'),
+        (5, 'Non-profit'),
+    ]
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100)
+    category = models.PositiveSmallIntegerField(choices=CATEGORY_CHOICES)
     address1 = models.CharField(max_length=200)
     address2 = models.CharField(null=True, blank=True, max_length=200)
     city = models.CharField(max_length=80, default='Chicago')
@@ -16,7 +26,8 @@ class Location(TimestampedModel):
         return self.name
 
 class Event(TimestampedModel):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100)
     description = models.TextField(max_length=1000, null=True, blank=True)
     all_day = models.BooleanField(default=False)
     date_start = models.DateTimeField()

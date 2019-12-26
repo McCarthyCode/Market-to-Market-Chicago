@@ -134,7 +134,7 @@ $(document).ready(() => {
 
     let text = $(this).val();
     if (text !== '') {
-      $.get('/events/locations', {'q': text}, function (response) {
+      $.get('/events/locations-autocomplete', {'q': text}, function (response) {
         $locationAutocomplete.append(response);
 
         length = $('#locationAutocomplete li').length;

@@ -17,8 +17,8 @@ js_output_users="users/static/users/js/users.min.js"
 declare -a commands=(
 #   "java -jar $closure_compiler --js $js_input_global --js_output_file $js_output_global"
 #   "java -jar $closure_compiler --js $js_input_home --js_output_file $js_output_home"
-  "java -jar $closure_compiler --js $js_input_events --js_output_file $js_output_events"
-#   "java -jar $closure_compiler --js $js_input_users --js_output_file $js_output_users"
+#   "java -jar $closure_compiler --js $js_input_events --js_output_file $js_output_events"
+  "java -jar $closure_compiler --js $js_input_users --js_output_file $js_output_users"
 )
 
 for i in "${commands[@]}"; do

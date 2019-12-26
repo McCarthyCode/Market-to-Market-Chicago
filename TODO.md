@@ -31,6 +31,7 @@
     - Delete past events
     - Create future events
 - Locations
+  - Add neighborhood field
   - Create location front end (dashboard)
   - Create location back end
   - Individual location page

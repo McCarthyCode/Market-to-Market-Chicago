@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 
 from . import views
 
@@ -9,5 +9,6 @@ urlpatterns = [
     path('by-location/', views.by_location, name='by_location'),
     path('prev/', views.prev, name='prev'),
     path('next/', views.next, name='next'),
-    path('locations/', views.locations, name='locations'),
+    path('locations-autocomplete/', views.locations_autocomplete, name='locations_autocomplete'),
+    re_path(r'^(?P<id>[1-9]\d*)/(?P<slug>[a-z\d-]+)/$', views.event, name='event'),
 ]
