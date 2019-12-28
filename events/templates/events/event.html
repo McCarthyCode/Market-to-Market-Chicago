@@ -1,0 +1,28 @@
+{% extends 'events/base.html' %}{% load static %}{% block content %}<h1 class="h1 text-center">{{ event.name }} <span class="text-nowrap">({{ event.date_start|date:"D. F j" }})</span></h1>
+<h3 class="h3">Details</h3>
+<div class="card">
+  <table>
+    <tbody>
+      <tr>
+        <td>Time</td>
+        <td>{{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}</td>
+      </tr>
+      <tr>
+        <td>Location</td>
+        <td>{{ event.location.name }}<br>
+        {{ event.location.address1 }}<br>{% if event.location.address2 %}
+        {{ event.location.address2 }}<br>{% endif %}
+        {{ event.location.city }}, {{ event.location.state }}{% if event.location.zip_code %} {{ event.location.zip_code }}{% endif %}</td>
+      </tr>
+      {% if event.description %}<tr>
+        <td>Description</td>
+        <td>{{ event.description|linebreaks }}</td>
+      </tr>{% endif %}
+      {% if next_event %}<tr>
+        <td>Next Event</td>
+        <td><a href="{% url 'events:event' location=next_event.location.slug name=next_event.slug id=next_event.id %}">{{ next_event.date_start|date:"F j, Y" }}</a></td>
+      </tr>{% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

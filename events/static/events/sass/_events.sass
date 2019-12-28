@@ -211,16 +211,17 @@
     .holiday
       background-color: $purple
 
+.container .card
+  background-color: $light-gray
+  border-color: $lighter-gray
+  color: $white
+  padding: 1rem
+  margin-bottom: .5rem
+  position: relative
+
+
 #calendarView, #byDateView, #byLocationView
   display: none
-
-  .card
-    background-color: $light-gray
-    border-color: $lighter-gray
-    color: $white
-    padding: 1rem
-    margin-bottom: .5rem
-    position: relative
 
 #byDateView .card
   h3
@@ -238,7 +239,7 @@
     li
       margin-bottom: .5rem
 
-      h5
+      h5 a
         color: $light-blue
         line-height: 28px
 
@@ -275,7 +276,7 @@
       li
         margin-bottom: .5rem
 
-        h5
+        h5 a
           color: $light-blue
           line-height: 28px
 
@@ -291,6 +292,25 @@
       li:last-child
         margin-bottom: 0
 
+table
+  td
+    margin-bottom: .5rem
+
+    p
+      margin-bottom: .5rem
+
+    p:last-child
+      margin-bottom: 0
+
+  td:first-child
+    text-align: right
+    color: $lighter-gray
+    font-weight: bold
+    width: 8rem
+    padding-right: 1rem
+
+  td:first-child::after
+    content: ':'
 
 @media screen and (min-width: $breakpoint-md)
   #content

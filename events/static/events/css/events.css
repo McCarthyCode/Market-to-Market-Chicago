@@ -504,16 +504,17 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   background-color: #9f62c2;
 }
 
-#calendarView, #byDateView, #byLocationView {
-  display: none;
-}
-#calendarView .card, #byDateView .card, #byLocationView .card {
+.container .card {
   background-color: #444444;
   border-color: #818181;
   color: #ffffff;
   padding: 1rem;
   margin-bottom: 0.5rem;
   position: relative;
+}
+
+#calendarView, #byDateView, #byLocationView {
+  display: none;
 }
 
 #byDateView .card h3 {
@@ -531,7 +532,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #byDateView .card ul.events li {
   margin-bottom: 0.5rem;
 }
-#byDateView .card ul.events li h5 {
+#byDateView .card ul.events li h5 a {
   color: #569cd6;
   line-height: 28px;
 }
@@ -569,7 +570,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #byLocationView .card ul.day li ul.events li {
   margin-bottom: 0.5rem;
 }
-#byLocationView .card ul.day li ul.events li h5 {
+#byLocationView .card ul.day li ul.events li h5 a {
   color: #569cd6;
   line-height: 28px;
 }
@@ -584,6 +585,26 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 #byLocationView .card ul.day li ul.events li:last-child {
   margin-bottom: 0;
+}
+
+table td {
+  margin-bottom: 0.5rem;
+}
+table td p {
+  margin-bottom: 0.5rem;
+}
+table td p:last-child {
+  margin-bottom: 0;
+}
+table td:first-child {
+  text-align: right;
+  color: #818181;
+  font-weight: bold;
+  width: 8rem;
+  padding-right: 1rem;
+}
+table td:first-child::after {
+  content: ":";
 }
 
 @media screen and (min-width: 768px) {

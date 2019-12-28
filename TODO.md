@@ -1,7 +1,7 @@
 # To Do
 
+- Change URL names from underscores to hyphens
 - Dashboard
-  - Change url to /dashboard/
   - Weekday labels on mobile
     - Resize
     - Remove transition attribute
@@ -48,6 +48,7 @@
     - Update location back end
     - Delete location front end (location page)
     - Delete location back end
+- People to Know
 - Articles
   - Title
   - Author

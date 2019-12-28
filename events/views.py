@@ -1,7 +1,8 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from django.shortcuts import render
-from django.http import HttpResponseBadRequest, JsonResponse, HttpResponse
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.http import HttpResponseBadRequest, JsonResponse, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from mtm.settings import TZ, NAME
 from .models import Location, Event, RecurringEvent
@@ -60,10 +61,34 @@ def next(request):
 
     return JsonResponse(Event.objects.next(request))
 
-def event(request, id, slug):
+def event(request, id, location, name):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    msg = 'slug: %s; id: %d' % (slug, int(id))
+    try:
+        event = RecurringEvent.objects.get(id=id)
+        recurring = True
+    except RecurringEvent.DoesNotExist:
+        event = Event.objects.get(id=id)
+        recurring = False
 
-    return HttpResponse(msg, content_type='text/plain')
+    _location = event.location.slug
+    _name = event.slug
+
+    if recurring:
+        next_event = RecurringEvent.objects.filter(
+            first_occurence=event.first_occurence,
+            date_start__gt=event.date_start,
+        ).order_by('date_start').first()
+    else:
+        next_event = None
+
+    if event and (_location != location or _name != name):
+        return HttpResponseRedirect(reverse('events:event', args=[_location, _name, id]))
+
+    return render(request, 'events/event.html', {
+        'event': event,
+        'next_event': next_event,
+        'name': NAME,
+        'year': datetime.now(TZ).year,
+    })
