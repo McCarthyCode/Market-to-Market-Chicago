@@ -9,6 +9,5 @@ urlpatterns = [
     path('by-location/', views.by_location, name='by_location'),
     path('prev/', views.prev, name='prev'),
     path('next/', views.next, name='next'),
-    path('locations-autocomplete/', views.locations_autocomplete, name='locations_autocomplete'),
     re_path(r'^(?P<id>[1-9]\d*)/(?P<slug>[a-z\d-]+)/$', views.event, name='event'),
 ]

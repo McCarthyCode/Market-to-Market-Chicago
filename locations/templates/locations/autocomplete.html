@@ -1,0 +1,8 @@
+<ul>
+{% for neighborhood in neighborhoods %}
+  <li data-id="{{ neighborhood.id }}">{{ neighborhood.name }}</li>
+{% endfor %}
+{% for location in locations %}
+  <li data-id="{{ location.id }}">{{ location.name }}</li>
+{% endfor %}
+</ul>

@@ -1,10 +1,10 @@
 import pytz
 
+from titlecase import titlecase
 from django.db import models
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from mtm.settings import TZ
-
 
 DOW = [
     {
@@ -37,33 +37,10 @@ DOW = [
     },
 ]
 
-
-class LocationManager(models.Manager):
-    def create_location(self, name, address1, city, state):
-        return self.create(name=name, address1=address1, city=city, state=state)
-
-    def locations_autocomplete(self, request):
-        from .models import Location
-
-        query = request.GET.get('q', '')
-        locations = []
-
-        if query == '':
-            return {'locations': locations}
-
-        for location in Location.objects.filter(name__contains=query) \
-        .order_by('name')[:5]:
-            locations.append({
-                'id': location.id,
-                'name': location.name,
-            })
-
-        return {'locations': locations}
-
-
 class EventManager(models.Manager):
     def create_event(self, request):
-        from .models import Location, Event, RecurringEvent
+        from .models import Event, RecurringEvent
+        from locations.models import Neighborhood, Location
 
         # Data collection
         name = request.POST.get('name', '')
@@ -71,14 +48,17 @@ class EventManager(models.Manager):
         all_day_value = request.POST.get('all-day', '')
         date_start_str = request.POST.get('date-start', '')
         date_end_str = request.POST.get('date-end', '')
-        frequency = request.POST.get('frequency', -1)
-        frequency_units = request.POST.get('frequency-units')
+        frequency = request.POST.get('frequency', '-1')
+        frequency_units = request.POST.get('frequency-units', '0')
         weekday_list = request.POST.getlist('weekday-list')
         ends = request.POST.get('ends', '-1')
         ends_on_str = request.POST.get('ends-on', '')
         ends_after = request.POST.get('ends-after', '0')
         location_id = request.POST.get('location-id', '0')
         location_name = request.POST.get('location-name', '')
+        category = request.POST.get('category', '-1')
+        neighborhood_id = request.POST.get('neighborhood-id', '0')
+        neighborhood_name = request.POST.get('neighborhood-name', '')
         address1 = request.POST.get('address1', '')
         address2 = request.POST.get('address2', '')
         city = request.POST.get('city', '')
@@ -102,6 +82,12 @@ class EventManager(models.Manager):
 
         if location_id:
             location_id = int(location_id)
+
+        if category:
+            category = int(category)
+
+        if neighborhood_id:
+            neighborhood_id = int(neighborhood_id)
 
         # Basic validations
         errors = []
@@ -131,6 +117,9 @@ class EventManager(models.Manager):
             errors.append('Please enter an end condition.')
 
         if location_id == 0 and location_name:
+            if not neighborhood_name:
+                errors.append('Please enter a neighborhood.')
+
             if not address1:
                 errors.append('Please enter an address.')
 
@@ -172,10 +161,20 @@ class EventManager(models.Manager):
         else:
             location = Location.objects.create_location(
                 name=location_name,
+                category=category,
                 address1=address1,
                 city=city,
                 state=state,
             )
+
+            if neighborhood_id:
+                neighborhood = Neighborhood.objects.get(id=neighborhood_id)
+            elif neighborhood_name:
+                neighborhood = Neighborhood.objects.create_neighborhood(name=neighborhood_name)
+            else:
+                neighborhood = None
+
+            location.neighborhood = neighborhood
 
             if address2:
                 location.address2 = address2
@@ -185,6 +184,7 @@ class EventManager(models.Manager):
 
             location.save()
 
+        # Gather arguments and create event
         kwargs = {}
         if all_day:
             kwargs['all_day'] = all_day
@@ -312,7 +312,8 @@ class EventManager(models.Manager):
         }
 
     def by_location(self, request):
-        from .models import Event, Location
+        from .models import Event
+        from locations.models import Location
 
         today = datetime.now(TZ).replace(hour=0, minute=0, second=0, microsecond=0)
         year = int(request.GET.get('year', today.year))
@@ -410,7 +411,7 @@ class RecurringEventManager(models.Manager):
         from .models import RecurringEvent
 
         date = date_start
-        max_duration = relativedelta(months=+1)
+        max_duration = relativedelta(years=+1)
         date_max = date + max_duration
         frequency_units -= 1
 

@@ -1,39 +1,23 @@
+from slugify import slugify
 from django.db import models
 from home.models import TimestampedModel
-from .managers import LocationManager, EventManager, RecurringEventManager
+from locations.models import Location
+from .managers import EventManager, RecurringEventManager
 from mtm.settings import TZ
-
-class Location(TimestampedModel):
-    CATEGORY_CHOICES = [
-        (0, 'Nightlife'),
-        (1, 'Restaurants'),
-        (2, 'Arts & Entertainment'),
-        (3, 'Health & Fitness'),
-        (4, 'Sports'),
-        (5, 'Non-profit'),
-    ]
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100)
-    category = models.PositiveSmallIntegerField(choices=CATEGORY_CHOICES)
-    address1 = models.CharField(max_length=200)
-    address2 = models.CharField(null=True, blank=True, max_length=200)
-    city = models.CharField(max_length=80, default='Chicago')
-    state = models.CharField(max_length=2, default='IL')
-    zip_code = models.CharField(null=True, blank=True, max_length=5)
-    objects = LocationManager()
-
-    def __str__(self):
-        return self.name
 
 class Event(TimestampedModel):
     name = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100)
+    slug = models.SlugField(default='', max_length=100, null=True, blank=True)
     description = models.TextField(max_length=1000, null=True, blank=True)
     all_day = models.BooleanField(default=False)
     date_start = models.DateTimeField()
     date_end = models.DateTimeField(null=True, blank=True)
     location = models.ForeignKey(Location, null=True, blank=True, on_delete=models.CASCADE)
     objects = EventManager()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         if self.location:

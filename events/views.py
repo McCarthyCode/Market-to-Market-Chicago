@@ -60,14 +60,6 @@ def next(request):
 
     return JsonResponse(Event.objects.next(request))
 
-def locations_autocomplete(request):
-    if request.method != 'GET':
-        return HttpResponseBadRequest()
-
-    return render(request, 'events/locations_autocomplete.html',
-        Location.objects.locations_autocomplete(request)
-    )
-
 def event(request, id, slug):
     if request.method != 'GET':
         return HttpResponseBadRequest()

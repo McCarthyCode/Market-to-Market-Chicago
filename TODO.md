@@ -1,5 +1,7 @@
 # To Do
 
+- Dashboard
+  - Change url to /dashboard/
 - Home page
   - News Feed
     - Articles
@@ -31,7 +33,6 @@
     - Delete past events
     - Create future events
 - Locations
-  - Add neighborhood field
   - Create location front end (dashboard)
   - Create location back end
   - Individual location page
@@ -44,13 +45,6 @@
     - Update location back end
     - Delete location front end (location page)
     - Delete location back end
-  - Add categories to Location model
-    - Nightlife
-    - Restaurants
-    - Arts & Entertainment
-    - Health & Fitness
-    - Sports
-    - Non-profit
 - Articles
   - Title
   - Author

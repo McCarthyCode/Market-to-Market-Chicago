@@ -88,6 +88,9 @@ $(document).ready(() => {
   // Show/hide new location input
   let $locationId = $('#locationId');
   let $locationName = $('#locationName');
+  let $locationCategory = $('#locationCategory');
+  let $neighborhoodId = $('#neighborhoodId');
+  let $neighborhoodName = $('#neighborhoodName');
   let $locationCollapse = $('#locationCollapse');
   let $locationAddress1 = $('#locationCollapse input[name="address1"]');
   let $locationCity = $('#locationCollapse input[name="city"]');
@@ -96,7 +99,8 @@ $(document).ready(() => {
   function locationExpand() {
     $locationCollapse.slideDown(500);
 
-    $locationName.prop('required', true);
+    $neighborhoodName.prop('required', true);
+    $locationCategory.prop('required', true);
     $locationAddress1.prop('required', true);
     $locationCity.prop('required', true);
     $locationState.prop('required', true);
@@ -105,7 +109,8 @@ $(document).ready(() => {
   function locationContract() {
     $locationCollapse.slideUp(500);
 
-    $locationName.prop('required', false);
+    $neighborhoodName.prop('required', false);
+    $locationCategory.prop('required', false);
     $locationAddress1.prop('required', false);
     $locationCity.prop('required', false);
     $locationState.prop('required', false);
@@ -121,10 +126,74 @@ $(document).ready(() => {
 
   $('#locationToggle').click(locationToggle);
 
+  // Search for existing neighborhoods;
+  // select from autocomplete list on arrow key event
+  let neighborhoodPosition = -1;
+  let neighborhoodLength = 0;
+  let $neighborhoodAutocomplete = $('#neighborhoodAutocomplete');
+
+  $neighborhoodName.on('input', function (event) {
+    $('#neighborhoodAutocomplete ul').remove();
+
+    $neighborhoodId.val(0);
+
+    let text = $(this).val();
+    if (text !== '') {
+      $.get('/locations/neighborhoods/autocomplete', {'q': text}, function (response) {
+        $neighborhoodAutocomplete.append(response);
+
+        neighborhoodPosition = -1;
+        neighborhoodLength = $('#neighborhoodAutocomplete li').length;
+      });
+    }
+  });
+
+  // Select from autocomplete from arrow or enter key event
+  $neighborhoodName.keydown(function (event) {
+    switch (event.keyCode) {
+      case 13: // enter
+        event.preventDefault();
+        let $active = $('#neighborhoodAutocomplete li.active');
+        if ($('#neighborhoodAutocomplete li').length === 1) {
+          $active = $('#neighborhoodAutocomplete li:first-child');
+        }
+        $neighborhoodId.val($active.data('id'));
+        $neighborhoodName.val($active.text());
+
+        $('#neighborhoodAutocomplete ul').remove();
+        break;
+
+      case 38: // arrow up
+        neighborhoodPosition = neighborhoodPosition === -1 ? neighborhoodLength - 1 : (neighborhoodPosition + 1) % neighborhoodLength;
+        $('#neighborhoodAutocomplete li').removeClass('active');
+        $(`#neighborhoodAutocomplete li:nth-child(${neighborhoodPosition + 1})`).addClass('active');
+        break;
+
+      case 40: // arrow down
+        neighborhoodPosition = neighborhoodPosition === -1 ? 0 : (neighborhoodPosition + neighborhoodLength - 1) % neighborhoodLength;
+        $('#neighborhoodAutocomplete li').removeClass('active');
+        $(`#neighborhoodAutocomplete li:nth-child(${neighborhoodPosition + 1})`).addClass('active');
+        break;
+    }
+  });
+
+  // Select from autocomplete from click event
+  $neighborhoodAutocomplete.on('click', 'ul li', function () {
+    $neighborhoodId.val($(this).data('id'));
+    $neighborhoodName.val($(this).text());
+
+    $('#neighborhoodAutocomplete ul').remove();
+  });
+
+  // Remove autocomplete list on focusout
+  $neighborhoodName.focusout(function () {
+    $('#neighborhoodAutocomplete ul').remove();
+  });
+
   // Search for existing locations;
   // select from autocomplete list on arrow key event
-  let position = -1;
-  let length = 0;
+  let locationPosition = -1;
+  let locationLength = 0;
   let $locationAutocomplete = $('#locationAutocomplete');
 
   $locationName.on('input', function (event) {
@@ -134,11 +203,11 @@ $(document).ready(() => {
 
     let text = $(this).val();
     if (text !== '') {
-      $.get('/events/locations-autocomplete', {'q': text}, function (response) {
+      $.get('/locations/autocomplete', {'q': text}, function (response) {
         $locationAutocomplete.append(response);
 
-        length = $('#locationAutocomplete li').length;
-        position = -1;
+        locationPosition = -1;
+        locationLength = $('#locationAutocomplete li').length;
       });
     }
   });
@@ -160,15 +229,15 @@ $(document).ready(() => {
         break;
 
       case 38: // arrow up
-        position = position === -1 ? length - 1 : (position + 1) % length;
+        locationPosition = locationPosition === -1 ? locationLength - 1 : (locationPosition + 1) % locationLength;
         $('#locationAutocomplete li').removeClass('active');
-        $(`#locationAutocomplete li:nth-child(${position + 1})`).addClass('active');
+        $(`#locationAutocomplete li:nth-child(${locationPosition + 1})`).addClass('active');
         break;
 
       case 40: // arrow down
-        position = position === -1 ? 0 : (position + length - 1) % length;
+        locationPosition = locationPosition === -1 ? 0 : (locationPosition + locationLength - 1) % locationLength;
         $('#locationAutocomplete li').removeClass('active');
-        $(`#locationAutocomplete li:nth-child(${position + 1})`).addClass('active');
+        $(`#locationAutocomplete li:nth-child(${locationPosition + 1})`).addClass('active');
         break;
     }
   });
@@ -180,5 +249,10 @@ $(document).ready(() => {
 
     $('#locationAutocomplete ul').remove();
     locationContract();
+  });
+
+  // Remove autocomplete list on focusout
+  $locationName.focusout(function () {
+    $('#locationAutocomplete ul').remove();
   });
 });
