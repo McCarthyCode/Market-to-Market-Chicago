@@ -2,6 +2,9 @@
 
 - Dashboard
   - Change url to /dashboard/
+  - Weekday labels on mobile
+    - Resize
+    - Remove transition attribute
 - Home page
   - News Feed
     - Articles
