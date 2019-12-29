@@ -20,9 +20,9 @@ $(document).ready(function () {
   }
 
   // define tabs behavior
-  var $tabs = $('#tabs');
-  var $tabsChildren = $('#tabs > li');
-  var $activeTab = $('#tabs > li.active');
+  let $tabs = $('#tabs');
+  let $tabsChildren = $('#tabs > li');
+  let $activeTab = $('#tabs > li.active');
 
   $($activeTab.data('href') + 'View').show();
 
@@ -62,8 +62,8 @@ $(document).ready(function () {
   });
 
   $tabsChildren.on('touchend', function (event) {
-    var changes = event.changedTouches[0];
-    var $endElement = $(document.elementFromPoint(changes.pageX, changes.pageY));
+    let changes = event.changedTouches[0];
+    let $endElement = $(document.elementFromPoint(changes.pageX, changes.pageY));
 
     if ($endElement.parent('#tabs').length) {
       tabsChildrenClick($(this));
@@ -84,14 +84,10 @@ $(document).ready(function () {
   $tabs.mouseenter(function () {
     $activeTab.removeClass('active');
   });
-  $tabs.mouseleave(function () {
+  $tabs.on('mouseleave touchstart', function () {
     $activeTab.addClass('active');
   });
-
-  $(window).on('touchstart', function () {
-    $activeTab.addClass('active');
-  });
-  $(window).on('touchend', function () {
+  $tabs.on('touchend', function () {
     $tabsChildren.removeClass('active');
     $activeTab.addClass('active');
   });
@@ -197,14 +193,8 @@ $(document).ready(function () {
     });
   }
 
-  function showLoadingIcon() {
-    // loading...
-  }
-
   // update prev/next buttons
   function updatePrev(context) {
-    showLoadingIcon();
-
     $.get('/events/prev/', context, function (response) {
       let $prev = $('#prev');
       let date = response['date'];
@@ -224,8 +214,6 @@ $(document).ready(function () {
   }
 
   function updateNext(context) {
-    showLoadingIcon();
-
     $.get('/events/next/', context, function (response) {
       let $next = $('#next');
       let date = response['date'];
@@ -298,7 +286,7 @@ $(document).ready(function () {
     }
   }
 
-  $('#calendarView').on('click', '#calendarGrid > div:not(.header)', function () {
+  $calendar.on('click', '#calendarGrid > div:not(.header)', function () {
     let year = $(this).data('year');
     let month = $(this).data('month');
     let day = $(this).data('day');
