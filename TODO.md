@@ -1,6 +1,7 @@
 # To Do
 
 - Change URL names from underscores to hyphens
+- Fix footer position on smaller viewports
 - Dashboard
   - Weekday labels on mobile
     - Resize
@@ -15,19 +16,14 @@
 - Events
   - All events page
     - Prevent scroll to top on tab selection
+    - Fix bug where tapping a link scrolls to top and doesn't follow link
     - Navigation
       - Disabled next button
     - Empty responses
   - Individual event page
-    - Title
-    - Description
+    - Breadcrumbs
+      - Events > Location > Event
     - Images
-    - Date/Time(s)
-    - Location
-      - Name
-      - Address
-      - City/State/Zip
-      - Google Maps widget
     - Update events front end (event page)
     - Update events back end
     - Delete events front end (event page)

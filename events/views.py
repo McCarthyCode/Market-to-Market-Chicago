@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseBadRequest, JsonResponse, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
-from mtm.settings import TZ, NAME
+from mtm.settings import TZ, NAME, API_KEY
 from .models import Location, Event, RecurringEvent
 
 def index(request):
@@ -91,4 +91,5 @@ def event(request, id, location, name):
         'next_event': next_event,
         'name': NAME,
         'year': datetime.now(TZ).year,
+        'API_KEY': API_KEY,
     })

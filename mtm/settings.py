@@ -141,3 +141,9 @@ TZ = pytz.timezone(TIME_ZONE)
 # Email regular expression
 EMAIL_REGEX = re.compile(
     r'^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$')
+
+# Google Maps API key
+API_KEY_FILE = '%s/auth/api_key.txt' % BASE_DIR
+with open(API_KEY_FILE, 'r', encoding='utf8') as f:
+    content = f.readline()
+API_KEY = content[:-1]
