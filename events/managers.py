@@ -293,16 +293,29 @@ class EventManager(models.Manager):
         date = first_of_month = datetime(year, month, 1, tzinfo=TZ)
         calendar = []
 
+        tabindex = 0
         while date.month == first_of_month.month:
-            events = Event.objects.filter(
+            events = []
+            for event in Event.objects.filter(
                 date_start__date=date,
                 date_start__gte=today,
-            ).order_by('date_start')
+            ).order_by('date_start'):
+                if not event.all_day or event.location:
+                    events.append({
+                        'event': event,
+                        'tabindex': tabindex,
+                    })
+                    tabindex += 1
+                else:
+                    events.append({
+                        'event': event,
+                    })
 
-            calendar.append({
-                'date': date,
-                'events': events,
-            })
+            if events:
+                calendar.append({
+                    'date': date,
+                    'events': events,
+                })
 
             date = date + timedelta(days=1)
 
@@ -322,7 +335,14 @@ class EventManager(models.Manager):
         date = first_of_month = datetime(year, month, 1, tzinfo=TZ)
         locations = []
 
-        for location in Location.objects.all().order_by('name')[:30]:
+        try:
+            tabindex = self.by_date(request)['calendar'][-1]['events'][-1]['tabindex'] + 1
+        except IndexError:
+            tabindex = 0
+        except KeyError:
+            tabindex = 0
+
+        for location in Location.objects.all().order_by('name'):
             if Event.objects.filter(
                 location=location,
                 date_start__gte=first_of_month,
@@ -339,10 +359,18 @@ class EventManager(models.Manager):
                         date_start__gte=today,
                     ).order_by('date_start')
 
+                    events = []
+                    for event in events_on_day:
+                        events.append({
+                            'event': event,
+                            'tabindex': tabindex,
+                        })
+                        tabindex += 1
+
                     if len(events_on_day) > 0:
                         event_tree.append({
                             'date': day,
-                            'events': events_on_day,
+                            'events': events,
                         })
 
                     day = day + relativedelta(days=+1)
