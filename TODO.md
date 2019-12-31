@@ -6,6 +6,7 @@
 - Change URL names from underscores to hyphens
 - Fix footer position on smaller viewports
 - Dashboard
+  - Fix bug where autocomplete list is removed between click trigger and click action
   - Weekday labels on mobile
     - Resize
     - Remove transition attribute
