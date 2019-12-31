@@ -2,7 +2,12 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.http import HttpResponseBadRequest, JsonResponse, HttpResponse, HttpResponseRedirect
+from django.http import (
+    HttpResponseBadRequest,
+    HttpResponseNotFound,
+    HttpResponseRedirect,
+    JsonResponse,
+)
 from django.contrib.auth.models import User
 from mtm.settings import TZ, NAME, API_KEY
 from .models import Location, Event, RecurringEvent
@@ -69,7 +74,11 @@ def event(request, id, location, name):
         event = RecurringEvent.objects.get(id=id)
         recurring = True
     except RecurringEvent.DoesNotExist:
-        event = Event.objects.get(id=id)
+        try:
+            event = Event.objects.get(id=id)
+        except Event.DoesNotExist:
+            return HttpResponseNotFound("Invalid event ID")
+
         recurring = False
 
     _location = event.location.slug
@@ -83,7 +92,7 @@ def event(request, id, location, name):
     else:
         next_event = None
 
-    if event and (_location != location or _name != name):
+    if _location != location or _name != name:
         return HttpResponseRedirect(reverse('events:event', args=[_location, _name, id]))
 
     return render(request, 'events/event.html', {
