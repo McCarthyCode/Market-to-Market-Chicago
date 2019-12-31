@@ -1,7 +1,16 @@
+from datetime import datetime
 from django.shortcuts import render
-from django.http import HttpResponseBadRequest, JsonResponse, HttpResponse
-from mtm.settings import TZ, NAME
+from django.urls import reverse
+from django.http import (
+    HttpResponse,
+    HttpResponseBadRequest,
+    HttpResponseNotFound,
+    HttpResponseRedirect,
+    JsonResponse,
+)
+from mtm.settings import TZ, NAME, API_KEY
 from .models import Neighborhood, Location
+from events.models import Event
 
 def neighborhoods_autocomplete(request):
     if request.method != 'GET':
@@ -27,10 +36,25 @@ def neighborhood(request, id, slug):
 
     return HttpResponse(msg, content_type='text/plain')
 
-def location(request, id, slug):
+def location(request, name, id):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    msg = 'slug: %s; id: %d' % (slug, int(id))
+    try:
+        location = Location.objects.get(id=id)
+    except Location.DoesNotExist:
+        return HttpResponseNotFound("Invalid location ID")
 
-    return HttpResponse(msg, content_type='text/plain')
+    _name = location.slug
+
+    if location and _name != name:
+        return HttpResponseRedirect(
+            reverse('locations:location', args=[_name, id]))
+
+    return render(request, 'locations/location.html', {
+        'location': location,
+        'events': Event.objects.filter(location=location)[:10],
+        'name': NAME,
+        'year': datetime.now(TZ).year,
+        'API_KEY': API_KEY,
+    })

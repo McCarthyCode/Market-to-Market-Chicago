@@ -1,0 +1,14 @@
+{% extends 'locations/base.html' %}{% load static %}{% block content %}<h1 class="h1 text-center">{{ location.name }}</h1>
+<h3 class="h3">Events</h3>
+<ul id="events" class="card">
+{% for event in events %}
+<li><a href="{% url 'events:event' location=location.slug name=event.slug id=event.id %}" tabindex="{{ forloop.counter0 }}">{{ event.name }} &ndash; {{ event.date_start|date:"D. n/j/y" }}{% if not event.all_day %} ({{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}{% endif %})</a></li>
+{% empty %}
+<li class="empty">There are no upcoming events scheduled.</li>
+{% endfor %}
+</ul>
+<h3 class="h3">Map</h3>
+<div id="map">
+  <iframe src="https://www.google.com/maps/embed/v1/place?q={{ location.name|urlencode }}%20{{ location.address1|urlencode }}%20{{ location.city|urlencode }}%2C%20{{ location.state|urlencode }}{% if location.zip_code %}%20{{ location.zip_code|urlencode }}{% endif %}&key={{ API_KEY }}" allowfullscreen></iframe>
+</div>
+{% endblock %}

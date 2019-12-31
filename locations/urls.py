@@ -12,5 +12,5 @@ urlpatterns = [
     path('neighborhoods/autocomplete/', views.neighborhoods_autocomplete, name='neighborhoods_autocomplete'),
     path('autocomplete/', views.locations_autocomplete, name='locations_autocomplete'),
     re_path(r'^neighborhoods/(?P<id>[1-9]\d*)/(?P<slug>[a-z\d-]+)/$', views.neighborhood, name='neighborhood'),
-    re_path(r'^(?P<id>[1-9]\d*)/(?P<slug>[a-z\d-]+)/$', views.location, name='location'),
+    re_path(r'^(?P<name>[a-z\d-]+)/(?P<id>[1-9]\d*)/$', views.location, name='location'),
 ]

@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Patua+One|Roboto')
+
+@import '_variables'
+@import '_mixins'
+
+@import '_navbar'
+@import '_sidebar'
+@import '_footer'
+
+@import '_locations'
+
+html, body
+  max-height: 100%
+
+// anchor rules added to body tag for higher specificity
+body
+  a, a:hover
+    color: $cyan
+
+  a
+    text-decoration: none
+
+  a:hover
+    text-decoration: underline
+
+h1.h1, h3.h3
+  font-family: $font-title
+
+h1.h1
+  color: $yellow
+
+h3.h3
+  color: $orange
+
+.fa-external-link-alt
+  display: inline
+  vertical-align: 1px
+  font-size: 8px
+  color: $cyan
+  cursor: pointer
+
+#grid
+  display: grid
+  grid-template-columns: [left] 301px [sidebar-right] auto [right]
+  grid-template-rows: [top] 69px [nav-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
+  height: 100vh
+
+#skyscraperContainer
+  display: none
+  position: relative
+  grid-column-start: skyscraper-left
+  grid-column-end: right
+  grid-row-start: nav-bottom
+  grid-row-end: bottom
+  background-color: $light-gray
+  border-left: 1px solid $lighter-gray
+
+#skyscraper
+  position: absolute
+  top: 50%
+  left: 50%
+  @include transform(translate(-50%, -50%))
+
+@media screen and (min-width: $breakpoint-md)
+  #content
+    grid-column-start: sidebar-right
+
+    .container
+      padding: 0 1rem
+
+  #grid
+    grid-template-rows: [top] 69px [nav-bottom] 264px [topics-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
+    min-height: 669px
+
+@media screen and (min-width: $breakpoint-xl)
+  #grid
+    grid-template-columns: [left] 301px [sidebar-right] auto [skyscraper-left] 193px [right]
+
+  #content
+    grid-column-end: skyscraper-left
+
+  #skyscraperContainer
+    display: block
