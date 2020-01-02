@@ -18,7 +18,6 @@
     - Albums
   - Infinite scrolling
 - Events
-  - Correct DST bug
   - All events page
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link

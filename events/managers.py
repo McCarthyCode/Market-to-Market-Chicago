@@ -354,7 +354,7 @@ class EventManager(models.Manager):
                     events_on_day = Event.objects.filter(
                         location=location,
                         date_start__gte=day,
-                        date_start__lt=day + relativedelta(days=+1),
+                        date_start__lt=day + timedelta(days=1),
                     ).filter(
                         date_start__gte=today,
                     ).order_by('date_start')
@@ -373,7 +373,7 @@ class EventManager(models.Manager):
                             'events': events,
                         })
 
-                    day = day + relativedelta(days=+1)
+                    day = day + timedelta(days=1)
 
                 locations.append({
                     'location': location,
@@ -483,8 +483,12 @@ class RecurringEventManager(models.Manager):
 
                             event.save()
 
-                        date = date + relativedelta(days=+1)
-                        date_end = date_end + relativedelta(days=+1)
+                        date = TZ.localize(
+                            date.replace(tzinfo=None) + timedelta(days=1)
+                        )
+                        date_end = TZ.localize(
+                            date_end.replace(tzinfo=None) + timedelta(days=1)
+                        )
                 else:
                     while date <= date_max:
                         event = self.create(name=name, date_start=date.astimezone(pytz.utc))
@@ -501,8 +505,14 @@ class RecurringEventManager(models.Manager):
 
                         event.save()
 
-                        date = date + rd_values[frequency_units]
-                        date_end = date_end + rd_values[frequency_units]
+                        date = TZ.localize(
+                            date.replace(tzinfo=None) +
+                            rd_values[frequency_units]
+                        )
+                        date_end = TZ.localize(
+                            date_end.replace(tzinfo=None) +
+                            rd_values[frequency_units]
+                        )
             else:
                 if 'weekday_list' in kwargs and kwargs['weekday_list']:
                     while date <= date_max:
@@ -524,7 +534,9 @@ class RecurringEventManager(models.Manager):
 
                             event.save()
 
-                        date = date + relativedelta(days=+1)
+                        date = TZ.localize(
+                            date.replace(tzinfo=None) + timedelta(days=1)
+                        )
                 else:
                     while date <= date_max:
                         event = self.create(name=name, date_start=date.astimezone(pytz.utc))
@@ -544,7 +556,10 @@ class RecurringEventManager(models.Manager):
 
                         event.save()
 
-                        date = date + rd_values[frequency_units]
+                        date = TZ.localize(
+                            date.replace(tzinfo=None) +
+                            rd_values[frequency_units]
+                        )
         elif ends == 1: # ends on date
             if 'ends_on' not in kwargs:
                 raise TypeError("create_recurring_event() missing 1 required keyword argument 'ends_on'")
@@ -569,8 +584,12 @@ class RecurringEventManager(models.Manager):
 
                             event.save()
 
-                        date = date + relativedelta(days=+1)
-                        date_end = date_end + relativedelta(days=+1)
+                        date = TZ.localize(
+                            date.replace(tzinfo=None) + timedelta(days=1)
+                        )
+                        date_end = TZ.localize(
+                            date_end.replace(tzinfo=None) + timedelta(days=1)
+                        )
                 else:
                     while date <= kwargs['ends_on'] and date <= date_max:
                         event = self.create(name=name, date_start=date.astimezone(pytz.utc))
@@ -587,8 +606,14 @@ class RecurringEventManager(models.Manager):
 
                         event.save()
 
-                        date = date + rd_values[frequency_units]
-                        date_end = date_end + rd_values[frequency_units]
+                        date = TZ.localize(
+                            date.replace(tzinfo=None) +
+                            rd_values[frequency_units]
+                        )
+                        date_end = TZ.localize(
+                            date_end.replace(tzinfo=None) +
+                            rd_values[frequency_units]
+                        )
             else:
                 if 'weekday_list' in kwargs and kwargs['weekday_list']:
                     while date <= kwargs['ends_on'] and date <= date_max:
@@ -610,7 +635,9 @@ class RecurringEventManager(models.Manager):
 
                             event.save()
 
-                        date = date + relativedelta(days=+1)
+                        date = TZ.localize(
+                            date.replace(tzinfo=None) + timedelta(days=1)
+                        )
                 else:
                     while date <= kwargs['ends_on'] and date <= date_max:
                         event = self.create(name=name, date_start=date.astimezone(pytz.utc))
@@ -630,7 +657,10 @@ class RecurringEventManager(models.Manager):
 
                         event.save()
 
-                        date = date + rd_values[frequency_units]
+                        date = TZ.localize(
+                            date.replace(tzinfo=None) +
+                            rd_values[frequency_units]
+                        )
         elif ends == 2: # ends after a number of occurences
             if 'ends_after' not in kwargs:
                 raise TypeError("create_recurring_event() missing 1 required keyword argument 'ends_after'")
@@ -658,8 +688,12 @@ class RecurringEventManager(models.Manager):
 
                             i += 1
 
-                        date = date + relativedelta(days=+1)
-                        date_end = date_end + relativedelta(days=+1)
+                        date = TZ.localize(
+                            date.replace(tzinfo=None) + timedelta(days=1)
+                        )
+                        date_end = TZ.localize(
+                            date_end.replace(tzinfo=None) + timedelta(days=1)
+                        )
                 else:
                     i = 0
                     while i < kwargs['ends_after'] and date <= date_max:
@@ -678,8 +712,14 @@ class RecurringEventManager(models.Manager):
                         event.save()
 
                         i += 1
-                        date = date + rd_values[frequency_units]
-                        date_end = date_end + rd_values[frequency_units]
+                        date = TZ.localize(
+                            date.replace(tzinfo=None) +
+                            rd_values[frequency_units]
+                        )
+                        date_end = TZ.localize(
+                            date_end.replace(tzinfo=None) +
+                            rd_values[frequency_units]
+                        )
             else:
                 if 'weekday_list' in kwargs and kwargs['weekday_list']:
                     i = 0
@@ -704,7 +744,9 @@ class RecurringEventManager(models.Manager):
 
                             i += 1
 
-                        date = date + relativedelta(days=+1)
+                        date = TZ.localize(
+                            date.replace(tzinfo=None) + timedelta(days=1)
+                        )
                 else:
                     i = 0
                     while i < kwargs['ends_after'] and date <= date_max:
@@ -726,6 +768,9 @@ class RecurringEventManager(models.Manager):
                         event.save()
 
                         i += 1
-                        date = date + rd_values[frequency_units]
+                        date = TZ.localize(
+                            date.replace(tzinfo=None) +
+                            rd_values[frequency_units]
+                        )
 
         return RecurringEvent.objects.filter(first_occurence=first_occurence)
