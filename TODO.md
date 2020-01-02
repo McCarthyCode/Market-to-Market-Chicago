@@ -4,7 +4,6 @@
   - 404
   - 500
 - Change URL names from underscores to hyphens
-- Fix footer position on smaller viewports
 - Dashboard
   - Fix bug where autocomplete list is removed between click trigger and click action
   - Weekday labels on mobile
@@ -39,11 +38,13 @@
   - Create location front end (dashboard)
   - Create location back end
   - Individual location page
-    - Name
-    - Address
-    - City/State/Zip
-    - Google Maps widget
     - Events
+      - Make pretty
+        - Add no wrap
+        - Add visual month and dates
+      - Add paginiation
+        - Front end (see more link)
+        - Back end
     - Update location front end (location page)
     - Update location back end
     - Delete location front end (location page)
