@@ -187,7 +187,9 @@ $(document).ready(() => {
 
   // Remove autocomplete list on focusout
   $neighborhoodName.focusout(function () {
-    $('#neighborhoodAutocomplete ul').remove();
+    setTimeout(() => {
+      $('#neighborhoodAutocomplete ul').remove();
+    }, 100);
   });
 
   // Search for existing locations;
@@ -243,6 +245,7 @@ $(document).ready(() => {
   });
 
   // Select from autocomplete from click event
+  let debounce = false;
   $locationAutocomplete.on('click', 'ul li', function () {
     $locationId.val($(this).data('id'));
     $locationName.val($(this).text());
@@ -253,6 +256,8 @@ $(document).ready(() => {
 
   // Remove autocomplete list on focusout
   $locationName.focusout(function () {
-    $('#locationAutocomplete ul').remove();
+    setTimeout(() => {
+      $('#locationAutocomplete ul').remove();
+    }, 100);
   });
 });

@@ -5,7 +5,7 @@
   - 500
 - Change URL names from underscores to hyphens
 - Dashboard
-  - Fix bug where autocomplete list is removed between click trigger and click action
+  - Handle focusout of text input and click on autocomplete properly
   - Weekday labels on mobile
     - Resize
     - Remove transition attribute
