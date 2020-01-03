@@ -9,7 +9,7 @@
       </tr>
       <tr>
         <td>Location</td>
-        <td>{{ event.location.name }}<br>
+        <td><a href="{% url 'locations:location' category=category location_name=event.location.slug location_id=event.location.id %}">{{ event.location.name }}</a><br>
         {{ event.location.address1 }}<br>{% if event.location.address2 %}
         {{ event.location.address2 }}<br>{% endif %}
         {{ event.location.city }}, {{ event.location.state }}{% if event.location.zip_code %} {{ event.location.zip_code }}{% endif %}</td>
@@ -20,7 +20,7 @@
       </tr>{% endif %}
       {% if next_event %}<tr>
         <td>Next Event</td>
-        <td><a href="{% url 'events:event' location=next_event.location.slug name=next_event.slug id=next_event.id %}">{{ next_event.date_start|date:"F j, Y" }}</a></td>
+        <td><a href="{% url 'locations:event' category=category location_name=next_event.location.slug event_name=next_event.slug event_id=next_event.id %}">{{ next_event.date_start|date:"F j, Y" }}</a></td>
       </tr>{% endif %}
     </tbody>
   </table>

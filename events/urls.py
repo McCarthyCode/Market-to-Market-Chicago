@@ -9,5 +9,4 @@ urlpatterns = [
     path('by-location/', views.by_location, name='by_location'),
     path('prev/', views.prev, name='prev'),
     path('next/', views.next, name='next'),
-    re_path(r'^(?P<location>[a-z\d-]+)/(?P<name>[a-z\d-]+)/(?P<id>[1-9]\d*)/$', views.event, name='event'),
 ]
