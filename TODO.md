@@ -4,6 +4,11 @@
   - 404
   - 500
 - Change URL names from underscores to hyphens
+- Change individual page URLs
+  - Location
+    - category/name/id
+  - Event
+    - category/location/name/id
 - Dashboard
   - Handle focusout of text input and click on autocomplete properly
   - Weekday labels on mobile
@@ -26,6 +31,7 @@
   - Individual event page
     - Breadcrumbs
       - Events > Location > Event
+    - Location link
     - Images
     - Update events front end (event page)
     - Update events back end
@@ -35,8 +41,6 @@
     - Delete past events
     - Create future events
 - Locations
-  - Create location front end (dashboard)
-  - Create location back end
   - Individual location page
     - Events
       - Make pretty
