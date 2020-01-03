@@ -66,7 +66,11 @@ def location(request, category, location_name, location_id):
             )
         )
 
-    events = Event.objects.filter(location=location).order_by('date_start')[:10]
+    events = Event.objects.filter(
+        location=location,
+        date_start__gte=datetime.now(TZ).replace(
+            hour=0, minute=0, second=0, microsecond=0),
+    ).order_by('date_start')[:10]
 
     return render(request, 'locations/location.html', {
         'location': location,
