@@ -6,9 +6,6 @@
 - Change URL names from underscores to hyphens
 - Dashboard
   - Handle focusout of text input and click on autocomplete properly
-  - Weekday labels on mobile
-    - Resize
-    - Remove transition attribute
 - Home page
   - News Feed
     - Articles

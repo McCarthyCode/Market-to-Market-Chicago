@@ -278,15 +278,16 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   max-width: 520px;
 }
 #weekdayList li label {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 1.25rem;
-  line-height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 1rem;
+  line-height: 2rem;
+  margin-top: 0.5rem;
   vertical-align: middle;
   text-align: center;
   background-color: #818181 !important;
-  -webkit-transition: background-color 0.5s;
-  transition: background-color 0.5s;
+  -webkit-transition: background-color 0.25s;
+  transition: background-color 0.25s;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -294,7 +295,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   user-select: none;
   cursor: pointer;
 }
-#weekdayList li label.active, #weekdayList li label:hover {
+#weekdayList li label.active, #weekdayList li label.hover {
   background-color: #007bff !important;
 }
 #weekdayList li input[type=checkbox] {
@@ -331,10 +332,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 
 @media screen and (min-width: 576px) {
-  #weekdayList li {
+  #weekdayList li label {
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 1.25rem;
+    line-height: 2.5rem;
   }
 }
 @media screen and (min-width: 768px) {

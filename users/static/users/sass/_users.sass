@@ -120,18 +120,19 @@
 
   li
     label
-      width: 2.5rem
-      height: 2.5rem
-      border-radius: 1.25rem
-      line-height: 2.5rem
+      width: 2rem
+      height: 2rem
+      border-radius: 1rem
+      line-height: 2rem
+      margin-top: .5rem
       vertical-align: middle
       text-align: center
       background-color: $lighter-gray !important
-      @include transition(background-color, .5s)
+      @include transition(background-color, .25s)
       @include user-select-none
       cursor: pointer
 
-    label.active, label:hover
+    label.active, label.hover
       background-color: $blue !important
 
     input[type="checkbox"]
@@ -166,9 +167,11 @@
 
 @media screen and (min-width: $breakpoint-sm)
   #weekdayList li
-    width: 2.5rem
-    height: 2.5rem
-    border-radius: 1.25rem
+    label
+      width: 2.5rem
+      height: 2.5rem
+      border-radius: 1.25rem
+      line-height: 2.5rem
 
 @media screen and (min-width: $breakpoint-md)
   #addEventForm

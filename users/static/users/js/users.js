@@ -30,6 +30,20 @@ $(document).ready(() => {
     }, 500);
   });
 
+  // Simulate hover on mouseenter/mouseleave
+  let $weekdayListLabel = $('#weekdayList label');
+  $weekdayListLabel.on('mouseenter mouseleave', function (event) {
+    switch (event.type) {
+      case 'mouseenter':
+        $(this).addClass('hover');
+        break;
+
+      case 'mouseleave':
+        $(this).removeClass('hover');
+        break;
+    }
+  });
+
   // Make labels active when corresponding checkbox is checked
   $('#weekdayList label').click(function (event) {
     event.stopPropagation();
@@ -245,7 +259,6 @@ $(document).ready(() => {
   });
 
   // Select from autocomplete from click event
-  let debounce = false;
   $locationAutocomplete.on('click', 'ul li', function () {
     $locationId.val($(this).data('id'));
     $locationName.val($(this).text());
