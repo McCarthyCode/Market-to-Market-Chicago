@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 class NeighborhoodManager(models.Manager):
@@ -46,3 +48,34 @@ class LocationManager(models.Manager):
             })
 
         return {'locations': locations}
+
+    def location(self, category, location_name, location_id):
+        from mtm.settings import TZ
+        from .models import Location, CATEGORIES
+        from events.models import Event
+
+        try:
+            location = Location.objects.get(id=location_id)
+        except Location.DoesNotExist:
+            return (False, {'status': 'invalid ID'})
+
+        _category = CATEGORIES[location.category]
+        _location_name = location.slug
+
+        if _category != category or _location_name != location_name:
+            return (False, {
+                'status': 'invalid slug',
+                'args': [_category, _location_name, location_id],
+            })
+
+        events = Event.objects.filter(
+            location=location,
+            date_start__gte=datetime.now(TZ).replace(
+                hour=0, minute=0, second=0, microsecond=0),
+        ).order_by('date_start')[:10]
+
+        return (True, {
+            'location': location,
+            'events': events,
+            'category': _category,
+        })

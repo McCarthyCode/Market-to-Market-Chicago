@@ -1,13 +1,13 @@
 from datetime import datetime
+
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import (
-    HttpResponse,
     HttpResponseBadRequest,
     HttpResponseNotFound,
     HttpResponseRedirect,
-    JsonResponse,
 )
+
 from mtm.settings import TZ, NAME, API_KEY
 from .models import Neighborhood, Location, CATEGORIES
 from events.models import Event, RecurringEvent
@@ -37,36 +37,28 @@ def neighborhood(request, id, slug):
     return HttpResponse(msg, content_type='text/plain')
 
 def location(request, category, location_name, location_id):
-    print('location()')
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    try:
-        location = Location.objects.get(id=location_id)
-    except Location.DoesNotExist:
-        return HttpResponseNotFound("Invalid location ID")
+    valid, response = Location.objects.location(category, location_name, location_id)
 
-    _category = CATEGORIES[location.category]
-    _location_name = location.slug
+    if not valid:
+        def invalid_id():
+            return HttpResponseNotFound("Invalid location ID")
 
-    if _category != category or _location_name != location_name:
-        return HttpResponseRedirect(
-            reverse(
-                'locations:location',
-                args=[_category, _location_name, location_id]
-            )
-        )
+        def invalid_slug():
+            return HttpResponseRedirect(
+                reverse('locations:location', args=response['args']))
 
-    events = Event.objects.filter(
-        location=location,
-        date_start__gte=datetime.now(TZ).replace(
-            hour=0, minute=0, second=0, microsecond=0),
-    ).order_by('date_start')[:10]
+        actions = {
+            'invalid ID': invalid_id,
+            'invalid slug': invalid_slug,
+        }
+
+        return actions[response['status']]()
 
     return render(request, 'locations/location.html', {
-        'location': location,
-        'events': events,
-        'category': _category,
+        **response,
         'API_KEY': API_KEY,
         'name': NAME,
         'year': datetime.now(TZ).year,

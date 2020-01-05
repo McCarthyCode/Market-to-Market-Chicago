@@ -2,7 +2,6 @@
 
 - Decide if using titlecase
 - Remove lines 30-33 of events.js
-- Migrate bulk of location view to location manager
 - Custom error pages
   - 404
   - 500
