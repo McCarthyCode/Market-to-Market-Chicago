@@ -2,7 +2,7 @@
 <h3 class="h3">Events</h3>
 <ul id="events" class="card">
 {% for event in events %}
-<li><a href="{% url 'locations:event' category=category location_name=location.slug event_name=event.slug event_id=event.id %}" tabindex="{{ forloop.counter0 }}">{{ event.name }} &ndash; {{ event.date_start|date:"D. n/j/y" }}{% if not event.all_day %} ({{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}{% endif %})</a></li>
+<li><a href="{% url 'events:event' category=category location_name=location.slug event_name=event.slug event_id=event.id %}" tabindex="{{ forloop.counter0 }}">{{ event.name }} &ndash; {{ event.date_start|date:"D. n/j/y" }}{% if not event.all_day %} ({{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}{% endif %})</a></li>
 {% empty %}
 <li class="empty">There are no upcoming events scheduled.</li>
 {% endfor %}

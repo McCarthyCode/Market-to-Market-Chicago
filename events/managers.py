@@ -1,9 +1,9 @@
 import pytz
-
-from titlecase import titlecase
-from django.db import models
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
+
+from django.db import models
+
 from mtm.settings import TZ
 
 DOW = [
@@ -285,6 +285,7 @@ class EventManager(models.Manager):
 
     def by_date(self, request):
         from .models import Event
+        from locations.models import CATEGORIES
 
         today = datetime.now(TZ).replace(hour=0, minute=0, second=0, microsecond=0)
         year = int(request.GET.get('year', today.year))
@@ -303,6 +304,7 @@ class EventManager(models.Manager):
                 if not event.all_day or event.location:
                     events.append({
                         'event': event,
+                        'category': CATEGORIES[event.location.category],
                         'tabindex': tabindex,
                     })
                     tabindex += 1
@@ -326,7 +328,7 @@ class EventManager(models.Manager):
 
     def by_location(self, request):
         from .models import Event
-        from locations.models import Location
+        from locations.models import Location, CATEGORIES
 
         today = datetime.now(TZ).replace(hour=0, minute=0, second=0, microsecond=0)
         year = int(request.GET.get('year', today.year))
@@ -363,6 +365,7 @@ class EventManager(models.Manager):
                     for event in events_on_day:
                         events.append({
                             'event': event,
+                            'category': CATEGORIES[event.location.category],
                             'tabindex': tabindex,
                         })
                         tabindex += 1
@@ -433,6 +436,47 @@ class EventManager(models.Manager):
                 'month': next_month.month,
             }
         }
+
+    def event(self, category, location_name, event_name, event_id):
+        from .models import Event, RecurringEvent
+        from locations.models import CATEGORIES
+
+        try:
+            event = RecurringEvent.objects.get(id=event_id)
+            recurring = True
+        except RecurringEvent.DoesNotExist:
+            try:
+                event = Event.objects.get(id=event_id)
+            except Event.DoesNotExist:
+                return (False, {'status': 'invalid ID'})
+
+            recurring = False
+
+        _category = CATEGORIES[event.location.category]
+        _location_name = event.location.slug
+        _event_name = event.slug
+
+        if _category != category or \
+            _location_name != location_name or \
+            _event_name != event_name:
+            return (False, {
+                'status': 'invalid slug',
+                'args': [_category, _location_name, _event_name, event_id],
+            })
+
+        if recurring:
+            next_event = RecurringEvent.objects.filter(
+                first_occurence=event.first_occurence,
+                date_start__gt=event.date_start,
+            ).order_by('date_start').first()
+        else:
+            next_event = None
+
+        return (True, {
+            'event': event,
+            'next_event': next_event,
+            'category': _category,
+        })
 
 class RecurringEventManager(models.Manager):
     def create_recurring_event(self, name, date_start, frequency, frequency_units, ends, **kwargs):

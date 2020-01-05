@@ -4,6 +4,15 @@ from home.models import TimestampedModel
 from .managers import NeighborhoodManager, LocationManager
 from mtm.settings import TZ
 
+CATEGORIES = [
+    'nightlife',
+    'restaurants',
+    'arts-and-entertainment',
+    'health-and-fitness',
+    'sports',
+    'non-profit',
+]
+
 class Neighborhood(TimestampedModel):
     name = models.CharField(max_length=100)
     slug = models.SlugField(default='', editable=False, max_length=100, null=True, blank=True)

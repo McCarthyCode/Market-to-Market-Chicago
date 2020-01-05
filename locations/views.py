@@ -9,17 +9,8 @@ from django.http import (
     JsonResponse,
 )
 from mtm.settings import TZ, NAME, API_KEY
-from .models import Neighborhood, Location
+from .models import Neighborhood, Location, CATEGORIES
 from events.models import Event, RecurringEvent
-
-CATEGORIES = [
-    'nightlife',
-    'restaurants',
-    'arts-and-entertainment',
-    'health-and-fitness',
-    'sports',
-    'non-profit',
-]
 
 def neighborhoods_autocomplete(request):
     if request.method != 'GET':
@@ -76,8 +67,7 @@ def location(request, category, location_name, location_id):
         'location': location,
         'events': events,
         'category': _category,
+        'API_KEY': API_KEY,
         'name': NAME,
         'year': datetime.now(TZ).year,
-        'API_KEY': API_KEY,
-        'CATEGORIES': CATEGORIES,
     })

@@ -10,7 +10,7 @@ from django.http import (
 )
 from django.contrib.auth.models import User
 from mtm.settings import TZ, NAME, API_KEY
-from .models import Location, Event, RecurringEvent
+from .models import Event
 
 def index(request):
     if request.method != 'GET':
@@ -70,44 +70,26 @@ def event(request, category, location_name, event_name, event_id):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    try:
-        event = RecurringEvent.objects.get(id=event_id)
-        recurring = True
-    except RecurringEvent.DoesNotExist:
-        try:
-            event = Event.objects.get(id=event_id)
-        except Event.DoesNotExist:
+    valid, response = Event.objects.event(category, location_name, event_name, event_id)
+
+    if not valid:
+        def invalid_id():
             return HttpResponseNotFound("Invalid event ID")
 
-        recurring = False
+        def invalid_slug():
+            return HttpResponseRedirect(
+                reverse('events:event', args=response['args']))
 
-    _category = CATEGORIES[event.location.category]
-    _location_name = event.location.slug
-    _event_name = event.slug
+        actions = {
+            'invalid ID': invalid_id,
+            'invalid slug': invalid_slug,
+        }
 
-    if _category != category or \
-        _location_name != location_name or \
-        _event_name != event_name:
-        return HttpResponseRedirect(
-            reverse(
-                'locations:event',
-                args=[_category, _location_name, _event_name, event_id]
-            )
-        )
-
-    if recurring:
-        next_event = RecurringEvent.objects.filter(
-            first_occurence=event.first_occurence,
-            date_start__gt=event.date_start,
-        ).order_by('date_start').first()
-    else:
-        next_event = None
+        return actions[response['status']]()
 
     return render(request, 'events/event.html', {
-        'event': event,
-        'next_event': next_event,
-        'category': _category,
+        **response,
+        'API_KEY': API_KEY,
         'name': NAME,
         'year': datetime.now(TZ).year,
-        'API_KEY': API_KEY,
     })
