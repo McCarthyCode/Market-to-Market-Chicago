@@ -1,7 +1,5 @@
 # To Do
 
-- Decide if using titlecase
-- Remove lines 30-33 of events.js
 - Custom error pages
   - 404
   - 500
@@ -69,3 +67,4 @@
   - 3 Leaderboard/mobile leaderboard (between news items)
   - Medium rectangle (sidebar)
   - Skyscraper (sidebar)
+- Decide if using titlecase

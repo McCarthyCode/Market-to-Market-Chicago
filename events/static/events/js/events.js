@@ -27,10 +27,6 @@ $(document).ready(function () {
   $($activeTab.data('href') + 'View').show();
 
   function tabsChildrenClick($tab) {
-    $activeTab.addClass('active');
-    galleryPage = archivePage = 1;
-    galleryEmpty = archiveEmpty = false;
-
     $tabsChildren.each(function () {
       $($(this).data('href') + 'View').hide();
       $(this).removeClass('active')
