@@ -302,11 +302,17 @@ class EventManager(models.Manager):
                 date_start__gte=today,
             ).order_by('date_start'):
                 if not event.all_day or event.location:
-                    events.append({
-                        'event': event,
-                        'category': CATEGORIES[event.location.category],
-                        'tabindex': tabindex,
-                    })
+                    if event.location == None:
+                        events.append({
+                            'event': event,
+                            'tabindex': tabindex,
+                        })
+                    else:
+                        events.append({
+                            'event': event,
+                            'category': CATEGORIES[event.location.category],
+                            'tabindex': tabindex,
+                        })
                     tabindex += 1
                 else:
                     events.append({
@@ -452,8 +458,8 @@ class EventManager(models.Manager):
 
             recurring = False
 
-        _category = CATEGORIES[event.location.category]
-        _location_name = event.location.slug
+        _category = CATEGORIES[event.location.category] if event.location else 'misc'
+        _location_name = event.location.slug if event.location else 'undefined'
         _event_name = event.slug
 
         if _category != category or \
@@ -475,7 +481,7 @@ class EventManager(models.Manager):
         return (True, {
             'event': event,
             'next_event': next_event,
-            'category_name': Location.CATEGORY_CHOICES[event.location.category][1],
+            'category_name': Location.CATEGORY_CHOICES[event.location.category][1] if event.location else 'Miscellaneous',
             'category_slug': _category,
         })
 

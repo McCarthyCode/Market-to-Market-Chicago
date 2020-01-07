@@ -15,6 +15,8 @@
     - Albums
   - Infinite scrolling
 - Events
+  - Add location link to by_location view
+  - Add search/filters
   - All events page
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link
@@ -33,7 +35,9 @@
     - Create future events
 - Locations
   - Individual category page
-    - Locations by neighborhood
+    - Locations
+      - Alphabetical
+      - By neighborhood
   - Individual location page
     - Events
       - Make pretty
