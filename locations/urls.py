@@ -9,8 +9,8 @@ urlpatterns = [
     # path('health-and-fitness/', views.health_and_fitness, name='health_and_fitness'),
     # path('sports/', views.sports, name='sports'),
     # path('non-profit/', views.non_profit, name='non_profit'),
-    path('neighborhoods/autocomplete/', views.neighborhoods_autocomplete, name='neighborhoods_autocomplete'),
+    path('neighborhoods/autocomplete/', views.neighborhoods_autocomplete, name='neighborhoods-autocomplete'),
     re_path(r'^neighborhoods/(?P<neighborhood_name>[a-z]+(-[a-z]+)*)/(?P<neighborhood_id>[1-9]\d*)/$', views.neighborhood, name='neighborhood'),
-    path('locations/autocomplete/', views.locations_autocomplete, name='locations_autocomplete'),
+    path('locations/autocomplete/', views.locations_autocomplete, name='locations-autocomplete'),
     re_path(r'^(?P<category>[a-z]+(-[a-z]+)*)/(?P<location_name>[\da-z]+(-[\da-z]+)*)/(?P<location_id>[1-9]\d*)/$', views.location, name='location'),
 ]

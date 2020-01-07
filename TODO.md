@@ -3,8 +3,9 @@
 - Custom error pages
   - 404
   - 500
-- Change URL names from underscores to hyphens
 - Dashboard
+  - Add neighborhood autocomplete
+  - Fix autocomplete on click bug
   - Handle focusout of text input and click on autocomplete properly
 - Home page
   - News Feed
