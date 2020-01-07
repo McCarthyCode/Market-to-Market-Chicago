@@ -23,8 +23,6 @@
     - Empty responses
   - Individual event page
     - Events without a location
-    - Breadcrumbs
-      - Events > Location > Event
     - Images
     - Update events front end (event page)
     - Update events back end
@@ -42,7 +40,6 @@
         - Add no wrap
         - Add visual month and dates
       - Weekly view
-        - Add boolean field to RecurringEvent model
         - View only first event per weekday
       - Add paginiation
         - Front end (see more link)
@@ -69,3 +66,4 @@
   - 3 Leaderboard/mobile leaderboard (between news items)
   - Medium rectangle (sidebar)
   - Skyscraper (sidebar)
+- Move CATEGORIES to Location model

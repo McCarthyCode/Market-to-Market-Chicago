@@ -37,6 +37,7 @@ class Event(TimestampedModel):
 
 class RecurringEvent(Event):
     first_occurence = models.ForeignKey('self', null=True, blank=True, default=None, on_delete=models.SET_NULL)
+    weekly = models.BooleanField(default=True)
     objects = RecurringEventManager()
 
     def __str__(self):
