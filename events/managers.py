@@ -439,7 +439,7 @@ class EventManager(models.Manager):
 
     def event(self, category, location_name, event_name, event_id):
         from .models import Event, RecurringEvent
-        from locations.models import CATEGORIES
+        from locations.models import CATEGORIES, Location
 
         try:
             event = RecurringEvent.objects.get(id=event_id)
@@ -475,7 +475,8 @@ class EventManager(models.Manager):
         return (True, {
             'event': event,
             'next_event': next_event,
-            'category': _category,
+            'category_name': Location.CATEGORY_CHOICES[event.location.category][1],
+            'category_slug': _category,
         })
 
 class RecurringEventManager(models.Manager):

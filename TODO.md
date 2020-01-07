@@ -15,7 +15,6 @@
     - Albums
   - Infinite scrolling
 - Events
-  - Migrate event view logic to manager
   - All events page
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link
@@ -35,7 +34,6 @@
     - Delete past events
     - Create future events
 - Locations
-  - Migrate location view logic to manager
   - Individual category page
     - Locations by neighborhood
   - Individual location page
@@ -43,6 +41,9 @@
       - Make pretty
         - Add no wrap
         - Add visual month and dates
+      - Weekly view
+        - Add boolean field to RecurringEvent model
+        - View only first event per weekday
       - Add paginiation
         - Front end (see more link)
         - Back end
@@ -68,4 +69,3 @@
   - 3 Leaderboard/mobile leaderboard (between news items)
   - Medium rectangle (sidebar)
   - Skyscraper (sidebar)
-- Decide if using titlecase

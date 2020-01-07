@@ -77,5 +77,6 @@ class LocationManager(models.Manager):
         return (True, {
             'location': location,
             'events': events,
-            'category': _category,
+            'category_name': Location.CATEGORY_CHOICES[location.category][1],
+            'category_slug': _category,
         })

@@ -305,6 +305,15 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   text-decoration: underline;
 }
 
+#breadcrumbs {
+  margin: 0 auto;
+  text-align: center;
+  color: #ffffff;
+}
+#breadcrumbs i {
+  color: #818181;
+}
+
 #events li.empty {
   font-style: italic;
   color: #818181;

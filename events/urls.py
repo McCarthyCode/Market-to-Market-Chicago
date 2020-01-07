@@ -9,5 +9,5 @@ urlpatterns = [
     path('events/by-location/', views.by_location, name='by-location'),
     path('events/prev/', views.prev, name='prev'),
     path('events/next/', views.next, name='next'),
-    re_path(r'^(?P<category>[a-z]+(-[a-z]+)*)/(?P<location_name>[\da-z]+(-[\da-z]+)*)/(?P<event_name>[\da-z]+(-[\da-z]+)*)/(?P<event_id>[1-9]\d*)/$', views.event, name='event'),
+    re_path(r'^(?P<category>(nightlife|restaurants|arts-and-entertainment|health-and-fitness|sports|non-profit))/(?P<location_name>[\da-z]+(-[\da-z]+)*)/(?P<event_name>[\da-z]+(-[\da-z]+)*)/(?P<event_id>[1-9]\d*)/$', views.event, name='event'),
 ]
