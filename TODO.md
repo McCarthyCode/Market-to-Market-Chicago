@@ -1,12 +1,10 @@
 # To Do
 
-- Custom error pages
-  - 404
-  - 500
+## High Priorities
+
 - Dashboard
   - Add neighborhood autocomplete
   - Fix autocomplete on click bug
-  - Handle focusout of text input and click on autocomplete properly
 - Home page
   - News Feed
     - Articles
@@ -16,16 +14,10 @@
   - Infinite scrolling
 - Events
   - Add location link to by_location view
-  - Add search/filters
   - All events page
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link
-    - Navigation
-      - Disabled next button
-    - Empty responses
   - Individual event page
-    - Events without a location
-    - Images
     - Update events front end (event page)
     - Update events back end
     - Delete events front end (event page)
@@ -33,11 +25,12 @@
   - Weekly updates (commands/crontab)
     - Delete past events
     - Create future events
+    - Add fields to RecurringEvent model
+      - Weekly list
 - Locations
   - Individual category page
     - Locations
-      - Alphabetical
-      - By neighborhood
+    - Articles
   - Individual location page
     - Events
       - Make pretty
@@ -70,6 +63,33 @@
   - 3 Leaderboard/mobile leaderboard (between news items)
   - Medium rectangle (sidebar)
   - Skyscraper (sidebar)
+
+## Medium Priorities
+
+- Custom error pages
+  - 404
+  - 500
+- Events
+  - Add search/filters
+  - All events page
+    - Navigation
+      - Disabled next button
+    - Empty responses
+      - Handle with proper status code
+  - Individual event page
+    - Images
+- Locations
+  - Individual category page
+    - Locations
+      - Search
+      - Filters
+        - Alphabetical
+        - By neighborhood
+- Drink specials
+
+## Low Priorities
+
+- Dashboard
+  - Handle focusout of text input and click on autocomplete properly
 - Move CATEGORIES to Location model
 - Strip periods from addresses on input
-- Drink specials
