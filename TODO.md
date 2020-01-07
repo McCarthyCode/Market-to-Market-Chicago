@@ -67,3 +67,5 @@
   - Medium rectangle (sidebar)
   - Skyscraper (sidebar)
 - Move CATEGORIES to Location model
+- Strip periods from addresses on input
+- Drink specials

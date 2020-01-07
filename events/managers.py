@@ -518,13 +518,15 @@ class RecurringEventManager(models.Manager):
 
                             event.date_end = date_end.astimezone(pytz.utc)
 
+                            if 'location' in kwargs:
+                                event.location = kwargs['location']
+
                             if first_occurence == None:
                                 first_occurence = event.first_occurence = event
                             else:
                                 event.first_occurence = first_occurence
 
-                            if 'location' in kwargs:
-                                event.location = kwargs['location']
+                            event.weekly = True
 
                             event.save()
 
@@ -540,13 +542,18 @@ class RecurringEventManager(models.Manager):
 
                         event.date_end = date_end.astimezone(pytz.utc)
 
+                        if 'location' in kwargs:
+                            event.location = kwargs['location']
+
                         if first_occurence == None:
                             first_occurence = event.first_occurence = event
                         else:
                             event.first_occurence = first_occurence
 
-                        if 'location' in kwargs:
-                            event.location = kwargs['location']
+                        if frequency == 1 and frequency_units == 2:
+                            event.weekly = True
+                        else:
+                            event.weekly = False
 
                         event.save()
 
@@ -569,13 +576,15 @@ class RecurringEventManager(models.Manager):
                             else:
                                 event.all_day = False
 
+                            if 'location' in kwargs:
+                                event.location = kwargs['location']
+
                             if first_occurence == None:
                                 first_occurence = event.first_occurence = event
                             else:
                                 event.first_occurence = first_occurence
 
-                            if 'location' in kwargs:
-                                event.location = kwargs['location']
+                            event.weekly = True
 
                             event.save()
 
@@ -591,13 +600,18 @@ class RecurringEventManager(models.Manager):
                         else:
                             event.all_day = False
 
+                        if 'location' in kwargs:
+                            event.location = kwargs['location']
+
                         if first_occurence == None:
                             first_occurence = event.first_occurence = event
                         else:
                             event.first_occurence = first_occurence
 
-                        if 'location' in kwargs:
-                            event.location = kwargs['location']
+                        if frequency == 1 and frequency_units == 2:
+                            event.weekly = True
+                        else:
+                            event.weekly = False
 
                         event.save()
 
@@ -619,13 +633,15 @@ class RecurringEventManager(models.Manager):
 
                             event.date_end = date_end.astimezone(pytz.utc)
 
+                            if 'location' in kwargs:
+                                event.location = kwargs['location']
+
                             if first_occurence == None:
                                 first_occurence = event.first_occurence = event
                             else:
                                 event.first_occurence = first_occurence
 
-                            if 'location' in kwargs:
-                                event.location = kwargs['location']
+                            event.weekly = True
 
                             event.save()
 
@@ -641,13 +657,18 @@ class RecurringEventManager(models.Manager):
 
                         event.date_end = date_end.astimezone(pytz.utc)
 
+                        if 'location' in kwargs:
+                            event.location = kwargs['location']
+
                         if first_occurence == None:
                             first_occurence = event.first_occurence = event
                         else:
                             event.first_occurence = first_occurence
 
-                        if 'location' in kwargs:
-                            event.location = kwargs['location']
+                        if frequency == 1 and frequency_units == 2:
+                            event.weekly = True
+                        else:
+                            event.weekly = False
 
                         event.save()
 
@@ -670,13 +691,15 @@ class RecurringEventManager(models.Manager):
                             else:
                                 event.all_day = False
 
+                            if 'location' in kwargs:
+                                event.location = kwargs['location']
+
                             if first_occurence == None:
                                 first_occurence = event.first_occurence = event
                             else:
                                 event.first_occurence = first_occurence
 
-                            if 'location' in kwargs:
-                                event.location = kwargs['location']
+                            event.weekly = True
 
                             event.save()
 
@@ -692,13 +715,18 @@ class RecurringEventManager(models.Manager):
                         else:
                             event.all_day = False
 
+                        if 'location' in kwargs:
+                            event.location = kwargs['location']
+
                         if first_occurence == None:
                             first_occurence = event.first_occurence = event
                         else:
                             event.first_occurence = first_occurence
 
-                        if 'location' in kwargs:
-                            event.location = kwargs['location']
+                        if frequency == 1 and frequency_units == 2:
+                            event.weekly = True
+                        else:
+                            event.weekly = False
 
                         event.save()
 
@@ -721,13 +749,15 @@ class RecurringEventManager(models.Manager):
 
                             event.date_end = date_end.astimezone(pytz.utc)
 
+                            if 'location' in kwargs:
+                                event.location = kwargs['location']
+
                             if first_occurence == None:
                                 first_occurence = event.first_occurence = event
                             else:
                                 event.first_occurence = first_occurence
 
-                            if 'location' in kwargs:
-                                event.location = kwargs['location']
+                            event.weekly = True
 
                             event.save()
 
@@ -746,13 +776,15 @@ class RecurringEventManager(models.Manager):
 
                         event.date_end = date_end.astimezone(pytz.utc)
 
+                        if 'location' in kwargs:
+                            event.location = kwargs['location']
+
                         if first_occurence == None:
                             first_occurence = event.first_occurence = event
                         else:
                             event.first_occurence = first_occurence
 
-                        if 'location' in kwargs:
-                            event.location = kwargs['location']
+                        event.weekly = True
 
                         event.save()
 
@@ -777,13 +809,15 @@ class RecurringEventManager(models.Manager):
                             else:
                                 event.all_day = False
 
+                            if 'location' in kwargs:
+                                event.location = kwargs['location']
+
                             if first_occurence == None:
                                 first_occurence = event.first_occurence = event
                             else:
                                 event.first_occurence = first_occurence
 
-                            if 'location' in kwargs:
-                                event.location = kwargs['location']
+                            event.weekly = True
 
                             event.save()
 
@@ -802,13 +836,18 @@ class RecurringEventManager(models.Manager):
                         else:
                             event.all_day = False
 
+                        if 'location' in kwargs:
+                            event.location = kwargs['location']
+
                         if first_occurence == None:
                             first_occurence = event.first_occurence = event
                         else:
                             event.first_occurence = first_occurence
 
-                        if 'location' in kwargs:
-                            event.location = kwargs['location']
+                        if frequency == 1 and frequency_units == 2:
+                            event.weekly = True
+                        else:
+                            event.weekly = False
 
                         event.save()
 
