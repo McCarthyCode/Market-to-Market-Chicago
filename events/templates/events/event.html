@@ -20,7 +20,7 @@
       </tr>{% endif %}
       {% if next_event %}<tr>
         <td>Next Event</td>
-        <td><a href="{% url 'locations:event' category=category location_name=next_event.location.slug event_name=next_event.slug event_id=next_event.id %}">{{ next_event.date_start|date:"F j, Y" }}</a></td>
+        <td><a href="{% url 'events:event' category=category location_name=next_event.location.slug event_name=next_event.slug event_id=next_event.id %}">{{ next_event.date_start|date:"F j, Y" }}</a></td>
       </tr>{% endif %}
     </tbody>
   </table>

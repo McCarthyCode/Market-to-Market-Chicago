@@ -67,3 +67,4 @@
   - 3 Leaderboard/mobile leaderboard (between news items)
   - Medium rectangle (sidebar)
   - Skyscraper (sidebar)
+- Decide if using titlecase

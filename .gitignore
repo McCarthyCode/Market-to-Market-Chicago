@@ -3,4 +3,12 @@ db.sqlite3
 env
 .vscode
 media
-__pycache__
+mtm/__pycache__
+home/__pycache__
+home/migrations/__pycache__
+users/__pycache__
+users/migrations/__pycache__
+events/__pycache__
+events/migrations/__pycache__
+locations/__pycache__
+locations/migrations/__pycache__

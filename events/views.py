@@ -10,7 +10,7 @@ from django.http import (
 )
 from django.contrib.auth.models import User
 from mtm.settings import TZ, NAME, API_KEY
-from .models import Location, Event, RecurringEvent
+from .models import Event
 
 def index(request):
     if request.method != 'GET':
@@ -65,3 +65,31 @@ def next(request):
         return HttpResponseBadRequest()
 
     return JsonResponse(Event.objects.next(request))
+
+def event(request, category, location_name, event_name, event_id):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    valid, response = Event.objects.event(category, location_name, event_name, event_id)
+
+    if not valid:
+        def invalid_id():
+            return HttpResponseNotFound("Invalid event ID")
+
+        def invalid_slug():
+            return HttpResponseRedirect(
+                reverse('events:event', args=response['args']))
+
+        actions = {
+            'invalid ID': invalid_id,
+            'invalid slug': invalid_slug,
+        }
+
+        return actions[response['status']]()
+
+    return render(request, 'events/event.html', {
+        **response,
+        'API_KEY': API_KEY,
+        'name': NAME,
+        'year': datetime.now(TZ).year,
+    })
