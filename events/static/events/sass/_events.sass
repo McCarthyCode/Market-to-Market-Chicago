@@ -255,42 +255,46 @@
     li:last-child
       margin-bottom: 0
 
-#byLocationView .card ul.day
-  margin-left: 3rem
-  margin-bottom: .5rem
+#byLocationView
+  .card > a:hover
+    color: $orange
 
-  li
-    position: relative
+  .card > ul.day
+    margin-left: 3rem
+    margin-bottom: .5rem
 
-    h3
-      position: absolute
-      top: -1px
-      left: -3rem
-      width: 2rem
-      color: $yellow
-      line-height: 1
+    li
+      position: relative
 
-    ul.events
-      margin-bottom: 0
+      h3
+        position: absolute
+        top: -1px
+        left: -3rem
+        width: 2rem
+        color: $yellow
+        line-height: 1
 
-      li
-        margin-bottom: .5rem
+      ul.events
+        margin-bottom: 0
 
-        h5 a
-          color: $light-blue
-          line-height: 28px
-
-        .holiday
-          color: $orange
-
-        p
+        li
           margin-bottom: .5rem
 
-        *:last-child
-          margin-bottom: 0
+          h5 a
+            color: $light-blue
+            line-height: 28px
 
-      li:last-child
-        margin-bottom: 0
+          .holiday
+            color: $orange
+
+          p
+            margin-bottom: .5rem
+
+          *:last-child
+            margin-bottom: 0
+
+        li:last-child
+          margin-bottom: 0
 
 #breadcrumbs
   margin: 0 auto

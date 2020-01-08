@@ -386,6 +386,7 @@ class EventManager(models.Manager):
 
                 locations.append({
                     'location': location,
+                    'category': CATEGORIES[location.category],
                     'event_tree': event_tree,
                 })
 

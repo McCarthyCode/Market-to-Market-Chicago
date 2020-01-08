@@ -548,14 +548,17 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-bottom: 0;
 }
 
-#byLocationView .card ul.day {
+#byLocationView .card > a:hover {
+  color: #bb846e;
+}
+#byLocationView .card > ul.day {
   margin-left: 3rem;
   margin-bottom: 0.5rem;
 }
-#byLocationView .card ul.day li {
+#byLocationView .card > ul.day li {
   position: relative;
 }
-#byLocationView .card ul.day li h3 {
+#byLocationView .card > ul.day li h3 {
   position: absolute;
   top: -1px;
   left: -3rem;
@@ -563,26 +566,26 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #dcdcaa;
   line-height: 1;
 }
-#byLocationView .card ul.day li ul.events {
+#byLocationView .card > ul.day li ul.events {
   margin-bottom: 0;
 }
-#byLocationView .card ul.day li ul.events li {
+#byLocationView .card > ul.day li ul.events li {
   margin-bottom: 0.5rem;
 }
-#byLocationView .card ul.day li ul.events li h5 a {
+#byLocationView .card > ul.day li ul.events li h5 a {
   color: #569cd6;
   line-height: 28px;
 }
-#byLocationView .card ul.day li ul.events li .holiday {
+#byLocationView .card > ul.day li ul.events li .holiday {
   color: #bb846e;
 }
-#byLocationView .card ul.day li ul.events li p {
+#byLocationView .card > ul.day li ul.events li p {
   margin-bottom: 0.5rem;
 }
-#byLocationView .card ul.day li ul.events li *:last-child {
+#byLocationView .card > ul.day li ul.events li *:last-child {
   margin-bottom: 0;
 }
-#byLocationView .card ul.day li ul.events li:last-child {
+#byLocationView .card > ul.day li ul.events li:last-child {
   margin-bottom: 0;
 }
 

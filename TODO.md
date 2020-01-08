@@ -13,7 +13,6 @@
     - Albums
   - Infinite scrolling
 - Events
-  - Add location link to by_location view
   - All events page
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link
@@ -70,12 +69,10 @@
   - 404
   - 500
 - Events
-  - Add search/filters
   - All events page
+    - Add search/filters
     - Navigation
       - Disabled next button
-    - Empty responses
-      - Handle with proper status code
   - Individual event page
     - Images
 - Locations
@@ -91,5 +88,9 @@
 
 - Dashboard
   - Handle focusout of text input and click on autocomplete properly
+- Events
+  - All events page
+    - Empty responses
+      - Handle with proper status code
 - Move CATEGORIES to Location model
 - Strip periods from addresses on input
