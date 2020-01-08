@@ -153,7 +153,7 @@ $(document).ready(() => {
 
     let text = $(this).val();
     if (text !== '') {
-      $.get('/locations/neighborhoods/autocomplete', {'q': text}, function (response) {
+      $.get('/neighborhoods/autocomplete', {'q': text}, function (response) {
         $neighborhoodAutocomplete.append(response);
 
         neighborhoodPosition = -1;

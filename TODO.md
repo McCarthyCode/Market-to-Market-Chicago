@@ -17,6 +17,7 @@
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link
   - Individual event page
+    - Add all day to time on all day events
     - Update events front end (event page)
     - Update events back end
     - Delete events front end (event page)
@@ -31,6 +32,7 @@
     - Locations
     - Articles
   - Individual location page
+    - Fix closing parenthesis on all day events
     - Events
       - Make pretty
         - Add no wrap
