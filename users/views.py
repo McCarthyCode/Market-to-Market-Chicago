@@ -67,7 +67,6 @@ def login(request):
     request.session['id'] = response
     return redirect('users:index')
 
-
 def logout(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()
@@ -76,18 +75,3 @@ def logout(request):
     messages.success(request, 'You have successfully signed out.')
 
     return redirect('users:index')
-
-def add_event(request):
-    if request.method != 'POST':
-        return HttpResponseBadRequest()
-
-    valid, response = Event.objects.create_event(request)
-
-    if not valid:
-        for error in response:
-            messages.error(request, error)
-    else:
-        messages.success(request, response)
-
-    return redirect('users:index')
-

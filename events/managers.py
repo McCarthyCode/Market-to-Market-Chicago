@@ -265,10 +265,10 @@ class EventManager(models.Manager):
             )
 
             events_len = len(events)
-            return (True, 'You have successfully added %d event%s.' %
+            return (True, 'You have successfully created %d event%s.' %
                 (events_len, '' if events_len == 1 else 's'))
 
-        return (True, 'You have successfully added 1 event.')
+        return (True, 'You have successfully created 1 event.')
 
     def create_single_event(self, name, date_start, all_day=False, **kwargs):
         event = self.create(name=name, date_start=date_start.astimezone(pytz.utc), all_day=all_day)

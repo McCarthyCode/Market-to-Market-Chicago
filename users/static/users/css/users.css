@@ -196,6 +196,10 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   padding: 1rem 1rem 0.5rem 1rem;
   margin-bottom: 1rem;
 }
+#content .container.logged-out {
+  max-width: 320px;
+}
+
 #content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password],
 #content .container form input[type=submit], #content .container form textarea, #content .container form select, #content .container form label {
   margin-bottom: 0.5rem;
@@ -221,38 +225,38 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container form .input-group-append:not(.default-cursor) .input-group-text i {
   min-width: 14px;
 }
-#content .container.logged-out {
+#content .container form .container.logged-out {
   max-width: 320px;
 }
 
-#addEventForm {
+#createEventForm {
   display: none;
 }
-#addEventForm input[name=address1] {
+#createEventForm input[name=address1] {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-#addEventForm input[name=address2] {
+#createEventForm input[name=address2] {
   margin-top: -9px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-#addEventForm input[name=frequency], #addEventForm input[name=state] {
+#createEventForm input[name=frequency], #createEventForm input[name=state] {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-#addEventForm select[name=frequency-units], #addEventForm input[name=zip-code] {
+#createEventForm select[name=frequency-units], #createEventForm input[name=zip-code] {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-#addEventForm button {
+#createEventForm button {
   color: #ffffff;
   background-color: #818181;
   margin-bottom: 0.5rem;
   -webkit-transition: background-color 0.5s;
   transition: background-color 0.5s;
 }
-#addEventForm button:hover {
+#createEventForm button:hover {
   background-color: #007bff;
 }
 
@@ -340,11 +344,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   }
 }
 @media screen and (min-width: 768px) {
-  #addEventForm label[for=frequency], #addEventForm input[name=city] {
+  #createEventForm label[for=frequency], #createEventForm input[name=city] {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
-  #addEventForm input[name=frequency], #addEventForm input[name=state] {
+  #createEventForm input[name=frequency], #createEventForm input[name=state] {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }

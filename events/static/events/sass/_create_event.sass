@@ -1,0 +1,142 @@
+#content .container form
+  input[type="text"], input[type="number"], input[type="password"],
+  input[type="submit"], textarea, select, label
+    margin-bottom: .5rem
+
+  input[type="text"], input[type="number"], input[type="password"],
+  textarea, select, label
+    color: $white
+    border-color: $lighter-gray
+    background-color: $gray
+
+  .input-group-append
+    height: 38px
+    z-index: 3
+
+  .input-group-append:not(.default-cursor)
+    cursor: pointer
+
+    .input-group-text
+      color: $white
+      border-color: $lighter-gray
+      background-color: $lighter-gray
+
+      i
+        min-width: 14px
+
+  .container.logged-out
+    max-width: 320px
+
+#createEventForm
+  display: none
+
+  input[name="address1"]
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 0
+
+  input[name="address2"]
+    margin-top: -9px
+    border-top-left-radius: 0
+    border-top-right-radius: 0
+
+  input[name="frequency"], input[name="state"]
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0
+
+  select[name="frequency-units"], input[name="zip-code"]
+    border-top-left-radius: 0
+    border-bottom-left-radius: 0
+
+  button
+    color: $white
+    background-color: $lighter-gray
+    margin-bottom: .5rem
+    @include transition(background-color, .5s)
+
+  button:hover
+    background-color: $blue
+
+#allDayInputGroup
+  label
+    cursor: pointer
+
+  .input-group-append
+    border-color: $lighter-gray
+    background-color: $lighter-gray
+    padding: 11px .75rem 11px .75rem
+    border-top-right-radius: .25rem
+    border-bottom-right-radius: .25rem
+
+#advancedRepeatCollapse, #locationCollapse, #endsOnContainer, #endsAfter
+  display: none
+
+#weekdayList
+  display: flex
+  justify-content: space-between
+  margin: 0 auto .5rem auto
+  max-width: 520px
+
+  li
+    label
+      width: 2rem
+      height: 2rem
+      border-radius: 1rem
+      line-height: 2rem
+      margin-top: .5rem
+      vertical-align: middle
+      text-align: center
+      background-color: $lighter-gray !important
+      @include transition(background-color, .25s)
+      @include user-select-none
+      cursor: pointer
+
+    label.active, label.hover
+      background-color: $blue !important
+
+    input[type="checkbox"]
+      display: none
+
+#locationAutocomplete, #neighborhoodAutocomplete
+  position: relative
+  z-index: 4
+
+  ul
+    position: absolute
+    bottom: 54px
+    right: 0
+    left: 0
+    margin-bottom: 0
+    border-radius: 4px
+    color: $black
+    background-color: $white
+
+    li
+      border-radius: 4px
+      padding: 6px 12px
+      cursor: pointer
+
+    li:hover, li.active
+      color: $white
+      background-color: $blue
+
+#locationToggle
+  border-top-right-radius: 4px
+  border-bottom-right-radius: 4px
+
+@media screen and (min-width: $breakpoint-sm)
+  #weekdayList li
+    label
+      width: 2.5rem
+      height: 2.5rem
+      border-radius: 1.25rem
+      line-height: 2.5rem
+
+@media screen and (min-width: $breakpoint-md)
+  #createEventForm
+    label[for="frequency"], input[name="city"]
+      border-top-right-radius: 0
+      border-bottom-right-radius: 0
+
+    input[name="frequency"], input[name="state"]
+      border-top-left-radius: 0
+      border-bottom-left-radius: 0

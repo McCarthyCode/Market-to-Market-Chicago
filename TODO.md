@@ -68,6 +68,10 @@
   - 404
   - 500
 - Events
+  - Add approved field
+    - Show only approved posts on calendar and in lists
+  - Add created_by (user) field
+    - Show on calendar and in lists if created_by == logged_in
   - All events page
     - Add search/filters
     - Navigation
@@ -90,12 +94,12 @@
 - Dashboard
   - Handle focusout of text input and click on autocomplete properly
 - Events
+  - Add holiday field
   - All events page
     - Empty responses
       - Handle with proper status code
 - Move CATEGORIES to Location model
 - Strip periods from addresses on input
-- Migrate add_event form to events app
 - Make checkbox container clickable
   - Add event
   - Update event

@@ -8,15 +8,19 @@ js_output_global="home/static/home/js/global.min.js"
 js_input_events="events/static/events/js/events.js"
 js_output_events="events/static/events/js/events.min.js"
 
+js_input_create_event="events/static/events/js/create_event.js"
+js_output_create_event="events/static/events/js/create_event.min.js"
+
 js_input_update_event="events/static/events/js/update_event.js"
 js_output_update_event="events/static/events/js/update_event.min.js"
 
-js_input_users="users/static/users/js/users.js"
-js_output_users="users/static/users/js/users.min.js"
+# js_input_users="users/static/users/js/users.js"
+# js_output_users="users/static/users/js/users.min.js"
 
 declare -a commands=(
   # "java -jar $closure_compiler --js $js_input_global --js_output_file $js_output_global"
   # "java -jar $closure_compiler --js $js_input_events --js_output_file $js_output_events"
+  # "java -jar $closure_compiler --js $js_input_create_event --js_output_file $js_output_create_event"
   # "java -jar $closure_compiler --js $js_input_update_event --js_output_file $js_output_update_event"
   # "java -jar $closure_compiler --js $js_input_users --js_output_file $js_output_users"
 )

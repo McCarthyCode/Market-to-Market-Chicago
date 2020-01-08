@@ -1,5 +1,6 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import (
@@ -8,7 +9,9 @@ from django.http import (
     HttpResponseRedirect,
     JsonResponse,
 )
+from django.contrib import messages
 from django.contrib.auth.models import User
+
 from mtm.settings import TZ, NAME, API_KEY
 from .models import Event
 
@@ -59,6 +62,20 @@ def event(request, category, location_name, event_name, event_id):
         'year': datetime.now(TZ).year,
         'API_KEY': API_KEY,
     })
+
+def create_event(request):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    valid, response = Event.objects.create_event(request)
+
+    if not valid:
+        for error in response:
+            messages.error(request, error)
+    else:
+        messages.success(request, response)
+
+    return redirect('users:index')
 
 def month(request):
     if request.method != 'GET':
