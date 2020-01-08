@@ -22,7 +22,7 @@
     <tbody>
       <tr>
         <td>Time</td>
-        <td>{{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}</td>
+        <td>{% if event.all_day %}All Day{% else %}{{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}{% endif %}</td>
       </tr>
       <tr>
         <td>Location</td>
