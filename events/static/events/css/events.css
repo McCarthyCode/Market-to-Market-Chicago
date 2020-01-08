@@ -300,6 +300,31 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .h1 p.read-more {
   margin: 0;
 }
+#content form input[type=text], #content form input[type=number], #content form input[type=password],
+#content form input[type=submit], #content form textarea, #content form select, #content form label {
+  margin-bottom: 0.5rem;
+}
+#content form input[type=text], #content form input[type=number], #content form input[type=password],
+#content form textarea, #content form select, #content form label {
+  color: #ffffff;
+  border-color: #818181;
+  background-color: #333333;
+}
+#content form .input-group-append {
+  height: 38px;
+  z-index: 3;
+}
+#content form .input-group-append:not(.default-cursor) {
+  cursor: pointer;
+}
+#content form .input-group-append:not(.default-cursor) .input-group-text {
+  color: #ffffff;
+  border-color: #818181;
+  background-color: #818181;
+}
+#content form .input-group-append:not(.default-cursor) .input-group-text i {
+  min-width: 14px;
+}
 
 #skyscraperContainer {
   display: none;
@@ -598,23 +623,23 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #818181;
 }
 
-table td {
+#details td {
   margin-bottom: 0.5rem;
 }
-table td p {
+#details td p {
   margin-bottom: 0.5rem;
 }
-table td p:last-child {
+#details td p:last-child {
   margin-bottom: 0;
 }
-table td:first-child {
+#details td:first-child {
   text-align: right;
   color: #818181;
   font-weight: bold;
   width: 8rem;
   padding-right: 1rem;
 }
-table td:first-child::after {
+#details td:first-child::after {
   content: ":";
 }
 
@@ -657,6 +682,127 @@ table td:first-child::after {
 
   #skyscraperContainer {
     display: block;
+  }
+}
+#updateEventForm input[name=address1] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#updateEventForm input[name=address2] {
+  margin-top: -9px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+#updateEventForm input[name=frequency], #updateEventForm input[name=state] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#updateEventForm select[name=frequency-units], #updateEventForm input[name=zip-code] {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#updateEventForm button {
+  color: #ffffff;
+  background-color: #818181;
+  margin-bottom: 0.5rem;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+#updateEventForm button:hover {
+  background-color: #007bff;
+}
+
+#allDayInputGroup label {
+  cursor: pointer;
+}
+#allDayInputGroup .input-group-append {
+  border-color: #818181;
+  background-color: #818181;
+  padding: 11px 0.75rem 11px 0.75rem;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+#advancedRepeatCollapse, #locationCollapse, #endsOnContainer, #endsAfter {
+  display: none;
+}
+
+#weekdayList {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 0.5rem auto;
+  max-width: 520px;
+}
+#weekdayList li label {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 1rem;
+  line-height: 2rem;
+  margin-top: 0.5rem;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #818181 !important;
+  -webkit-transition: background-color 0.25s;
+  transition: background-color 0.25s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+#weekdayList li label.active, #weekdayList li label.hover {
+  background-color: #007bff !important;
+}
+#weekdayList li input[type=checkbox] {
+  display: none;
+}
+
+#locationAutocomplete, #neighborhoodAutocomplete {
+  position: relative;
+  z-index: 4;
+}
+#locationAutocomplete ul, #neighborhoodAutocomplete ul {
+  position: absolute;
+  bottom: 54px;
+  right: 0;
+  left: 0;
+  margin-bottom: 0;
+  border-radius: 4px;
+  color: #000000;
+  background-color: #ffffff;
+}
+#locationAutocomplete ul li, #neighborhoodAutocomplete ul li {
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+#locationAutocomplete ul li:hover, #locationAutocomplete ul li.active, #neighborhoodAutocomplete ul li:hover, #neighborhoodAutocomplete ul li.active {
+  color: #ffffff;
+  background-color: #007bff;
+}
+
+#locationToggle {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+@media screen and (min-width: 576px) {
+  #weekdayList li label {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 1.25rem;
+    line-height: 2.5rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  #updateEventForm label[for=frequency], #updateEventForm input[name=city] {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  #updateEventForm input[name=frequency], #updateEventForm input[name=state] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }
 html, body {

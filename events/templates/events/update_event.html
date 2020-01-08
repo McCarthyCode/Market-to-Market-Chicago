@@ -1,0 +1,80 @@
+<form id="updateEventForm" class="card" action="#" method="POST">
+  {% csrf_token %}
+  <input class="form-control" type="text" name="name" placeholder="Name" value="{{ event.name }}" required>
+  <textarea class="form-control" name="description" placeholder="Description (optional)" rows="5" maxlength="1000">{% if event.description != None %}{{ event.description }}{% endif %}</textarea>
+  <div id="allDayInputGroup" class="input-group" data-target-input="nearest">
+    <label class="form-control" for="allDay">All Day</label>
+    <div class="input-group-append">
+      {% if event.all_day %}
+      <input id="allDay" type="checkbox" name="all-day" value="true" autocomplete="off" checked>
+      {% else %}
+      <input id="allDay" type="checkbox" name="all-day" value="true" autocomplete="off">
+      {% endif %}
+    </div>
+  </div>
+  <div id="dateStartInputGroup" class="input-group" data-target-input="nearest">
+    <input id="dateStart" class="form-control datetimepicker-input" type="text" name="date-start" value="{{ event.date_start|date:'m/d/Y g:i A' }}" placeholder="Start Date/Time (click icon to show date picker)" data-target="#dateStartInputGroup" autocomplete="off" required>
+    <div class="input-group-append" data-target="#dateStartInputGroup" data-toggle="datetimepicker">
+      <div class="form-control input-group-text">
+        <i class="fa fa-calendar text-center"></i>
+      </div>
+    </div>
+  </div>
+  {% if event.all_day %}
+  <div id="dateEndInputGroup" class="input-group" style="display: none" data-target-input="nearest">
+    <input id="dateEnd" class="form-control datetimepicker-input" type="text" name="date-end" autocomplete="off" placeholder="End Date/Time (optional)" data-target="#dateEndInputGroup">
+    <div class="input-group-append" data-target="#dateEndInputGroup" data-toggle="datetimepicker">
+      <div class="form-control input-group-text">
+        <i class="fa fa-calendar"></i>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div id="dateEndInputGroup" class="input-group" data-target-input="nearest">
+    <input id="dateEnd" class="form-control datetimepicker-input" type="text" name="date-end" value="{{ event.date_end|date:'m/d/Y g:i A' }}" placeholder="End Date/Time (optional)" autocomplete="off" data-target="#dateEndInputGroup">
+    <div class="input-group-append" data-target="#dateEndInputGroup" data-toggle="datetimepicker">
+      <div class="form-control input-group-text">
+        <i class="fa fa-calendar"></i>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% if event.location %}
+  <input id="locationId" type="hidden" name="location-id" value="{{ event.location.id }}" autocomplete="off">
+  <div id="locationInputGroup" class="input-group" data-target-input="nearest">
+    <input id="locationName" class="form-control" type="text" name="location-name" value="{{ event.location.name }}" placeholder="Location (search for existing or click icon to create new)" autocomplete="off">
+  {% else %}
+  <input id="locationId" type="hidden" name="location-id" value="0" autocomplete="off">
+  <div id="locationInputGroup" class="input-group" data-target-input="nearest">
+    <input id="locationName" class="form-control" type="text" name="location-name" placeholder="Location (search for existing or click icon to create new)" autocomplete="off">
+  {% endif %}
+    <div id="locationToggle" class="input-group-append">
+      <div class="form-control input-group-text">
+        <i class="fas fa-map-marker-alt"></i>
+      </div>
+    </div>
+  </div>
+  <div id="locationAutocomplete"></div>
+  <div id="locationCollapse">
+    <select id="locationCategory" class="form-control" name="category">
+      <option selected="true" disabled="disabled">Category</option>
+      <option value="0">Nightlife</option>
+      <option value="1">Restaurants</option>
+      <option value="2">Arts & Entertainment</option>
+      <option value="3">Health & Fitness</option>
+      <option value="4">Sports</option>
+      <option value="5">Non-profit</option>
+    </select>
+    <input id="neighborhoodId" value="0" type="hidden" name="neighborhood-id">
+    <input id="neighborhoodName" class="form-control" type="text" name="neighborhood-name" placeholder="Neighborhood" autocomplete="off">
+    <div id="neighborhoodAutocomplete"></div>
+    <input class="form-control" type="text" name="address1" placeholder="Address">
+    <input class="form-control" type="text" name="address2">
+    <div class="form-inline">
+      <input class="form-control col-12 col-md-6" type="text" value="Chicago" name="city">
+      <input class="form-control col-6 col-md-3" type="text" value="IL" maxlength="2" name="state" placeholder="State">
+      <input class="form-control col-6 col-md-3" type="text" maxlength="5" name="zip-code" placeholder="Zip Code (optional)">
+    </div>
+  </div>
+  <input class="btn btn-primary" type="submit" value="Update">
+</form>

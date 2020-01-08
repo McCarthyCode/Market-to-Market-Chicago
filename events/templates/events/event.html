@@ -18,7 +18,7 @@
 </p>
 <h3 class="h3">Details</h3>
 <div class="card">
-  <table>
+  <table id="details">
     <tbody>
       <tr>
         <td>Time</td>
@@ -51,5 +51,9 @@
 <div id="map" class="card">
   <iframe src="https://www.google.com/maps/embed/v1/place?q={{ event.location.name|urlencode }}%20{{ event.location.address1|urlencode }}%20{{ event.location.city|urlencode }}%2C%20{{ event.location.state|urlencode }}{% if event.location.zip_code %}%20{{ event.location.zip_code|urlencode }}{% endif %}&key={{ API_KEY }}" allowfullscreen></iframe>
 </div>
+{% endif %}
+{% if user.is_superuser %}
+<h3 class="h3">Update</h3>
+{% include 'events/update_event.html' %}
 {% endif %}
 {% endblock %}

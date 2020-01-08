@@ -31,6 +31,32 @@
     p.read-more
       margin: 0
 
+  form
+    input[type="text"], input[type="number"], input[type="password"],
+    input[type="submit"], textarea, select, label
+      margin-bottom: .5rem
+
+    input[type="text"], input[type="number"], input[type="password"],
+    textarea, select, label
+      color: $white
+      border-color: $lighter-gray
+      background-color: $gray
+
+    .input-group-append
+      height: 38px
+      z-index: 3
+
+    .input-group-append:not(.default-cursor)
+      cursor: pointer
+
+      .input-group-text
+        color: $white
+        border-color: $lighter-gray
+        background-color: $lighter-gray
+
+        i
+          min-width: 14px
+
 #skyscraperContainer
   display: none
   position: relative
@@ -304,7 +330,7 @@
   i
     color: $lighter-gray
 
-table
+#details
   td
     margin-bottom: .5rem
 

@@ -89,7 +89,9 @@ def event(request, category, location_name, event_name, event_id):
 
     return render(request, 'events/event.html', {
         **response,
-        'API_KEY': API_KEY,
+        'user': User.objects.get(pk=request.session['id']) \
+            if 'id' in request.session else None,
         'name': NAME,
         'year': datetime.now(TZ).year,
+        'API_KEY': API_KEY,
     })

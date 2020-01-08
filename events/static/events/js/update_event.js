@@ -5,11 +5,11 @@ $(document).ready(() => {
   $("#endsOn").datetimepicker();
 
   // Show/hide Create Event form
-  $('#addEvent .h3').click(function () {
-    $('#addEventForm').slideToggle(500);
+  $('#updateEvent .h3').click(function () {
+    $('#updateEventForm').slideToggle(500);
 
     setTimeout(() => {
-      $('#addEvent .h3 i')
+      $('#updateEvent .h3 i')
         .toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
     }, 500);
   });

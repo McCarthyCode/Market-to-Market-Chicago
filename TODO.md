@@ -17,9 +17,8 @@
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link
   - Individual event page
-    - Update events front end (event page)
     - Update events back end
-    - Delete events front end (event page)
+    - Delete events front end
     - Delete events back end
   - Weekly updates (commands/crontab)
     - Delete past events
@@ -73,6 +72,8 @@
     - Add search/filters
     - Navigation
       - Disabled next button
+    - Update event
+      - Add repeat options (requires model fields)
   - Individual event page
     - Images
 - Locations
@@ -94,3 +95,14 @@
       - Handle with proper status code
 - Move CATEGORIES to Location model
 - Strip periods from addresses on input
+- Migrate add_event form to events app
+- Make checkbox container clickable
+  - Add event
+  - Update event
+- Backup external libraries
+- Migrate users.js to add_event.js
+- Migrate #content rules to base.sass
+  - Home
+  - Users
+  - Locations
+  - Events
