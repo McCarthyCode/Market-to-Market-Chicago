@@ -30,6 +30,36 @@ def index(request):
         'year': current_month.year,
     })
 
+def event(request, category, location_name, event_name, event_id):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    valid, response = Event.objects.event(category, location_name, event_name, event_id)
+
+    if not valid:
+        def invalid_id():
+            return HttpResponseNotFound("Invalid event ID")
+
+        def invalid_slug():
+            return HttpResponseRedirect(
+                reverse('events:event', args=response['args']))
+
+        actions = {
+            'invalid ID': invalid_id,
+            'invalid slug': invalid_slug,
+        }
+
+        return actions[response['status']]()
+
+    return render(request, 'events/event.html', {
+        **response,
+        'user': User.objects.get(pk=request.session['id']) \
+            if 'id' in request.session else None,
+        'name': NAME,
+        'year': datetime.now(TZ).year,
+        'API_KEY': API_KEY,
+    })
+
 def month(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()
@@ -65,33 +95,3 @@ def next(request):
         return HttpResponseBadRequest()
 
     return JsonResponse(Event.objects.next(request))
-
-def event(request, category, location_name, event_name, event_id):
-    if request.method != 'GET':
-        return HttpResponseBadRequest()
-
-    valid, response = Event.objects.event(category, location_name, event_name, event_id)
-
-    if not valid:
-        def invalid_id():
-            return HttpResponseNotFound("Invalid event ID")
-
-        def invalid_slug():
-            return HttpResponseRedirect(
-                reverse('events:event', args=response['args']))
-
-        actions = {
-            'invalid ID': invalid_id,
-            'invalid slug': invalid_slug,
-        }
-
-        return actions[response['status']]()
-
-    return render(request, 'events/event.html', {
-        **response,
-        'user': User.objects.get(pk=request.session['id']) \
-            if 'id' in request.session else None,
-        'name': NAME,
-        'year': datetime.now(TZ).year,
-        'API_KEY': API_KEY,
-    })
