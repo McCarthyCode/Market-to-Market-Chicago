@@ -1,5 +1,6 @@
-<form id="updateEventForm" class="card" action="#" method="POST">
+<form id="updateEventForm" class="card" action="{% url 'events:update' %}" method="POST">
   {% csrf_token %}
+  <input type="hidden" name="id" value="{{ event.id }}">
   <input class="form-control" type="text" name="name" placeholder="Name" value="{{ event.name }}" required>
   <textarea class="form-control" name="description" placeholder="Description (optional)" rows="5" maxlength="1000">{% if event.description != None %}{{ event.description }}{% endif %}</textarea>
   <div id="allDayInputGroup" class="input-group" data-target-input="nearest">

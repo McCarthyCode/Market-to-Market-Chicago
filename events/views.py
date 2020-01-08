@@ -77,6 +77,20 @@ def create_event(request):
 
     return redirect('users:index')
 
+def update_event(request):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    valid, response = Event.objects.update_event(request)
+
+    if not valid:
+        for error in response['errors']:
+            messages.error(request, error)
+    else:
+        messages.success(request, response['success'])
+
+    return redirect('events:event', *response['args'])
+
 def month(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()

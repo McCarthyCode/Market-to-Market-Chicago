@@ -1,4 +1,6 @@
-{% extends 'events/base.html' %}{% load static %}{% block content %}<h1 class="h1 text-center">{{ event.name }} <span class="text-nowrap">({{ event.date_start|date:"D. M. j" }})</span></h1>
+{% extends 'events/base.html' %}{% load static %}{% block content %}
+{% include 'users/messages.html' %}
+<h1 class="h1 text-center">{{ event.name }} <span class="text-nowrap">({{ event.date_start|date:"D. M. j" }})</span></h1>
 <p id="breadcrumbs">
   {% if event.location %}
   <a href="{% url 'events:index' %}">Events</a>

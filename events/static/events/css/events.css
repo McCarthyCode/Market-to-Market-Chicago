@@ -279,8 +279,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container {
   padding: 0.5rem;
 }
+#content .container > :last-child, #content .alert p {
+  margin-bottom: 0;
+}
 #content .h1 {
-  margin: 2rem 0;
+  margin-bottom: 1rem;
 }
 #content .h1 .h3 a {
   color: #bb846e;
@@ -664,7 +667,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     grid-column-start: sidebar-right;
   }
   #content .container {
-    padding: 0 1rem;
+    padding: 1rem;
   }
 
   #prev {
