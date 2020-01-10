@@ -304,7 +304,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin: 0;
 }
 #content form input[type=text], #content form input[type=number], #content form input[type=password],
-#content form input[type=submit], #content form textarea, #content form select, #content form label {
+#content form input[type=submit], #content form textarea, #content form select, #content form :not(#singleEventInputGroup) label {
   margin-bottom: 0.5rem;
 }
 #content form input[type=text], #content form input[type=number], #content form input[type=password],
@@ -314,6 +314,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   background-color: #333333;
 }
 #content form .input-group-append {
+  width: 40px;
   height: 38px;
   z-index: 3;
 }
@@ -715,15 +716,32 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   background-color: #007bff;
 }
 
-#allDayInputGroup label {
+#allDayInputGroup label, #singleEventInputGroup label, #allEventsInputGroup label {
   cursor: pointer;
 }
-#allDayInputGroup .input-group-append {
+#allDayInputGroup .input-group-append, #singleEventInputGroup .input-group-append, #allEventsInputGroup .input-group-append {
   border-color: #818181;
   background-color: #818181;
   padding: 11px 0.75rem 11px 0.75rem;
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
+}
+
+#singleEventInputGroup {
+  margin-bottom: -1px;
+}
+#singleEventInputGroup label {
+  border-bottom-left-radius: 0;
+}
+#singleEventInputGroup .input-group-append {
+  border-bottom-right-radius: 0;
+}
+
+#allEventsInputGroup label {
+  border-top-left-radius: 0;
+}
+#allEventsInputGroup .input-group-append {
+  border-top-right-radius: 0;
 }
 
 #advancedRepeatCollapse, #locationCollapse, #endsOnContainer, #endsAfter {

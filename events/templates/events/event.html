@@ -57,5 +57,7 @@
 {% if user.is_superuser %}
 <h3 class="h3">Update</h3>
 {% include 'events/update_event.html' %}
+<h3 class="h3">Delete</h3>
+{% include 'events/delete_event.html' %}
 {% endif %}
 {% endblock %}

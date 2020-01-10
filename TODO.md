@@ -14,8 +14,10 @@
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link
   - Individual event page
-    - Delete events front end
-    - Delete events back end
+    - Update event(s)
+      - Add radio for single/future events
+    - Delete event(s)
+      - Delete event(s) back end
   - Weekly updates (commands/crontab)
     - Delete past events
     - Create future events
@@ -60,6 +62,9 @@
 
 ## Medium Priorities
 
+- Dashboard
+  - Create event(s)
+    - Select checkbox on append click
 - Remove Events from breadcrumbs
 - Custom error pages
   - 404
@@ -76,6 +81,10 @@
     - Update event
       - Add repeat options (requires model fields)
   - Individual event page
+    - Update event(s)
+      - Select radio/checkbox on append click
+    - Delete event(s)
+      - Select radio on append click
     - Images
 - Locations
   - Individual category page

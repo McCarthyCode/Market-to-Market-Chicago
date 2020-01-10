@@ -25,7 +25,7 @@
   button:hover
     background-color: $blue
 
-#allDayInputGroup
+#allDayInputGroup, #singleEventInputGroup, #allEventsInputGroup
   label
     cursor: pointer
 
@@ -35,6 +35,21 @@
     padding: 11px .75rem 11px .75rem
     border-top-right-radius: .25rem
     border-bottom-right-radius: .25rem
+
+#singleEventInputGroup
+  margin-bottom: -1px
+  label
+    border-bottom-left-radius: 0
+
+  .input-group-append
+    border-bottom-right-radius: 0
+
+#allEventsInputGroup
+  label
+    border-top-left-radius: 0
+
+  .input-group-append
+    border-top-right-radius: 0
 
 #advancedRepeatCollapse, #locationCollapse, #endsOnContainer, #endsAfter
   display: none

@@ -78,6 +78,7 @@ class EventManager(models.Manager):
             'next_event': next_event,
             'category_name': Location.CATEGORY_CHOICES[event.location.category][1] if event.location else 'Miscellaneous',
             'category_slug': _category,
+            'recurring': recurring,
         })
 
     def create_event(self, request):

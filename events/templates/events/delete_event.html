@@ -1,0 +1,21 @@
+<form id="deleteEventForm" class="card" action="#" method="POST">
+  {% csrf_token %}
+  <input type="hidden" name="id" value="{{ event.id }}">
+  {% if recurring %}
+  <div id="singleEventInputGroup" class="input-group">
+    <label class="form-control" for="singleEvent">Delete only this instance</label>
+    <div class="input-group-append">
+      <input id="singleEvent" type="radio" name="delete" value="single-event">
+    </div>
+  </div>
+  <div id="allEventsInputGroup" class="input-group">
+    <label class="form-control" for="allEvents">Delete this instance and all following instances</label>
+    <div class="input-group-append">
+      <input id="allEvents" type="radio" name="delete" value="multiple-events">
+    </div>
+  </div>
+  {% else %}
+  <input type="hidden" name="delete" value="single-event">
+  {% endif %}
+  <input class="btn btn-danger" type="submit" value="Delete">
+</form>
