@@ -2,9 +2,6 @@
 
 ## High Priorities
 
-- Dashboard
-  - Add neighborhood autocomplete
-  - Fix autocomplete on click bug
 - Home page
   - News Feed
     - Articles
@@ -17,7 +14,6 @@
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link
   - Individual event page
-    - Update events back end
     - Delete events front end
     - Delete events back end
   - Weekly updates (commands/crontab)
@@ -39,9 +35,9 @@
       - Add paginiation
         - Front end (see more link)
         - Back end
-    - Update location front end (location page)
+    - Update location front end
     - Update location back end
-    - Delete location front end (location page)
+    - Delete location front end
     - Delete location back end
 - People to Know
 - Articles
@@ -64,6 +60,7 @@
 
 ## Medium Priorities
 
+- Remove Events from breadcrumbs
 - Custom error pages
   - 404
   - 500
