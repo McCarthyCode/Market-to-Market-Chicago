@@ -80,3 +80,51 @@ class LocationManager(models.Manager):
             'category_name': Location.CATEGORY_CHOICES[location.category][1],
             'category_slug': _category,
         })
+
+    def update_location(self, request):
+        from .models import Location, Neighborhood, CATEGORIES
+
+        location_id = int(request.POST.get('id'))
+        location_name = request.POST.get('location-name', '')
+        category = int(request.POST.get('category'))
+        neighborhood_id = int(request.POST.get('neighborhood-id'))
+        neighborhood_name = request.POST.get('neighborhood-name')
+        address1 = request.POST.get('address1')
+        address2 = request.POST.get('address2')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        zip_code = request.POST.get('zip-code')
+
+        try:
+            location = Location.objects.get(id=location_id)
+        except Location.DoesNotExist:
+            return (False, {'errors': ['The specified location could not be found.']})
+
+        location.name = location_name
+        location.category = category
+
+        try:
+            neighborhood = Neighborhood.objects.get(id=neighborhood_id)
+        except Neighborhood.DoesNotExist:
+            try:
+                neighborhood = Neighborhood.objects.get(name=neighborhood_name)
+            except Neighborhood.DoesNotExist:
+                neighborhood = Neighborhood.objects.create_neighborhood(neighborhood_name)
+
+        location.neighborhood = neighborhood
+        location.address1 = address1
+        location.address2 = address2
+        location.city = city
+        location.state = state
+        location.zip_code = zip_code
+
+        location.save()
+
+        return (True, {
+            'success': 'You have successfully updated %s.' % location_name,
+            'args': [
+                CATEGORIES[category],
+                location.slug,
+                location_id,
+            ],
+        })

@@ -15,6 +15,7 @@
     - Fix bug where tapping a link scrolls to top and doesn't follow link
   - Individual event page
     - Update event(s)
+      - Add back end validations
       - Add radio for single/future events
     - Delete event(s)
       - Delete event(s) back end
@@ -37,7 +38,7 @@
       - Add paginiation
         - Front end (see more link)
         - Back end
-    - Update location back end
+    - Update location back end validations
     - Delete location front end
     - Delete location back end
 - People to Know

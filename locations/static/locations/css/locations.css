@@ -287,7 +287,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-bottom: 0.5rem;
 }
 #content .h1 {
-  margin: 2rem 0;
+  margin-bottom: 1rem;
 }
 #content .h3 a {
   color: #bb846e;
@@ -452,6 +452,19 @@ h3.h3 {
   cursor: pointer;
 }
 
+#content .container .alert p {
+  margin: 0;
+}
+#content .container .alert-danger p {
+  color: #721c24;
+}
+#content .container .alert-success p {
+  color: #155724;
+}
+#content .container .alert-info p {
+  color: #0c5460;
+}
+
 #grid {
   display: grid;
   grid-template-columns: [left] 301px [sidebar-right] auto [right];
@@ -486,7 +499,7 @@ h3.h3 {
     grid-column-start: sidebar-right;
   }
   #content .container {
-    padding: 0 1rem;
+    padding: 1rem;
   }
 
   #grid {

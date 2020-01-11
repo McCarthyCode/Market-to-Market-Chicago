@@ -1,7 +1,7 @@
-<form id="updateLocationForm" class="card" action="#" method="POST">
+<form id="updateLocationForm" class="card" action="{% url 'locations:update' %}" method="POST">
   {% csrf_token %}
   <input type="hidden" name="id" value="{{ location.id }}">
-  <input id="name" class="form-control" type="text" name="location-name" placeholder="Location" value="{{ location.name }}" autocomplete="off">
+  <input id="locationName" class="form-control" type="text" name="location-name" placeholder="Location" value="{{ location.name }}" autocomplete="off">
   <input id="categoryHidden" type="hidden" value="{{ location.category }}">
   <select id="category" class="form-control" name="category" autocomplete="off">
     <option selected="true" disabled="disabled">Category</option>

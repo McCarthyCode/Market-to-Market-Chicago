@@ -1,12 +1,13 @@
 from datetime import datetime
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import (
     HttpResponseBadRequest,
     HttpResponseNotFound,
     HttpResponseRedirect,
 )
+from django.contrib import messages
 from django.contrib.auth.models import User
 
 from mtm.settings import TZ, NAME, API_KEY
@@ -66,3 +67,17 @@ def location(request, category, location_name, location_id):
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
+
+def update_location(request):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    valid, response = Location.objects.update_location(request)
+
+    if not valid:
+        for error in response['errors']:
+            messages.error(request, error)
+    else:
+        messages.success(request, response['success'])
+
+    return redirect('locations:location', *response['args'])

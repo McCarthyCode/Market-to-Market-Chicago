@@ -40,6 +40,19 @@ h3.h3
   color: $cyan
   cursor: pointer
 
+#content .container
+  .alert p
+    margin: 0
+
+  .alert-danger p
+    color: #721c24
+
+  .alert-success p
+    color: #155724
+
+  .alert-info p
+    color: #0c5460
+
 #grid
   display: grid
   grid-template-columns: [left] 301px [sidebar-right] auto [right]
@@ -67,7 +80,7 @@ h3.h3
     grid-column-start: sidebar-right
 
     .container
-      padding: 0 1rem
+      padding: 1rem
 
   #grid
     grid-template-rows: [top] 69px [nav-bottom] 264px [topics-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
