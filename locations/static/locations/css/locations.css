@@ -337,6 +337,87 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border: 0;
 }
 
+#content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password],
+#content .container form input[type=submit], #content .container form textarea, #content .container form select, #content .container form label {
+  margin-bottom: 0.5rem;
+}
+#content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password],
+#content .container form textarea, #content .container form select, #content .container form label {
+  color: #ffffff;
+  border-color: #818181;
+  background-color: #333333;
+}
+#content .container form .input-group-append {
+  height: 38px;
+  z-index: 3;
+}
+#content .container form .input-group-append:not(.default-cursor) {
+  cursor: pointer;
+}
+#content .container form .input-group-append:not(.default-cursor) .input-group-text {
+  color: #ffffff;
+  border-color: #818181;
+  background-color: #818181;
+}
+#content .container form .input-group-append:not(.default-cursor) .input-group-text i {
+  min-width: 14px;
+}
+#content .container form .container.logged-out {
+  max-width: 320px;
+}
+
+#updateLocationForm input[name=address1] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#updateLocationForm input[name=address2] {
+  margin-top: -9px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+#updateLocationForm input[name=frequency], #updateLocationForm input[name=state] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#updateLocationForm select[name=frequency-units], #updateLocationForm input[name=zip-code] {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+#locationAutocomplete, #neighborhoodAutocomplete {
+  position: relative;
+  z-index: 4;
+}
+#locationAutocomplete ul, #neighborhoodAutocomplete ul {
+  position: absolute;
+  bottom: 54px;
+  right: 0;
+  left: 0;
+  margin-bottom: 0;
+  border-radius: 4px;
+  color: #000000;
+  background-color: #ffffff;
+}
+#locationAutocomplete ul li, #neighborhoodAutocomplete ul li {
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+#locationAutocomplete ul li:hover, #locationAutocomplete ul li.active, #neighborhoodAutocomplete ul li:hover, #neighborhoodAutocomplete ul li.active {
+  color: #ffffff;
+  background-color: #007bff;
+}
+
+@media screen and (min-width: 768px) {
+  #updateLocationForm label[for=frequency], #updateLocationForm input[name=city] {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  #updateLocationForm input[name=frequency], #updateLocationForm input[name=state] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
 html, body {
   max-height: 100%;
 }

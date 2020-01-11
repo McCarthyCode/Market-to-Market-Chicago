@@ -1,0 +1,30 @@
+<form id="updateLocationForm" class="card" action="#" method="POST">
+  {% csrf_token %}
+  <input type="hidden" name="id" value="{{ location.id }}">
+  <input id="name" class="form-control" type="text" name="location-name" placeholder="Location" value="{{ location.name }}" autocomplete="off">
+  <input id="categoryHidden" type="hidden" value="{{ location.category }}">
+  <select id="category" class="form-control" name="category" autocomplete="off">
+    <option selected="true" disabled="disabled">Category</option>
+    <option value="0">Nightlife</option>
+    <option value="1">Restaurants</option>
+    <option value="2">Arts & Entertainment</option>
+    <option value="3">Health & Fitness</option>
+    <option value="4">Sports</option>
+    <option value="5">Non-profit</option>
+  </select>
+  <input id="neighborhoodId" value="{{ location.neighborhood.id }}" type="hidden" name="neighborhood-id">
+  <input id="neighborhoodName" class="form-control" type="text" name="neighborhood-name" placeholder="Neighborhood" value="{{ location.neighborhood.name }}" autocomplete="off">
+  <div id="neighborhoodAutocomplete"></div>
+  <input class="form-control" type="text" name="address1" value="{{ location.address1 }}" placeholder="Address">
+  {% if location.address2 %}
+  <input class="form-control" type="text" name="address2" value="{{ location.address2 }}">
+  {% else %}
+  <input class="form-control" type="text" name="address2">
+  {% endif %}
+  <div class="form-inline">
+    <input class="form-control col-12 col-md-6" type="text" value="{{ location.city }}" name="city">
+    <input class="form-control col-6 col-md-3" type="text" value="{{ location.state }}" maxlength="2" name="state" placeholder="State">
+    <input class="form-control col-6 col-md-3" type="text" maxlength="5" name="zip-code" placeholder="Zip Code (optional)" value="{{ location.zip_code }}">
+  </div>
+  <input class="btn btn-primary" type="submit" value="Update">
+</form>

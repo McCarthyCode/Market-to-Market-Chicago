@@ -7,6 +7,7 @@ from django.http import (
     HttpResponseNotFound,
     HttpResponseRedirect,
 )
+from django.contrib.auth.models import User
 
 from mtm.settings import TZ, NAME, API_KEY
 from .models import Neighborhood, Location, CATEGORIES
@@ -59,6 +60,8 @@ def location(request, category, location_name, location_id):
 
     return render(request, 'locations/location.html', {
         **response,
+        'user': User.objects.get(pk=request.session['id']) \
+            if 'id' in request.session else None,
         'API_KEY': API_KEY,
         'name': NAME,
         'year': datetime.now(TZ).year,

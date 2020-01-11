@@ -37,7 +37,6 @@
       - Add paginiation
         - Front end (see more link)
         - Back end
-    - Update location front end
     - Update location back end
     - Delete location front end
     - Delete location back end
