@@ -91,6 +91,20 @@ def update_event(request):
 
     return redirect('events:event', *response['args'])
 
+def delete_event(request):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    valid, response = Event.objects.delete_event(request)
+
+    if not valid:
+        for error in response:
+            messages.error(request, error)
+    else:
+        messages.success(request, response)
+
+    return redirect('events:index')
+
 def month(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()

@@ -1,4 +1,4 @@
-<form id="deleteEventForm" class="card" action="#" method="POST">
+<form id="deleteEventForm" class="card" action="{% url 'events:delete' %}" method="POST">
   {% csrf_token %}
   <input type="hidden" name="id" value="{{ event.id }}">
   {% if recurring %}

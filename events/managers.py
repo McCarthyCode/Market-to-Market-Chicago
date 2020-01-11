@@ -425,6 +425,42 @@ class EventManager(models.Manager):
 
         return event
 
+    def delete_event(self, request):
+        from .models import Event, RecurringEvent
+        from locations.models import Location, CATEGORIES
+
+        event_id = int(request.POST.get('id', '0'))
+        delete = request.POST.get('delete', '')
+
+        errors = []
+        if delete != 'single-event' and delete != 'multiple-events':
+            errors.append('Please choose which instances will be deleted.')
+        
+        try:
+            event = RecurringEvent.objects.get(id=event_id)
+        except RecurringEvent.DoesNotExist:
+            try:
+                event = Event.objects.get(id=event_id)
+            except Event.DoesNotExist:
+                errors.append('The specified event could not be found.')
+        
+        if errors:
+            return (False, errors)
+        
+        if delete == 'multiple-events':
+            events = RecurringEvent.objects.filter(
+                first_occurence=event.first_occurence,
+                date_start__gte=event.date_start,
+            )
+
+            events_len = len(events)
+            events.delete()
+            return (True, 'You have successfully deleted %d event%s.' % (events_len, '' if events_len == 1 else 's'))
+        
+        event.delete()
+        
+        return (True, 'You have successfully deleted 1 event.')
+    
     def calendar(self, request):
         from .models import Event
 
