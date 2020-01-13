@@ -98,10 +98,15 @@ def delete_event(request):
     valid, response = Event.objects.delete_event(request)
 
     if not valid:
-        for error in response:
+        for error in response['errors']:
             messages.error(request, error)
+
+        if response['found']:
+            return redirect('events:event', *response['args'])
+        else:
+            return redirect('events:index')
     else:
-        messages.success(request, response)
+        messages.success(request, response['success'])
 
     return redirect('events:index')
 

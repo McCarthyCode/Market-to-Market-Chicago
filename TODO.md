@@ -14,9 +14,6 @@
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link
     - Don't show empty locations on events page
-  - Individual event page
-    - Delete event(s)
-      - Navigate back to event page on failure
   - Weekly updates (commands/crontab)
     - Delete past events
     - Create future events
