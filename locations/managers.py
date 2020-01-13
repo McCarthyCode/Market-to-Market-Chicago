@@ -95,10 +95,46 @@ class LocationManager(models.Manager):
         state = request.POST.get('state')
         zip_code = request.POST.get('zip-code')
 
+        errors = []
+
+        if not location_id:
+            errors.append('Invalid location ID.')
+
+        if not location_name:
+            errors.append('Location name is required.')
+
+        if not neighborhood_id:
+            errors.append('Invalid neighborhood ID.')
+
+        if not neighborhood_name:
+            errors.append('Neighborhood name is required.')
+
+        if not address1:
+            errors.append('Address line 1 is required.')
+
+        if not city:
+            errors.append('City is required.')
+
+        if not state:
+            errors.append('State is required.')
+
+        if not zip_code:
+            errors.append('Zip code is required.')
+
         try:
             location = Location.objects.get(id=location_id)
         except Location.DoesNotExist:
-            return (False, {'errors': ['The specified location could not be found.']})
+            errors.append('The specified location could not be found.')
+
+        if errors:
+            return (False, {
+                'errors': errors,
+                'args': [
+                    CATEGORIES[category],
+                    location.slug,
+                    location_id,
+                ],
+            })
 
         location.name = location_name
         location.category = category

@@ -36,7 +36,6 @@
       - Add paginiation
         - Front end (see more link)
         - Back end
-    - Update location back end validations
     - Delete location front end
     - Delete location back end
 - People to Know
