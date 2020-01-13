@@ -27,7 +27,6 @@
     - Locations
     - Articles
   - Individual location page
-    - Remove Events breadcrumb
     - Events
       - Make pretty
         - Add no wrap

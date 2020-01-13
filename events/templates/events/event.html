@@ -3,16 +3,12 @@
 <h1 class="h1 text-center">{{ event.name }} <span class="text-nowrap">({{ event.date_start|date:"D. M. j" }})</span></h1>
 <p id="breadcrumbs">
   {% if event.location %}
-  <a href="{% url 'events:index' %}">Events</a>
-  <i class="fas fa-chevron-right"></i>
   <a href="{% url 'home:category' category=category_slug %}">{{ category_name }}</a>
   <i class="fas fa-chevron-right"></i>
   <a href="{% url 'locations:location' category=category_slug location_name=event.location.slug location_id=event.location.id %}">{{ event.location.name }}</a>
   <i class="fas fa-chevron-right"></i>
   {{ event.name }}
   {% else %}
-  <a href="{% url 'events:index' %}">Events</a>
-  <i class="fas fa-chevron-right"></i>
   <a href="{% url 'home:category' category=category_slug %}">{{ category_name }}</a>
   <i class="fas fa-chevron-right"></i>
   {{ event.name }}

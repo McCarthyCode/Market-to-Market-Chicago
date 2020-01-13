@@ -1,8 +1,6 @@
 {% extends 'locations/base.html' %}{% load static %}{% block content %}{% include 'home/messages.html' %}
 <h1 class="h1 text-center">{{ location.name }}</h1>
 <p id="breadcrumbs">
-  <a href="{% url 'events:index' %}">Events</a>
-  <i class="fas fa-chevron-right"></i>
   <a href="{% url 'home:category' category=category_slug %}">{{ category_name }}</a>
   <i class="fas fa-chevron-right"></i>
   {{ location.name }}
