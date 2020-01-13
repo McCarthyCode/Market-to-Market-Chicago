@@ -13,12 +13,10 @@
   - All events page
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link
+    - Don't show empty locations on events page
   - Individual event page
-    - Update event(s)
-      - Add back end validations
-      - Add radio for single/future events
     - Delete event(s)
-      - Delete event(s) back end
+      - Navigate back to event page on failure
   - Weekly updates (commands/crontab)
     - Delete past events
     - Create future events
@@ -29,6 +27,7 @@
     - Locations
     - Articles
   - Individual location page
+    - Remove Events breadcrumb
     - Events
       - Make pretty
         - Add no wrap
@@ -65,7 +64,6 @@
 - Dashboard
   - Create event(s)
     - Select checkbox on append click
-- Remove Events from breadcrumbs
 - Custom error pages
   - 404
   - 500
