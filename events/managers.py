@@ -296,28 +296,39 @@ class EventManager(models.Manager):
         date_start_str = request.POST.get('date-start', '')
         date_end_str = request.POST.get('date-end', '')
         location_id = request.POST.get('location-id', '0')
-        location_name = request.POST.get('location-name', '')
-        category = request.POST.get('category', '-1')
-        neighborhood_id = request.POST.get('neighborhood-id', '0')
-        neighborhood_name = request.POST.get('neighborhood-name', '')
-        address1 = request.POST.get('address1', '')
-        address2 = request.POST.get('address2', '')
-        city = request.POST.get('city', '')
-        state = request.POST.get('state', '')
-        zip_code = request.POST.get('zip-code', '')
 
-        # Data restructuring
+        # Data restructuring and validations
+        errors = []
         event_id = int(event_id)
+        if not event_id:
+            errors.append('Invalid event ID.')
+
         all_day = all_day_value == 'true'
 
         if location_id:
             location_id = int(location_id)
 
-        if category:
-            category = int(category)
-
-        if neighborhood_id:
-            neighborhood_id = int(neighborhood_id)
+        if errors:
+            try:
+                event = RecurringEvent.objects.get(id=event_id)
+            except RecurringEvent.DoesNotExist:
+                try:
+                    event = Event.objects.get(id=event_id)
+                except Event.DoesNotExist:
+                    return (False, {
+                        'errors': errors,
+                        'event_found': False,
+                    })
+            return (False, {
+                'errors': errors,
+                'event_found': True,
+                'args': [
+                    CATEGORIES[event.location.category],
+                    event.location.slug,
+                    event.slug,
+                    event.id,
+                ],
+            })
 
         # Datetime parsing
         def add_leading_zero_hour(date_str):
@@ -340,18 +351,7 @@ class EventManager(models.Manager):
         try:
             # Find recurring events and update
             event = RecurringEvent.objects.get(id=event_id)
-            events = RecurringEvent.objects.update_recurring_event(request, event.first_occurence)
-
-            events_len = len(events)
-            return (True, {
-                'success': 'You have successfully updated %d event%s.' % (events_len, '' if events_len == 1 else 's'),
-                'args': [
-                    Location.CATEGORIES[event.location.category],
-                    event.location.slug,
-                    event.slug,
-                    event.id,
-                ],
-            })
+            return RecurringEvent.objects.update_recurring_event(request, event.first_occurence)
         except RecurringEvent.DoesNotExist:
             try:
                 # Find single event
@@ -374,37 +374,27 @@ class EventManager(models.Manager):
                 if location_id <= 0 and location_name == '':
                     location = None
                 elif location_id > 0:
-                    location = Location.objects.get(id=location_id)
-                else:
-                    location = Location.objects.create_location(
-                        name=location_name,
-                        category=category,
-                        address1=address1,
-                        city=city,
-                        state=state,
-                    )
+                    try:
+                        location = Location.objects.get(id=location_id)
+                    except Location.DoesNotExist:
+                        return (False, {
+                            'errors': ['The specified location could not be found.'],
+                            'event_found': True,
+                            'args': [
+                                CATEGORIES[event.location.category],
+                                event.location.slug,
+                                event.slug,
+                                event.id,
+                            ],
+                        })
 
-                    if neighborhood_id:
-                        neighborhood = Neighborhood.objects.get(id=neighborhood_id)
-                    elif neighborhood_name:
-                        neighborhood = Neighborhood.objects.create_neighborhood(name=neighborhood_name)
-                    else:
-                        neighborhood = None
-
-                    location.neighborhood = neighborhood
-
-                    if address2:
-                        location.address2 = address2
-
-                    if zip_code:
-                        location.zip_code = zip_code
-
-                    location.save()
+                event.location = location
 
                 event.save()
             except Event.DoesNotExist:
                 return (False, {
                     'errors': ['The specified event could not be found.'],
+                    'event_found': False,
                 })
 
         return (True, {
@@ -436,7 +426,7 @@ class EventManager(models.Manager):
         if delete != 'single-event' and delete != 'multiple-events':
             errors.append('Please choose which instances will be deleted.')
 
-        found = True
+        event_found = True
         try:
             event = RecurringEvent.objects.get(id=event_id)
         except RecurringEvent.DoesNotExist:
@@ -444,12 +434,12 @@ class EventManager(models.Manager):
                 event = Event.objects.get(id=event_id)
             except Event.DoesNotExist:
                 errors.append('The specified event could not be found.')
-                found = False
+                event_found = False
 
         if errors:
             return (False, {
                 'errors': errors,
-                'found': found,
+                'event_found': event_found,
                 'args': [
                     CATEGORIES[event.location.category],
                     event.location.slug,
@@ -1058,4 +1048,99 @@ class RecurringEventManager(models.Manager):
         return RecurringEvent.objects.filter(first_occurence=first_occurence)
 
     def update_recurring_event(self, request, first_occurence):
-        pass
+        from .models import Event, RecurringEvent
+        from locations.models import Location, CATEGORIES
+
+        # Data collection
+        event_id = request.POST.get('id', '0')
+        name = request.POST.get('name', '')
+        description = request.POST.get('description', '')
+        all_day_value = request.POST.get('all-day', '')
+        date_start_str = request.POST.get('date-start', '')
+        date_end_str = request.POST.get('date-end', '')
+        location_id = request.POST.get('location-id', '0')
+
+        # Data restructuring
+        event_id = int(event_id)
+        all_day = all_day_value == 'true'
+        location_id = int(location_id)
+
+        # Datetime parsing
+        def add_leading_zero_hour(date_str):
+            if len(date_str) == 18:
+                return date_str[:11] + '0' + date_str[-7:]
+            else:
+                return date_str
+
+        add_leading_zero_hour(date_start_str)
+        date_start = TZ.localize(datetime.strptime(date_start_str, '%m/%d/%Y %I:%M %p'))
+
+        if date_end_str:
+            add_leading_zero_hour(date_end_str)
+            date_end = TZ.localize(datetime.strptime(date_end_str, '%m/%d/%Y %I:%M %p'))
+
+        if all_day:
+            date_start = date_start.replace(hour=0, minute=0, second=0, microsecond=0)
+
+        # Grab location object or set to None
+        if location_id <= 0:
+            location = None
+        else:
+            try:
+                location = Location.objects.get(id=location_id)
+            except Location.DoesNotExist:
+                try:
+                    event = Event.objects.get(id=event_id)
+                except Event.DoesNotExist:
+                    return (False, {
+                        'errors': [
+                            'The specified event could not be found.',
+                            'The specified location could not be found.',
+                        ],
+                        'event_found': False,
+                    })
+
+                return (False, {
+                    'errors': ['The specified location could not be found.'],
+                    'event_found': True,
+                    'args': [
+                        CATEGORIES[event.location.category] if event.location else 'misc',
+                        event.location.slug if location else 'undefined',
+                        event.slug,
+                        event.id,
+                    ],
+                })
+
+        # Update events
+        events = RecurringEvent.objects.filter(
+            first_occurence=first_occurence,
+            date_start__gte=date_start,
+        )
+        events_len = len(events)
+        for event in events:
+            if name:
+                event.name = name
+
+            if description:
+                event.description = description
+            event.all_day = all_day
+
+            event.date_start = date_start.replace(year=event.date_start.year, month=event.date_start.month, day=event.date_start.day)
+
+            if date_end_str:
+                event.date_end = date_end.replace(year=event.date_end.year, month=event.date_end.month, day=event.date_end.day)
+
+            event.location = location
+
+            event.save()
+
+        return (True, {
+            'success': 'You have successfully updated %d event%s.' % (events_len, '' if events_len == 1 else 's'),
+            'event_found': True,
+            'args': [
+                CATEGORIES[event.location.category] if location else 'misc',
+                event.location.slug if location else 'undefined',
+                event.slug,
+                event.id,
+            ],
+        })

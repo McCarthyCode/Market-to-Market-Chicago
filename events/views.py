@@ -86,6 +86,11 @@ def update_event(request):
     if not valid:
         for error in response['errors']:
             messages.error(request, error)
+
+        if response['event_found']:
+            return redirect('events:event', *response['args'])
+        else:
+            return redirect('events:index')
     else:
         messages.success(request, response['success'])
 
@@ -101,7 +106,7 @@ def delete_event(request):
         for error in response['errors']:
             messages.error(request, error)
 
-        if response['found']:
+        if response['event_found']:
             return redirect('events:event', *response['args'])
         else:
             return redirect('events:index')
