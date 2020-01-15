@@ -304,7 +304,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin: 0;
 }
 #content form input[type=text], #content form input[type=number], #content form input[type=password],
-#content form input[type=submit], #content form textarea, #content form select, #content form :not(#singleEventInputGroup) label {
+#content form input[type=submit], #content form textarea, #content form select, #content form :not(.m-bottom-0) label {
   margin-bottom: 0.5rem;
 }
 #content form input[type=text], #content form input[type=number], #content form input[type=password],
@@ -716,10 +716,10 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   background-color: #007bff;
 }
 
-#allDayInputGroup label, #singleEventInputGroup label, #allEventsInputGroup label {
+#allDayInputGroup label, #singleEventInputGroupUpdate label, #singleEventInputGroupDelete label, #allEventsInputGroupUpdate label, #allEventsInputGroupDelete label {
   cursor: pointer;
 }
-#allDayInputGroup .input-group-append, #singleEventInputGroup .input-group-append, #allEventsInputGroup .input-group-append {
+#allDayInputGroup .input-group-append, #singleEventInputGroupUpdate .input-group-append, #singleEventInputGroupDelete .input-group-append, #allEventsInputGroupUpdate .input-group-append, #allEventsInputGroupDelete .input-group-append {
   border-color: #818181;
   background-color: #818181;
   padding: 11px 0.75rem 11px 0.75rem;
@@ -727,20 +727,21 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-bottom-right-radius: 0.25rem;
 }
 
-#singleEventInputGroup {
+#singleEventInputGroupUpdate, #singleEventInputGroupDelete {
   margin-bottom: -1px;
 }
-#singleEventInputGroup label {
+#singleEventInputGroupUpdate label, #singleEventInputGroupDelete label {
   border-bottom-left-radius: 0;
+  margin-bottom: 0;
 }
-#singleEventInputGroup .input-group-append {
+#singleEventInputGroupUpdate .input-group-append, #singleEventInputGroupDelete .input-group-append {
   border-bottom-right-radius: 0;
 }
 
-#allEventsInputGroup label {
+#allEventsInputGroupUpdate label, #allEventsInputGroupDelete label {
   border-top-left-radius: 0;
 }
-#allEventsInputGroup .input-group-append {
+#allEventsInputGroupUpdate .input-group-append, #allEventsInputGroupDelete .input-group-append {
   border-top-right-radius: 0;
 }
 

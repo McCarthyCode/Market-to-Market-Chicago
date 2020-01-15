@@ -10,10 +10,18 @@
     - Albums
   - Infinite scrolling
 - Events
-  - All events page
+  - Create event
+    - Add validation for date_start vs. date_end
+    - Don't allow dates in the past
+  - All events page (read event)
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link
-    - Don't show empty locations on events page
+    - Don't show locations without events
+  - Update event
+    - Add validation for date_start vs. date_end
+    - Don't allow dates in the past
+  - Delete event
+    - Delete info along with RecurringEvent
   - Weekly updates (commands/crontab)
     - Delete past events
     - Create future events

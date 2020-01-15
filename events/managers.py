@@ -296,6 +296,7 @@ class EventManager(models.Manager):
         date_start_str = request.POST.get('date-start', '')
         date_end_str = request.POST.get('date-end', '')
         location_id = request.POST.get('location-id', '0')
+        update = request.POST.get('update', '')
 
         # Data restructuring and validations
         errors = []
@@ -348,11 +349,11 @@ class EventManager(models.Manager):
             date_start = date_start.replace(hour=0, minute=0, second=0, microsecond=0)
 
         # Find event(s) and update
-        try:
+        if update == 'multiple-events':
             # Find recurring events and update
             event = RecurringEvent.objects.get(id=event_id)
             return RecurringEvent.objects.update_recurring_event(request, event.info)
-        except RecurringEvent.DoesNotExist:
+        else:
             try:
                 # Find single event
                 event = Event.objects.get(id=event_id)
@@ -666,7 +667,6 @@ class RecurringEventManager(models.Manager):
         date = date_start
         max_duration = relativedelta(years=+1)
         date_max = date + max_duration
-        frequency_units -= 1
 
         rd_values = [
             relativedelta(days=+frequency),
@@ -686,6 +686,15 @@ class RecurringEventManager(models.Manager):
         ]
 
         info = RepeatInfo.objects.create_repeat_info(frequency, frequency_units, ends, **kwargs)
+
+        if ('weekday_list' in kwargs and kwargs['weekday_list']) or (frequency == 1 and frequency_units == 2):
+            info.weekly = True
+        else:
+            info.weekly = False
+
+        info.save()
+
+        frequency_units -= 1
 
         if ends == 0: # ends after max. duration
             if 'date_end' in kwargs:
@@ -758,7 +767,6 @@ class RecurringEventManager(models.Manager):
 
                         if 'location' in kwargs:
                             event.location = kwargs['location']
-
                         event.save()
 
                         date = TZ.localize(
@@ -952,6 +960,24 @@ class RecurringEventManager(models.Manager):
         date_start_str = request.POST.get('date-start', '')
         date_end_str = request.POST.get('date-end', '')
         location_id = request.POST.get('location-id', '0')
+        # location_name = request.POST.get('location-name', '')
+        # category = request.POST.get('category', '-1')
+        # neighborhood_id = request.POST.get('neighborhood-id', '0')
+        # neighborhood_name = request.POST.get('neighborhood-name', '')
+        # address1 = request.POST.get('address1', '')
+        # address2 = request.POST.get('address2', '')
+        # city = request.POST.get('city', '')
+        # state = request.POST.get('state', '')
+        # zip_code = request.POST.get('zip-code', '')
+
+        # Relative delta values
+        frequency_units = info.frequency_units - 1
+        rd_values = [
+            relativedelta(days=+info.frequency),
+            relativedelta(days=+(7 * info.frequency)),
+            relativedelta(months=+info.frequency),
+            relativedelta(years=+info.frequency),
+        ]
 
         # Data restructuring
         event_id = int(event_id)
@@ -1018,10 +1044,12 @@ class RecurringEventManager(models.Manager):
                 event.description = description
             event.all_day = all_day
 
-            event.date_start = date_start.replace(year=event.date_start.year, month=event.date_start.month, day=event.date_start.day)
+            event.date_start = date_start
+            date_start = date_start + rd_values[frequency_units]
 
             if date_end_str:
-                event.date_end = date_end.replace(year=event.date_end.year, month=event.date_end.month, day=event.date_end.day)
+                event.date_end = date_end
+                date_end = date_end + rd_values[frequency_units]
 
             event.location = location
 

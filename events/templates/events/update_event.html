@@ -43,11 +43,11 @@
   {% if event.location %}
   <input id="locationId" type="hidden" name="location-id" value="{{ event.location.id }}" autocomplete="off">
   <div id="locationInputGroup" class="input-group" data-target-input="nearest">
-    <input id="locationName" class="form-control" type="text" name="location-name" value="{{ event.location.name }}" placeholder="Location (search for existing or click icon to create new)" autocomplete="off">
+    <input id="locationName" class="form-control" type="text" name="location-name" value="{{ event.location.name }}" placeholder="Location (search for existing)" autocomplete="off">
   {% else %}
   <input id="locationId" type="hidden" name="location-id" value="0" autocomplete="off">
   <div id="locationInputGroup" class="input-group" data-target-input="nearest">
-    <input id="locationName" class="form-control" type="text" name="location-name" placeholder="Location (search for existing or click icon to create new)" autocomplete="off">
+    <input id="locationName" class="form-control" type="text" name="location-name" placeholder="Location (search for existing)" autocomplete="off">
   {% endif %}
     <div id="locationToggle" class="input-group-append">
       <div class="form-control input-group-text">
@@ -56,7 +56,7 @@
     </div>
   </div>
   <div id="locationAutocomplete"></div>
-  <div id="locationCollapse">
+  <!-- <div id="locationCollapse">
     <select id="locationCategory" class="form-control" name="category">
       <option selected="true" disabled="disabled">Category</option>
       <option value="0">Nightlife</option>
@@ -76,6 +76,20 @@
       <input class="form-control col-6 col-md-3" type="text" value="IL" maxlength="2" name="state" placeholder="State">
       <input class="form-control col-6 col-md-3" type="text" maxlength="5" name="zip-code" placeholder="Zip Code (optional)">
     </div>
+  </div> -->
+  {% if recurring %}
+  <div id="singleEventInputGroupUpdate" class="input-group m-bottom-0">
+    <label class="form-control" for="singleEventUpdate">Update only this instance</label>
+    <div class="input-group-append">
+      <input id="singleEventUpdate" type="radio" name="update" value="single-event">
+    </div>
   </div>
+  <div id="allEventsInputGroupUpdate" class="input-group">
+    <label class="form-control" for="allEventsUpdate">Update this instance and all following instances</label>
+    <div class="input-group-append">
+      <input id="allEventsUpdate" type="radio" name="update" value="multiple-events">
+    </div>
+  </div>
+  {% endif %}
   <input class="btn btn-primary" type="submit" value="Update">
 </form>
