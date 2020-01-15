@@ -67,7 +67,7 @@ class EventManager(models.Manager):
 
         if recurring:
             next_event = RecurringEvent.objects.filter(
-                first_occurence=event.first_occurence,
+                info=event.info,
                 date_start__gt=event.date_start,
             ).order_by('date_start').first()
         else:
@@ -351,7 +351,7 @@ class EventManager(models.Manager):
         try:
             # Find recurring events and update
             event = RecurringEvent.objects.get(id=event_id)
-            return RecurringEvent.objects.update_recurring_event(request, event.first_occurence)
+            return RecurringEvent.objects.update_recurring_event(request, event.info)
         except RecurringEvent.DoesNotExist:
             try:
                 # Find single event
@@ -407,14 +407,6 @@ class EventManager(models.Manager):
             ],
         })
 
-    def update_single_event(self, request):
-        from .models import Event
-
-        event_id = int(request.POST.get('id', '0'))
-        event = Event.objects.get()
-
-        return event
-
     def delete_event(self, request):
         from .models import Event, RecurringEvent
         from locations.models import Location, CATEGORIES
@@ -450,7 +442,7 @@ class EventManager(models.Manager):
 
         if delete == 'multiple-events':
             events = RecurringEvent.objects.filter(
-                first_occurence=event.first_occurence,
+                info=event.info,
                 date_start__gte=event.date_start,
             )
 
@@ -669,7 +661,7 @@ class EventManager(models.Manager):
 
 class RecurringEventManager(models.Manager):
     def create_recurring_event(self, name, date_start, frequency, frequency_units, ends, **kwargs):
-        from .models import RecurringEvent
+        from .models import RecurringEvent, RepeatInfo
 
         date = date_start
         max_duration = relativedelta(years=+1)
@@ -683,8 +675,6 @@ class RecurringEventManager(models.Manager):
             relativedelta(years=+frequency),
         ]
 
-        first_occurence = None
-
         days_of_week = [
             'monday',
             'tuesday',
@@ -695,6 +685,8 @@ class RecurringEventManager(models.Manager):
             'sunday',
         ]
 
+        info = RepeatInfo.objects.create_repeat_info(frequency, frequency_units, ends, **kwargs)
+
         if ends == 0: # ends after max. duration
             if 'date_end' in kwargs:
                 date_end = kwargs['date_end']
@@ -702,19 +694,12 @@ class RecurringEventManager(models.Manager):
                 if 'weekday_list' in kwargs and kwargs['weekday_list']:
                     while date <= date_max:
                         if days_of_week[date.weekday()] in kwargs['weekday_list']:
-                            event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+                            event = self.create(name=name, date_start=date.astimezone(pytz.utc), info=info)
 
                             event.date_end = date_end.astimezone(pytz.utc)
 
                             if 'location' in kwargs:
                                 event.location = kwargs['location']
-
-                            if first_occurence == None:
-                                first_occurence = event.first_occurence = event
-                            else:
-                                event.first_occurence = first_occurence
-
-                            event.weekly = True
 
                             event.save()
 
@@ -726,22 +711,12 @@ class RecurringEventManager(models.Manager):
                         )
                 else:
                     while date <= date_max:
-                        event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+                        event = self.create(name=name, date_start=date.astimezone(pytz.utc), info=info)
 
                         event.date_end = date_end.astimezone(pytz.utc)
 
                         if 'location' in kwargs:
                             event.location = kwargs['location']
-
-                        if first_occurence == None:
-                            first_occurence = event.first_occurence = event
-                        else:
-                            event.first_occurence = first_occurence
-
-                        if frequency == 1 and frequency_units == 2:
-                            event.weekly = True
-                        else:
-                            event.weekly = False
 
                         event.save()
 
@@ -757,7 +732,7 @@ class RecurringEventManager(models.Manager):
                 if 'weekday_list' in kwargs and kwargs['weekday_list']:
                     while date <= date_max:
                         if days_of_week[date.weekday()] in kwargs['weekday_list']:
-                            event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+                            event = self.create(name=name, date_start=date.astimezone(pytz.utc), info=info)
 
                             if 'all_day' in kwargs:
                                 event.all_day = kwargs['all_day']
@@ -767,13 +742,6 @@ class RecurringEventManager(models.Manager):
                             if 'location' in kwargs:
                                 event.location = kwargs['location']
 
-                            if first_occurence == None:
-                                first_occurence = event.first_occurence = event
-                            else:
-                                event.first_occurence = first_occurence
-
-                            event.weekly = True
-
                             event.save()
 
                         date = TZ.localize(
@@ -781,7 +749,7 @@ class RecurringEventManager(models.Manager):
                         )
                 else:
                     while date <= date_max:
-                        event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+                        event = self.create(name=name, date_start=date.astimezone(pytz.utc), info=info)
 
                         if 'all_day' in kwargs:
                             event.all_day = kwargs['all_day']
@@ -790,16 +758,6 @@ class RecurringEventManager(models.Manager):
 
                         if 'location' in kwargs:
                             event.location = kwargs['location']
-
-                        if first_occurence == None:
-                            first_occurence = event.first_occurence = event
-                        else:
-                            event.first_occurence = first_occurence
-
-                        if frequency == 1 and frequency_units == 2:
-                            event.weekly = True
-                        else:
-                            event.weekly = False
 
                         event.save()
 
@@ -817,19 +775,12 @@ class RecurringEventManager(models.Manager):
                 if 'weekday_list' in kwargs and kwargs['weekday_list']:
                     while date <= kwargs['ends_on'] and date <= date_max:
                         if days_of_week[date.weekday()] in kwargs['weekday_list']:
-                            event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+                            event = self.create(name=name, date_start=date.astimezone(pytz.utc), info=info)
 
                             event.date_end = date_end.astimezone(pytz.utc)
 
                             if 'location' in kwargs:
                                 event.location = kwargs['location']
-
-                            if first_occurence == None:
-                                first_occurence = event.first_occurence = event
-                            else:
-                                event.first_occurence = first_occurence
-
-                            event.weekly = True
 
                             event.save()
 
@@ -841,22 +792,12 @@ class RecurringEventManager(models.Manager):
                         )
                 else:
                     while date <= kwargs['ends_on'] and date <= date_max:
-                        event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+                        event = self.create(name=name, date_start=date.astimezone(pytz.utc), info=info)
 
                         event.date_end = date_end.astimezone(pytz.utc)
 
                         if 'location' in kwargs:
                             event.location = kwargs['location']
-
-                        if first_occurence == None:
-                            first_occurence = event.first_occurence = event
-                        else:
-                            event.first_occurence = first_occurence
-
-                        if frequency == 1 and frequency_units == 2:
-                            event.weekly = True
-                        else:
-                            event.weekly = False
 
                         event.save()
 
@@ -872,7 +813,7 @@ class RecurringEventManager(models.Manager):
                 if 'weekday_list' in kwargs and kwargs['weekday_list']:
                     while date <= kwargs['ends_on'] and date <= date_max:
                         if days_of_week[date.weekday()] in kwargs['weekday_list']:
-                            event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+                            event = self.create(name=name, date_start=date.astimezone(pytz.utc), info=info)
 
                             if 'all_day' in kwargs:
                                 event.all_day = kwargs['all_day']
@@ -882,13 +823,6 @@ class RecurringEventManager(models.Manager):
                             if 'location' in kwargs:
                                 event.location = kwargs['location']
 
-                            if first_occurence == None:
-                                first_occurence = event.first_occurence = event
-                            else:
-                                event.first_occurence = first_occurence
-
-                            event.weekly = True
-
                             event.save()
 
                         date = TZ.localize(
@@ -896,7 +830,7 @@ class RecurringEventManager(models.Manager):
                         )
                 else:
                     while date <= kwargs['ends_on'] and date <= date_max:
-                        event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+                        event = self.create(name=name, date_start=date.astimezone(pytz.utc), info=info)
 
                         if 'all_day' in kwargs:
                             event.all_day = kwargs['all_day']
@@ -905,16 +839,6 @@ class RecurringEventManager(models.Manager):
 
                         if 'location' in kwargs:
                             event.location = kwargs['location']
-
-                        if first_occurence == None:
-                            first_occurence = event.first_occurence = event
-                        else:
-                            event.first_occurence = first_occurence
-
-                        if frequency == 1 and frequency_units == 2:
-                            event.weekly = True
-                        else:
-                            event.weekly = False
 
                         event.save()
 
@@ -933,19 +857,12 @@ class RecurringEventManager(models.Manager):
                     i = 0
                     while i < kwargs['ends_after'] and date <= date_max:
                         if days_of_week[date.weekday()] in kwargs['weekday_list']:
-                            event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+                            event = self.create(name=name, date_start=date.astimezone(pytz.utc), info=info)
 
                             event.date_end = date_end.astimezone(pytz.utc)
 
                             if 'location' in kwargs:
                                 event.location = kwargs['location']
-
-                            if first_occurence == None:
-                                first_occurence = event.first_occurence = event
-                            else:
-                                event.first_occurence = first_occurence
-
-                            event.weekly = True
 
                             event.save()
 
@@ -960,19 +877,12 @@ class RecurringEventManager(models.Manager):
                 else:
                     i = 0
                     while i < kwargs['ends_after'] and date <= date_max:
-                        event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+                        event = self.create(name=name, date_start=date.astimezone(pytz.utc), info=info)
 
                         event.date_end = date_end.astimezone(pytz.utc)
 
                         if 'location' in kwargs:
                             event.location = kwargs['location']
-
-                        if first_occurence == None:
-                            first_occurence = event.first_occurence = event
-                        else:
-                            event.first_occurence = first_occurence
-
-                        event.weekly = True
 
                         event.save()
 
@@ -990,7 +900,7 @@ class RecurringEventManager(models.Manager):
                     i = 0
                     while i < kwargs['ends_after'] and date <= date_max:
                         if days_of_week[date.weekday()] in kwargs['weekday_list']:
-                            event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+                            event = self.create(name=name, date_start=date.astimezone(pytz.utc), info=info)
 
                             if 'all_day' in kwargs:
                                 event.all_day = kwargs['all_day']
@@ -999,13 +909,6 @@ class RecurringEventManager(models.Manager):
 
                             if 'location' in kwargs:
                                 event.location = kwargs['location']
-
-                            if first_occurence == None:
-                                first_occurence = event.first_occurence = event
-                            else:
-                                event.first_occurence = first_occurence
-
-                            event.weekly = True
 
                             event.save()
 
@@ -1017,7 +920,7 @@ class RecurringEventManager(models.Manager):
                 else:
                     i = 0
                     while i < kwargs['ends_after'] and date <= date_max:
-                        event = self.create(name=name, date_start=date.astimezone(pytz.utc))
+                        event = self.create(name=name, date_start=date.astimezone(pytz.utc), info=info)
 
                         if 'all_day' in kwargs:
                             event.all_day = kwargs['all_day']
@@ -1027,16 +930,6 @@ class RecurringEventManager(models.Manager):
                         if 'location' in kwargs:
                             event.location = kwargs['location']
 
-                        if first_occurence == None:
-                            first_occurence = event.first_occurence = event
-                        else:
-                            event.first_occurence = first_occurence
-
-                        if frequency == 1 and frequency_units == 2:
-                            event.weekly = True
-                        else:
-                            event.weekly = False
-
                         event.save()
 
                         i += 1
@@ -1045,9 +938,9 @@ class RecurringEventManager(models.Manager):
                             rd_values[frequency_units]
                         )
 
-        return RecurringEvent.objects.filter(first_occurence=first_occurence)
+        return RecurringEvent.objects.filter(info=info)
 
-    def update_recurring_event(self, request, first_occurence):
+    def update_recurring_event(self, request, info):
         from .models import Event, RecurringEvent
         from locations.models import Location, CATEGORIES
 
@@ -1113,7 +1006,7 @@ class RecurringEventManager(models.Manager):
 
         # Update events
         events = RecurringEvent.objects.filter(
-            first_occurence=first_occurence,
+            info=info,
             date_start__gte=date_start,
         )
         events_len = len(events)
@@ -1144,3 +1037,48 @@ class RecurringEventManager(models.Manager):
                 event.id,
             ],
         })
+
+class RepeatInfoManager(models.Manager):
+    def create_repeat_info(self, frequency, frequency_units, ends, **kwargs):
+        from .models import Weekday
+
+        info = self.create(frequency=frequency, frequency_units=frequency_units, ends=ends)
+
+        weekday_options = {
+            'monday': 0,
+            'tuesday': 1,
+            'wednesday': 2,
+            'thursday': 3,
+            'friday': 4,
+            'saturday': 5,
+            'sunday': 6,
+        }
+
+        if 'weekday_list' in kwargs:
+            info.weekly = True
+            for weekday in kwargs['weekday_list']:
+                Weekday.objects.create_weekday(info, weekday_options[weekday])
+        elif frequency == 1 and frequency_units == 2:
+            info.weekly = True
+        else:
+            info.weekly = False
+
+        if ends == 1: # ends on date
+            if 'ends_on' in kwargs:
+                info.ends_on = kwargs['ends_on']
+            else:
+                raise TypeError("create_repeat_info() missing 1 required keyword argument 'ends_on'")
+        elif ends == 2: # ends after a number of occurences
+            if 'ends_after' in kwargs:
+                info.ends_after = kwargs['ends_after']
+            else:
+                raise TypeError("create_repeat_info() missing 1 required keyword argument 'ends_after'")
+
+        info.save()
+
+        return info
+
+class WeekdayManager(models.Manager):
+    def create_weekday(self, info, weekday):
+        return self.create(info=info, weekday=weekday)
+
