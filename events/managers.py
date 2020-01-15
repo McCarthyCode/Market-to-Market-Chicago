@@ -172,9 +172,6 @@ class EventManager(models.Manager):
             if not state:
                 errors.append('Please enter a state code.')
 
-        if errors:
-            return (False, errors)
-
         # Datetime parsing
         def add_leading_zero_hour(date_str):
             if len(date_str) == 18:
@@ -185,9 +182,19 @@ class EventManager(models.Manager):
         add_leading_zero_hour(date_start_str)
         date_start = TZ.localize(datetime.strptime(date_start_str, '%m/%d/%Y %I:%M %p'))
 
+        now = datetime.now(TZ)
+        if date_start < now:
+            errors.append('Start date cannot be in the past.')
+
         if date_end_str:
             add_leading_zero_hour(date_end_str)
             date_end = TZ.localize(datetime.strptime(date_end_str, '%m/%d/%Y %I:%M %p'))
+
+            if date_end < now:
+                errors.append('End date cannot be in the past.')
+
+            if date_start >= date_end:
+                errors.append('Start date must come before end date.')
 
         if all_day:
             date_start = date_start.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -195,6 +202,9 @@ class EventManager(models.Manager):
         if ends == 1:
             add_leading_zero_hour(ends_on_str)
             ends_on = TZ.localize(datetime.strptime(ends_on_str, '%m/%d/%Y %I:%M %p'))
+
+        if errors:
+            return (False, errors)
 
         # Grab location object, create new one, or set to None
         if location_id <= 0 and location_name == '':
@@ -309,6 +319,33 @@ class EventManager(models.Manager):
         if location_id:
             location_id = int(location_id)
 
+        # Datetime parsing
+        def add_leading_zero_hour(date_str):
+            if len(date_str) == 18:
+                return date_str[:11] + '0' + date_str[-7:]
+            else:
+                return date_str
+
+        add_leading_zero_hour(date_start_str)
+        date_start = TZ.localize(datetime.strptime(date_start_str, '%m/%d/%Y %I:%M %p'))
+
+        now = datetime.now(TZ)
+        if date_start < now:
+            errors.append('Start date cannot be in the past.')
+
+        if date_end_str:
+            add_leading_zero_hour(date_end_str)
+            date_end = TZ.localize(datetime.strptime(date_end_str, '%m/%d/%Y %I:%M %p'))
+
+            if date_end < now:
+                errors.append('End date cannot be in the past.')
+
+            if date_start >= date_end:
+                errors.append('Start date must come before end date.')
+
+        if all_day:
+            date_start = date_start.replace(hour=0, minute=0, second=0, microsecond=0)
+
         if errors:
             try:
                 event = RecurringEvent.objects.get(id=event_id)
@@ -330,23 +367,6 @@ class EventManager(models.Manager):
                     event.id,
                 ],
             })
-
-        # Datetime parsing
-        def add_leading_zero_hour(date_str):
-            if len(date_str) == 18:
-                return date_str[:11] + '0' + date_str[-7:]
-            else:
-                return date_str
-
-        add_leading_zero_hour(date_start_str)
-        date_start = TZ.localize(datetime.strptime(date_start_str, '%m/%d/%Y %I:%M %p'))
-
-        if date_end_str:
-            add_leading_zero_hour(date_end_str)
-            date_end = TZ.localize(datetime.strptime(date_end_str, '%m/%d/%Y %I:%M %p'))
-
-        if all_day:
-            date_start = date_start.replace(hour=0, minute=0, second=0, microsecond=0)
 
         # Find event(s) and update
         if update == 'multiple-events':
