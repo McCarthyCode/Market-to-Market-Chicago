@@ -1,4 +1,5 @@
 {% for location in by_location.locations %}
+{% if location.event_tree|length > 0 %}
 <div class="card">
   <a href="{% url 'locations:location' category=location.category location_name=location.location.slug location_id=location.location.id %}"><h3 class="h3">{{ location.location.name }}</h3></a>
   {% for day in location.event_tree %}
@@ -16,4 +17,5 @@
   </ul>
   {% endfor %}
 </div>
+{% endif %}
 {% endfor %}

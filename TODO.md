@@ -16,7 +16,6 @@
   - All events page (read event)
     - Prevent scroll to top on tab selection
     - Fix bug where tapping a link scrolls to top and doesn't follow link
-    - Don't show locations without events
   - Update event
     - Add validation for date_start vs. date_end
     - Don't allow dates in the past
