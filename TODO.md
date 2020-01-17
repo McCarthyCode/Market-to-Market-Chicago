@@ -11,10 +11,6 @@
   - Infinite scrolling
 - Images
   - Image model
-    - Fields
-      - Image
-        - Resize on input
-      - Foreign key to album (not nullable)
     - CRUD
       - Create (add to existing album)
         - front end
@@ -135,3 +131,4 @@
       - Add paginiation
         - Front end (see more link)
         - Back end
+- Change mtm.settings to django.conf.settings

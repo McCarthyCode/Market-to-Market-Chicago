@@ -133,15 +133,24 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 # Name for footers
 NAME = 'Market to Market Chicago'
+
 
 # PyTZ time zone
 TZ = pytz.timezone(TIME_ZONE)
 
+
 # Email regular expression
 EMAIL_REGEX = re.compile(
     r'^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$')
+
 
 # Google Maps API key
 API_KEY_FILE = '%s/auth/api_key.txt' % BASE_DIR
