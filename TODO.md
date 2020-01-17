@@ -2,58 +2,61 @@
 
 ## High Priorities
 
-- Home page
-  - News Feed
+- Home page (news feed)
+  - NewsItems
     - Articles
     - Locations
     - Events
     - Albums
   - Infinite scrolling
-- Events
-  - All events page (read event)
-    - Prevent scroll to top on tab selection
-    - Fix bug where tapping a link scrolls to top and doesn't follow link
-  - Delete event
-    - Delete info along with RecurringEvent
-  - Weekly updates (commands/crontab)
-    - Delete past events
-    - Create future events
-    - Add fields to RecurringEvent model
-      - Weekly list
-- Locations
-  - Individual category page
-    - Locations
-    - Articles
-  - Individual location page
-    - Events
-      - Make pretty
-        - Add no wrap
-        - Add visual month and dates
-      - Weekly view
-        - View only first event per weekday
-      - Add paginiation
-        - Front end (see more link)
-        - Back end
-    - Delete location front end
-    - Delete location back end
-- People to Know
+- Images
+  - Image model
+    - Fields
+      - Image
+        - Resize on input
+      - Foreign key to album (not nullable)
+    - CRUD
+      - Create (add to existing album)
+        - front end
+        - back end
+      - Read (single image view)
+      - Update
+        - front end
+        - back end
+      - Delete
+        - front end
+        - back end
+  - Album model
+    - Fields
+      - Title
+      - Created by
+    - CRUD
+      - Create (new album)
+        - front end
+        - back end
+      - Read (album view)
+      - Update
+        - front end
+        - back end
+      - Delete
+        - front end
+        - back end
+  - Gallery view
 - Articles
   - Title
   - Author
   - Date
   - Body
   - Images
-- Images
-  - Resize on input
-  - Image model
-  - Album model
-    - One album to many images
-  - Gallery view
+- Locations
+  - Individual category page
+    - Locations by neighborhood
+- People to Know
 - Ads
   - Leaderboard (top)
   - 3 Leaderboard/mobile leaderboard (between news items)
-  - Medium rectangle (sidebar)
-  - Skyscraper (sidebar)
+  - Medium rectangle (left sidebar)
+  - Skyscraper (right sidebar)
 
 ## Medium Priorities
 
@@ -110,3 +113,25 @@
   - Users
   - Locations
   - Events
+- Events
+  - All events page (read event)
+    - Prevent scroll to top on tab selection
+    - Fix bug where tapping a link scrolls to top and doesn't follow link
+  - Delete event
+    - Delete info along with RecurringEvent
+  - Weekly updates (commands/crontab)
+    - Delete past events
+    - Create future events
+    - Add fields to RecurringEvent model
+      - Weekly list
+- Locations
+  - Individual location page
+    - Events
+      - Make pretty
+        - Add no wrap
+        - Add visual month and dates
+      - Weekly view
+        - View only first event per weekday
+      - Add paginiation
+        - Front end (see more link)
+        - Back end
