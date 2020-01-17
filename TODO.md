@@ -87,6 +87,9 @@
         - Alphabetical
         - By neighborhood
 - Drink specials
+- Consolidate duplicate entries
+  - Neighborhood
+  - Location
 
 ## Low Priorities
 
