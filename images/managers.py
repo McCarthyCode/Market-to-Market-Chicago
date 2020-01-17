@@ -1,7 +1,9 @@
 from django.db import models
 
 class AlbumManager(models.Manager):
-    pass
+    def create_album(self):
+        pass
 
 class ImageManager(models.Manager):
-    pass
+    def create_image(self):
+        pass

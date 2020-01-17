@@ -1,0 +1,4 @@
+<form id="createAlbumForm" action="{% url 'images:create' %}" method="POST">
+  {% csrf_token %}
+  <input class="btn btn-primary form-control" type="submit" value="Submit">
+</form>
