@@ -12,3 +12,5 @@ events/__pycache__
 events/migrations/__pycache__
 locations/__pycache__
 locations/migrations/__pycache__
+images/__pycache__
+images/migrations/__pycache__

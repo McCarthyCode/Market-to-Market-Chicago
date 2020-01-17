@@ -21,5 +21,6 @@ urlpatterns = [
     path('dashboard/', include(('users.urls', 'users'), namespace='users')),
     path('', include(('locations.urls', 'locations'), namespace='locations')),
     path('', include(('events.urls', 'events'), namespace='events')),
+    path('images/', include(('images.urls', 'images'), namespace='images')),
     path('admin/', admin.site.urls),
 ]
