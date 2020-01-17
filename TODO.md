@@ -28,7 +28,6 @@
       - Created by
     - CRUD
       - Create (new album)
-        - front end
         - back end
       - Read (album view)
       - Update

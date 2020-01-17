@@ -3,7 +3,7 @@ from home.models import TimestampedModel
 from .managers import AlbumManager, ImageManager
 
 class Album(TimestampedModel):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=255)
     objects = AlbumManager()
 
 class Image(TimestampedModel):

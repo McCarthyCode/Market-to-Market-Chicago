@@ -328,6 +328,12 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   display: none;
 }
 
+input[type=file] {
+  width: 100%;
+  height: 38px;
+  color: #ffffff;
+}
+
 html, body {
   height: 100%;
 }
@@ -374,7 +380,7 @@ h3.h3 {
 }
 
 #content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password],
-#content .container form input[type=submit], #content .container form textarea, #content .container form select, #content .container form label {
+#content .container form input[type=submit], #content .container form input[type=file], #content .container form textarea, #content .container form select, #content .container form label {
   margin-bottom: 0.5rem;
 }
 #content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password],
