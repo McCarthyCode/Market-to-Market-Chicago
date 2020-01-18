@@ -29,6 +29,7 @@
     - CRUD
       - Create (new album)
         - back end
+          - Resize images on input
       - Read (album view)
       - Update
         - front end
