@@ -1,0 +1,10 @@
+{% extends 'images/base.html' %}{% load static %}{% block content %}
+<h1 class="h1 text-center">{{ album.title }}</h1>
+<div id="album">
+{% for image in images %}
+  <a data-fancybox="gallery" href="{{ image.url }}">
+    <img src="{{ image.url }}">
+  </a>
+{% endfor %}
+</div>
+{% endblock %}

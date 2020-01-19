@@ -32,6 +32,28 @@ class AlbumManager(models.Manager):
         len_images = len(images)
         return (True, 'You have successfully uploaded %d image%s to the album \'%s\'.' % (len_images, '' if len_images == 1 else 's', title))
 
+    def album(self, album_title, album_id):
+        from .models import Album, Image
+
+        try:
+            album = Album.objects.get(id=album_id)
+        except Album.DoesNotExist:
+            return (False, {
+                'status': 'invalid ID',
+                'error': 'The specified album could not be found.',
+            })
+
+        if album_title != album.slug:
+            return (False, {
+                'status': 'invalid slug',
+                'args': [album.slug, album_id],
+            })
+
+        return (True, {
+            'album': album,
+            'images': Image.objects.filter(album__id=album_id),
+        })
+
 
 class ImageManager(models.Manager):
     def create_image(self, **kwargs):

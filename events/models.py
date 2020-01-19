@@ -6,9 +6,9 @@ from .managers import EventManager, RecurringEventManager, RepeatInfoManager, We
 from mtm.settings import TZ
 
 class Event(TimestampedModel):
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(default='', max_length=100, null=True, blank=True)
-    description = models.TextField(max_length=1000, null=True, blank=True)
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(default='', max_length=255, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     all_day = models.BooleanField(default=False)
     date_start = models.DateTimeField()
     date_end = models.DateTimeField(null=True, blank=True)

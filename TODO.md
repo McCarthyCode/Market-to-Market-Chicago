@@ -27,9 +27,6 @@
       - Title
       - Created by
     - CRUD
-      - Create (new album)
-        - back end
-          - Resize images on input
       - Read (album view)
       - Update
         - front end
@@ -134,4 +131,8 @@
       - Add paginiation
         - Front end (see more link)
         - Back end
+- Images
+  - Image model
+    - md5 hash filename
+    - Resize images on input
 - Change mtm.settings to django.conf.settings
