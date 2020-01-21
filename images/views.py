@@ -21,7 +21,7 @@ def create(request):
         for error in response:
             messages.error(request, error)
     else:
-        messages.success(request, response)
+        messages.success(request, response, extra_tags='safe')
 
     return redirect('users:index')
 

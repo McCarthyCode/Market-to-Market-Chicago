@@ -1,19 +1,19 @@
 {% if messages %}
 {% for message in messages %}
-{% if message.tags == 'error' %}
+{% if 'error' in message.tags %}
 <div class="alert alert-danger" role="alert">
   <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
-  <p>{{ message }}</p>
+  <p>{% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</p>
 </div>
-{% elif message.tags == 'success' %}
+{% elif 'success' in message.tags  %}
 <div class="alert alert-success" role="alert">
   <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
-  <p>{{ message }}</p>
+  <p>{% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</p>
 </div>
-{% elif message.tags == 'info' %}
+{% elif 'info' in message.tags %}
 <div class="alert alert-info" role="alert">
   <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
-  <p>{{ message }}</p>
+  <p>{% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</p>
 </div>
 {% endif %}
 {% endfor %}

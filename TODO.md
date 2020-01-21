@@ -27,7 +27,6 @@
       - Title
       - Created by
     - CRUD
-      - Read (album view)
       - Update
         - front end
         - back end

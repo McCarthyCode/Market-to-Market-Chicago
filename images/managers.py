@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 
 class AlbumManager(models.Manager):
     def create_album(self, request):
@@ -30,7 +31,13 @@ class AlbumManager(models.Manager):
 
         # Return success
         len_images = len(images)
-        return (True, 'You have successfully uploaded %d image%s to the album \'%s\'.' % (len_images, '' if len_images == 1 else 's', title))
+        return (True,
+            'You have successfully uploaded %d image%s to the album <a href="%s">%s</a>.' %
+            (len_images,
+            '' if len_images == 1 else 's',
+            reverse('images:album', args=[album.slug, album.id]),
+            title)
+        )
 
     def album(self, album_title, album_id):
         from .models import Album, Image
@@ -48,6 +55,28 @@ class AlbumManager(models.Manager):
                 'status': 'invalid slug',
                 'args': [album.slug, album_id],
             })
+
+        # left_column = center_column = right_column = []
+
+        # def left(image):
+        #     left_column.append(image)
+
+        # def center(image):
+        #     center_column.append(image)
+
+        # def right(image):
+        #     right_column.append(image)
+
+        # actions = {
+        #     0: left,
+        #     1: center,
+        #     2: right,
+        # }
+
+        # i = 0
+        # for image in Image.objects.filter(album__id=album_id):
+        #     actions[i % 3](image)
+        #     i += 1
 
         return (True, {
             'album': album,

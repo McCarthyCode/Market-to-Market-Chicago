@@ -1,0 +1,22 @@
+#content .container
+  margin: 0
+  padding: 0
+
+#album
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+  gap: 1px
+
+#album > a
+  align-self: center
+
+#album > a > img
+  width: 100%
+
+@media screen and (min-width: $breakpoint-md)
+  #content .container
+    margin: 0 auto
+    padding: .5rem 0
+
+  #album
+    gap: .25rem

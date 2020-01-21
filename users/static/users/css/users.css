@@ -161,18 +161,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   padding: 2rem 1rem;
   max-width: 720px;
 }
-#content .container .alert p {
-  margin: 0;
-}
-#content .container .alert-danger p {
-  color: #721c24;
-}
-#content .container .alert-success p {
-  color: #155724;
-}
-#content .container .alert-info p {
-  color: #0c5460;
-}
 #content .container .h1 {
   margin-bottom: 1rem;
 }
@@ -198,6 +186,22 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 #content .container.logged-out {
   max-width: 320px;
+}
+
+#content .container .alert p {
+  margin: 0;
+}
+#content .container .alert a {
+  text-decoration: underline;
+}
+#content .container .alert-danger p, #content .container .alert-danger a {
+  color: #721c24;
+}
+#content .container .alert-success p, #content .container .alert-success a {
+  color: #155724;
+}
+#content .container .alert-info p, #content .container .alert-info a {
+  color: #0c5460;
 }
 
 #createEventForm {
