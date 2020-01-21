@@ -1,5 +1,6 @@
 from django.db import models
 from django.shortcuts import reverse
+from django.contrib.auth.models import User
 
 class AlbumManager(models.Manager):
     def create_album(self, request):
@@ -8,6 +9,7 @@ class AlbumManager(models.Manager):
         # Data collection
         title = request.POST.get('title', '')
         images = request.FILES.getlist('images', [])
+        user_id = int(request.POST.get('user-id', '0'))
 
         # Validations
         errors = []
@@ -18,16 +20,24 @@ class AlbumManager(models.Manager):
         if not images:
             errors.append('Please upload at least one image.')
 
+        if not user_id:
+            errors.append('There was an error retrieving the user\'s ID.')
+
+        try:
+            user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            errors.append('A user with the specified ID could not be found.')
+
         # Return failure
         if errors:
             return (False, errors)
 
         # Album creation
-        album = self.create(title=title)
+        album = self.create(title=title, created_by=user)
 
         # Image creation
         for image in images:
-            Image.objects.create_image(image=image, album=album)
+            Image.objects.create(image=image, album=album)
 
         # Return success
         len_images = len(images)
@@ -85,14 +95,15 @@ class AlbumManager(models.Manager):
 
 
 class ImageManager(models.Manager):
-    def create_image(self, **kwargs):
-        # Validations (raise error)
-        if 'image' not in kwargs and 'album' not in kwargs:
-            raise TypeError("create_image() missing 2 required keyword arguments 'image' and 'album'")
-        elif 'image' not in kwargs:
-            raise TypeError("create_image() missing 1 required keyword argument 'image'")
-        elif 'album' not in kwargs:
-            raise TypeError("create_image() missing 1 required keyword argument 'album'")
+    pass
+    # def create_image(self, **kwargs):
+    #     # Validations (raise error)
+    #     if 'image' not in kwargs and 'album' not in kwargs:
+    #         raise TypeError("create_image() missing 2 required keyword arguments 'image' and 'album'")
+    #     elif 'image' not in kwargs:
+    #         raise TypeError("create_image() missing 1 required keyword argument 'image'")
+    #     elif 'album' not in kwargs:
+    #         raise TypeError("create_image() missing 1 required keyword argument 'album'")
 
-        # Return image object
-        return self.create(image=kwargs['image'], album=kwargs['album'])
+    #     # Return image object
+    #     return self.create(image=kwargs['image'], album=kwargs['album'])
