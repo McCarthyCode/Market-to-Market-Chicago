@@ -3,8 +3,8 @@
 {% if user.is_superuser or user.id == album.created_by.id %}
 <div id="controls">
   <button id="updateTitleButton" class="btn btn-secondary">Update Title</button>
-  <button id="addImagesButton" class="btn btn-secondary">Add Image(s)</button>
-  <button id="deleteImagesButton" class="btn btn-secondary">Delete Image(s)</button>
+  <button id="addImagesButton" class="btn btn-secondary">Add Images</button>
+  <button id="deleteImagesButton" class="btn btn-secondary">Delete Images</button>
 </div>
 <div id="updateTitle" class="card">
   <h3 class="h3">Update Album Title</h3>
@@ -22,7 +22,7 @@
 {% endif %}
 <div id="album">
 {% for image in images %}
-  <a data-fancybox="gallery" href="{{ image.image.url }}">
+  <a data-fancybox="gallery" href="{{ image.image.url }}" data-id="{{ image.id }}">
     <img src="{{ image.image.url }}">
   </a>
 {% endfor %}

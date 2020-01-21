@@ -339,6 +339,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1px;
 }
+#album a.active {
+  border: 8px solid #007bff;
+}
 
 #album > a {
   align-self: center;
@@ -355,7 +358,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   }
 
   #album {
-    gap: 0.25rem;
+    gap: 0.5rem;
   }
 }
 @media screen and (min-width: 1634px) {

@@ -13,7 +13,10 @@ $(document).ready(() => {
   $('#id_title').val($('.h1').text());
 
   // Show/hide forms on button click
+  let deleteFormActive = false;
   $updateTitleButton.click(() => {
+    deleteFormActive = false;
+
     if ($updateTitle.is(':visible')) {
       $updateTitle.slideUp(500);
     } else if ($addImages.is(':visible')) {
@@ -25,6 +28,8 @@ $(document).ready(() => {
     }
   });
   $addImagesButton.click(() => {
+    deleteFormActive = false;
+
     if ($updateTitle.is(':visible')) {
       $updateTitle.slideUp(500, () => $addImages.slideDown(500));
     } else if ($addImages.is(':visible')) {
@@ -36,6 +41,8 @@ $(document).ready(() => {
     }
   });
   $deleteImagesButton.click(() => {
+    deleteFormActive = true;
+
     if ($updateTitle.is(':visible')) {
       $updateTitle.slideUp(500, () => $deleteImages.slideDown(500));
     } else if ($addImages.is(':visible')) {
@@ -44,6 +51,20 @@ $(document).ready(() => {
       $deleteImages.slideUp(500);
     } else {
       $deleteImages.slideDown(500);
+    }
+  });
+
+  // Toggle checkboxes on image click when delete form is active
+  $('#album a').click(function (event) {
+    if (deleteFormActive) {
+      event.preventDefault();
+
+      let $element = $(this);
+      let id = $element.data('id');
+      let $checkbox = $(`#deleteImagesForm input[name="images"][value="${id}"]`);
+
+      $element.toggleClass('active');
+      $checkbox.prop('checked', !$checkbox.prop('checked'));
     }
   });
 });
