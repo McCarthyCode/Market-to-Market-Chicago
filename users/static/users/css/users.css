@@ -188,10 +188,40 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   max-width: 320px;
 }
 
+#content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password], #content .container form input[type=submit], #content .container form input[type=file], #content .container form textarea, #content .container form select, #content .container form label {
+  margin-bottom: 0.5rem;
+}
+#content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password],
+#content .container form textarea, #content .container form select, #content .container form label {
+  color: #ffffff;
+  border-color: #818181;
+  background-color: #333333;
+}
+#content .container form input[type=file] {
+  width: 100%;
+  height: 38px;
+  color: #ffffff;
+}
+#content .container form .input-group-append {
+  height: 38px;
+  z-index: 3;
+}
+#content .container form .input-group-append:not(.default-cursor) {
+  cursor: pointer;
+}
+#content .container form .input-group-append:not(.default-cursor) .input-group-text {
+  color: #ffffff;
+  border-color: #818181;
+  background-color: #818181;
+}
+#content .container form .input-group-append:not(.default-cursor) .input-group-text i {
+  min-width: 14px;
+}
+
 #content .container .alert p {
   margin: 0;
 }
-#content .container .alert a {
+#content .container .alert a:not(.close) {
   text-decoration: underline;
 }
 #content .container .alert-danger p, #content .container .alert-danger a {
@@ -204,9 +234,10 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #0c5460;
 }
 
-#createEventForm {
+#createEventForm, #createAlbumForm {
   display: none;
 }
+
 #createEventForm input[name=address1] {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -328,16 +359,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     border-bottom-left-radius: 0;
   }
 }
-#createAlbumForm {
-  display: none;
-}
-
-input[type=file] {
-  width: 100%;
-  height: 38px;
-  color: #ffffff;
-}
-
 html, body {
   height: 100%;
 }
@@ -381,35 +402,6 @@ h3.h3 {
 
 .alert .close {
   padding-left: 0.5rem;
-}
-
-#content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password],
-#content .container form input[type=submit], #content .container form input[type=file], #content .container form textarea, #content .container form select, #content .container form label {
-  margin-bottom: 0.5rem;
-}
-#content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password],
-#content .container form textarea, #content .container form select, #content .container form label {
-  color: #ffffff;
-  border-color: #818181;
-  background-color: #333333;
-}
-#content .container form .input-group-append {
-  height: 38px;
-  z-index: 3;
-}
-#content .container form .input-group-append:not(.default-cursor) {
-  cursor: pointer;
-}
-#content .container form .input-group-append:not(.default-cursor) .input-group-text {
-  color: #ffffff;
-  border-color: #818181;
-  background-color: #818181;
-}
-#content .container form .input-group-append:not(.default-cursor) .input-group-text i {
-  min-width: 14px;
-}
-#content .container form .container.logged-out {
-  max-width: 320px;
 }
 
 /*# sourceMappingURL=users.css.map */

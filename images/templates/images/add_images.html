@@ -1,0 +1,8 @@
+<form id="addImagesForm" action="#" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="hidden" name="album-id" value="{{ album.id }}">
+  {% for form in add_images %}
+    {{ form }}
+  {% endfor %}
+  <input class="btn btn-primary form-control" type="submit" value="Add Images">
+</form>

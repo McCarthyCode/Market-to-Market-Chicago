@@ -267,9 +267,71 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     border-right: 1px solid #818181;
   }
 }
+#content .container .alert p {
+  margin: 0;
+}
+#content .container .alert a:not(.close) {
+  text-decoration: underline;
+}
+#content .container .alert-danger p, #content .container .alert-danger a {
+  color: #721c24;
+}
+#content .container .alert-success p, #content .container .alert-success a {
+  color: #155724;
+}
+#content .container .alert-info p, #content .container .alert-info a {
+  color: #0c5460;
+}
+
+#content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password], #content .container form input[type=submit], #content .container form input[type=file], #content .container form textarea, #content .container form select, #content .container form label {
+  margin-bottom: 0.5rem;
+}
+#content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password],
+#content .container form textarea, #content .container form select, #content .container form label {
+  color: #ffffff;
+  border-color: #818181;
+  background-color: #333333;
+}
+#content .container form input[type=file] {
+  width: 100%;
+  height: 38px;
+  color: #ffffff;
+}
+#content .container form .input-group-append {
+  height: 38px;
+  z-index: 3;
+}
+#content .container form .input-group-append:not(.default-cursor) {
+  cursor: pointer;
+}
+#content .container form .input-group-append:not(.default-cursor) .input-group-text {
+  color: #ffffff;
+  border-color: #818181;
+  background-color: #818181;
+}
+#content .container form .input-group-append:not(.default-cursor) .input-group-text i {
+  min-width: 14px;
+}
+
 #content .container {
   margin: 0;
   padding: 0;
+}
+
+#controls {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+#controls button {
+  margin-bottom: 0.25rem;
+}
+
+#updateTitle, #addImages, #deleteImages {
+  display: none;
+}
+
+#deleteImagesForm input[type=checkbox] {
+  display: none;
 }
 
 #album {
@@ -286,7 +348,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   width: 100%;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 576px) {
   #content .container {
     margin: 0 auto;
     padding: 0.5rem 0;
@@ -296,22 +358,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     gap: 0.25rem;
   }
 }
-#content .container .alert p {
-  margin: 0;
+@media screen and (min-width: 1634px) {
+  #album {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
 }
-#content .container .alert a {
-  text-decoration: underline;
-}
-#content .container .alert-danger p, #content .container .alert-danger a {
-  color: #721c24;
-}
-#content .container .alert-success p, #content .container .alert-success a {
-  color: #155724;
-}
-#content .container .alert-info p, #content .container .alert-info a {
-  color: #0c5460;
-}
-
 html, body {
   max-height: 100%;
 }
@@ -406,6 +457,17 @@ h3.h3 {
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+#content .container .card {
+  background-color: #444444;
+  border: 1px solid #818181;
+  padding: 1rem 1rem 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+#content .container .card p {
+  color: #ffffff;
+  margin-bottom: 0.5rem;
 }
 
 @media screen and (min-width: 768px) {

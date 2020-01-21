@@ -1,5 +1,25 @@
-{% extends 'images/base.html' %}{% load static %}{% block content %}
+{% extends 'images/base.html' %}{% block content %}
 <h1 class="h1 text-center">{{ album.title }}</h1>
+{% if user.is_superuser or user.id == album.created_by.id %}
+<div id="controls">
+  <button id="updateTitleButton" class="btn btn-secondary">Update Title</button>
+  <button id="addImagesButton" class="btn btn-secondary">Add Image(s)</button>
+  <button id="deleteImagesButton" class="btn btn-secondary">Delete Image(s)</button>
+</div>
+<div id="updateTitle" class="card">
+  <h3 class="h3">Update Album Title</h3>
+  {% include 'images/update_album_title.html' %}
+</div>
+<div id="addImages" class="card">
+  <h3 class="h3">Add Image(s) to Album</h3>
+  {% include 'images/add_images.html' %}
+</div>
+<div id="deleteImages" class="card">
+  <h3 class="h3">Delete Image(s) from Album</h3>
+  <p>Click the images to delete, then click the "Delete Images" button. This cannot be undone!</p>
+  {% include 'images/delete_images.html' %}
+</div>
+{% endif %}
 <div id="album">
 {% for image in images %}
   <a data-fancybox="gallery" href="{{ image.image.url }}">

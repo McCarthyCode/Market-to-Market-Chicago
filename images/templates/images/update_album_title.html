@@ -1,0 +1,6 @@
+<form id="updateAlbumTitleForm" action="#" method="POST">
+  {% csrf_token %}
+  <input type="hidden" name="album-id" value="{{ album.id }}">
+  {{ update_album_title }}
+  <input class="btn btn-primary form-control" type="submit" value="Update">
+</form>

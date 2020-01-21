@@ -7,8 +7,10 @@
 @import '_sidebar'
 @import '_footer'
 
-@import '_album'
 @import '_messages'
+@import '_forms'
+
+@import '_album'
 
 html, body
   max-height: 100%
@@ -94,6 +96,16 @@ h3.h3
     top: 50%
     left: 50%
     @include transform(translate(-50%, -50%))
+
+#content .container .card
+  background-color: $light-gray
+  border: 1px solid $lighter-gray
+  padding: 1rem 1rem .5rem 1rem
+  margin-bottom: 1rem
+
+  p
+    color: $white
+    margin-bottom: .5rem
 
 @media screen and (min-width: $breakpoint-md)
   #grid

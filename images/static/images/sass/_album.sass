@@ -2,6 +2,19 @@
   margin: 0
   padding: 0
 
+#controls
+  text-align: center
+  margin-bottom: .75rem
+
+  button
+    margin-bottom: .25rem
+
+#updateTitle, #addImages, #deleteImages
+  display: none
+
+#deleteImagesForm input[type="checkbox"]
+  display: none
+
 #album
   display: grid
   grid-template-columns: 1fr 1fr 1fr
@@ -13,10 +26,14 @@
 #album > a > img
   width: 100%
 
-@media screen and (min-width: $breakpoint-md)
+@media screen and (min-width: $breakpoint-sm)
   #content .container
     margin: 0 auto
     padding: .5rem 0
 
   #album
     gap: .25rem
+
+@media screen and (min-width: 1634px)
+  #album
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr

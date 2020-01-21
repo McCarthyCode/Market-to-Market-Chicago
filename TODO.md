@@ -23,9 +23,6 @@
         - front end
         - back end
   - Album model
-    - Fields
-      - Title
-      - Created by
     - CRUD
       - Update
         - front end
@@ -55,6 +52,8 @@
 - Dashboard
   - Create event(s)
     - Select checkbox on append click
+  - Create album
+    - Only accept images on input
 - Custom error pages
   - 404
   - 500
