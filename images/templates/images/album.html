@@ -5,6 +5,7 @@
   <button id="updateTitleButton" class="btn btn-secondary">Update Title</button>
   <button id="addImagesButton" class="btn btn-secondary">Add Images</button>
   <button id="deleteImagesButton" class="btn btn-secondary">Delete Images</button>
+  <button id="deleteAlbumButton" class="btn btn-secondary" data-toggle="modal" data-target="#deleteAlbumModal">Delete Album</button>
 </div>
 <div id="updateTitle" class="card">
   <h3 class="h3">Update Album Title</h3>
@@ -27,4 +28,5 @@
   </a>
 {% endfor %}
 </div>
+{% include 'images/delete_album_modal.html' %}
 {% endblock %}

@@ -13,22 +13,17 @@
   - Image model
     - CRUD
       - Create (add to existing album)
-        - front end
-        - back end
-      - Read (single image view)
-      - Update
-        - front end
         - back end
       - Delete
-        - front end
         - back end
   - Album model
     - CRUD
       - Update
-        - front end
         - back end
+          - Update title
+          - Add images
+          - Delete images
       - Delete
-        - front end
         - back end
   - Gallery view
 - Articles
@@ -85,6 +80,7 @@
 - Consolidate duplicate entries
   - Neighborhood
   - Location
+- Scroll to top button
 
 ## Low Priorities
 
