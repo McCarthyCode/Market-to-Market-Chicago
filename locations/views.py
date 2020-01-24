@@ -1,14 +1,13 @@
 from datetime import datetime
 
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.contrib import messages
 from django.http import (
     HttpResponseBadRequest,
     HttpResponseNotFound,
     HttpResponseRedirect,
 )
-from django.contrib import messages
-from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from mtm.settings import TZ, NAME, API_KEY
 from .models import Neighborhood, Location, CATEGORIES
@@ -61,8 +60,7 @@ def location(request, category, location_name, location_id):
 
     return render(request, 'locations/location.html', {
         **response,
-        'user': User.objects.get(pk=request.session['id']) \
-            if 'id' in request.session else None,
+        'user': request.user,
         'API_KEY': API_KEY,
         'name': NAME,
         'year': datetime.now(TZ).year,

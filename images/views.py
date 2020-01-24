@@ -1,12 +1,12 @@
 from datetime import datetime
 
-from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
+from django.core.exceptions import ValidationError, PermissionDenied
 from django.http import (
     HttpResponseBadRequest,
     HttpResponseRedirect,
 )
-from django.contrib import messages
-from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, reverse
 
 from .models import Album, Image
 from .forms import UpdateAlbumTitleForm, AddImagesForm
@@ -56,24 +56,29 @@ def album(request, album_title, album_id):
         **response,
         'update_album_title': update_album_title,
         'add_images': add_images,
-        'user': User.objects.get(pk=request.session['id']) \
-            if 'id' in request.session else None,
+        'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
 
-# def update_album_title(request):
-#     if request.method == 'POST':
-#         form = UpdateAlbumTitleForm(request.POST)
+def update_album_title(request, album_title, album_id):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
 
-#         if form.is_valid():
-#             # process the data in form.cleaned_data as required
-#             # ...
-#             # redirect to a new URL:
-#             return HttpResponseRedirect('/thanks/')
+    try:
+        response = Album.objects.update_title(request, album_id)
+    except ValidationError as errors:
+        for error in errors:
+            if error != 'The specified album could not be found.':
+                messages.error(request, error)
 
-#     # if a GET (or any other method) we'll create a blank form
-#     else:
-#         form = NameForm()
+        return HttpResponseRedirect(
+            reverse('images:album', args=[album_title, album_id]))
+    except PermissionDenied:
+       return HttpResponseRedirect(
+            reverse('images:album', args=[album_title, album_id]))
 
-#     return render(request, 'name.html', {'form': form})
+    messages.success(request, response['success'])
+
+    return HttpResponseRedirect(
+        reverse('images:album', args=response['args']))

@@ -1,7 +1,7 @@
 {% extends 'users/base.html' %}
 {% load static %}
 {% block content %}
-{% if user == None %}
+{% if not user.is_authenticated %}
 <div class="container logged-out">
   {% include 'home/messages.html' %}
   <h1 class="h1 text-center">Login</h1>

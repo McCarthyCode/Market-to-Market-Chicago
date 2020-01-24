@@ -20,7 +20,6 @@
     - CRUD
       - Update
         - back end
-          - Update title
           - Add images
           - Delete images
       - Delete

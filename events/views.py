@@ -1,16 +1,15 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.contrib import messages
 from django.http import (
     HttpResponseBadRequest,
     HttpResponseNotFound,
     HttpResponseRedirect,
     JsonResponse,
 )
-from django.contrib import messages
-from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from mtm.settings import TZ, NAME, API_KEY
 from .models import Event
@@ -22,8 +21,7 @@ def index(request):
     current_month = datetime.now(TZ).replace(day=1, hour=0, minute=0, second=0, microsecond=0)
 
     return render(request, 'events/index.html', {
-        'user': User.objects.get(pk=request.session['id']) \
-            if 'id' in request.session else None,
+        'user': request.user,
         'calendar': Event.objects.calendar(request),
         'by_date': Event.objects.by_date(request),
         'by_location': Event.objects.by_location(request),
@@ -56,8 +54,7 @@ def event(request, category, location_name, event_name, event_id):
 
     return render(request, 'events/event.html', {
         **response,
-        'user': User.objects.get(pk=request.session['id']) \
-            if 'id' in request.session else None,
+        'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
         'API_KEY': API_KEY,

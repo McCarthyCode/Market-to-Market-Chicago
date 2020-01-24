@@ -13,7 +13,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#">About Us/Contact</a>
       </li>
-      {% if user != None %}
+      {% if user.is_authenticated %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'users:index' %}">Dashboard</a>
       </li>

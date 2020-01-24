@@ -1,6 +1,9 @@
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError, PermissionDenied
 from django.db import models
 from django.shortcuts import reverse
-from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
 class AlbumManager(models.Manager):
     def create_album(self, request):
@@ -66,44 +69,64 @@ class AlbumManager(models.Manager):
                 'args': [album.slug, album_id],
             })
 
-        # left_column = center_column = right_column = []
-
-        # def left(image):
-        #     left_column.append(image)
-
-        # def center(image):
-        #     center_column.append(image)
-
-        # def right(image):
-        #     right_column.append(image)
-
-        # actions = {
-        #     0: left,
-        #     1: center,
-        #     2: right,
-        # }
-
-        # i = 0
-        # for image in Image.objects.filter(album__id=album_id):
-        #     actions[i % 3](image)
-        #     i += 1
-
         return (True, {
             'album': album,
             'images': Image.objects.filter(album__id=album_id),
         })
 
+    def update_title(self, request, album_id):
+        from .forms import UpdateAlbumTitleForm
+        from .models import Album
+
+        form = UpdateAlbumTitleForm(request.POST)
+
+        if not request.user.is_authenticated:
+            messages.error(request, 'You must be logged in to update an album.')
+
+            raise PermissionDenied()
+
+        if form.is_valid():
+            # Data collection
+            title = form.cleaned_data['title']
+            album_id = int(album_id)
+
+            # Validations
+            errors = []
+
+            if album_id < 1:
+                raise ValidationError(_('Invalid album ID.'), code='invalid')
+
+            try:
+                album = Album.objects.get(id=album_id)
+            except Album.DoesNotExist:
+                raise ValidationError(_('The specified album could not be found.'), code='not found')
+
+            if album.title == title:
+                raise ValidationError(_('Please choose a different title than the existing one.'), code='titles match')
+
+            # Update album
+            old_title = album.title
+            album.title = title
+
+            # Check permissions
+            try:
+                if request.user != album.created_by and not request.user.is_superuser:
+                    messages.error(request, 'You do not have permission to edit this album.')
+
+                    raise PermissionDenied()
+            except User.DoesNotExist:
+                messages.error(request, 'You do not have permission to edit this album.')
+
+                raise PermissionDenied()
+
+            album.save()
+
+            return {
+                'success': 'The album with the name \'%s\' has successfully been changed to \'%s\'.' % (old_title, title),
+                'args': [album.slug, album_id],
+            }
+
+        raise ValidationError()
 
 class ImageManager(models.Manager):
     pass
-    # def create_image(self, **kwargs):
-    #     # Validations (raise error)
-    #     if 'image' not in kwargs and 'album' not in kwargs:
-    #         raise TypeError("create_image() missing 2 required keyword arguments 'image' and 'album'")
-    #     elif 'image' not in kwargs:
-    #         raise TypeError("create_image() missing 1 required keyword argument 'image'")
-    #     elif 'album' not in kwargs:
-    #         raise TypeError("create_image() missing 1 required keyword argument 'album'")
-
-    #     # Return image object
-    #     return self.create(image=kwargs['image'], album=kwargs['album'])
