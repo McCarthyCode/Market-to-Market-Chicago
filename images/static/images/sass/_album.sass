@@ -20,6 +20,12 @@
   grid-template-columns: 1fr 1fr 1fr
   gap: 1px
 
+  p.empty
+    grid-column-start: 1
+    grid-column-end: span 3
+    color: $lighter-gray
+    font-style: italic
+
   a.active
     border: 8px solid $blue
 
@@ -40,3 +46,6 @@
 @media screen and (min-width: 1634px)
   #album
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+
+    p.empty
+      grid-column-start: 2

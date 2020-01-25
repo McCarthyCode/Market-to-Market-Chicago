@@ -1,6 +1,5 @@
-<form id="deleteImagesForm" action="#" method="POST">
+<form id="deleteImagesForm" action="{% url 'images:remove' album.slug album.id %}" method="POST">
   {% csrf_token %}
-  <input type="hidden" name="album-id" value="{{ album.id }}">
   {% for image in images %}
   <input type="checkbox" name="images" value="{{ image.id }}">
   {% endfor %}

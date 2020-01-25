@@ -355,6 +355,12 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1px;
 }
+#album p.empty {
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  color: #818181;
+  font-style: italic;
+}
 #album a.active {
   border: 8px solid #007bff;
 }
@@ -380,6 +386,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 @media screen and (min-width: 1634px) {
   #album {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  #album p.empty {
+    grid-column-start: 2;
   }
 }
 html, body {

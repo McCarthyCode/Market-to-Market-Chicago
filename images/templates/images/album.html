@@ -5,7 +5,9 @@
 <div id="controls">
   <button id="updateTitleButton" class="btn btn-secondary">Update Title</button>
   <button id="addImagesButton" class="btn btn-secondary">Add Images</button>
+  {% if images %}
   <button id="deleteImagesButton" class="btn btn-secondary">Delete Images</button>
+  {% endif %}
   <button id="deleteAlbumButton" class="btn btn-secondary" data-toggle="modal" data-target="#deleteAlbumModal">Delete Album</button>
 </div>
 <div id="updateTitle" class="card">
@@ -18,7 +20,7 @@
 </div>
 <div id="deleteImages" class="card">
   <h3 class="h3">Delete Image(s) from Album</h3>
-  <p>Click the images to delete, then click the "Delete Images" button. This cannot be undone!</p>
+  <p>Click the images to delete, then click the "Delete Images" button. This action cannot be undone!</p>
   {% include 'images/delete_images.html' %}
 </div>
 {% endif %}
@@ -27,6 +29,12 @@
   <a data-fancybox="gallery" href="{{ image.image.url }}" data-id="{{ image.id }}">
     <img src="{{ image.image.url }}">
   </a>
+{% empty %}
+{% if user.is_superuser or user.id == album.created_by.id %}
+  <p class="text-center empty">There are currently no images in this album. You may add images by clicking the "Add Images" button above.</p>
+{% else %}
+  <p class="text-center empty">There are currently no images in this album.</p>
+{% endif %}
 {% endfor %}
 </div>
 {% include 'images/delete_album_modal.html' %}

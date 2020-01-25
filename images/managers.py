@@ -5,30 +5,9 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.db import models
 from django.shortcuts import reverse
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 
 class AlbumManager(models.Manager):
-    def upload_images(self, album, images):
-        from .models import Image
-
-        for image in images:
-            # Check MIME Content-Type before saving
-            filetype = magic.from_buffer(image.read(2048), mime=True)
-
-            def accept():
-                Image.objects.create(image=image, album=album)
-
-            actions = {
-                'image/gif': accept,
-                'image/jpeg': accept,
-                'image/png': accept,
-            }
-
-            try:
-                actions[filetype]()
-            except KeyError:
-                raise ValidationError(_('Files with the MIME Content-Type "%s" are not supported. Please only choose images with *.gif, *.jpeg, or *.png file extensions.' % filetype), code='invalid')
-
     def create_album(self, request):
         # Data collection
         title = request.POST.get('title', '')
@@ -138,6 +117,27 @@ class AlbumManager(models.Manager):
 
         raise ValidationError(_('The form data entered was not valid.'), code='invalid')
 
+    def upload_images(self, album, images):
+        from .models import Image
+
+        for image in images:
+            # Check MIME Content-Type before saving
+            filetype = magic.from_buffer(image.read(2048), mime=True)
+
+            def accept():
+                Image.objects.create(image=image, album=album)
+
+            actions = {
+                'image/gif': accept,
+                'image/jpeg': accept,
+                'image/png': accept,
+            }
+
+            try:
+                actions[filetype]()
+            except KeyError:
+                raise ValidationError(_('Files with the MIME Content-Type "%s" are not supported. Please only choose images with *.gif, *.jpeg, or *.png file extensions.' % filetype), code='invalid')
+
     def add_images(self, request, album_id):
         from .models import Album
 
@@ -178,5 +178,74 @@ class AlbumManager(models.Manager):
             'args': [album.slug, album_id],
         }
 
+    def remove_images(self, request, album_id):
+        from .models import Album, Image
+
+        if not request.user.is_authenticated:
+            messages.error(request, 'You must be logged in to update an album.')
+
+            raise PermissionDenied()
+
+        # Data collection
+        images = request.POST.getlist('images', [])
+        album_id = int(album_id)
+
+        # Validations
+        errors = []
+
+        try:
+            album = Album.objects.get(id=album_id)
+        except Album.DoesNotExist:
+            raise ValidationError(_('The specified album could not be found.'), code='not found')
+
+        # Check permissions
+        try:
+            if request.user != album.created_by and not request.user.is_superuser:
+                messages.error(request, 'You do not have permission to edit this album.')
+
+                raise PermissionDenied()
+        except User.DoesNotExist:
+            messages.error(request, 'You do not have permission to edit this album.')
+
+            raise PermissionDenied()
+
+        # Image removal
+        return Image.objects.remove_images(album, images)
+
 class ImageManager(models.Manager):
-    pass
+    def remove_images(self, album, images):
+        from .models import Image
+
+        errors = []
+        count = 0
+
+        if not images:
+            errors.append(ValidationError(_('Please select at least one image to delete.'), code='none selected'))
+        for image_id in images:
+            try:
+                image = Image.objects.get(id=image_id)
+            except Image.DoesNotExist:
+                errors.append(ValidationError(_('The image with ID %s could not be found.' % image_id), code='not found'))
+
+                continue
+
+            if image.album != album:
+                errors.append(ValidationError(_('The image with ID %s could not be deleted as it is not a part of the album "%s."' % (image_id, album.title)), code='invalid album'))
+
+                continue
+
+            image.image.delete()
+            image.delete()
+
+            count += 1
+
+        if len(errors) > 1:
+            errors = ValidationError(errors, code='invalid')
+        elif len(errors) == 1:
+            errors = errors[0]
+
+        return {
+            'success': 'You have successfully removed %d image%s.' % (count, '' if count == 1 else 's') if count else None,
+            'errors': errors,
+        }
+        
