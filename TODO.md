@@ -129,3 +129,4 @@
     - md5 hash filename
     - Resize images on input
 - Change mtm.settings to django.conf.settings
+- Change forms to Django forms

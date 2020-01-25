@@ -1,5 +1,6 @@
 django
 pillow
 python-dateutil
+python-magic
 python-slugify
 titlecase

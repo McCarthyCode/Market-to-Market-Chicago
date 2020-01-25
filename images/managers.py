@@ -1,3 +1,5 @@
+import magic
+
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError, PermissionDenied
@@ -12,45 +14,53 @@ class AlbumManager(models.Manager):
         # Data collection
         title = request.POST.get('title', '')
         images = request.FILES.getlist('images', [])
-        user_id = int(request.POST.get('user-id', '0'))
 
         # Validations
         errors = []
 
         if not title:
-            errors.append('Please enter a title.')
+            errors.append(ValidationError(_('Please enter a title.'), code='invalid'))
 
         if not images:
-            errors.append('Please upload at least one image.')
-
-        if not user_id:
-            errors.append('There was an error retrieving the user\'s ID.')
+            errors.append(ValidationError(_('Please upload at least one image.'), code='invalid'))
 
         try:
-            user = User.objects.get(id=user_id)
+            user = User.objects.get(id=request.user.id)
         except User.DoesNotExist:
-            errors.append('A user with the specified ID could not be found.')
+            errors.append(ValidationError(_('There was an error retrieving the user\'s ID.'), code='invalid'))
 
-        # Return failure
+        # Raise errors if any
         if errors:
-            return (False, errors)
+            raise ValidationError(errors, code='invalid')
 
         # Album creation
         album = self.create(title=title, created_by=user)
 
         # Image creation
         for image in images:
-            Image.objects.create(image=image, album=album)
+            # Check MIME Content-Type before saving
+            filetype = magic.from_buffer(image.read(2048), mime=True)
+
+            def accept():
+                Image.objects.create(image=image, album=album)
+
+            actions = {
+                'image/gif': accept,
+                'image/jpeg': accept,
+                'image/png': accept,
+            }
+
+            try:
+                actions[filetype]()
+            except KeyError:
+                raise ValidationError(_('Files with the MIME Content-Type \'%s\' are not supported. Please only choose images with *.gif, *.jpeg, or *.png file extensions.' % filetype), code='invalid')
 
         # Return success
         len_images = len(images)
-        return (True,
-            'You have successfully uploaded %d image%s to the album <a href="%s">%s</a>.' %
-            (len_images,
-            '' if len_images == 1 else 's',
-            reverse('images:album', args=[album.slug, album.id]),
-            title)
-        )
+        return {
+            'success': 'You have successfully uploaded %d image%s to the album "%s".' % (len_images, '' if len_images == 1 else 's', title),
+            'args': [album.slug, album.id],
+        }
 
     def album(self, album_title, album_id):
         from .models import Album, Image

@@ -2,6 +2,6 @@
   {% csrf_token %}
   <input type="hidden" name="user-id" value="{{ user.id }}">
   <input class="form-control" type="text" name="title" placeholder="Title" max_length="255" autocomplete="off" required>
-  <input type="file" name="images" multiple required>
+  <input type="file" name="images" accept="image/x-png,image/gif,image/jpeg" multiple required>
   <input class="btn btn-primary form-control" type="submit" value="Submit">
 </form>

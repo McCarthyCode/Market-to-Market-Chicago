@@ -19,6 +19,7 @@ class AddImagesForm(forms.ModelForm):
         label='',
         widget=forms.FileInput(attrs={
             'accept': 'image/x-png,image/gif,image/jpeg',
+            'multiple': '',
         }),
     )
 

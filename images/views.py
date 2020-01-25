@@ -16,15 +16,18 @@ def create(request):
     if request.method != 'POST':
         return HttpResponseBadRequest()
 
-    valid, response = Album.objects.create_album(request)
-
-    if not valid:
-        for error in response:
+    try:
+        response = Album.objects.create_album(request)
+    except ValidationError as errors:
+        for error in errors:
             messages.error(request, error)
-    else:
-        messages.success(request, response, extra_tags='safe')
 
-    return redirect('users:index')
+        return redirect('users:index')
+
+    messages.success(request, response['success'])
+
+    return HttpResponseRedirect(
+        reverse('images:album', args=response['args']))
 
 def album(request, album_title, album_id):
     if request.method != 'GET':
