@@ -12,25 +12,36 @@
 - Images
   - Image model
     - CRUD
-      - Create (add to existing album)
-        - back end
       - Delete
-        - back end
+        - Back end
   - Album model
     - CRUD
       - Update
-        - back end
-          - Add images
+        - Back end
           - Delete images
       - Delete
-        - back end
+        - Back end
   - Gallery view
 - Articles
-  - Title
-  - Author
-  - Date
-  - Body
-  - Images
+  - Fields
+    - Title
+    - Author
+    - Date
+    - Body
+    - Images
+  - CRUD
+    - Create
+      - Front end
+      - Back end
+    - Read
+      - Front end
+      - Back end
+    - Update
+      - Front end
+      - Back end
+    - Delete
+      - Front end
+      - Back end
 - Locations
   - Individual category page
     - Locations by neighborhood

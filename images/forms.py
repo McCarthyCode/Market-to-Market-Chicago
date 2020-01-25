@@ -15,7 +15,7 @@ class UpdateAlbumTitleForm(forms.ModelForm):
         fields = ['title']
 
 class AddImagesForm(forms.ModelForm):
-    image = forms.ImageField(
+    images = forms.ImageField(
         label='',
         widget=forms.FileInput(attrs={
             'accept': 'image/x-png,image/gif,image/jpeg',
@@ -25,4 +25,4 @@ class AddImagesForm(forms.ModelForm):
 
     class Meta:
         model = Image
-        fields = ['image']
+        fields = ['images']

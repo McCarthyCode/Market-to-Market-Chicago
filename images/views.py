@@ -85,3 +85,24 @@ def update_album_title(request, album_title, album_id):
 
     return HttpResponseRedirect(
         reverse('images:album', args=response['args']))
+
+def add_images(request, album_title, album_id):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    try:
+        response = Album.objects.add_images(request, album_id)
+    except ValidationError as errors:
+        for error in errors:
+            messages.error(request, error)
+
+        return HttpResponseRedirect(
+            reverse('images:album', args=[album_title, album_id]))
+    except PermissionDenied:
+        return HttpResponseRedirect(
+            reverse('images:album', args=[album_title, album_id]))
+
+    messages.success(request, response['success'])
+
+    return HttpResponseRedirect(
+        reverse('images:album', args=response['args']))

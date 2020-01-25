@@ -1,4 +1,4 @@
-<form id="updateAlbumTitleForm" action="{% url 'images:update_album_title' album.slug album.id %}" method="POST">
+<form id="updateAlbumTitleForm" action="{% url 'images:update-album-title' album.slug album.id %}" method="POST">
   {% csrf_token %}
   {{ update_album_title }}
   <input class="btn btn-primary form-control" type="submit" value="Update">
