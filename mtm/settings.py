@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'locations',
     'events',
     'images',
+    'articles',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
