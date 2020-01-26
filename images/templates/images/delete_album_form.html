@@ -1,5 +1,4 @@
-<form id="deleteAlbumForm" action="#" method="POST">
+<form id="deleteAlbumForm" action="{% url 'images:delete' album.slug album.id %}" method="POST">
   {% csrf_token %}
-  <input type="hidden" name="album-id" value="{{ album.id }}">
   <input class="btn btn-danger" style="margin-bottom: 0;" type="submit" value="Delete Album">
 </form>

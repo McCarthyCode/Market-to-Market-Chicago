@@ -12,7 +12,7 @@ from .models import Album, Image
 from .forms import UpdateAlbumTitleForm, AddImagesForm
 from mtm.settings import TZ, NAME
 
-def create(request):
+def create_album(request):
     if request.method != 'POST':
         return HttpResponseBadRequest()
 
@@ -126,3 +126,23 @@ def remove_images(request, album_title, album_id):
 
     return HttpResponseRedirect(
         reverse('images:album', args=[album_title, album_id]))
+
+def delete_album(request, album_title, album_id):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    try:
+        response = Album.objects.delete_album(request, album_id)
+    except ValidationError as errors:
+        for error in errors:
+            messages.error(request, error)
+
+        return redirect('users:index')
+    except PermissionDenied:
+        return HttpResponseRedirect(
+            reverse('images:album', args=[album_title, album_id]))
+
+    if response['success']:
+        messages.success(request, response['success'])
+
+    return redirect('users:index')
