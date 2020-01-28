@@ -20,6 +20,10 @@ sass_input_images="images/static/images/sass/base.sass"
 sass_output_images="images/static/images/css/images.css"
 sass_output_images_compressed="images/static/images/css/images.min.css"
 
+sass_input_articles="articles/static/articles/sass/base.sass"
+sass_output_articles="articles/static/articles/css/articles.css"
+sass_output_articles_compressed="articles/static/articles/css/articles.min.css"
+
 declare -a foo=()
 declare -a daemons=(
   "source env/bin/activate; python manage.py runserver 10.0.0.100:8000"
@@ -33,6 +37,8 @@ declare -a daemons=(
   "sass --watch --style=compressed $sass_input_locations:$sass_output_locations_compressed"
   "sass --watch $sass_input_images:$sass_output_images"
   "sass --watch --style=compressed $sass_input_images:$sass_output_images_compressed"
+  "sass --watch $sass_input_articles:$sass_output_articles"
+  "sass --watch --style=compressed $sass_input_articles:$sass_output_articles_compressed"
 )
 
 for i in "${daemons[@]}"; do

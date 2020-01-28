@@ -258,6 +258,24 @@ class AlbumManager(models.Manager):
 
         return {'success': 'The album "%s" was successfully deleted along with its containing images.' % title}
 
+    def autocomplete(self, request):
+        from .models import Album
+
+        query = request.GET.get('q', '')
+        albums = []
+
+        if query == '' or not request.user.is_superuser:
+            return {'albums': []}
+
+        for album in Album.objects.filter(title__contains=query) \
+        .order_by('title')[:5]:
+            albums.append({
+                'id': album.id,
+                'title': album.title,
+            })
+
+        return {'albums': albums}
+
 class ImageManager(models.Manager):
     def remove_images(self, album, images):
         from .models import Image

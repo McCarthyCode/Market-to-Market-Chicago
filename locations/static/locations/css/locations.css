@@ -384,30 +384,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-bottom-left-radius: 0;
 }
 
-#locationAutocomplete, #neighborhoodAutocomplete {
-  position: relative;
-  z-index: 4;
-}
-#locationAutocomplete ul, #neighborhoodAutocomplete ul {
-  position: absolute;
-  bottom: 54px;
-  right: 0;
-  left: 0;
-  margin-bottom: 0;
-  border-radius: 4px;
-  color: #000000;
-  background-color: #ffffff;
-}
-#locationAutocomplete ul li, #neighborhoodAutocomplete ul li {
-  border-radius: 4px;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-#locationAutocomplete ul li:hover, #locationAutocomplete ul li.active, #neighborhoodAutocomplete ul li:hover, #neighborhoodAutocomplete ul li.active {
-  color: #ffffff;
-  background-color: #007bff;
-}
-
 @media screen and (min-width: 768px) {
   #updateLocationForm label[for=frequency], #updateLocationForm input[name=city] {
     border-top-right-radius: 0;

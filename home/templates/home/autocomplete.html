@@ -5,4 +5,7 @@
 {% for location in locations %}
   <li data-id="{{ location.id }}">{{ location.name }}</li>
 {% endfor %}
+{% for album in albums %}
+  <li data-id="{{ album.id }}">{{ album.title }}</li>
+{% endfor %}
 </ul>

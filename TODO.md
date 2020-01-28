@@ -17,12 +17,6 @@
     - Body
     - Images
   - CRUD
-    - Create
-      - Front end
-      - Back end
-    - Read
-      - Front end
-      - Back end
     - Update
       - Front end
       - Back end
@@ -128,3 +122,4 @@
     - Resize images on input
 - Change mtm.settings to django.conf.settings
 - Change forms to Django forms
+- Move global/grid Sass to separate files

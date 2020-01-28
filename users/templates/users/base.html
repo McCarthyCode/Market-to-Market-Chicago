@@ -93,7 +93,10 @@
 
   <!--Images App JS-->
   <!--<script type="text/javascript" src="{% static 'images/js/create_album.js' %}"></script>-->
-
+  {% if user.is_superuser %}
+  <!--Articles App JS-->
+  <!--<script type="text/javascript" src="{% static 'articles/js/create_article.js' %}"></script>-->
+  {% endif %}
   <!--Internal Scripts (compressed)-->
 
   <!--Cross-App JS-->
@@ -104,7 +107,10 @@
 
   <!--Images App JS-->
   <script type="text/javascript" src="{% static 'images/js/create_album.min.js' %}"></script>
-
+  {% if user.is_superuser %}
+  <!--Articles App JS-->
+  <script type="text/javascript" src="{% static 'articles/js/create_article.min.js' %}"></script>
+  {% endif %}
   <!--External Script Libraries (compressed)-->
 
   <!--jQuery JS-->

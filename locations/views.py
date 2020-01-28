@@ -13,20 +13,20 @@ from mtm.settings import TZ, NAME, API_KEY
 from .models import Neighborhood, Location, CATEGORIES
 from events.models import Event, RecurringEvent
 
-def neighborhoods_autocomplete(request):
+def neighborhood_autocomplete(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    return render(request, 'locations/autocomplete.html',
-        Neighborhood.objects.neighborhoods_autocomplete(request)
+    return render(request, 'home/autocomplete.html',
+        Neighborhood.objects.autocomplete(request)
     )
 
-def locations_autocomplete(request):
+def location_autocomplete(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    return render(request, 'locations/autocomplete.html',
-        Location.objects.locations_autocomplete(request)
+    return render(request, 'home/autocomplete.html',
+        Location.objects.autocomplete(request)
     )
 
 def neighborhood(request, id, slug):
@@ -49,7 +49,8 @@ def location(request, category, location_name, location_id):
 
         def invalid_slug():
             return HttpResponseRedirect(
-                reverse('locations:location', args=response['args']))
+                reverse('locations:location', args=response['args'])
+            )
 
         actions = {
             'invalid ID': invalid_id,

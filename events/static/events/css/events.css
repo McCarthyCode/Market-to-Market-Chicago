@@ -780,30 +780,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   display: none;
 }
 
-#locationAutocomplete, #neighborhoodAutocomplete {
-  position: relative;
-  z-index: 4;
-}
-#locationAutocomplete ul, #neighborhoodAutocomplete ul {
-  position: absolute;
-  bottom: 54px;
-  right: 0;
-  left: 0;
-  margin-bottom: 0;
-  border-radius: 4px;
-  color: #000000;
-  background-color: #ffffff;
-}
-#locationAutocomplete ul li, #neighborhoodAutocomplete ul li {
-  border-radius: 4px;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-#locationAutocomplete ul li:hover, #locationAutocomplete ul li.active, #neighborhoodAutocomplete ul li:hover, #neighborhoodAutocomplete ul li.active {
-  color: #ffffff;
-  background-color: #007bff;
-}
-
 #locationToggle {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;

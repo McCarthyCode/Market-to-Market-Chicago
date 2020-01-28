@@ -6,7 +6,7 @@ class NeighborhoodManager(models.Manager):
     def create_neighborhood(self, name):
         return self.create(name=name)
 
-    def neighborhoods_autocomplete(self, request):
+    def autocomplete(self, request):
         from .models import Neighborhood
 
         query = request.GET.get('q', '')
@@ -31,7 +31,7 @@ class LocationManager(models.Manager):
         else:
             return self.create(name=name, category=category, address1=address1, city=city, state=state)
 
-    def locations_autocomplete(self, request):
+    def autocomplete(self, request):
         from .models import Location
 
         query = request.GET.get('q', '')

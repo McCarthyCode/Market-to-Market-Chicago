@@ -43,7 +43,8 @@ def event(request, category, location_name, event_name, event_id):
 
         def invalid_slug():
             return HttpResponseRedirect(
-                reverse('events:event', args=response['args']))
+                reverse('events:event', args=response['args'])
+            )
 
         actions = {
             'invalid ID': invalid_id,

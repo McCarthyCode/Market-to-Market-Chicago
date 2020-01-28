@@ -27,7 +27,8 @@ def create_album(request):
     messages.success(request, response['success'])
 
     return HttpResponseRedirect(
-        reverse('images:album', args=response['args']))
+        reverse('images:album', args=response['args'])
+    )
 
 def album(request, album_title, album_id):
     if request.method != 'GET':
@@ -43,7 +44,8 @@ def album(request, album_title, album_id):
 
         def invalid_slug():
             return HttpResponseRedirect(
-                reverse('images:album', args=response['args']))
+                reverse('images:album', args=response['args'])
+            )
 
         actions = {
             'invalid ID': invalid_id,
@@ -76,15 +78,18 @@ def update_album_title(request, album_title, album_id):
                 messages.error(request, error)
 
         return HttpResponseRedirect(
-            reverse('images:album', args=[album_title, album_id]))
+            reverse('images:album', args=[album_title, album_id])
+        )
     except PermissionDenied:
-       return HttpResponseRedirect(
-            reverse('images:album', args=[album_title, album_id]))
+        return HttpResponseRedirect(
+            reverse('images:album', args=[album_title, album_id])
+        )
 
     messages.success(request, response['success'])
 
     return HttpResponseRedirect(
-        reverse('images:album', args=response['args']))
+        reverse('images:album', args=response['args'])
+    )
 
 def add_images(request, album_title, album_id):
     if request.method != 'POST':
@@ -97,15 +102,18 @@ def add_images(request, album_title, album_id):
             messages.error(request, error)
 
         return HttpResponseRedirect(
-            reverse('images:album', args=[album_title, album_id]))
+            reverse('images:album', args=[album_title, album_id])
+        )
     except PermissionDenied:
         return HttpResponseRedirect(
-            reverse('images:album', args=[album_title, album_id]))
+            reverse('images:album', args=[album_title, album_id])
+        )
 
     messages.success(request, response['success'])
 
     return HttpResponseRedirect(
-        reverse('images:album', args=response['args']))
+        reverse('images:album', args=response['args'])
+    )
 
 def remove_images(request, album_title, album_id):
     if request.method != 'POST':
@@ -115,7 +123,8 @@ def remove_images(request, album_title, album_id):
         response = Album.objects.remove_images(request, album_id)
     except PermissionDenied:
         return HttpResponseRedirect(
-            reverse('images:album', args=[album_title, album_id]))
+            reverse('images:album', args=[album_title, album_id])
+        )
 
     if response['success']:
         messages.success(request, response['success'])
@@ -125,7 +134,8 @@ def remove_images(request, album_title, album_id):
             messages.error(request, error)
 
     return HttpResponseRedirect(
-        reverse('images:album', args=[album_title, album_id]))
+        reverse('images:album', args=[album_title, album_id])
+    )
 
 def delete_album(request, album_title, album_id):
     if request.method != 'POST':
@@ -140,9 +150,18 @@ def delete_album(request, album_title, album_id):
         return redirect('users:index')
     except PermissionDenied:
         return HttpResponseRedirect(
-            reverse('images:album', args=[album_title, album_id]))
+            reverse('images:album', args=[album_title, album_id])
+        )
 
     if response['success']:
         messages.success(request, response['success'])
 
     return redirect('users:index')
+
+def album_autocomplete(request):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    return render(request, 'home/autocomplete.html',
+        Album.objects.autocomplete(request)
+    )

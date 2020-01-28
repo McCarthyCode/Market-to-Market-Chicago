@@ -1,0 +1,21 @@
+<form id="createArticleForm" action="{% url 'articles:create' %}" enctype="multipart/form-data" method="POST">
+  {% csrf_token %}
+  {% for hidden in create_article_form.hidden_fields %}
+  {{ hidden }}
+  {% endfor %}
+  {% for field in create_article_form.visible_fields %}
+  {% if field.id_for_label != 'id_category' %}
+  {{ field }}
+  {% endif %}
+  {% if field.id_for_label == 'id_album' %}
+  <div id="albumAutocomplete"></div>
+  {% endif %}
+  {% if field.id_for_label == 'id_category' %}
+  <div class="row">
+    <label id="categoryLabel" class="form-control col-12 col-md-6" for="id_category">{{ field.label }}</label>
+    {{ field }}
+  </div>
+  {% endif %}
+  {% endfor %}
+  <input class="btn btn-primary form-control" type="submit" value="Submit">
+</form>

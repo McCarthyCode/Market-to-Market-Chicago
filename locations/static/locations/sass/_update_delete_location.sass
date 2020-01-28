@@ -45,29 +45,6 @@
     border-top-left-radius: 0
     border-bottom-left-radius: 0
 
-#locationAutocomplete, #neighborhoodAutocomplete
-  position: relative
-  z-index: 4
-
-  ul
-    position: absolute
-    bottom: 54px
-    right: 0
-    left: 0
-    margin-bottom: 0
-    border-radius: 4px
-    color: $black
-    background-color: $white
-
-    li
-      border-radius: 4px
-      padding: 6px 12px
-      cursor: pointer
-
-    li:hover, li.active
-      color: $white
-      background-color: $blue
-
 @media screen and (min-width: $breakpoint-md)
   #updateLocationForm
     label[for="frequency"], input[name="city"]
