@@ -1,6 +1,4 @@
 from slugify import slugify
-from titlecase import titlecase
-
 from django.db import models
 
 from home.models import TimestampedModel
@@ -25,7 +23,6 @@ class Article(TimestampedModel):
     objects = ArticleManager()
 
     def save(self, *args, **kwargs):
-        self.title = titlecase(self.title.lower())
         self.slug = slugify(self.title)
 
         super().save(*args, **kwargs)

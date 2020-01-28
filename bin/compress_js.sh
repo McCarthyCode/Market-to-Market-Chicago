@@ -26,6 +26,12 @@ js_output_update_album="images/static/images/js/update_album.min.js"
 js_input_create_article="articles/static/articles/js/create_article.js"
 js_output_create_article="articles/static/articles/js/create_article.min.js"
 
+js_input_update_article="articles/static/articles/js/update_article.js"
+js_output_update_article="articles/static/articles/js/update_article.min.js"
+
+js_input_article_autocomplete="articles/static/articles/js/article_autocomplete.js"
+js_output_article_autocomplete="articles/static/articles/js/article_autocomplete.min.js"
+
 declare -a commands=(
   # "java -jar $closure_compiler --js $js_input_global --js_output_file $js_output_global"
   # "java -jar $closure_compiler --js $js_input_events --js_output_file $js_output_events"
@@ -36,6 +42,8 @@ declare -a commands=(
   # "java -jar $closure_compiler --js $js_input_create_album --js_output_file $js_output_create_album"
   # "java -jar $closure_compiler --js $js_input_update_album --js_output_file $js_output_update_album"
   # "java -jar $closure_compiler --js $js_input_create_article --js_output_file $js_output_create_article"
+  # "java -jar $closure_compiler --js $js_input_update_article --js_output_file $js_output_update_article"
+  # "java -jar $closure_compiler --js $js_input_article_autocomplete --js_output_file $js_output_article_autocomplete"
 )
 
 for i in "${commands[@]}"; do

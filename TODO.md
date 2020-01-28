@@ -10,22 +10,14 @@
     - Albums
   - Infinite scrolling
 - Articles
-  - Fields
-    - Title
-    - Author
-    - Date
-    - Body
-    - Images
   - CRUD
-    - Update
-      - Front end
-      - Back end
     - Delete
       - Front end
       - Back end
-- Locations
-  - Individual category page
-    - Locations by neighborhood
+- Individual category page
+  - Articles
+  - Locations
+    - by neighborhood
 - People to Know
 - Ads
   - Leaderboard (top)
@@ -123,3 +115,4 @@
 - Change mtm.settings to django.conf.settings
 - Change forms to Django forms
 - Move global/grid Sass to separate files
+- Change generated ID's to lower camelcase

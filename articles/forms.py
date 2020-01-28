@@ -29,6 +29,7 @@ class CreateArticleForm(forms.ModelForm):
         }),
     )
     album_id = forms.CharField(
+        required=False,
         label='',
         widget=forms.HiddenInput(attrs={
             'autocomplete': 'off',
@@ -44,21 +45,27 @@ class CreateArticleForm(forms.ModelForm):
 
     def clean(self):
         super().clean()
-
         cleaned_data = self.cleaned_data
 
-        album_id = int(cleaned_data['album_id'])
-        if not album_id:
+        if 'album_id' not in cleaned_data:
             cleaned_data['album'] = None
+        elif cleaned_data['album_id'] == '':
+            cleaned_data['album'] = None
+
+            del cleaned_data['album_id']
         else:
-            try:
-                album = Album.objects.get(id=album_id)
-            except Album.DoesNotExist:
-                raise forms.ValidationError('The specified album could not be found.')
+            album_id = int(cleaned_data['album_id'])
+            if album_id == 0:
+                cleaned_data['album'] = None
+            else:
+                try:
+                    album = Album.objects.get(id=album_id)
+                except Album.DoesNotExist:
+                    raise forms.ValidationError('The specified album could not be found.')
 
-            cleaned_data['album'] = album
+                cleaned_data['album'] = album
 
-        del cleaned_data['album_id']
+            del cleaned_data['album_id']
 
         return cleaned_data
 
