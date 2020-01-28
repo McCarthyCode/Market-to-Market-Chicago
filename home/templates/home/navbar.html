@@ -22,22 +22,22 @@
       </li>
       {% endif %}
       <li class="d-md-none nav-item">
-        <a class="nav-link" href="#">Nightlife</a>
+        <a class="nav-link" href="{% url 'home:category' 'nightlife' %}">Nightlife</a class="nav-link">
       </li>
       <li class="d-md-none nav-item">
-        <a class="nav-link" href="#">Restaurants</a>
+        <a class="nav-link" href="{% url 'home:category' 'restaurants' %}">Restaurants</a>
       </li>
       <li class="d-md-none nav-item">
-        <a class="nav-link" href="#">Arts & Entertainment</a>
+        <a class="nav-link" href="{% url 'home:category' 'arts-and-entertainment' %}">Arts & Entertainment</a>
       </li>
       <li class="d-md-none nav-item">
-        <a class="nav-link" href="#">Health & Fitness</a>
+        <a class="nav-link" href="{% url 'home:category' 'health-and-fitness' %}">Health & Fitness</a>
       </li>
       <li class="d-md-none nav-item">
-        <a class="nav-link" href="#">Sports</a>
+        <a class="nav-link" href="{% url 'home:category' 'sports' %}">Sports</a>
       </li>
       <li class="d-md-none nav-item">
-        <a class="nav-link" href="#">Non-profit</a>
+        <a class="nav-link" href="{% url 'home:category' 'non-profit' %}">Non-profit</a>
       </li>
       <li class="d-md-none nav-item">
         <a class="nav-link" href="{% url 'events:index' %}">Events</a>

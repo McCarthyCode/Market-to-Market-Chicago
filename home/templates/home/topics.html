@@ -1,10 +1,10 @@
 <ul class="topics">
-  <li>Nightlife</li>
-  <li>Restaurants</li>
-  <li>Arts & Entertainment</li>
-  <li>Health & Fitness</li>
-  <li>Sports</li>
-  <li>Non-profit</li>
+  <li><a href="{% url 'home:category' 'nightlife' %}">Nightlife</a></li>
+  <li><a href="{% url 'home:category' 'restaurants' %}">Restaurants</a></li>
+  <li><a href="{% url 'home:category' 'arts-and-entertainment' %}">Arts & Entertainment</a></li>
+  <li><a href="{% url 'home:category' 'health-and-fitness' %}">Health & Fitness</a></li>
+  <li><a href="{% url 'home:category' 'sports' %}">Sports</a></li>
+  <li><a href="{% url 'home:category' 'non-profit' %}">Non-profit</a></li>
   <li><a href="{% url 'events:index' %}">Events</a></li>
   <li>People to Know</li>
 </ul>
