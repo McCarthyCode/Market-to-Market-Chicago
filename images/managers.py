@@ -39,8 +39,9 @@ class AlbumManager(models.Manager):
 
         # Return success
         len_images = len(images)
+        punctuation = title[-1]
         return {
-            'success': 'You have successfully uploaded %d image%s to the album "%s."' % (len_images, '' if len_images == 1 else 's', title),
+            'success': 'You have successfully uploaded %d image%s to the album "%s%s"' % (len_images, '' if len_images == 1 else 's', title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'),
             'args': [album.slug, album.id],
         }
 
@@ -112,8 +113,9 @@ class AlbumManager(models.Manager):
 
             album.save()
 
+            punctuation = title[-1]
             return {
-                'success': 'The album with the name "%s" has successfully been changed to "%s."' % (old_title, title),
+                'success': 'The album with the name "%s" has successfully been changed to "%s%s"' % (old_title, title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'),
                 'args': [album.slug, album_id],
             }
 
@@ -176,8 +178,10 @@ class AlbumManager(models.Manager):
         self.upload_images(album, images)
 
         len_images = len(images)
+        title = album.title
+        punctuation = title[-1]
         return {
-            'success': 'You have successfully added %d image%s to the album "%s."' % (len_images, '' if len_images == 1 else 's', album.title),
+            'success': 'You have successfully added %d image%s to the album "%s%s"' % (len_images, '' if len_images == 1 else 's', title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'),
             'args': [album.slug, album_id],
         }
 
@@ -294,7 +298,9 @@ class ImageManager(models.Manager):
                 continue
 
             if image.album != album:
-                errors.append(ValidationError(_('The image with ID %s could not be deleted as it is not a part of the album "%s."' % (image_id, album.title)), code='invalid album'))
+                title = album.title
+                punctuation = title[-1]
+                errors.append(ValidationError(_('The image with ID %s could not be deleted as it is not a part of the album "%s%s"' % (image_id, title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.')), code='invalid album'))
 
                 continue
 

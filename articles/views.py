@@ -59,7 +59,9 @@ def create(request):
 
             return redirect('users:index')
 
-        messages.success(request, 'You have sucessfully created an article titled "%s%s"' % (article.title, '' if article.title[-1] == '.' or article.title[-1] == '?' or article.title[-1] == '!' else '.'))
+        title = article.title
+        punctuation = title[-1]
+        messages.success(request, 'You have sucessfully created an article titled "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
         return HttpResponseRedirect(
             reverse('articles:article', args=[article.slug, article.id])
@@ -87,7 +89,9 @@ def update(request, article_title, article_id):
         except ValidationError as error:
             messages.error(request, error)
 
-        messages.success(request, 'You have sucessfully updated "%s%s"' % (article.title, '' if article.title[-1] == '.' or article.title[-1] == '?' or article.title[-1] == '!' else '.'))
+        title = article.title
+        punctuation = title[-1]
+        messages.success(request, 'You have sucessfully updated "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
     else:
         messages.error(request, 'The data entered was not valid.')
 
