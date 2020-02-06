@@ -329,20 +329,38 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     grid-column-start: 2;
   }
 }
-#content .container .alert p {
-  margin: 0;
+#locationAutocomplete,
+#neighborhoodAutocomplete,
+#albumAutocomplete {
+  position: relative;
+  z-index: 4;
 }
-#content .container .alert a:not(.close) {
-  text-decoration: underline;
+#locationAutocomplete ul,
+#neighborhoodAutocomplete ul,
+#albumAutocomplete ul {
+  position: absolute;
+  bottom: 54px;
+  right: 0;
+  left: 0;
+  margin-bottom: 0;
+  border-radius: 4px;
+  color: #000000;
+  background-color: #ffffff;
 }
-#content .container .alert-danger p, #content .container .alert-danger a {
-  color: #721c24;
+#locationAutocomplete ul li,
+#neighborhoodAutocomplete ul li,
+#albumAutocomplete ul li {
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
 }
-#content .container .alert-success p, #content .container .alert-success a {
-  color: #155724;
-}
-#content .container .alert-info p, #content .container .alert-info a {
-  color: #0c5460;
+#locationAutocomplete ul li:hover, #locationAutocomplete ul li.active,
+#neighborhoodAutocomplete ul li:hover,
+#neighborhoodAutocomplete ul li.active,
+#albumAutocomplete ul li:hover,
+#albumAutocomplete ul li.active {
+  color: #ffffff;
+  background-color: #007bff;
 }
 
 #content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password], #content .container form input[type=submit], #content .container form input[type=file], #content .container form textarea, #content .container form select, #content .container form label {
@@ -353,6 +371,12 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #ffffff;
   border-color: #818181;
   background-color: #333333;
+}
+#content .container form select.form-control {
+  padding: 0 0.5rem;
+}
+#content .container form select.form-control option {
+  padding: 0;
 }
 #content .container form input[type=file] {
   width: 100%;
@@ -379,6 +403,42 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-left: 0;
 }
 
+#content .container .alert p {
+  margin: 0;
+}
+#content .container .alert a:not(.close) {
+  text-decoration: underline;
+}
+#content .container .alert-danger p, #content .container .alert-danger a {
+  color: #721c24;
+}
+#content .container .alert-success p, #content .container .alert-success a {
+  color: #155724;
+}
+#content .container .alert-info p, #content .container .alert-info a {
+  color: #0c5460;
+}
+
+#content .container form #categoryLabel {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-bottom: -1px;
+}
+#content .container form #id_category {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+@media screen and (min-width: 768px) {
+  #content .container form #categoryLabel {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0.25rem;
+  }
+  #content .container form #id_category {
+    border-top-right-radius: 0.25rem;
+    border-bottom-left-radius: 0;
+  }
+}
 html, body {
   max-height: 100%;
 }
