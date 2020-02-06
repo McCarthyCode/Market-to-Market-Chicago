@@ -205,19 +205,50 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #ffffff;
 }
 #content .container form .input-group-append {
+  background-color: #818181;
+  width: 40px;
   height: 38px;
   z-index: 3;
 }
-#content .container form .input-group-append:not(.default-cursor) {
+#content .container form .input-group-append input[type=radio], #content .container form .input-group-append input[type=checkbox], #content .container form .input-group-append .input-group-text {
   cursor: pointer;
+  color: #ffffff;
 }
-#content .container form .input-group-append:not(.default-cursor) .input-group-text {
+#content .container form .input-group-append input[type=radio] {
+  height: 16px;
+  margin: auto;
+}
+#content .container form .input-group-append {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+#content .container form .input-group-append .input-group-text {
   color: #ffffff;
   border-color: #818181;
   background-color: #818181;
 }
-#content .container form .input-group-append:not(.default-cursor) .input-group-text i {
+#content .container form .input-group-append .input-group-text i {
   min-width: 14px;
+}
+#content .container form .radio {
+  margin-bottom: 0;
+}
+#content .container form .radio li:not(.top) label {
+  border-top-left-radius: 0;
+}
+#content .container form .radio li:not(.top) .input-group-append {
+  border-top-right-radius: 0;
+}
+#content .container form .radio li:not(:last-child) label {
+  margin-bottom: 0;
+  border-bottom: 0;
+  border-bottom-left-radius: 0;
+}
+#content .container form .radio li:not(:last-child) .input-group-append {
+  border-bottom-right-radius: 0;
+}
+#content .container form .radio label {
+  cursor: pointer;
 }
 #content .container form .row {
   margin-right: 0;

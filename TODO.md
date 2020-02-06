@@ -10,10 +10,10 @@
     - Albums
   - Infinite scrolling
 - Articles
-  - CRUD
-    - Delete
-      - Front end
-      - Back end
+  - Link to album
+    - Show length in parentheses
+    - Preview first 14/15 images
+    - Show more button
 - Individual category page
   - Articles
   - Locations
@@ -59,11 +59,16 @@
       - Filters
         - Alphabetical
         - By neighborhood
+- Images
+  - Image model
+    - md5 hash filename
+    - Resize images on input
 - Drink specials
 - Consolidate duplicate entries
   - Neighborhood
   - Location
 - Scroll to top button
+- Add navbar to dashboard
 
 ## Low Priorities
 
@@ -108,11 +113,9 @@
       - Add paginiation
         - Front end (see more link)
         - Back end
-- Images
-  - Image model
-    - md5 hash filename
-    - Resize images on input
 - Change mtm.settings to django.conf.settings
 - Change forms to Django forms
 - Move global/grid Sass to separate files
 - Change generated ID's to lower camelcase
+- Add modals to delete forms
+- Change title regex names to slug

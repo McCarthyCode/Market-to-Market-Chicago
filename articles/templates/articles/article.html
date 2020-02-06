@@ -28,5 +28,11 @@
 <div class="card">
   {% include 'articles/update_article.html' %}
 </div>
+<h3 class="h3">Delete</h3>
+<div class="card">
+  {% include 'articles/delete_article_form.html' %}
+  <button id="deleteArticleButton" class="btn btn-danger" data-toggle="modal" data-target="#deleteArticleModal">Delete Article</button>
+</div>
+{% include 'articles/delete_article_modal.html' %}
 {% endif %}
 {% endblock %}

@@ -3,6 +3,7 @@ from datetime import datetime
 from django.contrib import messages
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.http import (
+    Http404,
     HttpResponseBadRequest,
     HttpResponseRedirect,
 )
@@ -98,3 +99,35 @@ def update(request, article_title, article_id):
     return HttpResponseRedirect(
         reverse('articles:article', args=[article.slug, article.id])
     )
+
+def delete(request, article_title, article_id):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    if not request.user.is_superuser:
+        messages.error(request, 'You do not have permission to update this article.')
+
+        return redirect('users:index')
+
+    try:
+        article = get_object_or_404(Article, id=article_id)
+    except Http404:
+        messages.error(request, 'The specified article could not be found.')
+
+        return redirect('users:index')
+
+    try:
+        Article.objects.delete(request, article)
+    except ValidationError as errors:
+        for error in errors:
+            messages.error(request, error)
+
+        return HttpResponseRedirect(
+            reverse('articles:article', args=[article.slug, article.id])
+        )
+
+    title = article.title
+    punctuation = title[-1]
+    messages.success(request, 'You have successfully deleted the article "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
+
+    return redirect('users:index')

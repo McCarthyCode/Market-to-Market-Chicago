@@ -5,10 +5,14 @@
     background-color: $light-gray
     color: $white
 
-    .modal-header, .modal-footer
-      border-color: $lighter-gray
-
     .close,
     .close:not(:disabled):not(.disabled):focus,
     .close:not(:disabled):not(.disabled):hover
       color: $white
+
+    .modal-header, .modal-footer
+      border-color: $lighter-gray
+
+    .modal-footer input[type="submit"],
+    #deleteAlbumForm input[type="submit"]
+      margin-bottom: 0

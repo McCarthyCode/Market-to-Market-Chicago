@@ -1,0 +1,19 @@
+<form id="deleteArticleForm" action="{% url 'articles:delete' article.slug article.id %}" method="POST">
+  {% csrf_token %}
+  {% if article.album %}
+  <ul class="radio">
+    <li id="keepAlbumInputGroup" class="input-group top">
+      <label class="form-control" for="keepAlbum">Keep corresponding album</label>
+      <div class="input-group-append">
+        <input id="keepAlbum" type="radio" name="delete-album" value="keep">
+      </div>
+    </li>
+    <li id="deleteAlbumInputGroup" class="input-group">
+      <label class="form-control" for="deleteAlbum">Delete corresponding album</label>
+      <div class="input-group-append">
+        <input id="deleteAlbum" type="radio" name="delete-album" value="delete">
+      </div>
+    </li>
+  </ul>
+  {% endif %}
+</form id="deleteAlbumForm">

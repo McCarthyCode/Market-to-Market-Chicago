@@ -20,11 +20,25 @@
     color: $white
 
   .input-group-append
+    background-color: $lighter-gray
+    width: 40px
     height: 38px
     z-index: 3
 
-  .input-group-append:not(.default-cursor)
-    cursor: pointer
+    input[type="radio"], input[type="checkbox"], .input-group-text
+      cursor: pointer
+      color: $white
+
+    input[type="radio"]
+      height: 16px
+      margin: auto
+
+  // .input-group-append:not(.default-cursor)
+  //   cursor: pointer
+
+  .input-group-append
+    border-top-right-radius: .25rem
+    border-bottom-right-radius: .25rem
 
     .input-group-text
       color: $white
@@ -33,6 +47,28 @@
 
       i
         min-width: 14px
+
+  .radio
+    margin-bottom: 0
+
+    li:not(.top) // li:not(:first-child) not working
+      label
+        border-top-left-radius: 0
+
+      .input-group-append
+        border-top-right-radius: 0
+
+    li:not(:last-child)
+      label
+        margin-bottom: 0
+        border-bottom: 0
+        border-bottom-left-radius: 0
+
+      .input-group-append
+        border-bottom-right-radius: 0
+
+    label
+      cursor: pointer
 
   .row
     margin-right: 0
