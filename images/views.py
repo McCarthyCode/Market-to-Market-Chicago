@@ -115,7 +115,7 @@ def add_images(request, album_title, album_id):
         reverse('images:album', args=response['args'])
     )
 
-def remove_images(request, album_title, album_id):
+def delete_images(request, album_title, album_id):
     if request.method != 'POST':
         return HttpResponseBadRequest()
 
