@@ -1,0 +1,21 @@
+#byNeighborhood
+  display: grid
+  grid-template-columns: 1fr
+  gap: .5rem
+
+  .card
+    margin-bottom: 0
+
+@media screen and (min-width: $breakpoint-sm)
+  #byNeighborhood
+    grid-template-columns: 1fr 1fr
+
+  .empty-card
+    grid-column: 1 / span 2
+
+@media screen and (min-width: $breakpoint-lg)
+  #byNeighborhood
+    grid-template-columns: 1fr 1fr 1fr
+
+  .empty-card
+    grid-column: 1 / span 3

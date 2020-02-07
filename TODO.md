@@ -13,6 +13,7 @@
   - Articles
   - Locations
     - by neighborhood
+- Location form
 - People to Know
 - Ads
   - Leaderboard (top)

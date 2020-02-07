@@ -267,6 +267,15 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     border-right: 1px solid #818181;
   }
 }
+.container .card {
+  background-color: #444444;
+  border-color: #818181;
+  color: #ffffff;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
 #content {
   grid-column-start: left;
   grid-column-end: right;
@@ -530,15 +539,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 #calendarGrid > div ul.events .holiday {
   background-color: #9f62c2;
-}
-
-.container .card {
-  background-color: #444444;
-  border-color: #818181;
-  color: #ffffff;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  position: relative;
 }
 
 #calendarView, #byDateView, #byLocationView {

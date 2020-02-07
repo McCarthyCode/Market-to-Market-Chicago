@@ -267,6 +267,23 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     border-right: 1px solid #818181;
   }
 }
+.container .card, .container .empty-card {
+  background-color: #444444;
+  border: 1px solid #818181;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+.container .card {
+  color: #ffffff;
+}
+.container .empty-card {
+  color: #818181;
+  font-style: italic;
+  text-align: center;
+}
+
 #content {
   grid-column-start: left;
   grid-column-end: right;
@@ -342,6 +359,33 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     display: block;
   }
 }
+#byNeighborhood {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+#byNeighborhood .card {
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 576px) {
+  #byNeighborhood {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .empty-card {
+    grid-column: 1/span 2;
+  }
+}
+@media screen and (min-width: 992px) {
+  #byNeighborhood {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .empty-card {
+    grid-column: 1/span 3;
+  }
+}
 html, body {
   height: 100%;
 }
@@ -356,7 +400,7 @@ body a:hover {
   text-decoration: underline;
 }
 
-h1.h1, h3.h3 {
+h1.h1, h3.h3, h5.h5 {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
 }
 
@@ -366,6 +410,17 @@ h1.h1 {
 
 h3.h3 {
   color: #bb846e;
+}
+
+h5.h5, h5.h5 > a {
+  color: #bbbbbb;
+}
+
+ul.bulleted {
+  list-style: disc inside;
+}
+ul.bulleted li::marker {
+  color: #818181;
 }
 
 .fa-external-link-alt {

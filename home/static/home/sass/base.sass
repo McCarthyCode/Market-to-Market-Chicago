@@ -6,8 +6,10 @@
 @import '_navbar'
 @import '_sidebar'
 @import '_footer'
+@import '_card'
 
 @import '_home'
+@import '_category'
 
 html, body
   height: 100%
@@ -23,7 +25,7 @@ body
   a:hover
     text-decoration: underline
 
-h1.h1, h3.h3
+h1.h1, h3.h3, h5.h5
   font-family: $font-title
 
 h1.h1
@@ -31,6 +33,15 @@ h1.h1
 
 h3.h3
   color: $orange
+
+h5.h5, h5.h5 > a
+  color: $lightest-gray
+
+ul.bulleted
+  list-style: disc inside
+
+  li::marker
+    color: $lighter-gray
 
 .fa-external-link-alt
   display: inline
