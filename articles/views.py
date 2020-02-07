@@ -30,9 +30,11 @@ def article(request, article_title, article_id):
             reverse('articles:article', args=[article.slug, article_id])
         )
 
+    images = Image.objects.filter(album=article.album) if article.album else None
     return render(request, 'articles/article.html', {
         'article': article,
-        'images': Image.objects.filter(album=article.album) if article.album else None,
+        'images': images,
+        'images_preview': images[:14] if len(images) > 15 else images,
         'update_article_form': CreateArticleForm(instance=article),
         'user': request.user,
         'name': NAME,

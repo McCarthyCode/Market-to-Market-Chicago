@@ -6,10 +6,10 @@
   {{ article.body|linebreaks }}
 </div>
 {% if article.album %}
-<h3 class="h3"><a href="{% url 'images:album' article.album.slug article.album.id %}">{{ article.album.title }}</a></h3>
+<h3 class="h3"><a href="{% url 'images:album' article.album.slug article.album.id %}">{{ article.album.title }} <span class="text-nowrap">({{ images|length }} image{% if images|length != 1 %}s{% endif %})</span></a></h3>
 <div class="card">
   <div id="album">
-  {% for image in images %}
+  {% for image in images_preview %}
     <a data-fancybox="gallery" href="{{ image.image.url }}" data-id="{{ image.id }}">
       <img src="{{ image.image.url }}">
     </a>
@@ -20,6 +20,13 @@
     <p class="text-center empty">There are currently no images in this album.</p>
   {% endif %}
   {% endfor %}
+  {% if images|length > 15 %}
+  <a class="see-more text-center" href="{% url 'images:album' article.album.slug article.album.id %}">
+    <i class="fas fa-chevron-circle-right"></i>
+    <br>
+    See More
+  </a>
+  {% endif %}
   </div>
 </div>
 {% endif %}
