@@ -474,6 +474,15 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-bottom: 0.5rem;
 }
 
+#content .container .card #album .empty {
+  color: #818181;
+  margin-bottom: 0;
+}
+#content .container .card #album .empty a {
+  color: #818181;
+  text-decoration: underline;
+}
+
 #content .container form #categoryLabel {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;

@@ -6,7 +6,7 @@
   {{ article.body|linebreaks }}
 </div>
 {% if article.album %}
-<h3 class="h3">{{ article.album.title }}</h3>
+<h3 class="h3"><a href="{% url 'images:album' article.album.slug article.album.id %}">{{ article.album.title }}</a></h3>
 <div class="card">
   <div id="album">
   {% for image in images %}
@@ -14,8 +14,8 @@
       <img src="{{ image.image.url }}">
     </a>
   {% empty %}
-  {% if user.is_superuser or user.id == album.created_by.id %}
-    <p class="text-center empty">There are currently no images in this album. You may add images by clicking the "Add Images" button above.</p>
+  {% if user.is_superuser or user.id == article.album.created_by.id %}
+    <p class="text-center empty">There are currently no images in this album. You may add images by clicking the album title above or <a href="{% url 'images:album' article.album.slug article.album.id %}">this link</a>.</p>
   {% else %}
     <p class="text-center empty">There are currently no images in this album.</p>
   {% endif %}
