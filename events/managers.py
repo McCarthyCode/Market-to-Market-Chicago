@@ -38,7 +38,7 @@ DOW = [
 ]
 
 class EventManager(models.Manager):
-    def event(self, category, location_name, event_name, event_id):
+    def event(self, category_slug, location_slug, event_slug, event_id):
         from .models import Event, RecurringEvent
         from locations.models import CATEGORIES, Location
 
@@ -53,16 +53,16 @@ class EventManager(models.Manager):
 
             recurring = False
 
-        _category = CATEGORIES[event.location.category] if event.location else 'misc'
-        _location_name = event.location.slug if event.location else 'undefined'
-        _event_name = event.slug
+        _category_slug = CATEGORIES[event.location.category] if event.location else 'misc'
+        _location_slug = event.location.slug if event.location else 'undefined'
+        _event_slug = event.slug
 
-        if _category != category or \
-            _location_name != location_name or \
-            _event_name != event_name:
+        if _category_slug != category_slug or \
+            _location_slug != location_slug or \
+            _event_slug != event_slug:
             return (False, {
                 'status': 'invalid slug',
-                'args': [_category, _location_name, _event_name, event_id],
+                'args': [_category_slug, _location_slug, _event_slug, event_id],
             })
 
         if recurring:
@@ -77,7 +77,7 @@ class EventManager(models.Manager):
             'event': event,
             'next_event': next_event,
             'category_name': Location.CATEGORY_CHOICES[event.location.category][1] if event.location else 'Miscellaneous',
-            'category_slug': _category,
+            'category_slug': _category_slug,
             'recurring': recurring,
         })
 

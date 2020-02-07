@@ -31,11 +31,11 @@ def index(request):
         'year': current_month.year,
     })
 
-def event(request, category, location_name, event_name, event_id):
+def event(request, category_slug, location_slug, event_slug, event_id):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    valid, response = Event.objects.event(category, location_name, event_name, event_id)
+    valid, response = Event.objects.event(category_slug, location_slug, event_slug, event_id)
 
     if not valid:
         def invalid_id():

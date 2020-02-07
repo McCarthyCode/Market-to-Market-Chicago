@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.contrib import messages
 from django.http import (
+    HttpResponse,
     HttpResponseBadRequest,
     HttpResponseNotFound,
     HttpResponseRedirect,
@@ -29,19 +30,19 @@ def location_autocomplete(request):
         Location.objects.autocomplete(request)
     )
 
-def neighborhood(request, id, slug):
+def neighborhood(request, slug, neighborhood_id):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    msg = 'slug: %s; id: %d' % (slug, int(id))
+    msg = 'slug: %s; id: %d' % (slug, int(neighborhood_id))
 
     return HttpResponse(msg, content_type='text/plain')
 
-def location(request, category, location_name, location_id):
+def location(request, category_slug, location_slug, location_id):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    valid, response = Location.objects.location(category, location_name, location_id)
+    valid, response = Location.objects.location(category_slug, location_slug, location_id)
 
     if not valid:
         def invalid_id():

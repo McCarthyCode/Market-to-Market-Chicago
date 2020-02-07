@@ -3,13 +3,13 @@
 <h1 class="h1 text-center">{{ event.name }} <span class="text-nowrap">({{ event.date_start|date:"D. M. j" }})</span></h1>
 <p id="breadcrumbs">
   {% if event.location %}
-  <a href="{% url 'home:category' category=category_slug %}">{{ category_name }}</a>
+  <a href="{% url 'home:category' category_slug %}">{{ category_name }}</a>
   <i class="fas fa-chevron-right"></i>
-  <a href="{% url 'locations:location' category=category_slug location_name=event.location.slug location_id=event.location.id %}">{{ event.location.name }}</a>
+  <a href="{% url 'locations:location' category_slug event.location.slug event.location.id %}">{{ event.location.name }}</a>
   <i class="fas fa-chevron-right"></i>
   {{ event.name }}
   {% else %}
-  <a href="{% url 'home:category' category=category_slug %}">{{ category_name }}</a>
+  <a href="{% url 'home:category' category_slug %}">{{ category_name }}</a>
   <i class="fas fa-chevron-right"></i>
   {{ event.name }}
   {% endif %}
@@ -25,7 +25,7 @@
       <tr>
         <td>Location</td>
         {% if event.location %}
-        <td><a href="{% url 'locations:location' category=category_slug location_name=event.location.slug location_id=event.location.id %}">{{ event.location.name }}</a><br>
+        <td><a href="{% url 'locations:location' category_slug event.location.slug event.location.id %}">{{ event.location.name }}</a><br>
         {{ event.location.address1 }}<br>{% if event.location.address2 %}
         {{ event.location.address2 }}<br>{% endif %}
         {{ event.location.city }}, {{ event.location.state }}{% if event.location.zip_code %} {{ event.location.zip_code }}{% endif %}</td>
@@ -39,7 +39,7 @@
       </tr>{% endif %}
       {% if next_event %}<tr>
         <td>Next Event</td>
-        <td><a href="{% url 'events:event' category=category_slug location_name='undefined' event_name=next_event.slug event_id=next_event.id %}">{{ next_event.date_start|date:"F j, Y" }}</a></td>
+        <td><a href="{% url 'events:event' category_slug 'undefined' next_event.slug next_event.id %}">{{ next_event.date_start|date:"F j, Y" }}</a></td>
       </tr>{% endif %}
     </tbody>
   </table>

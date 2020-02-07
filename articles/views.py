@@ -14,7 +14,7 @@ from .models import Article
 from images.models import Image
 from mtm.settings import TZ, NAME
 
-def article(request, article_title, article_id):
+def article(request, slug, article_id):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
@@ -25,7 +25,7 @@ def article(request, article_title, article_id):
 
         return redirect('users:index')
 
-    if article_title != article.slug:
+    if slug != article.slug:
         return HttpResponseRedirect(
             reverse('articles:article', args=[article.slug, article_id])
         )
@@ -74,7 +74,7 @@ def create(request):
 
     return redirect('users:index')
 
-def update(request, article_title, article_id):
+def update(request, slug, article_id):
     if request.method != 'POST':
         return HttpResponseBadRequest()
 
@@ -102,7 +102,7 @@ def update(request, article_title, article_id):
         reverse('articles:article', args=[article.slug, article.id])
     )
 
-def delete(request, article_title, article_id):
+def delete(request, slug, article_id):
     if request.method != 'POST':
         return HttpResponseBadRequest()
 

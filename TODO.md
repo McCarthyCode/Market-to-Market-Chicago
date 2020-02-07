@@ -97,6 +97,7 @@
     - Create future events
     - Add fields to RecurringEvent model
       - Weekly list
+  - DST bug
 - Locations
   - Individual location page
     - Events
@@ -114,3 +115,4 @@
 - Change generated ID's to lower camelcase
 - Add modals to delete forms
 - Change title regex names to slug
+- Restructure CATEGORY_CHOICES object

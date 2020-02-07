@@ -49,7 +49,7 @@ class LocationManager(models.Manager):
 
         return {'locations': locations}
 
-    def location(self, category, location_name, location_id):
+    def location(self, category_slug, location_name, location_id):
         from mtm.settings import TZ
         from .models import Location, CATEGORIES
         from events.models import Event
@@ -59,13 +59,13 @@ class LocationManager(models.Manager):
         except Location.DoesNotExist:
             return (False, {'status': 'invalid ID'})
 
-        _category = CATEGORIES[location.category]
+        _category_slug = CATEGORIES[location.category]
         _location_name = location.slug
 
-        if _category != category or _location_name != location_name:
+        if _category_slug != category_slug or _location_name != location_name:
             return (False, {
                 'status': 'invalid slug',
-                'args': [_category, _location_name, location_id],
+                'args': [_category_slug, _location_name, location_id],
             })
 
         events = Event.objects.filter(
@@ -78,7 +78,7 @@ class LocationManager(models.Manager):
             'location': location,
             'events': events,
             'category_name': Location.CATEGORY_CHOICES[location.category][1],
-            'category_slug': _category,
+            'category_slug': _category_slug,
         })
 
     def update_location(self, request):

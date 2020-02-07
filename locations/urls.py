@@ -3,15 +3,9 @@ from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
-    # path('nightlife/', views.nightlife, name='nightlife'),
-    # path('restaurants/', views.restaurants, name='restaurants'),
-    # path('arts-and-entertainment/', views.arts_and_entertainment, name='arts_and_entertainment'),
-    # path('health-and-fitness/', views.health_and_fitness, name='health_and_fitness'),
-    # path('sports/', views.sports, name='sports'),
-    # path('non-profit/', views.non_profit, name='non_profit'),
     path('neighborhoods/autocomplete/', views.neighborhood_autocomplete, name='neighborhood-autocomplete'),
-    re_path(r'^neighborhoods/(?P<neighborhood_name>[a-z]+(-[a-z]+)*)/(?P<neighborhood_id>[1-9]\d*)/$', views.neighborhood, name='neighborhood'),
+    re_path(r'^neighborhoods/(?P<slug>[a-z]+(-[a-z]+)*)/(?P<neighborhood_id>[1-9]\d*)/$', views.neighborhood, name='neighborhood'),
     path('locations/autocomplete/', views.location_autocomplete, name='location-autocomplete'),
     path('locations/update/', views.update_location, name='update'),
-    re_path(r'^(?P<category>(nightlife|restaurants|arts-and-entertainment|health-and-fitness|sports|non-profit|misc))/(?P<location_name>[\da-z]+(-[\da-z]+)*)/(?P<location_id>[1-9]\d*)/$', views.location, name='location'),
+    re_path(r'^(?P<category_slug>(nightlife|restaurants|arts-and-entertainment|health-and-fitness|sports|non-profit|misc))/(?P<location_slug>[\da-z]+(-[\da-z]+)*)/(?P<location_id>[1-9]\d*)/$', views.location, name='location'),
 ]
