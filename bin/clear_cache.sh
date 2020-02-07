@@ -5,6 +5,8 @@ declare -a apps=(
     "users"
     "locations"
     "events"
+    "images"
+    "articles"
 )
 
 for i in "${apps[@]}"; do
