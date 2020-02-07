@@ -34,7 +34,7 @@ def article(request, article_title, article_id):
     return render(request, 'articles/article.html', {
         'article': article,
         'images': images,
-        'images_preview': images[:14] if len(images) > 15 else images,
+        'images_preview': images[:14] if images and len(images) > 15 else images,
         'update_article_form': CreateArticleForm(instance=article),
         'user': request.user,
         'name': NAME,
