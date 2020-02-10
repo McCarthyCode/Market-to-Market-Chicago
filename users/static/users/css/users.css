@@ -309,7 +309,10 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   max-width: 320px;
 }
 
-#createEventForm, #createAlbumForm, #createArticleForm {
+#createArticleForm,
+#createEventForm,
+#createLocationForm,
+#createAlbumForm {
   display: none;
 }
 
