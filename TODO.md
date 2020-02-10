@@ -11,9 +11,11 @@
   - Infinite scrolling
 - Individual category page
   - Articles
-  - Locations
-    - by neighborhood
-- Location form
+- Location page
+  - Breadcrumbs
+    - Category
+    - Location
+- Create location form
 - People to Know
 - Ads
   - Leaderboard (top)
