@@ -299,30 +299,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .h1 {
   margin: 2rem 0;
 }
-#content article {
-  border: 1px solid #818181;
-  padding: 1rem;
-  background-color: #444444;
-  margin-bottom: 1rem;
-}
-#content article .h3 a {
-  color: #bb846e;
-}
-#content article p {
-  color: #ffffff;
-}
-#content article p.info {
-  color: #679452;
-  font-style: italic;
-  margin-bottom: 0.5rem;
-}
-#content article p.info a {
-  color: #679452;
-  text-decoration: underline;
-}
-#content article p.read-more {
-  margin: 0;
-}
 
 #skyscraperContainer {
   display: none;
@@ -359,6 +335,15 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     display: block;
   }
 }
+article p {
+  color: #ffffff;
+}
+article p.info {
+  color: #bbbbbb;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
 #byNeighborhood {
   display: grid;
   grid-template-columns: 1fr;
@@ -413,7 +398,7 @@ h3.h3 {
 }
 
 h5.h5, h5.h5 > a {
-  color: #bbbbbb;
+  color: #679452;
 }
 
 ul.bulleted {

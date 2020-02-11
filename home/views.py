@@ -4,6 +4,7 @@ from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 
 from locations.models import Neighborhood, Location
+from articles.models import Article
 from mtm.settings import TZ, NAME
 
 def index(request):
@@ -58,6 +59,10 @@ def category(request, slug):
         'category_name': slug_to_name[slug],
         'category_slug': slug,
         'locations_by_neighborhood': locations_by_neighborhood,
+        'articles': Article.objects
+            .filter(category=slug_to_id[slug])
+            .order_by('-date_updated')[:3],
+        'show_category': False,
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,

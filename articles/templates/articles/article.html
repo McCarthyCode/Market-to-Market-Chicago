@@ -2,7 +2,7 @@
 {% include 'home/messages.html' %}
 <h1 class="h1 text-center">{{ article.title }}</h1>
 <div class="card">
-  <p class="info">Created {% if article.created_by.first_name and article.created_by.last_name %}by {{ article.created_by.first_name }} {{ article.created_by.last_name }} {% endif %}on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} Updated {{ article.date_updated|date:"N j, Y." }}{% endif %} From <a href="{% if article.category == 0 %}{% url 'home:category' 'nightlife' %}{% elif article.category == 1 %}{% url 'home:category' 'restaurants' %}{% elif article.category == 2 %}{% url 'home:category' 'arts-and-entertainment' %}{% elif article.category == 3 %}{% url 'home:category' 'health-and-fitness' %}{% elif article.category == 4 %}{% url 'home:category' 'sports' %}{% elif article.category == 5 %}{% url 'home:category' 'non-profit' %}{% else %}{% url 'home:category' 'misc' %}{% endif %}">{{ article.get_category_display }}</a>.</p>
+  <p class="info">Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} Updated {{ article.date_updated|date:"N j, Y." }}{% endif %} From <a href="{% if article.category == 0 %}{% url 'home:category' 'nightlife' %}{% elif article.category == 1 %}{% url 'home:category' 'restaurants' %}{% elif article.category == 2 %}{% url 'home:category' 'arts-and-entertainment' %}{% elif article.category == 3 %}{% url 'home:category' 'health-and-fitness' %}{% elif article.category == 4 %}{% url 'home:category' 'sports' %}{% elif article.category == 5 %}{% url 'home:category' 'non-profit' %}{% else %}{% url 'home:category' 'misc' %}{% endif %}">{{ article.get_category_display }}</a>.</p>
   {{ article.body|linebreaks }}
 </div>
 {% if article.album %}

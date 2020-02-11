@@ -12,6 +12,7 @@
 - Individual category page
   - Hide locations with certain categories?
   - Articles
+    - Infinite scrolling
 - Neighborhood page
   - Categories
     - Location
