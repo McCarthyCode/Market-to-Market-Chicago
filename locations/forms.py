@@ -1,7 +1,6 @@
 from django import forms
-from django.core.exceptions import PermissionDenied
 
-from .models import Location
+from .models import Location, Neighborhood
 
 class CreateLocationForm(forms.ModelForm):
     name = forms.CharField(
@@ -73,6 +72,10 @@ class CreateLocationForm(forms.ModelForm):
 
     def clean(self):
         super().clean()
+        cleaned_data = self.cleaned_data
+
+        cleaned_data['neighborhood'] = \
+            Neighborhood.objects.get(id=cleaned_data['neighborhood_id'])
 
         return cleaned_data
 
@@ -81,6 +84,7 @@ class CreateLocationForm(forms.ModelForm):
         fields = [
             'name',
             'category',
+            'neighborhood',
             'address1',
             'address2',
             'city',

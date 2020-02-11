@@ -267,6 +267,45 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     border-right: 1px solid #818181;
   }
 }
+#locationAutocomplete,
+#neighborhoodAutocomplete,
+#neighborhoodAutocompleteLocation,
+#albumAutocomplete {
+  position: relative;
+  z-index: 4;
+}
+#locationAutocomplete ul,
+#neighborhoodAutocomplete ul,
+#neighborhoodAutocompleteLocation ul,
+#albumAutocomplete ul {
+  position: absolute;
+  bottom: 54px;
+  right: 0;
+  left: 0;
+  margin-bottom: 0;
+  border-radius: 4px;
+  color: #000000;
+  background-color: #ffffff;
+}
+#locationAutocomplete ul li,
+#neighborhoodAutocomplete ul li,
+#neighborhoodAutocompleteLocation ul li,
+#albumAutocomplete ul li {
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+#locationAutocomplete ul li:hover, #locationAutocomplete ul li.active,
+#neighborhoodAutocomplete ul li:hover,
+#neighborhoodAutocomplete ul li.active,
+#neighborhoodAutocompleteLocation ul li:hover,
+#neighborhoodAutocompleteLocation ul li.active,
+#albumAutocomplete ul li:hover,
+#albumAutocomplete ul li.active {
+  color: #ffffff;
+  background-color: #007bff;
+}
+
 #content {
   grid-column-start: left;
   grid-column-end: right;

@@ -2,6 +2,7 @@
 
 ## High Priorities
 
+- Fix update location's neighborhood bug
 - Home page (news feed)
   - NewsItems
     - Articles

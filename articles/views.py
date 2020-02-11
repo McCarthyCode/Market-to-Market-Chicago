@@ -57,6 +57,8 @@ def create(request):
             article = form.save()
         except ValidationError as error:
             messages.error(request, error)
+
+            return redirect('users:index')
         except PermissionDenied:
             messages.error(request, 'You do not have permission to create an article with that album.')
 

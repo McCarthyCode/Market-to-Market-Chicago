@@ -13,6 +13,7 @@ from django.urls import reverse
 from mtm.settings import TZ, NAME, API_KEY
 from .models import Neighborhood, Location, CATEGORIES
 from events.models import Event, RecurringEvent
+from .forms import CreateLocationForm
 
 def neighborhood_autocomplete(request):
     if request.method != 'GET':
@@ -67,6 +68,31 @@ def location(request, category_slug, location_slug, location_id):
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
+
+def create_location(request):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    form = CreateLocationForm(request.POST)
+
+    if form.is_valid():
+        try:
+            location = form.save()
+        except ValidationError as error:
+            messages.error(request, error)
+
+            redirect('users:index')
+
+        name = location.name
+        punctuation = name[-1]
+        messages.success(request, 'You have sucessfully created a location named "%s%s"' % (name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
+
+        return redirect('locations:location',
+            CATEGORIES[location.category], location.slug, location.id)
+
+    messages.error(request, 'There was an error creating a location.')
+
+    return redirect('users:index')
 
 def update_location(request):
     if request.method != 'POST':
