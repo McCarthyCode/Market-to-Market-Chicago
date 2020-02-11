@@ -103,10 +103,9 @@ class LocationManager(models.Manager):
         if not location_name:
             errors.append('Location name is required.')
 
-        if not neighborhood_id:
-            errors.append('Invalid neighborhood ID.')
-
-        if not neighborhood_name:
+        if not neighborhood_id and neighborhood_name:
+            Neighborhood.objects.create_neighborhood(neighborhood_name)
+        elif not neighborhood_id or not neighborhood_name:
             errors.append('Neighborhood name is required.')
 
         if not address1:
