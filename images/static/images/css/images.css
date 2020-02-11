@@ -349,6 +349,23 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container form .radio label {
   cursor: pointer;
 }
+#content .container form .address > :not(:last-child) {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-bottom: -1px;
+}
+#content .container form .address > :not(:first-child) {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+#content .container form .city-state-zip > :not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#content .container form .city-state-zip > :not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
 #content .container form .row {
   margin-right: 0;
   margin-left: 0;

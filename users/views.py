@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 
 from events.models import Event
+from locations.forms import CreateLocationForm
 from articles.forms import CreateArticleForm
 from mtm.settings import NAME, TZ
 
@@ -12,10 +13,9 @@ def index(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    create_article_form = CreateArticleForm()
-
     return render(request, 'users/index.html', {
-        'create_article_form': create_article_form,
+        'create_article_form': CreateArticleForm(),
+        'create_location_form': CreateLocationForm(),
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,

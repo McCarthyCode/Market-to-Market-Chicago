@@ -1,4 +1,23 @@
 <form id="createLocationForm" action="{# url 'locations:create' #}" method="POST">
   {% csrf_token %}
+  {% for hidden in create_location_form.hidden_fields %}
+  {{ hidden }}
+  {% endfor %}
+  {{ create_location_form.name }}
+  <div class="row">
+    <label id="categoryLabel" class="form-control col-12 col-md-6" for="id_category">{{ create_location_form.category.label }}</label>
+    {{ create_location_form.category }}
+  </div>
+  {{ create_location_form.neighborhood }}
+  <div id="neighborhoodAutocompleteLocation"></div>
+  <div class="address">
+    {{ create_location_form.address1 }}
+    {{ create_location_form.address2 }}
+  </div>
+  <div class="row city-state-zip">
+    {{ create_location_form.city }}
+    {{ create_location_form.state }}
+    {{ create_location_form.zip_code }}
+  </div>
   <input class="btn btn-primary form-control" type="submit" value="Submit">
 </form>

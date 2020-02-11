@@ -152,12 +152,14 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 
 #locationAutocomplete,
 #neighborhoodAutocomplete,
+#neighborhoodAutocompleteLocation,
 #albumAutocomplete {
   position: relative;
   z-index: 4;
 }
 #locationAutocomplete ul,
 #neighborhoodAutocomplete ul,
+#neighborhoodAutocompleteLocation ul,
 #albumAutocomplete ul {
   position: absolute;
   bottom: 54px;
@@ -170,6 +172,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 #locationAutocomplete ul li,
 #neighborhoodAutocomplete ul li,
+#neighborhoodAutocompleteLocation ul li,
 #albumAutocomplete ul li {
   border-radius: 4px;
   padding: 6px 12px;
@@ -178,6 +181,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #locationAutocomplete ul li:hover, #locationAutocomplete ul li.active,
 #neighborhoodAutocomplete ul li:hover,
 #neighborhoodAutocomplete ul li.active,
+#neighborhoodAutocompleteLocation ul li:hover,
+#neighborhoodAutocompleteLocation ul li.active,
 #albumAutocomplete ul li:hover,
 #albumAutocomplete ul li.active {
   color: #ffffff;
@@ -250,6 +255,23 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container form .radio label {
   cursor: pointer;
 }
+#content .container form .address > :not(:last-child) {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-bottom: -1px;
+}
+#content .container form .address > :not(:first-child) {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+#content .container form .city-state-zip > :not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#content .container form .city-state-zip > :not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
 #content .container form .row {
   margin-right: 0;
   margin-left: 0;
@@ -311,7 +333,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 
 #createArticleForm,
 #createEventForm,
-#createLocationForm,
 #createAlbumForm {
   display: none;
 }
