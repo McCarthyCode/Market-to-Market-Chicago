@@ -333,6 +333,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 
 #createArticleForm,
 #createEventForm,
+#createLocationForm,
 #createAlbumForm {
   display: none;
 }
