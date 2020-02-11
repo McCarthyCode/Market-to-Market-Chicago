@@ -10,12 +10,21 @@
     - Albums
   - Infinite scrolling
 - Individual category page
+  - Hide locations with certain categories?
   - Articles
-- Location page
-  - Breadcrumbs
-    - Category
+- Neighborhood page
+  - Categories
     - Location
-- Create location form
+- Breadcrumbs
+  - Location page
+    - Category
+    - Neighborhood
+    - Location
+  - Event page
+    - Category
+    - Neighborhood
+    - Location
+    - Event
 - People to Know
 - Ads
   - Leaderboard (top)
@@ -25,6 +34,7 @@
 
 ## Medium Priorities
 
+- Add optional location field to articles
 - Dashboard
   - Create event(s)
     - Select checkbox on append click
