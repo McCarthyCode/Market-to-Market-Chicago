@@ -267,13 +267,21 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     border-right: 1px solid #818181;
   }
 }
-.container .card {
+.container .card, .container .empty-card {
   background-color: #444444;
-  border-color: #818181;
-  color: #ffffff;
+  border: 1px solid #818181;
+  border-radius: 0.25rem;
   padding: 1rem;
   margin-bottom: 0.5rem;
   position: relative;
+}
+.container .card {
+  color: #ffffff;
+}
+.container .empty-card {
+  color: #818181;
+  font-style: italic;
+  text-align: center;
 }
 
 #content {
@@ -399,7 +407,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 
 #prev.disabled, #next.disabled {
-  color: rgba(255, 255, 255, 0.5);
+  color: #ffffff80;
   cursor: not-allowed;
 }
 

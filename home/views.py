@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 from locations.models import Neighborhood, Location
 from articles.models import Article
-from mtm.settings import TZ, NAME
+from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE
 
 def index(request):
     if request.method != 'GET':
@@ -61,7 +61,7 @@ def category(request, slug):
         'locations_by_neighborhood': locations_by_neighborhood,
         'articles': Article.objects
             .filter(category=slug_to_id[slug])
-            .order_by('-date_updated')[:3],
+            .order_by('-date_updated')[:ARTICLES_PER_PAGE],
         'show_category': False,
         'user': request.user,
         'name': NAME,

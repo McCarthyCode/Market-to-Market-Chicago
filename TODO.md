@@ -11,8 +11,6 @@
   - Infinite scrolling
 - Individual category page
   - Hide locations with certain categories?
-  - Articles
-    - Infinite scrolling
 - Neighborhood page
   - Categories
     - Location
@@ -130,3 +128,4 @@
 - Add modals to delete forms
 - Change title regex names to slug
 - Restructure CATEGORY_CHOICES object
+- Change grayscale colors to sensible names

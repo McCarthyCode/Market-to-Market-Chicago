@@ -158,3 +158,6 @@ API_KEY_FILE = '%s/auth/api_key.txt' % BASE_DIR
 with open(API_KEY_FILE, 'r', encoding='utf8') as f:
     content = f.readline()
 API_KEY = content[:-1]
+
+# Page length for articles paginator
+ARTICLES_PER_PAGE = 5

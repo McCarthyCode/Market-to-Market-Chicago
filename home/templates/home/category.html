@@ -15,16 +15,13 @@
     </li>
     {% endif %}
     {% empty %}
-    <li class="empty-card">No locations found.</li>
+    <li class="empty-card">No locations to display.</li>
     {% endfor %}
   </ul>
 </section>
 <section id="articles">
+  <input type="hidden" name="category-slug" value="{{ category_slug }}">
   <h3 class="h3">Articles</h3>
-  {% for article in articles %}
-    {% include 'articles/article_preview.html' %}
-  {% empty %}
-    <p class="empty-card">No articles found.</p>
-  {% endfor %}
+  {% include 'articles/article_preview.html' %}
 </ul>
 {% endblock %}

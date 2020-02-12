@@ -2,8 +2,10 @@ from datetime import datetime
 
 from django.contrib import messages
 from django.core.exceptions import ValidationError, PermissionDenied
+from django.core.paginator import Paginator, EmptyPage
 from django.http import (
     Http404,
+    HttpResponse,
     HttpResponseBadRequest,
     HttpResponseRedirect,
 )
@@ -12,7 +14,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .forms import CreateArticleForm
 from .models import Article
 from images.models import Image
-from mtm.settings import TZ, NAME
+from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE
 
 def article(request, slug, article_id):
     if request.method != 'GET':
@@ -40,6 +42,41 @@ def article(request, slug, article_id):
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
+
+def by_page(request):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    category = request.GET.get('category', '')
+    page = request.GET.get('page', '')
+
+    if not page:
+        page = 1
+    else:
+        page = int(page)
+
+    if not category:
+        articles = Article.objects.all().order_by('-date_updated')
+    else:
+        slug_to_id = {
+            'nightlife': 0,
+            'restaurants': 1,
+            'arts-and-entertainment': 2,
+            'health-and-fitness': 3,
+            'sports': 4,
+            'non-profit': 5,
+        }
+
+        articles = Article.objects.filter(category=slug_to_id[category]).order_by('-date_updated')
+
+    articles_paginator = Paginator(articles, ARTICLES_PER_PAGE)
+
+    try:
+        return render(request, 'articles/article_preview.html', {
+            'articles': articles_paginator.page(page).object_list,
+        })
+    except EmptyPage as exception:
+        return HttpResponse(exception, status=204)
 
 def create(request):
     if request.method != 'POST':
