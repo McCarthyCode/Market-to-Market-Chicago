@@ -1,0 +1,17 @@
+<li class="album card">
+  <h3 class="h3"><a href="{% url 'images:album' album.slug album.id %}">{{ album.title }} <span class="text-nowrap">({{ images|length }} image{% if images|length != 1 %}s{% endif %})</span></a></h3>
+  <p class="info">Created on {{ album.date_created|date:"N j, Y." }}{% if album.updated_later %} <span class="text-nowrap">Updated {{ album.date_updated|date:"N j, Y." }}</span>{% endif %}</p>
+  <div class="images">
+  {% for image in image_preview %}
+    <a data-fancybox="gallery" href="{{ image.image.url }}" data-id="{{ image.id }}">
+      <img src="{{ image.image.url }}">
+    </a>
+  {% endfor %}
+  {% if images|length > 6 %}
+  <a class="see-more text-center" href="{% url 'images:album' album.slug album.id %}">
+    <i class="fas fa-chevron-circle-right"></i>
+    <br>
+    More
+  </a>
+  {% endif %}
+</li>

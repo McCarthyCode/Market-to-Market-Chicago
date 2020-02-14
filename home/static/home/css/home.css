@@ -396,6 +396,54 @@ article.category .info {
     grid-column: 1/span 3;
   }
 }
+.album .info {
+  color: #679452;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+.album .info a {
+  color: #679452;
+  text-decoration: underline;
+}
+.album .info a:hover {
+  color: #97d5f7;
+}
+.album .images {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+}
+.album .images > a {
+  align-self: center;
+}
+.album .images > a > img {
+  width: 100%;
+}
+.album .images .see-more {
+  color: #818181;
+  margin: auto;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.album .images .see-more i {
+  font-size: 3rem;
+}
+
+@media screen and (min-width: 576px) {
+  .album .images {
+    gap: 0.5rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .album .images .see-more {
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+  .album .images .see-more i {
+    font-size: 5rem;
+  }
+}
 html, body {
   height: 100%;
 }

@@ -1,7 +1,7 @@
 {% for article in articles %}
 <article class="card category">
   <h5 class="h5"><a href="{% url 'articles:article' article.slug article.id %}">{{ article.title }}</a></h5>
-  <p class="info">Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} Updated {{ article.date_updated|date:"N j, Y." }}{% endif %}</p>
+  <p class="info">Created on {{ article.date_created|date:"N j, Y." }}{% if album.updated_later %} <span class="text-nowrap">Updated {{ album.date_updated|date:"N j, Y." }}</span>{% endif %}</p>
   {{ article.body|linebreaks|truncatewords:100 }}
 </article>
 {% empty %}

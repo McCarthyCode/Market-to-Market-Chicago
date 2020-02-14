@@ -7,7 +7,7 @@ from django.shortcuts import render
 
 from articles.models import Article
 from events.models import Event
-from images.models import Album
+from images.models import Album, Image
 from locations.models import Neighborhood, Location
 from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE
 
@@ -15,14 +15,17 @@ def index(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    albums = Album.objects.all()
+    albums = []
+    for album in Album.objects.all():
+        if Image.objects.filter(album=album):
+            albums.append(album)
     articles = Article.objects.all()
     events = Event.objects.all()
     locations = Location.objects.all()
 
     feed = sorted(
         chain(
-            # albums,
+            albums,
             articles,
             # events,
             # locations,
