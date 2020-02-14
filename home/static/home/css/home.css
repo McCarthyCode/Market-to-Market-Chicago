@@ -283,6 +283,13 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   font-style: italic;
   text-align: center;
 }
+.container .empty-card a {
+  color: #818181;
+  text-decoration: underline;
+}
+.container .empty-card a:hover {
+  color: #97d5f7;
+}
 
 #content {
   grid-column-start: left;
@@ -335,13 +342,28 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     display: block;
   }
 }
-article p {
+article p, .article p {
   color: #ffffff;
 }
-article p.info {
-  color: #bbbbbb;
+article .info, .article .info {
+  color: #679452;
+  font-size: 1rem;
   font-style: italic;
   margin-bottom: 0.5rem;
+}
+article .info a, .article .info a {
+  color: #679452;
+  text-decoration: underline;
+}
+article .info a:hover, .article .info a:hover {
+  color: #97d5f7;
+}
+
+article.category h5.h5 > a {
+  color: #dcdcaa;
+}
+article.category .info {
+  color: #679452;
 }
 
 #byNeighborhood {
@@ -351,6 +373,9 @@ article p.info {
 }
 #byNeighborhood .card {
   margin-bottom: 0;
+}
+#byNeighborhood .card h5.h5 > a {
+  color: #dcdcaa;
 }
 
 @media screen and (min-width: 576px) {
@@ -393,7 +418,7 @@ h1.h1 {
   color: #dcdcaa;
 }
 
-h3.h3 {
+h3.h3, h3.h3 > a {
   color: #bb846e;
 }
 

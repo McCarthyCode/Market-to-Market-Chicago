@@ -1,17 +1,38 @@
 from datetime import datetime
+from itertools import chain
+from operator import attrgetter
 
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 
-from locations.models import Neighborhood, Location
 from articles.models import Article
+from events.models import Event
+from images.models import Album
+from locations.models import Neighborhood, Location
 from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE
 
 def index(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
+    albums = Album.objects.all()
+    articles = Article.objects.all()
+    events = Event.objects.all()
+    locations = Location.objects.all()
+
+    feed = sorted(
+        chain(
+            # albums,
+            articles,
+            # events,
+            # locations,
+        ),
+        key=attrgetter('date_updated'),
+        reverse=True,
+    )
+
     return render(request, 'home/index.html', {
+        'feed': feed,
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,

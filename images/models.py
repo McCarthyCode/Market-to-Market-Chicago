@@ -3,10 +3,10 @@ from slugify import slugify
 from django.db import models
 from django.contrib.auth.models import User
 
-from home.models import TimestampedModel
+from home.models import TimestampedModel, NewsItem
 from .managers import AlbumManager, ImageManager
 
-class Album(TimestampedModel):
+class Album(NewsItem):
     title = models.CharField(max_length=255)
     slug = models.SlugField(default='', max_length=255, null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)

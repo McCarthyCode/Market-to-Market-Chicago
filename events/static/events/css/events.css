@@ -283,6 +283,13 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   font-style: italic;
   text-align: center;
 }
+.container .empty-card a {
+  color: #818181;
+  text-decoration: underline;
+}
+.container .empty-card a:hover {
+  color: #97d5f7;
+}
 
 #content {
   grid-column-start: left;

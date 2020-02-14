@@ -271,7 +271,7 @@ class AlbumManager(models.Manager):
         if query == '' or not request.user.is_superuser:
             return {'albums': []}
 
-        for album in Album.objects.filter(title__contains=query) \
+        for album in Album.objects.filter(title__icontains=query) \
         .order_by('title')[:5]:
             albums.append({
                 'id': album.id,

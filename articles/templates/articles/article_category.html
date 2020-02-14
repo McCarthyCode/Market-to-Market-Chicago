@@ -1,0 +1,9 @@
+{% for article in articles %}
+<article class="card category">
+  <h5 class="h5"><a href="{% url 'articles:article' article.slug article.id %}">{{ article.title }}</a></h5>
+  <p class="info">Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} Updated {{ article.date_updated|date:"N j, Y." }}{% endif %}</p>
+  {{ article.body|linebreaks|truncatewords:100 }}
+</article>
+{% empty %}
+<p class="empty-card">No articles to display.</p>
+{% endfor %}

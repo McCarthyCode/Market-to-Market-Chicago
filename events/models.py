@@ -1,11 +1,11 @@
 from slugify import slugify
 from django.db import models
-from home.models import TimestampedModel
+from home.models import TimestampedModel, NewsItem
 from locations.models import Location
 from .managers import EventManager, RecurringEventManager, RepeatInfoManager, WeekdayManager
 from mtm.settings import TZ
 
-class Event(TimestampedModel):
+class Event(NewsItem):
     name = models.CharField(max_length=255)
     slug = models.SlugField(default='', max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)

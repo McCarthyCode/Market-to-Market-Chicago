@@ -15,7 +15,7 @@ class NeighborhoodManager(models.Manager):
         if query == '':
             return {'neighborhoods': []}
 
-        for neighborhood in Neighborhood.objects.filter(name__contains=query) \
+        for neighborhood in Neighborhood.objects.filter(name__icontains=query) \
         .order_by('name')[:5]:
             neighborhoods.append({
                 'id': neighborhood.id,
@@ -40,7 +40,7 @@ class LocationManager(models.Manager):
         if query == '':
             return {'locations': []}
 
-        for location in Location.objects.filter(name__contains=query) \
+        for location in Location.objects.filter(name__icontains=query) \
         .order_by('name')[:5]:
             locations.append({
                 'id': location.id,

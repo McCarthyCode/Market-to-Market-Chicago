@@ -12,3 +12,10 @@ class TimestampedModel(models.Model):
 
     class Meta:
         abstract = True
+
+class NewsItem(TimestampedModel):
+    def render(self, request):
+        raise NotImplementedError('Subclasses of NewsItem must define their own render() method.')
+
+    class Meta:
+        abstract = True

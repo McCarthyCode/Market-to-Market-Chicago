@@ -9,11 +9,13 @@
 
 @import '_album'
 @import '_autocomplete'
+@import '_card'
 @import '_forms'
 @import '_messages'
 @import '_modals'
 
 @import '_article'
+@import '_article_album'
 @import '_create_update_article'
 
 html, body
@@ -30,14 +32,17 @@ body
   a:hover
     text-decoration: underline
 
-h1.h1, h3.h3
+h1.h1, h3.h3, h5.h5
   font-family: $font-title
 
 h1.h1
   color: $yellow
 
-h3.h3
+h3.h3, h3.h3 > a
   color: $orange
+
+h5.h5, h5.h5 > a
+  color: $green
 
 .fa-external-link-alt
   display: inline
@@ -100,15 +105,6 @@ h3.h3
 
   p:not(.info)
     color: $white
-
-  p.info
-    color: $green
-    font-style: italic
-    margin-bottom: .5rem
-
-    a
-      color: $green
-      text-decoration: underline
 
 @media screen and (min-width: $breakpoint-md)
   #grid

@@ -368,6 +368,30 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   background-color: #007bff;
 }
 
+.container .card, .container .empty-card {
+  background-color: #444444;
+  border: 1px solid #818181;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+.container .card {
+  color: #ffffff;
+}
+.container .empty-card {
+  color: #818181;
+  font-style: italic;
+  text-align: center;
+}
+.container .empty-card a {
+  color: #818181;
+  text-decoration: underline;
+}
+.container .empty-card a:hover {
+  color: #97d5f7;
+}
+
 #content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password], #content .container form input[type=submit], #content .container form input[type=file], #content .container form textarea, #content .container form select, #content .container form label {
   margin-bottom: 0.5rem;
 }
@@ -492,17 +516,29 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-bottom: 0;
 }
 
-#album, #deleteArticleButton {
+article .info, .article .info {
+  color: #679452;
+  font-size: 1rem;
+  font-style: italic;
   margin-bottom: 0.5rem;
 }
-
-#content .container .card #album .empty {
-  color: #818181;
-  margin-bottom: 0;
-}
-#content .container .card #album .empty a {
-  color: #818181;
+article .info a, .article .info a {
+  color: #679452;
   text-decoration: underline;
+}
+article .info a:hover, .article .info a:hover {
+  color: #97d5f7;
+}
+
+article.category h5.h5 > a {
+  color: #dcdcaa;
+}
+article.category .info {
+  color: #679452;
+}
+
+#album, #deleteArticleButton {
+  margin-bottom: 0.5rem;
 }
 
 .see-more {
@@ -558,7 +594,7 @@ body a:hover {
   text-decoration: underline;
 }
 
-h1.h1, h3.h3 {
+h1.h1, h3.h3, h5.h5 {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
 }
 
@@ -566,8 +602,12 @@ h1.h1 {
   color: #dcdcaa;
 }
 
-h3.h3 {
+h3.h3, h3.h3 > a {
   color: #bb846e;
+}
+
+h5.h5, h5.h5 > a {
+  color: #679452;
 }
 
 .fa-external-link-alt {
@@ -639,15 +679,6 @@ h3.h3 {
 }
 #content .container .card p:not(.info) {
   color: #ffffff;
-}
-#content .container .card p.info {
-  color: #679452;
-  font-style: italic;
-  margin-bottom: 0.5rem;
-}
-#content .container .card p.info a {
-  color: #679452;
-  text-decoration: underline;
 }
 
 @media screen and (min-width: 768px) {

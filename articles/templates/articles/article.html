@@ -1,24 +1,19 @@
 {% extends 'articles/base.html' %}{% block content %}
 {% include 'home/messages.html' %}
 <h1 class="h1 text-center">{{ article.title }}</h1>
-<div class="card">
+<article class="card">
   <p class="info">Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} Updated {{ article.date_updated|date:"N j, Y." }}{% endif %} From <a href="{% if article.category == 0 %}{% url 'home:category' 'nightlife' %}{% elif article.category == 1 %}{% url 'home:category' 'restaurants' %}{% elif article.category == 2 %}{% url 'home:category' 'arts-and-entertainment' %}{% elif article.category == 3 %}{% url 'home:category' 'health-and-fitness' %}{% elif article.category == 4 %}{% url 'home:category' 'sports' %}{% elif article.category == 5 %}{% url 'home:category' 'non-profit' %}{% else %}{% url 'home:category' 'misc' %}{% endif %}">{{ article.get_category_display }}</a>.</p>
   {{ article.body|linebreaks }}
-</div>
+</article>
 {% if article.album %}
 <h3 class="h3"><a href="{% url 'images:album' article.album.slug article.album.id %}">{{ article.album.title }} <span class="text-nowrap">({{ images|length }} image{% if images|length != 1 %}s{% endif %})</span></a></h3>
+{% if images_preview %}
 <div class="card">
   <div id="album">
   {% for image in images_preview %}
     <a data-fancybox="gallery" href="{{ image.image.url }}" data-id="{{ image.id }}">
       <img src="{{ image.image.url }}">
     </a>
-  {% empty %}
-  {% if user.is_superuser or user.id == article.album.created_by.id %}
-    <p class="text-center empty">There are currently no images in this album. You may add images by clicking the album title above or <a href="{% url 'images:album' article.album.slug article.album.id %}">this link</a>.</p>
-  {% else %}
-    <p class="text-center empty">There are currently no images in this album.</p>
-  {% endif %}
   {% endfor %}
   {% if images|length > 15 %}
   <a class="see-more text-center" href="{% url 'images:album' article.album.slug article.album.id %}">
@@ -29,6 +24,15 @@
   {% endif %}
   </div>
 </div>
+{% else %}
+<div class="empty-card">
+{% if user.is_superuser or user.id == article.album.created_by.id %}
+<p class="empty-card">There are currently no images in this album. You may add images by clicking the album title above or <a href="{% url 'images:album' article.album.slug article.album.id %}">this link</a>.</p>
+{% else %}
+<p class="empty-card">There are currently no images in this album.</p class="empty-card">
+{% endif %}
+</div>
+{% endif %}
 {% endif %}
 {% if user.is_superuser %}
 <h3 class="h3">Update</h3>

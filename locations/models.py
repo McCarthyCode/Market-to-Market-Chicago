@@ -1,6 +1,6 @@
 from django.template.defaultfilters import slugify
 from django.db import models
-from home.models import TimestampedModel
+from home.models import TimestampedModel, NewsItem
 from .managers import NeighborhoodManager, LocationManager
 from mtm.settings import TZ
 
@@ -25,7 +25,7 @@ class Neighborhood(TimestampedModel):
     def __str__(self):
         return self.name
 
-class Location(TimestampedModel):
+class Location(NewsItem):
     CATEGORY_CHOICES = [
         (0, 'Nightlife'),
         (1, 'Restaurants'),
