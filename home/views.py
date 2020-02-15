@@ -6,7 +6,7 @@ from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 
 from articles.models import Article
-from events.models import Event
+# from events.models import Event
 from images.models import Album, Image
 from locations.models import Neighborhood, Location
 from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE
@@ -20,7 +20,7 @@ def index(request):
         if Image.objects.filter(album=album):
             albums.append(album)
     articles = Article.objects.all()
-    events = Event.objects.all()
+    # events = Event.objects.all()
     locations = Location.objects.all()
 
     feed = sorted(
@@ -28,7 +28,7 @@ def index(request):
             albums,
             articles,
             # events,
-            # locations,
+            locations,
         ),
         key=attrgetter('date_updated'),
         reverse=True,

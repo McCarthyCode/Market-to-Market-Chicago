@@ -3,14 +3,7 @@
 ## High Priorities
 
 - Home page (news feed)
-  - NewsItems
-    - Articles
-    - Locations
-    - Events
-    - Albums
   - Infinite scrolling
-- Individual category page
-  - Hide locations with certain categories?
 - Neighborhood page
   - Categories
     - Location
@@ -33,6 +26,9 @@
 
 ## Medium Priorities
 
+- Home page (news feed)
+  - NewsItems
+    - Events
 - Add optional location field to articles
 - Dashboard
   - Create event(s)

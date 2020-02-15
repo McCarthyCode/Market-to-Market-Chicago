@@ -1,5 +1,7 @@
 from django.template.defaultfilters import slugify
 from django.db import models
+from django.shortcuts import render
+
 from home.models import TimestampedModel, NewsItem
 from .managers import NeighborhoodManager, LocationManager
 from mtm.settings import TZ
@@ -45,6 +47,23 @@ class Location(NewsItem):
     state = models.CharField(max_length=2, default='IL')
     zip_code = models.CharField(null=True, blank=True, max_length=5)
     objects = LocationManager()
+
+    def category_slug(self):
+        slugs = [
+            'nightlife',
+            'restaurants',
+            'arts-and-entertainment',
+            'health-and-fitness',
+            'sports',
+            'non-profit',
+        ]
+
+        return slugs[self.category]
+
+    def render(self, request):
+        return render(request, 'locations/location_home.html', {
+            'location': self,
+        })
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

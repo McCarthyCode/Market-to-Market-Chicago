@@ -342,30 +342,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     display: block;
   }
 }
-article p, .article p {
-  color: #ffffff;
-}
-article .info, .article .info {
-  color: #679452;
-  font-size: 1rem;
-  font-style: italic;
-  margin-bottom: 0.5rem;
-}
-article .info a, .article .info a {
-  color: #679452;
-  text-decoration: underline;
-}
-article .info a:hover, .article .info a:hover {
-  color: #97d5f7;
-}
-
-article.category h5.h5 > a {
-  color: #dcdcaa;
-}
-article.category .info {
-  color: #679452;
-}
-
 #byNeighborhood {
   display: grid;
   grid-template-columns: 1fr;
@@ -396,6 +372,30 @@ article.category .info {
     grid-column: 1/span 3;
   }
 }
+article p, .article p {
+  color: #ffffff;
+}
+article .info, .article .info {
+  color: #679452;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+article .info a, .article .info a {
+  color: #679452;
+  text-decoration: underline;
+}
+article .info a:hover, .article .info a:hover {
+  color: #97d5f7;
+}
+
+article.category h5.h5 > a {
+  color: #dcdcaa;
+}
+article.category .info {
+  color: #679452;
+}
+
 .album .info {
   color: #679452;
   font-size: 1rem;
@@ -444,6 +444,20 @@ article.category .info {
     font-size: 5rem;
   }
 }
+.location .info {
+  color: #679452;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+.location .info a {
+  color: #679452;
+  text-decoration: underline;
+}
+.location .info a:hover {
+  color: #97d5f7;
+}
+
 html, body {
   height: 100%;
 }
