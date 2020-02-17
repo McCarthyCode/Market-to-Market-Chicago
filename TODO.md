@@ -121,3 +121,5 @@
 - Change title regex names to slug
 - Restructure CATEGORY_CHOICES object
 - Change grayscale colors to sensible names
+- Individual category page
+  - Hide locations with certain categories?
