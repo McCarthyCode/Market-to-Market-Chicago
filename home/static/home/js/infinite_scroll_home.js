@@ -13,50 +13,38 @@ $(document).ready(function () {
     return elementBottom >= viewportTop && elementTop <= viewportBottom;
   };
 
-  // infinite scrolling and scroll to top
+  // infinite scrolling
   let $content = $('#content');
-  let $articles = $('#articles');
-  let $lastArticle = $articles.find('article:last-of-type');
+  let $newsFeed = $('#newsFeed');
+  let $lastItem = $('#newsFeed > li:last-of-type');
 
-  let categorySlug = $('input[name="category-slug"]').val();
-  let articlesEmpty = false;
+  let newsFeedEmpty = false;
   let ajaxInProgress = false;
   let page = 2;
 
   $content.on('scroll', function () {
-    // infinite scrolling
-    $lastArticle = $articles.find('article:last-of-type');
+    let $lastItem = $('#newsFeed > li:last-of-type');
 
-    if (!ajaxInProgress && !articlesEmpty && $lastArticle.isInViewport()) {
+    if (!ajaxInProgress && !newsFeedEmpty && $lastItem.isInViewport()) {
       ajaxInProgress = true;
 
-      $.ajax('/articles/by-page/', {
+      $.ajax('/news-feed/', {
         'data': {
           'page': page,
-          'category': categorySlug,
         },
         'success': function (response) {
-          $articles.append(response);
+          $newsFeed.append(response);
           page++;
           ajaxInProgress = false;
         },
         'statusCode': {
           204: function () {
-            $articles.append('<p class="empty-card">No more articles to display.</p>');
-            articlesEmpty = true;
+            $newsFeed.append('<li class="empty-card">No more items to display.</li>');
+            newsFeedEmpty = true;
             ajaxInProgress = false;
           }
         }
       });
     }
-
-    // // scroll to top display
-    // let $scrollToTop = $('#scrollToTop');
-
-    // if ($content.scrollTop() >= 160) {
-    //   $scrollToTop.slideDown();
-    // } else {
-    //   $scrollToTop.slideUp();
-    // }
   });
 });

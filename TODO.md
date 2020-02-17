@@ -2,8 +2,15 @@
 
 ## High Priorities
 
-- Home page (news feed)
-  - Infinite scrolling
+- People to Know
+- Ads
+  - Leaderboard (top)
+  - 3 Leaderboard/mobile leaderboard (between news items)
+  - Medium rectangle (left sidebar)
+  - Skyscraper (right sidebar)
+
+## Medium Priorities
+
 - Neighborhood page
   - Categories
     - Location
@@ -17,15 +24,6 @@
     - Neighborhood
     - Location
     - Event
-- People to Know
-- Ads
-  - Leaderboard (top)
-  - 3 Leaderboard/mobile leaderboard (between news items)
-  - Medium rectangle (left sidebar)
-  - Skyscraper (right sidebar)
-
-## Medium Priorities
-
 - Home page (news feed)
   - NewsItems
     - Events
@@ -33,8 +31,6 @@
 - Dashboard
   - Create event(s)
     - Select checkbox on append click
-  - Create album
-    - Only accept images on input
 - Custom error pages
   - 404
   - 500

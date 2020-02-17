@@ -72,7 +72,7 @@ def by_page(request):
     articles_paginator = Paginator(articles, ARTICLES_PER_PAGE)
 
     try:
-        return render(request, 'articles/article_preview.html', {
+        return render(request, 'articles/article_category.html', {
             'articles': articles_paginator.page(page).object_list,
         })
     except EmptyPage as exception:

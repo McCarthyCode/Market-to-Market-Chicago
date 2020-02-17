@@ -2,14 +2,15 @@ from datetime import datetime
 from itertools import chain
 from operator import attrgetter
 
-from django.http import HttpResponseBadRequest
+from django.core.paginator import Paginator, EmptyPage
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 
 from articles.models import Article
 # from events.models import Event
 from images.models import Album, Image
 from locations.models import Neighborhood, Location
-from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE
+from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE, NEWS_ITEMS_PER_PAGE
 
 def index(request):
     if request.method != 'GET':
@@ -35,7 +36,7 @@ def index(request):
     )
 
     return render(request, 'home/index.html', {
-        'feed': feed,
+        'feed': feed[:NEWS_ITEMS_PER_PAGE],
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
@@ -91,3 +92,42 @@ def category(request, slug):
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
+
+def news_feed(request):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    page = request.GET.get('page', '')
+
+    if not page:
+        page = 1
+    else:
+        page = int(page)
+
+    albums = []
+    for album in Album.objects.all():
+        if Image.objects.filter(album=album):
+            albums.append(album)
+    articles = Article.objects.all()
+    # events = Event.objects.all()
+    locations = Location.objects.all()
+
+    feed = sorted(
+        chain(
+            albums,
+            articles,
+            # events,
+            locations,
+        ),
+        key=attrgetter('date_updated'),
+        reverse=True,
+    )
+
+    news_feed_paginator = Paginator(feed, NEWS_ITEMS_PER_PAGE)
+
+    try:
+        return render(request, 'home/news_feed.html', {
+            'feed': news_feed_paginator.page(page).object_list,
+        })
+    except EmptyPage as exception:
+        return HttpResponse(exception, status=204)

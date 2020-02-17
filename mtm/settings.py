@@ -159,5 +159,6 @@ with open(API_KEY_FILE, 'r', encoding='utf8') as f:
     content = f.readline()
 API_KEY = content[:-1]
 
-# Page length for articles paginator
-ARTICLES_PER_PAGE = 5
+# Page length for paginators
+NEWS_ITEMS_PER_PAGE = 10
+ARTICLES_PER_PAGE = 10

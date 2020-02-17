@@ -1,0 +1,5 @@
+{% load render_news_item %}
+{% for item in feed %}
+{% render_news_item request item as news_item %}
+{{ news_item|safe }}
+{% endfor %}
