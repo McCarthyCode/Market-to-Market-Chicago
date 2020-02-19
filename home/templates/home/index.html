@@ -1,6 +1,6 @@
-{% extends 'home/base.html' %}{% load static %}{% block content %}<h1 class="h1 text-center">Market to Market Chicago</h1>
-{% load render_news_item %}
+{% extends 'home/base.html' %}{% load static %}{% block content %}
 <ul id="newsFeed">
+{% load render_news_item %}
 {% for item in feed %}
 {% render_news_item request item as news_item %}
 {{ news_item|safe }}

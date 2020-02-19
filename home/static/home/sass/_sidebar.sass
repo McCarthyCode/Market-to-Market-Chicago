@@ -81,21 +81,6 @@
     li:nth-child(8):hover, li:nth-child(8).active
       border-right: .25rem solid $purple
 
-#mediumRectangleContainer
-  display: none
-  position: relative
-  grid-column-start: left
-  grid-column-end: sidebar-right
-  grid-row-start: topics-bottom
-  grid-row-end: footer-tall-top
-  background-color: $gray
-  border-right: 1px solid $lighter-gray
-
-  #mediumRectangle
-    position: absolute
-    top: 50%
-    @include transform(translateY(-50%))
-
 @media screen and (min-width: $breakpoint-md)
-  #topics, #mediumRectangleContainer
+  #topics
     display: block

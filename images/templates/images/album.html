@@ -1,6 +1,5 @@
 {% extends 'images/base.html' %}{% block content %}
 {% include 'home/messages.html' %}
-<h1 class="h1 text-center">{{ album.title }}</h1>
 {% if user.is_superuser or user.id == album.created_by.id %}
 <div id="controls">
   <button id="updateTitleButton" class="btn btn-secondary">Update Title</button>

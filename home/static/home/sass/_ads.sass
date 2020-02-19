@@ -1,0 +1,56 @@
+#leaderboard1a, #leaderboard1b
+  display: none
+  width: 728px
+  margin: 0 auto 1rem auto
+
+#largeMobileBanner1
+  display: block
+  width: 320px
+  margin: 0 auto 1rem auto
+
+#mediumRectangleContainer
+  display: none
+  position: relative
+  grid-column-start: left
+  grid-column-end: sidebar-right
+  grid-row-start: topics-bottom
+  grid-row-end: footer-tall-top
+  background-color: $gray
+  border-right: 1px solid $lighter-gray
+
+#mediumRectangle1
+  position: absolute
+  top: 50%
+  @include transform(translateY(-50%))
+
+#mediumRectangle2
+  position: relative
+  width: 300px
+  left: 50%
+  @include transform(translateX(-50%))
+  margin-bottom: 1rem
+
+@media screen and (min-width: $breakpoint-md)
+  #mediumRectangleContainer
+    display: block
+
+  #mediumRectangle2
+    position: initial
+    left: 0
+    @include transform(translateX(0))
+    width: 300px
+    margin: 0 0 .5rem 1rem
+
+@media screen and (min-width: 1061px) and (max-width: $breakpoint-xl - 1px)
+  #leaderboard1a
+    display: block
+
+  #largeMobileBanner1
+    display: none
+
+@media screen and (min-width: 1254px)
+  #leaderboard1b
+    display: block
+
+  #largeMobileBanner1
+    display: none

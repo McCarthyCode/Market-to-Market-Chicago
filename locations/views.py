@@ -63,6 +63,7 @@ def location(request, category_slug, location_slug, location_id):
 
     return render(request, 'locations/location.html', {
         **response,
+        'title': Location.objects.get(id=location_id).name,
         'user': request.user,
         'API_KEY': API_KEY,
         'name': NAME,

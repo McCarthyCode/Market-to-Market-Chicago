@@ -136,9 +136,14 @@
       {% include 'home/topics.html' %}
     </section>
     <section id="mediumRectangleContainer">
-      {% include 'home/ads/medium_rectangle.html' %}
+      {% include 'home/ads/medium_rectangle1.html' %}
     </section>
     <section id="content">
+      <div class="container">
+        <h1 class="h1 text-center">{% if event %}{{ event.name }} <span class="text-nowrap">({{ event.date_start|date:"D. N j" }})</span>{% else %}Events{% endif %}</h1>
+      </div>
+      {% include 'home/ads/leaderboard1.html' %}
+      {% include 'home/ads/large_mobile_banner1.html' %}
       <div class="container">
         {% block content %}
         {% endblock %}

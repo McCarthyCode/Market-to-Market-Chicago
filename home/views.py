@@ -36,6 +36,7 @@ def index(request):
     )
 
     return render(request, 'home/index.html', {
+        'title': 'Market to Market Chicago',
         'feed': feed[:NEWS_ITEMS_PER_PAGE],
         'user': request.user,
         'name': NAME,
@@ -81,7 +82,7 @@ def category(request, slug):
             })
 
     return render(request, 'home/category.html', {
-        'category_name': slug_to_name[slug],
+        'title': slug_to_name[slug],
         'category_slug': slug,
         'locations_by_neighborhood': locations_by_neighborhood,
         'articles': Article.objects

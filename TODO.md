@@ -2,12 +2,15 @@
 
 ## High Priorities
 
+- About/Contact
 - People to Know
-- Ads
-  - Leaderboard (top)
-  - 3 Leaderboard/mobile leaderboard (between news items)
-  - Medium rectangle (left sidebar)
-  - Skyscraper (right sidebar)
+- Locations
+  - Delete
+- Approval system
+  - Boolean field
+    - Events
+    - Locations
+  - Approve posts table
 
 ## Medium Priorities
 
