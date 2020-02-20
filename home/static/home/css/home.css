@@ -58,7 +58,7 @@
     -o-transform: translateX(0);
     transform: translateX(0);
     width: 300px;
-    margin: 0 0 0.5rem 1rem;
+    margin: 0 0 0 1rem;
   }
 }
 @media screen and (min-width: 1061px) and (max-width: 1199px) {
@@ -445,8 +445,12 @@ article .info a, .article .info a {
 article .info a:hover, .article .info a:hover {
   color: #97d5f7;
 }
-article p, .article p {
+article p:not(.info), .article p:not(.info) {
   text-align: justify;
+  margin-bottom: 1rem;
+}
+article p:not(.info) br, .article p:not(.info) br {
+  margin-bottom: 1rem;
 }
 
 article.category h5.h5 > a {

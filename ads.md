@@ -2,11 +2,14 @@
 
 ## Implemented
 
-- Leaderboard/large mobile banner (top)
-- Medium rectangle (left sidebar)
-- Medium rectangle (article)
-- Skyscraper (right sidebar)
+- Leaderboard (top, desktop only)
+- Large mobile banner (top, mobile only)
+- Medium rectangle (left sidebar, desktop only)
+- Medium rectangle (article, desktop and mobile)
+- Skyscraper (right sidebar, desktop only)
 
 ## Possible Additions
 
-- 3 Leaderboard/large mobile banner (between news items)
+- 10+ additional leaderboards (top, desktop only)
+- 10+ additional large mobile banners (top, mobile only)
+- Up to 4 additional medium rectangles (left sidebar, desktop only)

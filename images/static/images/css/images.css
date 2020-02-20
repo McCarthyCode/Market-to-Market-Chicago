@@ -58,7 +58,7 @@
     -o-transform: translateX(0);
     transform: translateX(0);
     width: 300px;
-    margin: 0 0 0.5rem 1rem;
+    margin: 0 0 0 1rem;
   }
 }
 @media screen and (min-width: 1061px) and (max-width: 1199px) {
