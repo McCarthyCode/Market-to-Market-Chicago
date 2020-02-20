@@ -31,13 +31,11 @@
   </div>
 </div>
 {% else %}
-<div class="empty-card">
 {% if user.is_superuser or user.id == article.album.created_by.id %}
 <p class="empty-card">There are currently no images in this album. You may add images by clicking the album title above or <a href="{% url 'images:album' article.album.slug article.album.id %}">this link</a>.</p>
 {% else %}
 <p class="empty-card">There are currently no images in this album.</p class="empty-card">
 {% endif %}
-</div>
 {% endif %}
 {% endif %}
 {% if user.is_superuser %}
