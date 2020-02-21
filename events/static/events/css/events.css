@@ -158,6 +158,25 @@
     border-right: 1px solid #818181;
   }
 }
+.modal {
+  background-color: #33333380;
+}
+.modal .modal-content {
+  background-color: #444444;
+  color: #ffffff;
+}
+.modal .modal-content .close,
+.modal .modal-content .close:not(:disabled):not(.disabled):focus,
+.modal .modal-content .close:not(:disabled):not(.disabled):hover {
+  color: #ffffff;
+}
+.modal .modal-content .modal-header, .modal .modal-content .modal-footer {
+  border-color: #818181;
+}
+.modal .modal-content .modal-footer input[type=submit], .modal .modal-content #deleteAlbumForm input[type=submit], .modal .modal-content #deleteLocationForm input[type=submit] {
+  margin-bottom: 0;
+}
+
 nav {
   grid-column-start: left;
   grid-column-end: right;
