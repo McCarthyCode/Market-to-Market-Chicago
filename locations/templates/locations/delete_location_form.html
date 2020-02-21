@@ -1,0 +1,4 @@
+<form id="deleteLocationForm" action="{% url 'locations:delete' category_slug location.slug location.id %}" method="POST">
+  {% csrf_token %}
+  <input class="btn btn-danger form-control" type="submit" value="Delete Location">
+</form>

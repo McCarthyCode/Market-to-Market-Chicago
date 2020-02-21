@@ -571,8 +571,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 .modal .modal-content .modal-header, .modal .modal-content .modal-footer {
   border-color: #818181;
 }
-.modal .modal-content .modal-footer input[type=submit],
-.modal .modal-content #deleteAlbumForm input[type=submit] {
+.modal .modal-content .modal-footer input[type=submit], .modal .modal-content #deleteAlbumForm input[type=submit], .modal .modal-content #deleteLocationForm input[type=submit] {
   margin-bottom: 0;
 }
 

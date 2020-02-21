@@ -95,7 +95,7 @@ def create_location(request):
 
     return redirect('users:index')
 
-def update_location(request):
+def update_location(request, category_slug, location_slug, location_id):
     if request.method != 'POST':
         return HttpResponseBadRequest()
 
@@ -108,3 +108,17 @@ def update_location(request):
         messages.success(request, response['success'])
 
     return redirect('locations:location', *response['args'])
+
+def delete_location(request, category_slug, location_slug, location_id):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    location = Location.objects.get(id=location_id)
+    name = location.name
+    Event.objects.filter(location=location).delete()
+    location.delete()
+
+    punctuation = name[-1]
+    messages.success(request, 'You have sucessfully deleted the location "%s%s"' % (name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
+
+    return redirect('users:index')

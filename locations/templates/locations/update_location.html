@@ -1,4 +1,4 @@
-<form id="updateLocationForm" class="card" action="{% url 'locations:update' %}" method="POST">
+<form id="updateLocationForm" class="card" action="{% url 'locations:update' category_slug location.slug location.id %}" method="POST">
   {% csrf_token %}
   <input type="hidden" name="id" value="{{ location.id }}">
   <input id="locationName" class="form-control" type="text" name="location-name" placeholder="Location" value="{{ location.name }}" autocomplete="off">
