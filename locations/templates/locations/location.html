@@ -2,14 +2,16 @@
 <p id="breadcrumbs">
   <a href="{% url 'home:category' category_slug %}">{{ category_name }}</a>
   <i class="fas fa-chevron-right"></i>
+  <a href="{% url 'locations:neighborhood' location.neighborhood.slug location.neighborhood.id %}">{{ location.neighborhood.name }}</a>
+  <i class="fas fa-chevron-right"></i>
   {{ location.name }}
 </p>
 <h3 class="h3">Events</h3>
-<ul id="events" class="card">
+<ul id="events" class="card bulleted">
 {% for event in events %}
 <li><a href="{% url 'events:event' category_slug location.slug event.slug event.id %}" tabindex="{{ forloop.counter0 }}">{{ event.name }} &ndash; {{ event.date_start|date:"D. n/j/y" }}{% if not event.all_day %} ({{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}){% endif %}</a></li>
 {% empty %}
-<li class="empty">There are no upcoming events scheduled.</li>
+<li class="empty">There are no upcoming events scheduled at {{ location.name }}.</li>
 {% endfor %}
 </ul>
 <h3 class="h3">Map</h3>

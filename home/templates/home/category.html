@@ -5,7 +5,7 @@
     {% for neighborhood in locations_by_neighborhood %}
     {% if neighborhood.locations %}
     <li class="card">
-      <h5 class="h5"><a href="{# url 'locations:neighborhood' neighborhood.neighborhood.slug neighborhood.neighborhood.id #}">{{ neighborhood.neighborhood.name }}</a></h5>
+      <h5 class="h5"><a href="{% url 'locations:neighborhood' neighborhood.neighborhood.slug neighborhood.neighborhood.id %}">{{ neighborhood.neighborhood.name }}</a></h5>
       <ul class="bulleted">
         {% for location in neighborhood.locations %}
         <li><a href="{% url 'locations:location' category_slug location.slug location.id %}">{{ location.name }}</a></li>

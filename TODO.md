@@ -4,8 +4,7 @@
 
 - About/Contact
 - People to Know
-- Locations
-  - Delete
+- Update All Events
 - Approval system
   - Boolean field
     - Events
@@ -14,19 +13,6 @@
 
 ## Medium Priorities
 
-- Neighborhood page
-  - Categories
-    - Location
-- Breadcrumbs
-  - Location page
-    - Category
-    - Neighborhood
-    - Location
-  - Event page
-    - Category
-    - Neighborhood
-    - Location
-    - Event
 - Home page (news feed)
   - NewsItems
     - Events

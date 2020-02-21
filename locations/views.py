@@ -31,13 +31,20 @@ def location_autocomplete(request):
         Location.objects.autocomplete(request)
     )
 
-def neighborhood(request, slug, neighborhood_id):
+def neighborhood(request, neighborhood_slug, neighborhood_id):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    msg = 'slug: %s; id: %d' % (slug, int(neighborhood_id))
+    neighborhood = Neighborhood.objects.get(id=neighborhood_id)
 
-    return HttpResponse(msg, content_type='text/plain')
+    return render(request, 'locations/neighborhood.html', {
+        'title': neighborhood.name,
+        'events': Event.objects.filter(location__neighborhood=neighborhood, date_start__gte=datetime.utcnow()).order_by('date_start')[:10],
+        'locations': Location.objects.filter(neighborhood=neighborhood),
+        'neighborhood': neighborhood,
+        'name': NAME,
+        'year': datetime.now(TZ).year,
+    })
 
 def location(request, category_slug, location_slug, location_id):
     if request.method != 'GET':

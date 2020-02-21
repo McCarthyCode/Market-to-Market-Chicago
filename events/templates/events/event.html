@@ -4,6 +4,8 @@
   {% if event.location %}
   <a href="{% url 'home:category' category_slug %}">{{ category_name }}</a>
   <i class="fas fa-chevron-right"></i>
+  <a href="{% url 'locations:neighborhood' event.location.neighborhood.slug event.location.neighborhood.id %}">{{ event.location.neighborhood.name }}</a>
+  <i class="fas fa-chevron-right"></i>
   <a href="{% url 'locations:location' category_slug event.location.slug event.location.id %}">{{ event.location.name }}</a>
   <i class="fas fa-chevron-right"></i>
   {{ event.name }}

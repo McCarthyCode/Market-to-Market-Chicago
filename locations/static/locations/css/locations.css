@@ -432,6 +432,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #818181;
 }
 
+#events {
+  margin-bottom: 0;
+}
 #events li.empty {
   font-style: italic;
   color: #818181;
@@ -536,6 +539,13 @@ h1.h1 {
 
 h3.h3 {
   color: #bb846e;
+}
+
+ul.bulleted {
+  list-style: disc inside;
+}
+ul.bulleted li::marker {
+  color: #818181;
 }
 
 .fa-external-link-alt {
