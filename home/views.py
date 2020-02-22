@@ -54,6 +54,17 @@ def about(request):
         'year': datetime.now(TZ).year,
     })
 
+def people(request):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    return render(request, 'home/people.html', {
+        'title': 'People to Know',
+        'user': request.user,
+        'name': NAME,
+        'year': datetime.now(TZ).year,
+    })
+
 def category(request, slug):
     if request.method != 'GET':
         return HttpResponseBadRequest()
