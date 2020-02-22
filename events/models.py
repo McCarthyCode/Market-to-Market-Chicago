@@ -1,5 +1,8 @@
 from slugify import slugify
+
 from django.db import models
+from django.shortcuts import render
+
 from home.models import TimestampedModel, NewsItem
 from locations.models import Location
 from .managers import EventManager, RecurringEventManager, RepeatInfoManager, WeekdayManager
@@ -18,6 +21,11 @@ class Event(NewsItem):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+
+    def render(self, request):
+        return render(request, 'events/event_home.html', {
+            'event': self,
+        })
 
     def __str__(self):
         if self.location:

@@ -518,6 +518,39 @@ article.category .info {
     font-size: 5rem;
   }
 }
+#content .event .info {
+  color: #679452;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+#content .event .info a {
+  color: #679452;
+  text-decoration: underline;
+}
+#content .event .info a:hover {
+  color: #97d5f7;
+}
+#content .event .cal-preview {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  width: 125px;
+  height: 125px;
+  padding: 0.5rem;
+  color: white;
+  background-color: #007bff;
+}
+#content .event .cal-preview h1.h1, #content .event .cal-preview h5.h5 {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  color: white;
+}
+#content .event .cal-preview h1.h1 {
+  margin: 0 0 0.5rem 0;
+}
+
 .location .info {
   color: #679452;
   font-size: 1rem;
@@ -562,7 +595,7 @@ h5.h5, h5.h5 > a {
   color: #679452;
 }
 
-.card p:last-of-type {
+.card p:last-of-type:not(.info) {
   margin-bottom: 0;
 }
 

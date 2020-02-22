@@ -6,8 +6,9 @@ from django.core.paginator import Paginator, EmptyPage
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 
+from .models import NewsItem
 from articles.models import Article
-# from events.models import Event
+# from events.models import Event, RecurringEvent
 from images.models import Album, Image
 from locations.models import Neighborhood, Location
 from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE, NEWS_ITEMS_PER_PAGE
@@ -20,15 +21,33 @@ def index(request):
     for album in Album.objects.all():
         if Image.objects.filter(album=album):
             albums.append(album)
+
     articles = Article.objects.all()
-    # events = Event.objects.all()
+
+    # events = []
+    # _events = Event.objects.filter(date_start__gte=datetime.utcnow()).order_by('date_start')[:5]
+    # recurring_events_info = []
+    # for event in _events:
+    #     print(event.__class__)
+    #     if event.__class__.__base__ == Event:
+    #         events.append(event)
+    #     elif event.__class__.__base__ == RecurringEvent:
+    #         events.append(event)
+    #     elif event.__class__.__base__ == NewsItem:
+    #         events.append(event)
+
+    #         # if event.info not in recurring_events_info:
+    #         #     recurring_event = RecurringEvent.objects.filter(date_start__gte=datetime.utcnow(), info=event.info).order_by('-date_start').first()
+    #         #     events.append(recurring_event)
+    #         #     recurring_events_info.append(event.info)
+
     locations = Location.objects.all()
 
     feed = sorted(
         chain(
             albums,
             articles,
-            # events,
+            # _events,
             locations,
         ),
         key=attrgetter('date_updated'),
