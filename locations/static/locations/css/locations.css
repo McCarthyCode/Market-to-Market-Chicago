@@ -547,6 +547,9 @@ ul.bulleted {
 ul.bulleted li::marker {
   color: #818181;
 }
+ul.bulleted li.empty::marker {
+  display: none;
+}
 
 .fa-external-link-alt {
   display: inline;
