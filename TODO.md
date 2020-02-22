@@ -5,9 +5,9 @@
 - Home Page
 - About/Contact
 - People to Know
-- Update All Events
 - Approval system
   - Boolean field
+    - Albums
     - Events
     - Locations
   - Approve posts table
@@ -57,7 +57,7 @@
   - Neighborhood
   - Location
 - Scroll to top button
-- Add navbar to dashboard
+- Add sidebar to dashboard
 
 ## Low Priorities
 

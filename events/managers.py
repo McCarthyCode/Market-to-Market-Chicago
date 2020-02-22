@@ -1065,11 +1065,17 @@ class RecurringEventManager(models.Manager):
             event.all_day = all_day
 
             event.date_start = date_start
-            date_start = date_start + rd_values[frequency_units]
+            date_start = TZ.localize(
+                date_start.replace(tzinfo=None) +
+                rd_values[frequency_units]
+            )
 
             if date_end_str:
                 event.date_end = date_end
-                date_end = date_end + rd_values[frequency_units]
+                date_end = TZ.localize(
+                    date_end.replace(tzinfo=None) +
+                    rd_values[frequency_units]
+                )
 
             event.location = location
 
