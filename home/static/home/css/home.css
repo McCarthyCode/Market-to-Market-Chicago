@@ -388,6 +388,16 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   transform: translate(-50%, -50%);
 }
 
+.contact i {
+  margin-right: 0.5em;
+}
+.contact h5.h5:last-of-type {
+  margin-bottom: 0;
+}
+.contact h5.h5, .contact h5.h5 > a {
+  color: #48b6a0;
+}
+
 @media screen and (min-width: 768px) {
   #content {
     grid-column-start: sidebar-right;
@@ -550,6 +560,10 @@ h3.h3, h3.h3 > a {
 
 h5.h5, h5.h5 > a {
   color: #679452;
+}
+
+.card p:last-of-type {
+  margin-bottom: 0;
 }
 
 ul.bulleted {

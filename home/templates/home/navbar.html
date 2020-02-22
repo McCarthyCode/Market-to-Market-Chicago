@@ -11,7 +11,7 @@
         <a class="nav-link" href="{% url 'home:index' %}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About Us/Contact</a>
+        <a class="nav-link" href="{% url 'home:about' %}">About Us/Contact</a>
       </li>
       {% if user.is_authenticated %}
       <li class="nav-item">

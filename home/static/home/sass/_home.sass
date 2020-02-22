@@ -29,6 +29,16 @@
     left: 50%
     @include transform(translate(-50%, -50%))
 
+.contact
+  i
+    margin-right: .5em
+
+  h5.h5:last-of-type
+    margin-bottom: 0
+
+  h5.h5, h5.h5 > a
+    color: $pale-green
+
 @media screen and (min-width: $breakpoint-md)
   #content
     grid-column-start: sidebar-right

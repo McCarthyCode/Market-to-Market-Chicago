@@ -43,6 +43,17 @@ def index(request):
         'year': datetime.now(TZ).year,
     })
 
+def about(request):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    return render(request, 'home/about.html', {
+        'title': 'About Market to Market Chicago',
+        'user': request.user,
+        'name': NAME,
+        'year': datetime.now(TZ).year,
+    })
+
 def category(request, slug):
     if request.method != 'GET':
         return HttpResponseBadRequest()

@@ -2,6 +2,7 @@
 
 ## High Priorities
 
+- Home Page
 - About/Contact
 - People to Know
 - Update All Events
