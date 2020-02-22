@@ -10,7 +10,7 @@ from django.http import (
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from mtm.settings import TZ, NAME, API_KEY
+from mtm.settings import TZ, NAME, GOOGLE_MAPS_API_KEY
 from .models import Neighborhood, Location, CATEGORIES
 from events.models import Event, RecurringEvent
 from .forms import CreateLocationForm
@@ -72,7 +72,7 @@ def location(request, category_slug, location_slug, location_id):
         **response,
         'title': Location.objects.get(id=location_id).name,
         'user': request.user,
-        'API_KEY': API_KEY,
+        'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })

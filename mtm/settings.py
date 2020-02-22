@@ -154,10 +154,10 @@ EMAIL_REGEX = re.compile(
 
 
 # Google Maps API key
-API_KEY_FILE = '%s/auth/api_key.txt' % BASE_DIR
-with open(API_KEY_FILE, 'r', encoding='utf8') as f:
+GOOGLE_MAPS_API_KEY_FILE = '%s/auth/google_maps_api_key.txt' % BASE_DIR
+with open(GOOGLE_MAPS_API_KEY_FILE, 'r', encoding='utf8') as f:
     content = f.readline()
-API_KEY = content[:-1]
+GOOGLE_MAPS_API_KEY = content[:-1]
 
 # Page length for paginators
 NEWS_ITEMS_PER_PAGE = 10

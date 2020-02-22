@@ -11,7 +11,7 @@ from django.http import (
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from mtm.settings import TZ, NAME, API_KEY
+from mtm.settings import TZ, NAME, GOOGLE_MAPS_API_KEY
 from .models import Event
 
 def index(request):
@@ -58,7 +58,7 @@ def event(request, category_slug, location_slug, event_slug, event_id):
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
-        'API_KEY': API_KEY,
+        'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
     })
 
 def create_event(request):

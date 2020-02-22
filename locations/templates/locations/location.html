@@ -16,7 +16,7 @@
 </ul>
 <h3 class="h3">Map</h3>
 <div id="map">
-  <iframe src="https://www.google.com/maps/embed/v1/place?q={{ location.name|urlencode }}%20{{ location.address1|urlencode }}%20{{ location.city|urlencode }}%2C%20{{ location.state|urlencode }}{% if location.zip_code %}%20{{ location.zip_code|urlencode }}{% endif %}&key={{ API_KEY }}" allowfullscreen></iframe>
+  <iframe src="https://www.google.com/maps/embed/v1/place?q={{ location.name|urlencode }}%20{{ location.address1|urlencode }}%20{{ location.city|urlencode }}%2C%20{{ location.state|urlencode }}{% if location.zip_code %}%20{{ location.zip_code|urlencode }}{% endif %}&key={{ GOOGLE_MAPS_API_KEY }}" allowfullscreen></iframe>
 </div>
 {% if user.is_superuser %}
 <h3 class="h3">Update</h3>
