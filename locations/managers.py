@@ -119,9 +119,6 @@ class LocationManager(models.Manager):
         if not state:
             errors.append('State is required.')
 
-        if not zip_code:
-            errors.append('Zip code is required.')
-
         if website and not URL_REGEX.match(website):
             errors.append('Please enter a valid URL.')
 
