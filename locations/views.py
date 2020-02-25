@@ -41,7 +41,7 @@ def neighborhood(request, neighborhood_slug, neighborhood_id):
     return render(request, 'locations/neighborhood.html', {
         'title': neighborhood.name,
         'events': Event.objects.filter(location__neighborhood=neighborhood, date_start__gte=datetime.utcnow()).order_by('date_start')[:10],
-        'locations': Location.objects.filter(neighborhood=neighborhood),
+        'locations': Location.objects.filter(neighborhood=neighborhood).order_by('name'),
         'neighborhood': neighborhood,
         'name': NAME,
         'year': datetime.now(TZ).year,
