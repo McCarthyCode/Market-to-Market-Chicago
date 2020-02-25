@@ -84,10 +84,14 @@ class CreateLocationForm(forms.ModelForm):
         super().clean()
         cleaned_data = self.cleaned_data
 
-        cleaned_data['neighborhood'] = \
-            Neighborhood.objects.get(id=cleaned_data['neighborhood_id'])
+        try:
+            cleaned_data['neighborhood'] = \
+                Neighborhood.objects.get(id=cleaned_data['neighborhood_id'])
+        except Neighborhood.DoesNotExist:
+            cleaned_data['neighborhood'] = \
+                Neighborhood.objects.create_neighborhood(cleaned_data['neighborhood'])
 
-        if not URL_REGEX.match(cleaned_data['website']):
+        if cleaned_data['website'] and not URL_REGEX.match(cleaned_data['website']):
             if HTTP_HTTPS.match(cleaned_data['website']):
                 raise forms.ValidationError('Please enter a valid URL.')
             else:
