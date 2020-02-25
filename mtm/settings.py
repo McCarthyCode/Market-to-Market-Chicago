@@ -28,12 +28,13 @@ with open(SECRET_KEY_FILE, 'r', encoding='utf8') as f:
 SECRET_KEY = content[:-1]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '10.0.0.100',
+    '67.205.139.60',
 ]
 
 
@@ -88,13 +89,29 @@ WSGI_APPLICATION = 'mtm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    PGPASSWORD_FILE = '%s/auth/pgpass.txt' % BASE_DIR
+    with open(PGPASSWORD_FILE, 'r', encoding='utf8') as f:
+        content = f.readline()
+    PGPASSWORD = content[:-1]
 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'mtm',
+            'USER': 'mtm',
+            'PASSWORD': PGPASSWORD,
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -133,7 +150,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Media files
 MEDIA_URL = '/media/'
