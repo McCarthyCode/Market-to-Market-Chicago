@@ -16,35 +16,33 @@
   {% endif %}
 </p>
 <h3 class="h3">Details</h3>
-<div class="card">
-  <table id="details">
-    <tbody>
-      <tr>
-        <td>Time</td>
-        <td>{% if event.all_day %}All Day{% else %}{{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}{% endif %}</td>
-      </tr>
-      <tr>
-        <td>Location</td>
-        {% if event.location %}
-        <td><a href="{% url 'locations:location' category_slug event.location.slug event.location.id %}">{{ event.location.name }}</a><br>
-        {{ event.location.address1 }}<br>{% if event.location.address2 %}
-        {{ event.location.address2 }}<br>{% endif %}
-        {{ event.location.city }}, {{ event.location.state }}{% if event.location.zip_code %} {{ event.location.zip_code }}{% endif %}</td>
-        {% else %}
-        <td>undefined</td>
-        {% endif %}
-      </tr>
-      {% if event.description %}<tr>
-        <td>Description</td>
-        <td>{{ event.description|linebreaks }}</td>
-      </tr>{% endif %}
-      {% if next_event %}<tr>
-        <td>Next Event</td>
-        <td><a href="{% url 'events:event' category_slug 'undefined' next_event.slug next_event.id %}">{{ next_event.date_start|date:"F j, Y" }}</a></td>
-      </tr>{% endif %}
-    </tbody>
-  </table>
-</div>
+<table id="details" class="card">
+  <tbody>
+    <tr>
+      <td>Time</td>
+      <td>{% if event.all_day %}All Day{% else %}{{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}{% endif %}</td>
+    </tr>
+    <tr>
+      <td>Location</td>
+      {% if event.location %}
+      <td><a href="{% url 'locations:location' category_slug event.location.slug event.location.id %}">{{ event.location.name }}</a><br>
+      {{ event.location.address1 }}<br>{% if event.location.address2 %}
+      {{ event.location.address2 }}<br>{% endif %}
+      {{ event.location.city }}, {{ event.location.state }}{% if event.location.zip_code %} {{ event.location.zip_code }}{% endif %}</td>
+      {% else %}
+      <td>undefined</td>
+      {% endif %}
+    </tr>
+    {% if event.description %}<tr>
+      <td>Description</td>
+      <td>{{ event.description|linebreaks }}</td>
+    </tr>{% endif %}
+    {% if next_event %}<tr>
+      <td>Next Event</td>
+      <td><a href="{% url 'events:event' category_slug 'undefined' next_event.slug next_event.id %}">{{ next_event.date_start|date:"F j, Y" }}</a></td>
+    </tr>{% endif %}
+  </tbody>
+</table>
 {% if event.location %}
 <h3 class="h3">Map</h3>
 <div id="map" class="card">

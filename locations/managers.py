@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db import models
+from mtm.settings import URL_REGEX, HTTP_HTTPS
 
 class NeighborhoodManager(models.Manager):
     def create_neighborhood(self, name):
@@ -94,6 +95,7 @@ class LocationManager(models.Manager):
         city = request.POST.get('city')
         state = request.POST.get('state')
         zip_code = request.POST.get('zip-code')
+        website = request.POST.get('website')
 
         errors = []
 
@@ -119,6 +121,12 @@ class LocationManager(models.Manager):
 
         if not zip_code:
             errors.append('Zip code is required.')
+
+        if website and not URL_REGEX.match(website):
+            errors.append('Please enter a valid URL.')
+
+            if not HTTP_HTTPS.match(website):
+                errors.append('URL must start with http:// or https://.')
 
         try:
             location = Location.objects.get(id=location_id)
@@ -152,6 +160,7 @@ class LocationManager(models.Manager):
         location.city = city
         location.state = state
         location.zip_code = zip_code
+        location.website = website
 
         location.save()
 

@@ -8,4 +8,7 @@
     {% endif %}
     <li>{{ location.city }}, {{ location.state }}{% if location.zip_code %} {{ location.zip_code }}{% endif %}</li>
   </ul>
+  {% if location.website %}
+  <a href="{{ location.website }}">{{ location.website }}</a>
+  {% endif %}
 </li>

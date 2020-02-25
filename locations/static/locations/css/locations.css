@@ -432,6 +432,26 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #818181;
 }
 
+#details td {
+  margin-bottom: 0.5rem;
+}
+#details td p {
+  margin-bottom: 0.5rem;
+}
+#details td p:last-child {
+  margin-bottom: 0;
+}
+#details td:first-child {
+  text-align: right;
+  color: #818181;
+  font-weight: bold;
+  width: 8rem;
+  padding-right: 1rem;
+}
+#details td:first-child::after {
+  content: ":";
+}
+
 #events {
   margin-bottom: 0;
 }
