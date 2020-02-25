@@ -46,6 +46,8 @@ class Location(NewsItem):
     city = models.CharField(max_length=80, default='Chicago')
     state = models.CharField(max_length=2, default='IL')
     zip_code = models.CharField(null=True, blank=True, max_length=5)
+    website = models.URLField(null=True, blank=True)
+    override_slug = models.BooleanField(default=False)
     objects = LocationManager()
 
     def category_slug(self):
@@ -66,7 +68,12 @@ class Location(NewsItem):
         })
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.address1 = self.address1.strip('.')
+        self.address2 = self.address2.strip('.')
+
+        if not self.override_slug:
+            self.slug = slugify(self.name)
+
         super().save(*args, **kwargs)
 
     def __str__(self):

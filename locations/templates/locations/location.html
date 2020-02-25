@@ -6,6 +6,26 @@
   <i class="fas fa-chevron-right"></i>
   {{ location.name }}
 </p>
+<h3 class="h3">Details</h3>
+<table id="details" class="card">
+  <tbody>
+    <tr>
+      <td>Address</td>
+      <td>{{ location.name }}<br>
+      {{ location.address1 }}<br>{% if location.address2 %}
+      {{ location.address2 }}<br>{% endif %}
+      {{ location.city }}, {{ location.state }}{% if location.zip_code %} {{ location.zip_code }}{% endif %}</td>
+    </tr>
+    {% if event.description %}<tr>
+      <td>Description</td>
+      <td>{{ event.description|linebreaks }}</td>
+    </tr>{% endif %}
+    {% if location.website %}<tr>
+      <td>Website</td>
+      <td><a href="{{ location.website }}">{{ location.website }}</a></td>
+    </tr>{% endif %}
+  </tbody>
+</table>
 <h3 class="h3">Events</h3>
 <ul id="events" class="card bulleted">
 {% for event in events %}
