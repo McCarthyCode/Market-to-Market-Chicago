@@ -68,8 +68,8 @@ class Location(NewsItem):
         })
 
     def save(self, *args, **kwargs):
-        self.address1 = self.address1.strip('.')
-        self.address2 = self.address2.strip('.')
+        self.address1 = self.address1.replace('.', '')
+        self.address2 = self.address2.replace('.', '')
 
         if not self.override_slug:
             self.slug = slugify(self.name)
