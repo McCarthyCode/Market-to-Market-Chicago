@@ -32,7 +32,7 @@ class Location(NewsItem):
     CATEGORY_CHOICES = [
         (0, 'Nightlife'),
         (1, 'Restaurants'),
-        (2, 'Bar & Restaurant'),
+        (2, 'Nightlife & Restaurants'),
         (3, 'Arts & Entertainment'),
         (4, 'Health & Fitness'),
         (5, 'Sports'),
