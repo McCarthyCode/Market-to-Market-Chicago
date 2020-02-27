@@ -57,6 +57,7 @@ class Location(NewsItem):
         slugs = [
             'nightlife',
             'restaurants',
+            'nightlife-restaurants',
             'arts-and-entertainment',
             'health-and-fitness',
             'sports',
