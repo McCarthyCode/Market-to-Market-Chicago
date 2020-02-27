@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Location, Neighborhood
-from mtm.settings import URL_REGEX, HTTP_HTTPS
+from mtm.settings import URL_REGEX, HTTP_HTTPS_REGEX, PHONE_REGEX
 
 class CreateLocationForm(forms.ModelForm):
     name = forms.CharField(
@@ -79,6 +79,14 @@ class CreateLocationForm(forms.ModelForm):
             'placeholder': 'Website (optional)',
         }),
     )
+    phone = forms.CharField(
+        required=False,
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control col-12',
+            'placeholder': 'Phone (optional)',
+        }),
+    )
 
     def clean(self):
         super().clean()
@@ -92,13 +100,16 @@ class CreateLocationForm(forms.ModelForm):
                 Neighborhood.objects.create_neighborhood(cleaned_data['neighborhood'])
 
         if cleaned_data['website'] and not URL_REGEX.match(cleaned_data['website']):
-            if HTTP_HTTPS.match(cleaned_data['website']):
+            if HTTP_HTTPS_REGEX.match(cleaned_data['website']):
                 raise forms.ValidationError('Please enter a valid URL.')
             else:
                 raise forms.ValidationError(
                     'Please enter a valid URL.',
                     'URL must start with http:// or https://.',
                 )
+
+        if cleaned_data['phone']:
+            cleaned_data['phone'] = PHONE_REGEX.sub(r'\2\3\4', cleaned_data['phone'])
 
         return cleaned_data
 
@@ -114,4 +125,5 @@ class CreateLocationForm(forms.ModelForm):
             'state',
             'zip_code',
             'website',
+            'phone',
         ]

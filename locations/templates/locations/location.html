@@ -24,6 +24,10 @@
       <td>Website</td>
       <td><a class="external-link" href="{{ location.website }}">{{ location.website }}</a></td>
     </tr>{% endif %}
+    {% if location.phone %}<tr>
+      <td>Phone</td>
+      <td><a href="tel:+1{{ location.phone }}">{{ location.display_phone }}</a></td>
+    </tr>{% endif %}
   </tbody>
 </table>
 <h3 class="h3">Events</h3>

@@ -47,6 +47,7 @@ class Location(NewsItem):
     state = models.CharField(max_length=2, default='IL')
     zip_code = models.CharField(null=True, blank=True, max_length=5)
     website = models.URLField(null=True, blank=True)
+    phone = models.CharField(null=True, blank=True, max_length=10)
     override_slug = models.BooleanField(default=False)
     objects = LocationManager()
 
@@ -61,6 +62,11 @@ class Location(NewsItem):
         ]
 
         return slugs[self.category]
+
+    def display_phone(self):
+        return '(%s) %s-%s' % \
+            (self.phone[0:3], self.phone[3:6], self.phone[6:10]) \
+            if self.phone else ''
 
     def render(self, request):
         return render(request, 'locations/location_home.html', {
