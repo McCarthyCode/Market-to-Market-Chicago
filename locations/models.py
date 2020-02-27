@@ -9,6 +9,7 @@ from mtm.settings import TZ
 CATEGORIES = [
     'nightlife',
     'restaurants',
+    'nightlife-restaurants',
     'arts-and-entertainment',
     'health-and-fitness',
     'sports',
@@ -31,10 +32,11 @@ class Location(NewsItem):
     CATEGORY_CHOICES = [
         (0, 'Nightlife'),
         (1, 'Restaurants'),
-        (2, 'Arts & Entertainment'),
-        (3, 'Health & Fitness'),
-        (4, 'Sports'),
-        (5, 'Non-profit'),
+        (2, 'Bar & Restaurant'),
+        (3, 'Arts & Entertainment'),
+        (4, 'Health & Fitness'),
+        (5, 'Sports'),
+        (6, 'Non-profit'),
     ]
 
     name = models.CharField(max_length=100)

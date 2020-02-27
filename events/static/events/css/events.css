@@ -717,8 +717,13 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   text-align: center;
   color: #ffffff;
 }
-#breadcrumbs i {
+#breadcrumbs i, #breadcrumbs span {
   color: #818181;
+}
+#breadcrumbs span {
+  font-weight: bold;
+  font-size: 1.25em;
+  vertical-align: -0.125em;
 }
 
 #details td {

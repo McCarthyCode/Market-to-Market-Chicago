@@ -3,6 +3,7 @@ from itertools import chain
 from operator import attrgetter
 
 from django.core.paginator import Paginator, EmptyPage
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 
@@ -94,11 +95,10 @@ def category(request, slug):
     slug_to_id = {
         'nightlife': 0,
         'restaurants': 1,
-        'arts-and-entertainment': 2,
-        'health-and-fitness': 3,
-        'sports': 4,
-        'non-profit': 5,
-        'misc': 6,
+        'arts-and-entertainment': 3,
+        'health-and-fitness': 4,
+        'sports': 5,
+        'non-profit': 6,
     }
 
     slug_to_name = {
@@ -107,14 +107,21 @@ def category(request, slug):
         'arts-and-entertainment': 'Arts & Entertainment','health-and-fitness': 'Health & Fitness',
         'sports': 'Sports',
         'non-profit': 'Non-profit',
-        'misc': 'misc',
     }
 
     for neighborhood in neighborhoods:
-        locations = Location.objects.filter(
-            neighborhood=neighborhood,
-            category=slug_to_id[slug],
-        ).order_by('name')
+        category_id = slug_to_id[slug]
+
+        if category_id == 0 or category_id == 1:
+            locations = Location.objects.filter(
+                Q(category=category_id) | Q(category=2),
+                neighborhood=neighborhood,
+            ).order_by('name')
+        else:
+            locations = Location.objects.filter(
+                neighborhood=neighborhood,
+                category=category_id,
+            ).order_by('name')
 
         if locations:
             locations_by_neighborhood.append({

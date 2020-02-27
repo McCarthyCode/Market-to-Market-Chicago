@@ -2,7 +2,7 @@
 {% include 'home/messages.html' %}
 <p id="breadcrumbs">
   {% if event.location %}
-  <a href="{% url 'home:category' category_slug %}">{{ category_name }}</a>
+  {% if category_name == 'Bar & Restaurant' %}<a href="{% url 'home:category' 'nightlife' %}">Nightlife</a> <span>/</span> <a href="{% url 'home:category' 'restaurants' %}">Restaurants</a>{% else %}<a href="{% url 'home:category' category_slug %}">{{ category_name }}</a>{% endif %}
   <i class="fas fa-chevron-right"></i>
   <a href="{% url 'locations:neighborhood' event.location.neighborhood.slug event.location.neighborhood.id %}">{{ event.location.neighborhood.name }}</a>
   <i class="fas fa-chevron-right"></i>
