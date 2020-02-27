@@ -11,4 +11,7 @@
   {% if location.website %}
   <a href="{{ location.website }}">{{ location.website }}</a>
   {% endif %}
+  {% if location.phone %}
+  <a href="tel:+1{{ location.phone }}">{{ location.display_phone }}</a>
+  {% endif %}
 </li>
