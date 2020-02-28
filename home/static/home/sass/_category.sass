@@ -9,6 +9,10 @@
     h5.h5 > a
       color: $yellow
 
+    ul li.asterisk::after
+      content: '*'
+      color: $lightest-gray
+
 @media screen and (min-width: $breakpoint-sm)
   #byNeighborhood
     grid-template-columns: 1fr 1fr

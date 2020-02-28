@@ -472,31 +472,36 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   height: 38px;
   color: #ffffff;
 }
-#content .container form .input-group-append {
+#content .container form .input-group label {
+  cursor: pointer;
+}
+#content .container form .input-group .input-group-append {
+  border-color: #818181;
   background-color: #818181;
   width: 40px;
   height: 38px;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
   z-index: 3;
 }
-#content .container form .input-group-append input[type=radio], #content .container form .input-group-append input[type=checkbox], #content .container form .input-group-append .input-group-text {
+#content .container form .input-group .input-group-append input[type=radio], #content .container form .input-group .input-group-append input[type=checkbox], #content .container form .input-group .input-group-append .input-group-text {
   cursor: pointer;
   color: #ffffff;
 }
-#content .container form .input-group-append input[type=radio] {
+#content .container form .input-group .input-group-append input[type=radio] {
   height: 16px;
   margin: auto;
 }
-#content .container form .input-group-append {
-  border-top-right-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
-}
-#content .container form .input-group-append .input-group-text {
+#content .container form .input-group .input-group-append .input-group-text {
   color: #ffffff;
   border-color: #818181;
   background-color: #818181;
 }
-#content .container form .input-group-append .input-group-text i {
+#content .container form .input-group .input-group-append .input-group-text i {
   min-width: 14px;
+}
+#content .container form .input-group-checkbox .input-group-append {
+  padding: 11px 0.75rem 11px 0.75rem;
 }
 #content .container form .radio {
   margin-bottom: 0;
