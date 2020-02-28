@@ -27,7 +27,7 @@
     <input class="form-control col-6 col-md-3" type="text" value="{{ location.state }}" maxlength="2" name="state" placeholder="State">
     <input class="form-control col-6 col-md-3" type="text" maxlength="5" name="zip-code" placeholder="Zip Code (optional)" value="{{ location.zip_code }}">
   </div>
-  <input class="form-control" type="text" name="website" placeholder="Website (optional)" value="{{ location.website }}">
-  <input class="form-control" type="text" name="phone" placeholder="Phone (optional)" value="{{ location.display_phone }}">
+  <input class="form-control" type="text" name="website" placeholder="Website (optional)"{% if location.website %} value="{{ location.website }}"{% endif %}>
+  <input class="form-control" type="text" name="phone" placeholder="Phone (optional)"{% if location.phone %} value="{{ location.display_phone }}"{% endif %}>
   <input class="btn btn-primary" type="submit" value="Update">
 </form>
