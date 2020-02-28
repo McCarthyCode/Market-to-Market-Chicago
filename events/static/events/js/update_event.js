@@ -169,13 +169,13 @@ $(document).ready(() => {
         break;
 
       case 38: // arrow up
-        locationPosition = locationPosition === -1 ? locationLength - 1 : (locationPosition + 1) % locationLength;
+        locationPosition = locationPosition === -1 ? locationLength - 1 : (locationPosition - 1 + locationLength) % locationLength;
         $('#locationAutocomplete li').removeClass('active');
         $(`#locationAutocomplete li:nth-child(${locationPosition + 1})`).addClass('active');
         break;
 
       case 40: // arrow down
-        locationPosition = locationPosition === -1 ? 0 : (locationPosition + locationLength - 1) % locationLength;
+        locationPosition = locationPosition === -1 ? 0 : (locationPosition + 1) % locationLength;
         $('#locationAutocomplete li').removeClass('active');
         $(`#locationAutocomplete li:nth-child(${locationPosition + 1})`).addClass('active');
         break;
@@ -238,13 +238,13 @@ $(document).ready(() => {
   //       break;
 
   //     case 38: // arrow up
-  //       neighborhoodPosition = neighborhoodPosition === -1 ? neighborhoodLength - 1 : (neighborhoodPosition + 1) % neighborhoodLength;
+  //       neighborhoodPosition = neighborhoodPosition === -1 ? neighborhoodLength - 1 : (neighborhoodPosition - 1 + neighborhoodLength) % neighborhoodLength;
   //       $('#neighborhoodAutocomplete li').removeClass('active');
   //       $(`#neighborhoodAutocomplete li:nth-child(${neighborhoodPosition + 1})`).addClass('active');
   //       break;
 
   //     case 40: // arrow down
-  //       neighborhoodPosition = neighborhoodPosition === -1 ? 0 : (neighborhoodPosition + neighborhoodLength - 1) % neighborhoodLength;
+  //       neighborhoodPosition = neighborhoodPosition === -1 ? 0 : (neighborhoodPosition + 1) % neighborhoodLength;
   //       $('#neighborhoodAutocomplete li').removeClass('active');
   //       $(`#neighborhoodAutocomplete li:nth-child(${neighborhoodPosition + 1})`).addClass('active');
   //       break;

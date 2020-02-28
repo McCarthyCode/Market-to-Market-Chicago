@@ -47,13 +47,13 @@ $(document).ready(() => {
         break;
 
       case 38: // arrow up
-        neighborhoodPosition = neighborhoodPosition === -1 ? neighborhoodLength - 1 : (neighborhoodPosition + 1) % neighborhoodLength;
+        neighborhoodPosition = neighborhoodPosition === -1 ? neighborhoodLength - 1 : (neighborhoodPosition - 1 + neighborhoodLength) % neighborhoodLength;
         $('#neighborhoodAutocompleteLocation li').removeClass('active');
         $(`#neighborhoodAutocompleteLocation li:nth-child(${neighborhoodPosition + 1})`).addClass('active');
         break;
 
       case 40: // arrow down
-        neighborhoodPosition = neighborhoodPosition === -1 ? 0 : (neighborhoodPosition + neighborhoodLength - 1) % neighborhoodLength;
+        neighborhoodPosition = neighborhoodPosition === -1 ? 0 : (neighborhoodPosition + 1) % neighborhoodLength;
         $('#neighborhoodAutocompleteLocation li').removeClass('active');
         $(`#neighborhoodAutocompleteLocation li:nth-child(${neighborhoodPosition + 1})`).addClass('active');
         break;

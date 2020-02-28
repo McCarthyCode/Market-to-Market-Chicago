@@ -45,13 +45,13 @@ $(document).ready(function () {
         break;
 
       case 38: // arrow up
-        position = position === -1 ? length - 1 : (position + 1) % length;
+        position = position === -1 ? length - 1 : (position - 1 + length) % length;
         $('#neighborhoodAutocomplete li').removeClass('active');
         $(`#neighborhoodAutocomplete li:nth-child(${position + 1})`).addClass('active');
         break;
 
       case 40: // arrow down
-        position = position === -1 ? 0 : (position + length - 1) % length;
+        position = position === -1 ? 0 : (position + 1) % length;
         $('#neighborhoodAutocomplete li').removeClass('active');
         $(`#neighborhoodAutocomplete li:nth-child(${position + 1})`).addClass('active');
         break;

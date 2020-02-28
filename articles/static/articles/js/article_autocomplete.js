@@ -39,13 +39,13 @@ $(document).ready(() => {
         break;
 
       case 38: // arrow up
-        albumPosition = albumPosition === -1 ? albumLength - 1 : (albumPosition + 1) % albumLength;
+        albumPosition = albumPosition === -1 ? albumLength - 1 : (albumPosition - 1 + albumLength) % albumLength;
         $('#albumAutocomplete li').removeClass('active');
         $(`#albumAutocomplete li:nth-child(${albumPosition + 1})`).addClass('active');
         break;
 
       case 40: // arrow down
-        albumPosition = albumPosition === -1 ? 0 : (albumPosition + albumLength - 1) % albumLength;
+        albumPosition = albumPosition === -1 ? 0 : (albumPosition + 1) % albumLength;
         $('#albumAutocomplete li').removeClass('active');
         $(`#albumAutocomplete li:nth-child(${albumPosition + 1})`).addClass('active');
         break;
