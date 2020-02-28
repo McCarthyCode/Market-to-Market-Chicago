@@ -129,10 +129,13 @@ def category(request, slug):
                 'locations': locations,
             })
 
+    def len_locations(obj):
+        return len(obj['locations'])
+
     return render(request, 'home/category.html', {
         'title': slug_to_name[slug],
         'category_slug': slug,
-        'locations_by_neighborhood': locations_by_neighborhood,
+        'locations_by_neighborhood': sorted(locations_by_neighborhood, key=len_locations, reverse=True),
         'articles': Article.objects
             .filter(category=slug_to_id[slug])
             .order_by('-date_updated')[:ARTICLES_PER_PAGE],
