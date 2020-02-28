@@ -8,7 +8,7 @@
       <h5 class="h5"><a href="{% url 'locations:neighborhood' neighborhood.neighborhood.slug neighborhood.neighborhood.id %}">{{ neighborhood.neighborhood.name }}</a></h5>
       <ul class="bulleted">
         {% for location in neighborhood.locations %}
-        <li{% if location.category == 1 and location.no_kitchen or location.category == 2 and location.no_kitchen %} class="asterisk"{% endif %}><a href="{% if location.category == 2 %}{% url 'locations:location' 'nightlife-restaurants' location.slug location.id %}{% else %}{% url 'locations:location' category_slug location.slug location.id %}{% endif %}">{{ location.name }}</a></li>
+        <li{% if category_slug == 'restaurants' and location.category == 2 and location.no_kitchen %} class="asterisk"{% endif %}><a href="{% if location.category == 2 %}{% url 'locations:location' 'nightlife-restaurants' location.slug location.id %}{% else %}{% url 'locations:location' category_slug location.slug location.id %}{% endif %}">{{ location.name }}</a></li>
         {% endfor %}
       </ul>
     </li>
@@ -17,7 +17,9 @@
     <li class="empty-card">No locations to display.</li>
     {% endfor %}
   </ul>
+  {% if category_slug == 'restaurants' %}
   <p class="empty-card">* locations that do not have a kitchen but allow outside food</p>
+  {% endif %}
 </section>
 <section id="articles">
   <input type="hidden" name="category-slug" value="{{ category_slug }}">

@@ -412,10 +412,16 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     display: block;
   }
 }
+#locations > ul:last-child,
+#locations > p.empty-card:last-child {
+  margin-bottom: 1rem;
+}
+
 #byNeighborhood {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 #byNeighborhood .card {
   margin-bottom: 0;

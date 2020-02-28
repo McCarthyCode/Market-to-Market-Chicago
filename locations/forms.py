@@ -87,6 +87,10 @@ class CreateLocationForm(forms.ModelForm):
             'placeholder': 'Phone (optional)',
         }),
     )
+    no_kitchen = forms.BooleanField(
+        required=False,
+        label='Indicate Dining Room w/o Kitchen',
+    )
 
     def clean(self):
         super().clean()
@@ -126,4 +130,5 @@ class CreateLocationForm(forms.ModelForm):
             'zip_code',
             'website',
             'phone',
+            'no_kitchen',
         ]

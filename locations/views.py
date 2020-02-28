@@ -73,7 +73,7 @@ def location(request, category_slug, location_slug, location_id):
     name = location.name
     category = location.category
 
-    if response['no_kitchen'] and (category == 1 or category == 2):
+    if response['no_kitchen'] and category == 2:
         messages.info(request, '%s does not have a kitchen but is listed as a restaurant because outside food is allowed.' % name)
 
     return render(request, 'locations/location.html', {
