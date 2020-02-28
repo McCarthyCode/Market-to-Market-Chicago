@@ -26,14 +26,9 @@
       - Code (https://github.com/Alir3z4/django-base64field)
       - User (default=None)
     - Methods
-      - claim() @classmethod
-        - Check db for valid code
-        - if invalid, validation error
-        - elif valid but taken, validation error
-        - else, register user
       - get_code()
         - Return code as string
-      - generate_invite_link() @classmethod
+      - generate_invite_link()
         - Return URL with code as GET parameter
       - save()
         - code = md5 sum of id
@@ -45,7 +40,10 @@
     - Password Confirm
     - Invite Code (pre-populated)
   - Register View
-    
+    - Check db for valid code
+    - if invalid, validation error
+    - elif valid but taken, validation error
+    - else, register user
 
 ## Medium Priorities
 
