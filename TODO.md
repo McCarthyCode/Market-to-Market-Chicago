@@ -2,15 +2,50 @@
 
 ## High Priorities
 
+- Test for autocomplete bug
+- Locations input
+- Ads
 - Home Page
+  - People to Know
 - About/Contact
+  - Bio
 - People to Know
-- Approval system
-  - Boolean field
-    - Albums
-    - Events
-    - Locations
-  - Approve posts table
+  - Person model (inherits from NewsItem)
+    - Fields
+      - Name
+      - Image
+      - Bio
+      - Phone
+      - Email
+    - Methods
+      - render()
+  - Home template
+- Invite system
+  - Invite model
+    - Fields
+      - Code (https://github.com/Alir3z4/django-base64field)
+      - User (default=None)
+    - Methods
+      - claim() @classmethod
+        - Check db for valid code
+        - if invalid, validation error
+        - elif valid but taken, validation error
+        - else, register user
+      - get_code()
+        - Return code as string
+      - generate_invite_link() @classmethod
+        - Return URL with code as GET parameter
+      - save()
+        - code = md5 sum of id
+  - Register form (ModelForm)
+    - First Name (optional)
+    - Last Name (optional)
+    - Email
+    - Password
+    - Password Confirm
+    - Invite Code (pre-populated)
+  - Register View
+    
 
 ## Medium Priorities
 
