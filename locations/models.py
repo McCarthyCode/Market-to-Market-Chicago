@@ -51,6 +51,7 @@ class Location(NewsItem):
     website = models.URLField(null=True, blank=True)
     phone = models.CharField(null=True, blank=True, max_length=10)
     override_slug = models.BooleanField(default=False)
+    no_kitchen = models.BooleanField(default=False)
     objects = LocationManager()
 
     def category_slug(self):

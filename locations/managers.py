@@ -80,6 +80,7 @@ class LocationManager(models.Manager):
             'events': events,
             'category_name': Location.CATEGORY_CHOICES[location.category][1],
             'category_slug': _category_slug,
+            'no_kitchen': location.no_kitchen,
         })
 
     def update_location(self, request):
