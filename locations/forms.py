@@ -10,6 +10,7 @@ class CreateLocationForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Name',
+            'autocomplete': 'off',
         }),
     )
     category = forms.ChoiceField(
@@ -17,12 +18,14 @@ class CreateLocationForm(forms.ModelForm):
         choices=Location.CATEGORY_CHOICES,
         widget=forms.Select(attrs={
             'class': 'form-control col-12 col-md-6',
+            'autocomplete': 'off',
         }),
     )
     neighborhood_id = forms.CharField(
         label='',
         widget=forms.HiddenInput(attrs={
             'value': '0',
+            'autocomplete': 'off',
         }),
     )
     neighborhood = forms.CharField(
@@ -38,6 +41,7 @@ class CreateLocationForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Address',
+            'autocomplete': 'off',
         }),
     )
     address2 = forms.CharField(
@@ -45,6 +49,7 @@ class CreateLocationForm(forms.ModelForm):
         label='',
         widget=forms.TextInput(attrs={
             'class': 'form-control',
+            'autocomplete': 'off',
         }),
     )
     city = forms.CharField(
@@ -53,6 +58,7 @@ class CreateLocationForm(forms.ModelForm):
             'class': 'form-control col-12 col-md-6',
             'placeholder': 'City',
             'value': 'Chicago',
+            'autocomplete': 'off',
         }),
     )
     state = forms.CharField(
@@ -61,6 +67,7 @@ class CreateLocationForm(forms.ModelForm):
             'class': 'form-control col-6 col-md-3',
             'placeholder': 'State',
             'value': 'IL',
+            'autocomplete': 'off',
         }),
     )
     zip_code = forms.CharField(
@@ -69,6 +76,7 @@ class CreateLocationForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'class': 'form-control col-6 col-md-3',
             'placeholder': 'Zip Code (optional)',
+            'autocomplete': 'off',
         }),
     )
     website = forms.CharField(
@@ -77,6 +85,7 @@ class CreateLocationForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'class': 'form-control col-12',
             'placeholder': 'Website (optional)',
+            'autocomplete': 'off',
         }),
     )
     phone = forms.CharField(
@@ -85,11 +94,15 @@ class CreateLocationForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'class': 'form-control col-12',
             'placeholder': 'Phone (optional)',
+            'autocomplete': 'off',
         }),
     )
     no_kitchen = forms.BooleanField(
         required=False,
-        label='Indicate Dining Room w/o Kitchen',
+        label='Outside Food Allowed',
+        widget=forms.CheckboxInput(attrs={
+            'autocomplete': 'off',
+        }),
     )
 
     def clean(self):
@@ -114,6 +127,11 @@ class CreateLocationForm(forms.ModelForm):
 
         if cleaned_data['phone']:
             cleaned_data['phone'] = PHONE_REGEX.sub(r'\2\3\4', cleaned_data['phone'])
+
+        if cleaned_data['no_kitchen'] and int(cleaned_data['category']) == 0:
+            cleaned_data['category'] = 2
+        elif cleaned_data['no_kitchen'] and int(cleaned_data['category']) != 2:
+            cleaned_data['no_kitchen'] = False
 
         return cleaned_data
 

@@ -76,4 +76,27 @@ $(document).ready(() => {
       $(this).remove();
     });
   });
+
+  // Hide no kitchen option for choices other than Nightlife & Restaurants
+  let $category = $('select#id_category');
+  let $noKitchenContainer = $('#noKitchenContainer');
+  let $noKitchen = $('#id_no_kitchen');
+  let checked = false;
+
+  $category.on('change', function () {
+    let value = Number(this.value);
+
+    if (value === 0 || value === 2) {
+      if (checked) {
+        $noKitchen.prop('checked', true);
+      }
+      $noKitchenContainer.slideDown();
+      $noKitchen.prop('disabled', false);
+    } else {
+      checked = $noKitchen.is(':checked');
+      $noKitchenContainer.slideUp();
+      $noKitchen.prop('disabled', true);
+      $noKitchen.prop('checked', false);
+    }
+  });
 });

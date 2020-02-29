@@ -21,10 +21,12 @@
   </div>
   {{ create_location_form.website }}
   {{ create_location_form.phone }}
-  <div class="input-group input-group-checkbox" data-target-input="nearest">
-    <label class="form-control" for="{{ create_location_form.no_kitchen.id_for_label }}">{{ create_location_form.no_kitchen.label }}</label>
-    <div class="input-group-append">
-      {{ create_location_form.no_kitchen }}
+  <div id="noKitchenContainer">
+    <div class="input-group input-group-checkbox" data-target-input="nearest">
+      <label class="form-control" for="{{ create_location_form.no_kitchen.id_for_label }}">{{ create_location_form.no_kitchen.label }}</label>
+      <div class="input-group-append">
+        {{ create_location_form.no_kitchen }}
+      </div>
     </div>
   </div>
   <input class="btn btn-primary form-control" type="submit" value="Submit">
