@@ -18,7 +18,7 @@
     {{ update_location_form.zip_code }}
   </div>
   {{ update_location_form.website }}
-  {{ update_location_form.phone }}
+  <input type="text" name="phone" value="{{ location.display_phone }}" class="form-control col-12" placeholder="Phone (optional)" autocomplete="off" id="id_phone">
   <div id="noKitchenContainer"{% if location.category != 0 and location.category != 2 %} style="display: none;"{% endif %}>
     <div class="input-group input-group-checkbox" data-target-input="nearest">
       <label class="form-control" for="{{ update_location_form.no_kitchen.id_for_label }}">{{ update_location_form.no_kitchen.label }}</label>
