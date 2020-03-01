@@ -109,6 +109,8 @@ class CreateLocationForm(forms.ModelForm):
         super().clean()
         cleaned_data = self.cleaned_data
 
+        cleaned_data['category'] = int(cleaned_data['category'])
+
         try:
             cleaned_data['neighborhood'] = \
                 Neighborhood.objects.get(id=cleaned_data['neighborhood_id'])
@@ -128,10 +130,11 @@ class CreateLocationForm(forms.ModelForm):
         if cleaned_data['phone']:
             cleaned_data['phone'] = PHONE_REGEX.sub(r'\2\3\4', cleaned_data['phone'])
 
-        if cleaned_data['no_kitchen'] and int(cleaned_data['category']) == 0:
-            cleaned_data['category'] = 2
-        elif cleaned_data['no_kitchen'] and int(cleaned_data['category']) != 2:
-            cleaned_data['no_kitchen'] = False
+        if cleaned_data['no_kitchen']:
+            if int(cleaned_data['category']) == 0:
+                cleaned_data['category'] = 2
+            elif int(cleaned_data['category']) != 2:
+                cleaned_data['no_kitchen'] = False
 
         return cleaned_data
 

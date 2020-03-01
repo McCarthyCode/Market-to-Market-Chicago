@@ -1,33 +1,31 @@
 <form id="updateLocationForm" class="card" action="{% url 'locations:update' category_slug location.slug location.id %}" method="POST">
   {% csrf_token %}
-  <input type="hidden" name="id" value="{{ location.id }}">
-  <input id="locationName" class="form-control" type="text" name="location-name" placeholder="Location" value="{{ location.name }}" autocomplete="off">
-  <input id="categoryHidden" type="hidden" value="{{ location.category }}">
-  <select id="category" class="form-control" name="category" autocomplete="off">
-    <option selected="true" disabled="disabled">Category</option>
-    <option value="0">Nightlife</option>
-    <option value="1">Restaurants</option>
-    <option value="2">Nightlife & Restaurants</option>
-    <option value="3">Arts & Entertainment</option>
-    <option value="4">Health & Fitness</option>
-    <option value="5">Sports</option>
-    <option value="6">Non-profit</option>
-  </select>
-  <input id="neighborhoodId" value="{{ location.neighborhood.id }}" type="hidden" name="neighborhood-id">
-  <input id="neighborhoodName" class="form-control" type="text" name="neighborhood-name" placeholder="Neighborhood" value="{{ location.neighborhood.name }}" autocomplete="off">
-  <div id="neighborhoodAutocomplete"></div>
-  <input class="form-control" type="text" name="address1" value="{{ location.address1 }}" placeholder="Address">
-  {% if location.address2 %}
-  <input class="form-control" type="text" name="address2" value="{{ location.address2 }}">
-  {% else %}
-  <input class="form-control" type="text" name="address2">
-  {% endif %}
-  <div class="form-inline">
-    <input class="form-control col-12 col-md-6" type="text" value="{{ location.city }}" name="city">
-    <input class="form-control col-6 col-md-3" type="text" value="{{ location.state }}" maxlength="2" name="state" placeholder="State">
-    <input class="form-control col-6 col-md-3" type="text" maxlength="5" name="zip-code" placeholder="Zip Code (optional)" value="{{ location.zip_code }}">
+  <input type="hidden" name="neighborhood_id" autocomplete="off" value="{{ update_location_form.neighborhood.value }}" id="id_neighborhood_id">
+  {{ update_location_form.name }}
+  <div class="row">
+    <label id="categoryLabel" class="form-control col-12 col-md-6" for="id_category">{{ update_location_form.category.label }}</label>
+    {{ update_location_form.category }}
   </div>
-  <input class="form-control" type="text" name="website" placeholder="Website (optional)"{% if location.website %} value="{{ location.website }}"{% endif %}>
-  <input class="form-control" type="text" name="phone" placeholder="Phone (optional)"{% if location.phone %} value="{{ location.display_phone }}"{% endif %}>
+  <input type="text" name="neighborhood" value="{{ location.neighborhood.name }}" autocomplete="off" placeholder="Neighborhood (enter name to search for existing or to create new)" required="" id="id_neighborhood" class="form-control">
+  <div id="neighborhoodAutocompleteLocation"></div>
+  <div class="address">
+    {{ update_location_form.address1 }}
+    {{ update_location_form.address2 }}
+  </div>
+  <div class="row city-state-zip">
+    {{ update_location_form.city }}
+    {{ update_location_form.state }}
+    {{ update_location_form.zip_code }}
+  </div>
+  {{ update_location_form.website }}
+  {{ update_location_form.phone }}
+  <div id="noKitchenContainer"{% if location.category != 0 and location.category != 2 %} style="display: none;"{% endif %}>
+    <div class="input-group input-group-checkbox" data-target-input="nearest">
+      <label class="form-control" for="{{ update_location_form.no_kitchen.id_for_label }}">{{ update_location_form.no_kitchen.label }}</label>
+      <div class="input-group-append">
+        {{ update_location_form.no_kitchen }}
+      </div>
+    </div>
+  </div>
   <input class="btn btn-primary" type="submit" value="Update">
 </form>

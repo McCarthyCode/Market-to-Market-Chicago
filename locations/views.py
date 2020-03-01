@@ -8,7 +8,7 @@ from django.http import (
     HttpResponseNotFound,
     HttpResponseRedirect,
 )
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 from mtm.settings import TZ, NAME, GOOGLE_MAPS_API_KEY
@@ -79,6 +79,7 @@ def location(request, category_slug, location_slug, location_id):
     return render(request, 'locations/location.html', {
         **response,
         'title': name,
+        'update_location_form': CreateLocationForm(instance=location),
         'user': request.user,
         'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
         'name': NAME,
@@ -114,15 +115,33 @@ def update_location(request, category_slug, location_slug, location_id):
     if request.method != 'POST':
         return HttpResponseBadRequest()
 
-    valid, response = Location.objects.update_location(request)
+    location = get_object_or_404(Location, pk=location_id)
 
-    if not valid:
-        for error in response['errors']:
-            messages.error(request, error)
+    form = CreateLocationForm(request.POST)
+    if form.is_valid():
+        location.name = form.cleaned_data['name']
+        location.category = form.cleaned_data['category']
+        location.neighborhood = form.cleaned_data['neighborhood']
+        location.address1 = form.cleaned_data['address1']
+        location.address2 = form.cleaned_data['address2']
+        location.city = form.cleaned_data['city']
+        location.state = form.cleaned_data['state']
+        location.zip_code = form.cleaned_data['zip_code']
+        location.website = form.cleaned_data['website']
+        location.phone = form.cleaned_data['phone']
+        location.no_kitchen = form.cleaned_data['no_kitchen']
+
+        location.save()
+
+        name = location.name
+        punctuation = name[-1]
+        messages.success(request, 'You have sucessfully updated "%s%s"' % (name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
     else:
-        messages.success(request, response['success'])
+        name = location.name
+        punctuation = name[-1]
+        messages.error(request, 'There was an error updating "%s%s"' % (name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
-    return redirect('locations:location', *response['args'])
+    return redirect('locations:location', location.category_slug(), location.slug, location_id)
 
 def delete_location(request, category_slug, location_slug, location_id):
     if request.method != 'POST':

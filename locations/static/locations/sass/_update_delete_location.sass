@@ -1,39 +1,10 @@
-#content .container form
-  input[type="text"], input[type="number"], input[type="password"],
-  input[type="submit"], textarea, select, label
-    margin-bottom: .5rem
-
-  input[type="text"], input[type="number"], input[type="password"],
-  textarea, select, label
-    color: $white
-    border-color: $lighter-gray
-    background-color: $gray
-
-  .input-group-append
-    height: 38px
-    z-index: 3
-
-  .input-group-append:not(.default-cursor)
-    cursor: pointer
-
-    .input-group-text
-      color: $white
-      border-color: $lighter-gray
-      background-color: $lighter-gray
-
-      i
-        min-width: 14px
-
-  .container.logged-out
-    max-width: 320px
-
 #updateLocationForm
   input[name="address1"]
     border-bottom-left-radius: 0
     border-bottom-right-radius: 0
 
   input[name="address2"]
-    margin-top: -9px
+    margin-top: -1px
     border-top-left-radius: 0
     border-top-right-radius: 0
 
@@ -54,3 +25,11 @@
     input[name="frequency"], input[name="state"]
       border-top-left-radius: 0
       border-bottom-left-radius: 0
+
+  #categoryLabel
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0
+
+  #id_category
+    border-bottom-left-radius: 0
+    border-top-left-radius: 0

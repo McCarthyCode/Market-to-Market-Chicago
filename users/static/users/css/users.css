@@ -238,7 +238,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   min-width: 14px;
 }
 #content .container form .input-group-checkbox .input-group-append {
-  padding: 11px 0.75rem 11px 0.75rem;
+  padding: 11px 0.75rem;
 }
 #content .container form .radio {
   margin-bottom: 0;
@@ -377,7 +377,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #allDayInputGroup .input-group-append {
   border-color: #818181;
   background-color: #818181;
-  padding: 11px 0.75rem 11px 0.75rem;
+  padding: 11px 0.75rem;
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
