@@ -614,7 +614,8 @@ h5.h5, h5.h5 > a {
 }
 
 ul.bulleted {
-  list-style: disc inside;
+  list-style: disc;
+  padding-left: 1em;
 }
 ul.bulleted li::marker {
   color: #818181;
