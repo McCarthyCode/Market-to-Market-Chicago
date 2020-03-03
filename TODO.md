@@ -2,23 +2,9 @@
 
 ## High Priorities
 
-- Test for autocomplete bug
+- Test for autocomplete bugs
 - Ads
-- Home Page
-  - People to Know
-- About/Contact
-  - Bio
-- People to Know
-  - Person model (inherits from NewsItem)
-    - Fields
-      - Name
-      - Image
-      - Bio
-      - Phone
-      - Email
-    - Methods
-      - render()
-  - Home template
+  - 3 medium rectangles across pages
 - Invite system
   - Invite model
     - Fields
@@ -43,6 +29,19 @@
     - if invalid, validation error
     - elif valid but taken, validation error
     - else, register user
+- People to Know
+  - Person model (inherits from NewsItem)
+    - Fields
+      - Name
+      - Image
+      - Bio
+      - Phone
+      - Email
+    - Methods
+      - render()
+  - Home template
+- About/Contact
+  - Bio
 
 ## Medium Priorities
 

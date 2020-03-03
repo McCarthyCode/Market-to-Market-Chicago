@@ -1,10 +1,4 @@
-#largeMobileBanner1
-  display: block
-  width: 320px
-  margin: 0 auto 1rem auto
-
-#mediumRectangleContainer
-  display: none
+#mediumRectangle1Container
   position: relative
   grid-column-start: left
   grid-column-end: sidebar-right
@@ -18,25 +12,20 @@
   top: 50%
   @include transform(translateY(-50%))
 
-#mediumRectangle1b
-  display: block
+#largeMobileBanner1,
+#mediumRectangle1b,
+#mediumRectangle2,
+#mediumRectangle3,
+#mediumRectangle4
+  margin: 0 auto .5rem auto
+
+#largeMobileBanner1
+  width: 320px
+  height: 100px
+
+#mediumRectangle1b,
+#mediumRectangle2,
+#mediumRectangle3,
+#mediumRectangle4
   width: 300px
-  margin: 0 auto 1rem auto
-
-#mediumRectangle2
-  position: relative
-  width: 300px
-  left: 50%
-  @include transform(translateX(-50%))
-  margin-bottom: 1rem
-
-@media screen and (min-width: $breakpoint-md)
-  #mediumRectangleContainer
-    display: block
-
-  #mediumRectangle2
-    position: initial
-    left: 0
-    @include transform(translateX(0))
-    width: 300px
-    margin: 0 0 0 1rem
+  height: 250px

@@ -5,6 +5,7 @@
 - Large mobile banner 320x100 (top of page on desktop & mobile)
 - Medium rectangle 300x250 (left sidebar on desktop, page top on mobile)
 - Medium rectangle 300x250 (within article on desktop & mobile)
+- 3 Medium rectangles 300x250 (within home page news feed on desktop & mobile)
 
 ## Possible Additions
 

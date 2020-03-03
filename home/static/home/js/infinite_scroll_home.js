@@ -31,6 +31,7 @@ $(document).ready(function () {
       $.ajax('/news-feed/', {
         'data': {
           'page': page,
+          'ads-order': $('input[name="ads-order"]').val(),
         },
         'success': function (response) {
           $newsFeed.append(response);

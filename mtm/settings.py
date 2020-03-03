@@ -186,5 +186,5 @@ with open(GOOGLE_MAPS_API_KEY_FILE, 'r', encoding='utf8') as f:
 GOOGLE_MAPS_API_KEY = content[:-1]
 
 # Page length for paginators
-NEWS_ITEMS_PER_PAGE = 10
+NEWS_ITEMS_PER_PAGE = 15
 ARTICLES_PER_PAGE = 10

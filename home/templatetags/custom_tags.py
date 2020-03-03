@@ -18,3 +18,7 @@ def render_news_item(request, item):
     }
 
     return html.translate(translation_table)
+
+@register.filter
+def modulo(num, val):
+    return num % val
