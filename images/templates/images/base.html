@@ -125,21 +125,18 @@
       {% include 'home/topics.html' %}
     </section>
     <section id="mediumRectangleContainer">
-      {% include 'home/ads/medium_rectangle1.html' %}
+      {% include 'home/ads/medium_rectangle1a.html' %}
     </section>
     <section id="content">
       <div class="container">
         <h1 class="h1 text-center">{{ album.title }}</h1>
       </div>
-      {% include 'home/ads/leaderboard1.html' %}
       {% include 'home/ads/large_mobile_banner1.html' %}
+      {% include 'home/ads/medium_rectangle1b.html' %}
       <div class="container">
         {% block content %}
         {% endblock %}
       </div>
-    </section>
-    <section id="skyscraperContainer">
-      {% include 'home/ads/skyscraper.html' %}
     </section>
     {% include 'home/footer.html' %}
   </div>

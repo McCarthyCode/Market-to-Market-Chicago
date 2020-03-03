@@ -3,7 +3,6 @@
 ## High Priorities
 
 - Test for autocomplete bug
-- Locations input
 - Ads
 - Home Page
   - People to Know

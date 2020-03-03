@@ -79,22 +79,6 @@ h5.h5, h5.h5 > a
   .h3 a
     color: $orange
 
-#skyscraperContainer
-  display: none
-  position: relative
-  grid-column-start: skyscraper-left
-  grid-column-end: right
-  grid-row-start: nav-bottom
-  grid-row-end: bottom
-  background-color: $light-gray
-  border-left: 1px solid $lighter-gray
-
-  #skyscraper
-    position: absolute
-    top: 50%
-    left: 50%
-    @include transform(translate(-50%, -50%))
-
 #content .container .card
   background-color: $light-gray
   border: 1px solid $lighter-gray
@@ -117,13 +101,3 @@ h5.h5, h5.h5 > a
 
     .container
       padding: 1rem
-
-@media screen and (min-width: $breakpoint-xl)
-  #grid
-    grid-template-columns: [left] 301px [sidebar-right] auto [skyscraper-left] 193px [right]
-
-  #content
-    grid-column-end: skyscraper-left
-
-  #skyscraperContainer
-    display: block

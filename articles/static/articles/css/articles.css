@@ -1,10 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Patua+One|Roboto");
-#leaderboard1a, #leaderboard1b {
-  display: none;
-  width: 728px;
-  margin: 0 auto 1rem auto;
-}
-
 #largeMobileBanner1 {
   display: block;
   width: 320px;
@@ -22,7 +16,7 @@
   border-right: 1px solid #818181;
 }
 
-#mediumRectangle1 {
+#mediumRectangle1a {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -30,6 +24,12 @@
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+#mediumRectangle1b {
+  display: block;
+  width: 300px;
+  margin: 0 auto 1rem auto;
 }
 
 #mediumRectangle2 {
@@ -59,24 +59,6 @@
     transform: translateX(0);
     width: 300px;
     margin: 0 0 0 1rem;
-  }
-}
-@media screen and (min-width: 1061px) and (max-width: 1199px) {
-  #leaderboard1a {
-    display: block;
-  }
-
-  #largeMobileBanner1 {
-    display: none;
-  }
-}
-@media screen and (min-width: 1254px) {
-  #leaderboard1b {
-    display: block;
-  }
-
-  #largeMobileBanner1 {
-    display: none;
   }
 }
 #footer {
@@ -718,27 +700,6 @@ h5.h5, h5.h5 > a {
   color: #bb846e;
 }
 
-#skyscraperContainer {
-  display: none;
-  position: relative;
-  grid-column-start: skyscraper-left;
-  grid-column-end: right;
-  grid-row-start: nav-bottom;
-  grid-row-end: bottom;
-  background-color: #444444;
-  border-left: 1px solid #818181;
-}
-#skyscraperContainer #skyscraper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
 #content .container .card {
   background-color: #444444;
   border: 1px solid #818181;
@@ -763,19 +724,6 @@ h5.h5, h5.h5 > a {
   }
   #content .container {
     padding: 1rem;
-  }
-}
-@media screen and (min-width: 1200px) {
-  #grid {
-    grid-template-columns: [left] 301px [sidebar-right] auto [skyscraper-left] 193px [right];
-  }
-
-  #content {
-    grid-column-end: skyscraper-left;
-  }
-
-  #skyscraperContainer {
-    display: block;
   }
 }
 

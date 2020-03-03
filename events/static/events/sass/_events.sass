@@ -61,22 +61,6 @@
         i
           min-width: 14px
 
-#skyscraperContainer
-  display: none
-  position: relative
-  grid-column-start: skyscraper-left
-  grid-column-end: right
-  grid-row-start: nav-bottom
-  grid-row-end: bottom
-  background-color: $light-gray
-  border-left: 1px solid $lighter-gray
-
-  #skyscraper
-    position: absolute
-    top: 50%
-    left: 50%
-    @include transform(translate(-50%, -50%))
-
 #tabs
   display: grid
   grid-template-columns: 1fr 1fr 1fr
@@ -377,10 +361,3 @@
 
   #next
     right: 0
-
-@media screen and (min-width: $breakpoint-xl)
-  #content
-    grid-column-end: skyscraper-left
-
-  #skyscraperContainer
-    display: block

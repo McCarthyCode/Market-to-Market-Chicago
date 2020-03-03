@@ -13,22 +13,6 @@
   .h1
     margin: 2rem 0
 
-#skyscraperContainer
-  display: none
-  position: relative
-  grid-column-start: skyscraper-left
-  grid-column-end: right
-  grid-row-start: nav-bottom
-  grid-row-end: bottom
-  background-color: $light-gray
-  border-left: 1px solid $lighter-gray
-
-  #skyscraper
-    position: absolute
-    top: 50%
-    left: 50%
-    @include transform(translate(-50%, -50%))
-
 .contact
   i
     margin-right: .5em
@@ -42,10 +26,3 @@
 @media screen and (min-width: $breakpoint-md)
   #content
     grid-column-start: sidebar-right
-
-@media screen and (min-width: $breakpoint-xl)
-  #content
-    grid-column-end: skyscraper-left
-
-  #skyscraperContainer
-    display: block

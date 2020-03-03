@@ -2,11 +2,9 @@
 
 ## Implemented
 
-- Leaderboard 728x90 (top, desktop only)
-- Large mobile banner 320x100 (top, mobile only)
-- Medium rectangle 300x250 (left sidebar, desktop only)
-- Medium rectangle 300x250 (article, desktop and mobile)
-- Skyscraper 160x600 (right sidebar, desktop only)
+- Large mobile banner 320x100 (top of page on desktop & mobile)
+- Medium rectangle 300x250 (left sidebar on desktop, page top on mobile)
+- Medium rectangle 300x250 (within article on desktop & mobile)
 
 ## Possible Additions
 
