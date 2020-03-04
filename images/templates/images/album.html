@@ -1,5 +1,10 @@
 {% extends 'images/base.html' %}{% block content %}
 {% include 'home/messages.html' %}
+<div class="rectangles">
+  {% include 'home/ads/medium_rectangle2.html' %}
+  {% include 'home/ads/medium_rectangle3.html' %}
+  {% include 'home/ads/medium_rectangle4.html' %}
+</div>
 {% if user.is_superuser or user.id == album.created_by.id %}
 <div id="controls">
   <button id="updateTitleButton" class="btn btn-secondary">Update Title</button>

@@ -40,12 +40,24 @@
   height: 250px;
 }
 
+.rectangles {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+.rectangles #mediumRectangle2,
+.rectangles #mediumRectangle3,
+.rectangles #mediumRectangle4 {
+  margin: 0 0.25rem 0.5rem 0.25rem;
+}
+
 .container .card, .container .empty-card {
   background-color: #444444;
   border: 1px solid #818181;
   border-radius: 0.25rem;
   padding: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   position: relative;
 }
 .container .card {
@@ -328,6 +340,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin: 2rem 0;
 }
 
+#newsFeed .card,
+#articles .card {
+  margin-bottom: 0.5rem;
+}
+
 .contact i {
   margin-right: 0.5em;
 }
@@ -343,8 +360,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     grid-column-start: sidebar-right;
   }
 }
-#locations > ul:last-child,
-#locations > p.empty-card:last-child {
+#locations {
   margin-bottom: 1rem;
 }
 
@@ -363,6 +379,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #byNeighborhood .card ul li.asterisk::after {
   content: "*";
   color: #bbbbbb;
+}
+#byNeighborhood .empty-card {
+  margin-bottom: 0;
 }
 
 @media screen and (min-width: 576px) {

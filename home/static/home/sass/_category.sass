@@ -1,7 +1,5 @@
 #locations
-  > ul:last-child,
-  > p.empty-card:last-child
-    margin-bottom: 1rem
+  margin-bottom: 1rem
 
 #byNeighborhood
   display: grid
@@ -18,6 +16,9 @@
     ul li.asterisk::after
       content: '*'
       color: $lightest-gray
+
+  .empty-card
+    margin-bottom: 0
 
 @media screen and (min-width: $breakpoint-sm)
   #byNeighborhood

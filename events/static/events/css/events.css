@@ -40,12 +40,24 @@
   height: 250px;
 }
 
+.rectangles {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+.rectangles #mediumRectangle2,
+.rectangles #mediumRectangle3,
+.rectangles #mediumRectangle4 {
+  margin: 0 0.25rem 0.5rem 0.25rem;
+}
+
 .container .card, .container .empty-card {
   background-color: #444444;
   border: 1px solid #818181;
   border-radius: 0.25rem;
   padding: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   position: relative;
 }
 .container .card {
@@ -577,9 +589,13 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 
 #calendarView, #byDateView, #byLocationView {
   display: none;
+  margin-bottom: 1rem;
 }
 
-#byDateView .card h3 {
+.container #byDateView .card {
+  margin-bottom: 0.5rem;
+}
+.container #byDateView .card h3 {
   position: absolute;
   top: 15px;
   left: 1rem;
@@ -587,30 +603,33 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #dcdcaa;
   line-height: 1;
 }
-#byDateView .card ul.events {
+.container #byDateView .card ul.events {
   margin-bottom: 0;
   margin-left: 3rem;
 }
-#byDateView .card ul.events li {
+.container #byDateView .card ul.events li {
   margin-bottom: 0.5rem;
 }
-#byDateView .card ul.events li h5 a {
+.container #byDateView .card ul.events li h5 a {
   color: #569cd6;
   line-height: 28px;
 }
-#byDateView .card ul.events li .holiday {
+.container #byDateView .card ul.events li .holiday {
   color: #bb846e;
 }
-#byDateView .card ul.events li p {
+.container #byDateView .card ul.events li p {
   margin-bottom: 0.5rem;
 }
-#byDateView .card ul.events li *:last-child {
+.container #byDateView .card ul.events li *:last-child {
   margin-bottom: 0;
 }
-#byDateView .card ul.events li:last-child {
+.container #byDateView .card ul.events li:last-child {
   margin-bottom: 0;
 }
 
+#byLocationView .card {
+  margin-bottom: 0.5rem;
+}
 #byLocationView .card > a:hover {
   color: #bb846e;
 }

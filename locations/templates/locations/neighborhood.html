@@ -7,6 +7,11 @@
   <li class="empty">There are no upcoming events scheduled.</li>
   {% endfor %}
 </ul>
+<div class="rectangles">
+  {% include 'home/ads/medium_rectangle2.html' %}
+  {% include 'home/ads/medium_rectangle3.html' %}
+  {% include 'home/ads/medium_rectangle4.html' %}
+</div>
 <h3 class="h3">Locations</h3>
 <ul id="locations" class="card bulleted">
 {% for location in locations %}

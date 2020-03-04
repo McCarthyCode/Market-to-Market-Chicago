@@ -45,6 +45,7 @@
 
 ## Medium Priorities
 
+- Divide locations by category on neighborhood page
 - Home page (news feed)
   - NewsItems
     - Events

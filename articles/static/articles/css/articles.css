@@ -40,6 +40,18 @@
   height: 250px;
 }
 
+.rectangles {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+.rectangles #mediumRectangle2,
+.rectangles #mediumRectangle3,
+.rectangles #mediumRectangle4 {
+  margin: 0 0.25rem 0.5rem 0.25rem;
+}
+
 #footer {
   position: fixed;
   padding: 0.25rem;
@@ -394,7 +406,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border: 1px solid #818181;
   border-radius: 0.25rem;
   padding: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   position: relative;
 }
 .container .card {

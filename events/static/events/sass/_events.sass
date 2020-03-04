@@ -227,8 +227,11 @@
 
 #calendarView, #byDateView, #byLocationView
   display: none
+  margin-bottom: 1rem
 
-#byDateView .card
+.container #byDateView .card
+  margin-bottom: .5rem
+
   h3
     position: absolute
     top: 15px
@@ -260,11 +263,13 @@
     li:last-child
       margin-bottom: 0
 
-#byLocationView
-  .card > a:hover
+#byLocationView .card
+  margin-bottom: .5rem
+
+  > a:hover
     color: $orange
 
-  .card > ul.day
+  > ul.day
     margin-left: 3rem
     margin-bottom: .5rem
 
