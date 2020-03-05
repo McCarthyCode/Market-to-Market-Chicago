@@ -325,6 +325,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-color: #818181;
   background-color: #333333;
 }
+#content .container form label.form-control {
+  cursor: pointer;
+}
 #content .container form select.form-control {
   padding: 0 0.5rem;
 }
@@ -384,9 +387,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container form .radio li:not(:last-child) .input-group-append {
   border-bottom-right-radius: 0;
 }
-#content .container form .radio label {
-  cursor: pointer;
-}
 #content .container form .address > :not(:last-child) {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -396,11 +396,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
-#content .container form .city-state-zip > :not(:last-child) {
+#content .container form .city-state-zip > :nth-child(2) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-#content .container form .city-state-zip > :not(:first-child) {
+#content .container form .city-state-zip > :last-child {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -409,6 +409,18 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-left: 0;
 }
 
+@media screen and (min-width: 768px) {
+  .city-state-zip > :not(:last-child),
+.number > :not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .city-state-zip > :not(:first-child),
+.number > :not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
 .modal {
   background-color: #33333380;
 }

@@ -8,6 +8,9 @@
     border-color: $lighter-gray
     background-color: $gray
 
+  label.form-control
+    cursor: pointer
+
   select.form-control
     padding: 0 .5rem
 
@@ -70,9 +73,6 @@
       .input-group-append
         border-bottom-right-radius: 0
 
-    label
-      cursor: pointer
-
   .address
     > :not(:last-child)
       border-bottom-right-radius: 0
@@ -84,6 +84,21 @@
       border-top-left-radius: 0
 
   .city-state-zip
+    > :nth-child(2)
+      border-top-right-radius: 0
+      border-bottom-right-radius: 0
+
+    > :last-child
+      border-top-left-radius: 0
+      border-bottom-left-radius: 0
+
+  .row
+    margin-right: 0
+    margin-left: 0
+
+@media screen and (min-width: $breakpoint-md)
+  .city-state-zip,
+  .number
     > :not(:last-child)
       border-top-right-radius: 0
       border-bottom-right-radius: 0
@@ -91,7 +106,3 @@
     > :not(:first-child)
       border-top-left-radius: 0
       border-bottom-left-radius: 0
-
-  .row
-    margin-right: 0
-    margin-left: 0

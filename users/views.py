@@ -4,9 +4,13 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 
+from .models import Invite
 from events.models import Event
+
+from .forms import CreateInvitesForm
 from locations.forms import CreateLocationForm
 from articles.forms import CreateArticleForm
+
 from mtm.settings import NAME, TZ
 
 def index(request):
@@ -14,6 +18,7 @@ def index(request):
         return HttpResponseBadRequest()
 
     return render(request, 'users/index.html', {
+        'create_invites_form': CreateInvitesForm(),
         'create_article_form': CreateArticleForm(),
         'create_location_form': CreateLocationForm(),
         'user': request.user,
@@ -73,5 +78,28 @@ def logout(request):
 
     logout(request)
     messages.success(request, 'You have successfully signed out.')
+
+    return redirect('users:index')
+
+def create_invites(request):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    form = CreateInvitesForm(request.POST)
+
+    if form.is_valid():
+        qty = form.cleaned_data['qty']
+
+        for i in range(qty):
+            invite = Invite.create()
+            print(invite.link)
+
+        messages.success(request, 'You have successfully created %d invite%s.' % (qty, '' if qty == 1 else 's'))
+    else:
+        for value, msg in form.errors.items():
+            if value == '__all__':
+                error = msg.as_text().replace('* ', '')
+                messages.error(request, error)
+                break
 
     return redirect('users:index')

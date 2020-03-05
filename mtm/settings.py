@@ -188,3 +188,13 @@ GOOGLE_MAPS_API_KEY = content[:-1]
 # Page length for paginators
 NEWS_ITEMS_PER_PAGE = 15
 ARTICLES_PER_PAGE = 10
+
+# Maximum number of invites at a time
+MAX_INVITES = 20
+
+# Domain name and protocol for invite URLs
+if DEBUG:
+    DOMAIN = 'http://10.0.0.100:8000'
+else:
+    DOMAIN = 'http://67.205.139.60'
+    # DOMAIN = 'https://mtmchicago.com'

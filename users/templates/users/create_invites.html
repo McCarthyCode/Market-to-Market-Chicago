@@ -1,0 +1,8 @@
+<form id="createInvitesForm" action="{% url 'users:create-invites' %}" method="POST">
+  {% csrf_token %}
+  <div class="row number">
+    <label class="col-12 col-md-6 form-control" for="{{ create_invites_form.qty.id_for_label }}">{{ create_invites_form.qty.label }}</label>
+    {{ create_invites_form.qty }}
+  </div>
+  <input class="btn btn-primary form-control" type="submit" value="Submit">
+</form>

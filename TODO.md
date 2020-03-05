@@ -2,21 +2,14 @@
 
 ## High Priorities
 
-- Test for autocomplete bugs
-- Ads
-  - 3 medium rectangles across pages
 - Invite system
   - Invite model
-    - Fields
-      - Code (https://github.com/Alir3z4/django-base64field)
-      - User (default=None)
     - Methods
-      - get_code()
-        - Return code as string
-      - generate_invite_link()
-        - Return URL with code as GET parameter
-      - save()
-        - code = md5 sum of id
+      - verify()
+  - Generate invites
+    - View
+    - Template
+    - URL
   - Register form (ModelForm)
     - First Name (optional)
     - Last Name (optional)
@@ -29,6 +22,7 @@
     - if invalid, validation error
     - elif valid but taken, validation error
     - else, register user
+- Test for autocomplete bugs
 - People to Know
   - Person model (inherits from NewsItem)
     - Fields
