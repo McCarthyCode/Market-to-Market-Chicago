@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import datetime
 import os
 import pytz
 import re
@@ -179,18 +180,22 @@ PHONE_REGEX = re.compile(
     r'^(\+?0?1\s)?\(?(\d{3})\)?[\s.-]?(\d{3})[\s.-]?(\d{4})$'
 )
 
+
 # Google Maps API key
 GOOGLE_MAPS_API_KEY_FILE = '%s/auth/google_maps_api_key.txt' % BASE_DIR
 with open(GOOGLE_MAPS_API_KEY_FILE, 'r', encoding='utf8') as f:
     content = f.readline()
 GOOGLE_MAPS_API_KEY = content[:-1]
 
+
 # Page length for paginators
 NEWS_ITEMS_PER_PAGE = 15
 ARTICLES_PER_PAGE = 10
 
+
 # Maximum number of invites at a time
 MAX_INVITES = 20
+
 
 # Domain name and protocol for invite URLs
 if DEBUG:
@@ -198,3 +203,7 @@ if DEBUG:
 else:
     DOMAIN = 'http://67.205.139.60'
     # DOMAIN = 'https://mtmchicago.com'
+
+
+# Expiry duration for invites
+INVITES_EXPIRY = datetime.timedelta(days=30)

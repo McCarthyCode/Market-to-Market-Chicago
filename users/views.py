@@ -11,15 +11,24 @@ from .forms import CreateInvitesForm
 from locations.forms import CreateLocationForm
 from articles.forms import CreateArticleForm
 
-from mtm.settings import NAME, TZ
+from mtm.settings import NAME, TZ, MAX_INVITES
 
 def index(request):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
+    if request.user.is_superuser:
+        return render(request, 'users/index.html', {
+            'create_article_form': CreateArticleForm(),
+            'create_invites_form': CreateInvitesForm(),
+            'invites': [x for x in Invite.objects.filter(sent=False).order_by('date_created') if not x.expired][:MAX_INVITES],
+            'create_location_form': CreateLocationForm(),
+            'user': request.user,
+            'name': NAME,
+            'year': datetime.now(TZ).year,
+        })
+
     return render(request, 'users/index.html', {
-        'create_invites_form': CreateInvitesForm(),
-        'create_article_form': CreateArticleForm(),
         'create_location_form': CreateLocationForm(),
         'user': request.user,
         'name': NAME,
@@ -82,7 +91,7 @@ def logout(request):
     return redirect('users:index')
 
 def create_invites(request):
-    if request.method != 'POST':
+    if request.method != 'POST' or not request.user.is_superuser:
         return HttpResponseBadRequest()
 
     form = CreateInvitesForm(request.POST)
@@ -92,7 +101,6 @@ def create_invites(request):
 
         for i in range(qty):
             invite = Invite.create()
-            print(invite.link)
 
         messages.success(request, 'You have successfully created %d invite%s.' % (qty, '' if qty == 1 else 's'))
     else:
@@ -101,5 +109,35 @@ def create_invites(request):
                 error = msg.as_text().replace('* ', '')
                 messages.error(request, error)
                 break
+
+    return redirect('users:index')
+
+def invite(request, code):
+    if request.method != 'GET' and request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    return redirect('users:index')
+
+def mark_invite_sent(request, code):
+    if request.method != 'GET' or not request.user.is_superuser:
+        return HttpResponseBadRequest()
+
+    invite = Invite.get_invite_or_404(code)
+    invite.sent = True
+    invite.save()
+
+    messages.success(request, 'Invite #%d successfully marked as sent.' % invite.id)
+
+    return redirect('users:index')
+
+def delete_invite(request, code):
+    if request.method != 'GET' or not request.user.is_superuser:
+        return HttpResponseBadRequest()
+
+    invite = Invite.get_invite_or_404(code)
+    invite_id = invite.id
+    invite.delete()
+
+    messages.success(request, 'Invite #%d successfully deleted.' % invite_id)
 
     return redirect('users:index')

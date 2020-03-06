@@ -1,0 +1,30 @@
+<table id="viewInvitesTable" class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Code</th>
+      <th>Expires</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for invite in invites %}
+    <tr>
+      <td>{{ invite.id }}</td>
+      <td>{{ invite.code }}<br>
+        <a href="mailto:?subject=Market+to+Market+Chicago+Invite+Link&body=Hello%21%0A%0AYou%20have%20been%20invited%20to%20create%20an%20account%20with%20Market%20to%20Market%20Chicago.%20To%20get%20started%2C%20you%20may%20follow%20the%20link%20below.%0A%0A{{ invite.link }}%0A%0AThank%20you%20and%20have%20a%20great%20day%21%0A%0ARegards%2C%0AThe%20MTM%20Chicago%20team" class="external-link">Email</a>
+        |
+        <a href="{{ invite.link }}">Direct Link</a>
+        |
+        <a href="{% url 'users:mark-sent' invite.code %}">Mark Sent</a>
+        |
+        <a href="{% url 'users:delete-invite' invite.code %}" class="delete">Delete</a>
+      </td>
+      <td>{{ invite.expiry_date|date:"Y-m-d g:i a" }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td class="empty" colspan=3>No invites to display.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

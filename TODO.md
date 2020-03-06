@@ -3,13 +3,6 @@
 ## High Priorities
 
 - Invite system
-  - Invite model
-    - Methods
-      - verify()
-  - Generate invites
-    - View
-    - Template
-    - URL
   - Register form (ModelForm)
     - First Name (optional)
     - Last Name (optional)
@@ -39,6 +32,7 @@
 
 ## Medium Priorities
 
+- Rename colors
 - Divide locations by category on neighborhood page
 - Home page (news feed)
   - NewsItems
