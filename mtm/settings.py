@@ -179,6 +179,9 @@ HTTP_HTTPS_REGEX = re.compile(
 PHONE_REGEX = re.compile(
     r'^(\+?0?1\s)?\(?(\d{3})\)?[\s.-]?(\d{3})[\s.-]?(\d{4})$'
 )
+PASSWORD_REGEX = re.compile(
+    r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()?])[A-Za-z\d!@#$%^&*()?]{8,}$'
+)
 
 
 # Google Maps API key

@@ -260,12 +260,14 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container form .radio li:not(:last-child) .input-group-append {
   border-bottom-right-radius: 0;
 }
-#content .container form .address > :not(:last-child) {
+#content .container form .address > :not(:last-child),
+#content .container form .password-confirm > :not(:last-child) {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   margin-bottom: -1px;
 }
-#content .container form .address > :not(:first-child) {
+#content .container form .address > :not(:first-child),
+#content .container form .password-confirm > :not(:first-child) {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
@@ -280,6 +282,10 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container form .row {
   margin-right: 0;
   margin-left: 0;
+}
+#content .container form .errorlist {
+  color: #d5697d;
+  margin-bottom: 0.5rem;
 }
 
 @media screen and (min-width: 768px) {

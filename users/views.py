@@ -1,13 +1,13 @@
 from datetime import datetime
 
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, Http404
 from django.shortcuts import render, redirect
 
 from .models import Invite
 from events.models import Event
 
-from .forms import CreateInvitesForm
+from .forms import CreateInvitesForm, RegistrationForm
 from locations.forms import CreateLocationForm
 from articles.forms import CreateArticleForm
 
@@ -104,16 +104,45 @@ def create_invites(request):
 
         messages.success(request, 'You have successfully created %d invite%s.' % (qty, '' if qty == 1 else 's'))
     else:
-        for value, msg in form.errors.items():
-            if value == '__all__':
-                error = msg.as_text().replace('* ', '')
+        for reference, message in form.errors.items():
+            if reference == '__all__':
+                error = message.as_text().replace('* ', '')
                 messages.error(request, error)
                 break
 
     return redirect('users:index')
 
 def invite(request, code):
-    if request.method != 'GET' and request.method != 'POST':
+    invite = Invite.get_invite_or_404(code)
+    if invite.user or not invite.sent:
+        raise Http404
+
+    if request.method == 'GET':
+        return render(request, 'users/invite.html', {
+            'code': code,
+            'form': RegistrationForm(),
+            'name': NAME,
+            'year': datetime.now(TZ).year,
+        })
+    elif request.method == 'POST':
+        form = RegistrationForm(request.POST)
+
+        if form.is_valid():
+            pass
+        else:
+            for reference, message in form.errors.items():
+                if reference == '__all__':
+                    error = message.as_text().replace('* ', '')
+                    messages.error(request, error)
+                    break
+
+            return render(request, 'users/invite.html', {
+                'code': code,
+                'form': form,
+                'name': NAME,
+                'year': datetime.now(TZ).year,
+            })
+    else:
         return HttpResponseBadRequest()
 
     return redirect('users:index')

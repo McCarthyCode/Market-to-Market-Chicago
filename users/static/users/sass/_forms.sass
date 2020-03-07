@@ -73,7 +73,8 @@
       .input-group-append
         border-bottom-right-radius: 0
 
-  .address
+  .address,
+  .password-confirm
     > :not(:last-child)
       border-bottom-right-radius: 0
       border-bottom-left-radius: 0
@@ -95,6 +96,10 @@
   .row
     margin-right: 0
     margin-left: 0
+
+  .errorlist
+    color: $red
+    margin-bottom: .5rem
 
 @media screen and (min-width: $breakpoint-md)
   .city-state-zip,
