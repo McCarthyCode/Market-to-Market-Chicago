@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.contrib import messages
+from django.core.exceptions import ValidationError
 from django.http import HttpResponse, HttpResponseBadRequest, Http404
 from django.shortcuts import render, redirect
 
@@ -127,14 +128,25 @@ def invite(request, code):
     elif request.method == 'POST':
         form = RegistrationForm(request.POST)
 
-        if form.is_valid():
-            pass
-        else:
-            for reference, message in form.errors.items():
-                if reference == '__all__':
-                    error = message.as_text().replace('* ', '')
-                    messages.error(request, error)
-                    break
+        try:
+            if form.is_valid():
+                form.save()
+            else:
+                for reference, message in form.errors.items():
+                    if reference == '__all__':
+                        error = message.as_text().replace('* ', '')
+                        messages.error(request, error)
+                        break
+
+                return render(request, 'users/invite.html', {
+                    'code': code,
+                    'form': form,
+                    'name': NAME,
+                    'year': datetime.now(TZ).year,
+                })
+        except ValidationError as errors:
+            for error in errors:
+                messages.error(request, error)
 
             return render(request, 'users/invite.html', {
                 'code': code,

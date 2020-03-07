@@ -36,6 +36,14 @@ class CreateInvitesForm(forms.Form):
         return cleaned_data
 
 class RegistrationForm(forms.ModelForm):
+    username = forms.CharField(
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Username',
+            'autocomplete': 'off',
+        }),
+    )
     email = forms.EmailField(
         label='',
         widget=forms.TextInput(attrs={
@@ -75,6 +83,21 @@ class RegistrationForm(forms.ModelForm):
             pass
 
         return cleaned_data
+
+    def validate_unique(self):
+        cleaned_data = self.cleaned_data
+
+        username = cleaned_data.get('username')
+        email = cleaned_data.get('email')
+
+        if User.objects.filter(username=username, email=email).exists():
+            raise forms.ValidationError(_('A user with that username and email already exists. Please try again.'), code='exists')
+
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError(_('A user with that username already exists. Please try again.'), code='exists')
+
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError(_('A user with that email already exists. Please try again.'), code='exists')
 
     class Meta:
         model = User
