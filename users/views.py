@@ -114,6 +114,9 @@ def create_invites(request):
     return redirect('users:index')
 
 def invite(request, code):
+    from django.contrib.auth import authenticate, login
+    from django.contrib.auth.hashers import make_password
+
     invite = Invite.get_invite_or_404(code)
     if invite.user or not invite.sent:
         raise Http404
@@ -130,7 +133,27 @@ def invite(request, code):
 
         try:
             if form.is_valid():
-                form.save()
+                register = form.save()
+
+                register.username = form.cleaned_data.get('username')
+                register.email = form.cleaned_data.get('email')
+                password = form.cleaned_data.get('password')
+                register.password = make_password(password)
+                register.save()
+
+                user = authenticate(username=register.username, password=password)
+
+                if user:
+                    invite.user = user
+                    invite.save()
+
+                    login(request, user)
+
+                    messages.success(request, 'You have successfully created an account.')
+                else:
+                    messages.error(request, 'There was an error creating an account.')
+
+                return redirect('users:index')
             else:
                 for reference, message in form.errors.items():
                     if reference == '__all__':

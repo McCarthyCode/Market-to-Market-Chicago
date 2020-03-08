@@ -11,7 +11,7 @@
     <tr>
       <td>{{ invite.id }}</td>
       <td>{{ invite.code }}<br>
-        <a href="mailto:?subject=Market+to+Market+Chicago+Invite+Link&body=Hello%21%0A%0AYou%20have%20been%20invited%20to%20create%20an%20account%20with%20Market%20to%20Market%20Chicago.%20To%20get%20started%2C%20you%20may%20follow%20the%20link%20below.%0A%0A{{ invite.link }}%0A%0AThank%20you%20and%20have%20a%20great%20day%21%0A%0ARegards%2C%0AThe%20MTM%20Chicago%20team" class="external-link">Email</a>
+        <a href="mailto:?subject=Market+to+Market+Chicago+Invite+Link&body=Hello%21%0A%0AYou%20have%20been%20invited%20to%20create%20an%20account%20with%20Market%20to%20Market%20Chicago.%20To%20get%20started%2C%20you%20may%20follow%20the%20link%20below.%0A%0A{{ invite.link }}%0A%0AThis%20link%20expires%20on%20{{ invite.expiry_date|date:'F j, Y \a\t g:i a'|urlencode }}%20Thank%20you%20and%20have%20a%20great%20day%21%0A%0ARegards%2C%0AThe%20MTM%20Chicago%20team" class="external-link">Email</a>
         |
         <a href="{{ invite.link }}">Direct Link</a>
         |

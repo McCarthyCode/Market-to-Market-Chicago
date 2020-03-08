@@ -2,19 +2,6 @@
 
 ## High Priorities
 
-- Invite system
-  - Register form (ModelForm)
-    - First Name (optional)
-    - Last Name (optional)
-    - Email
-    - Password
-    - Password Confirm
-    - Invite Code (pre-populated)
-  - Register View
-    - Check db for valid code
-    - if invalid, validation error
-    - elif valid but taken, validation error
-    - else, register user
 - Test for autocomplete bugs
 - People to Know
   - Person model (inherits from NewsItem)
