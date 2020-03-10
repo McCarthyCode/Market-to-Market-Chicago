@@ -2,23 +2,24 @@
 
 ## High Priorities
 
-- Test for autocomplete bugs
 - People to Know
-  - Person model (inherits from NewsItem)
-    - Fields
-      - Name
-      - Image
-      - Bio
-      - Phone
-      - Email
-    - Methods
-      - render()
   - Home template
+    - Sass
+  - Person form
 - About/Contact
   - Bio
+- Images
+  - Image model
+    - md5 hash filenames
+      - Full-sized
+      - Thumbnail
+    - Resize images on input
+      - Full-sized (960, 720)
+      - Thumbnail (400, 364)
 
 ## Medium Priorities
 
+- Test for autocomplete bugs
 - Rename colors
 - Divide locations by category on neighborhood page
 - Home page (news feed)
@@ -55,10 +56,6 @@
       - Filters
         - Alphabetical
         - By neighborhood
-- Images
-  - Image model
-    - md5 hash filename
-    - Resize images on input
 - Drink specials
 - Consolidate duplicate entries
   - Neighborhood

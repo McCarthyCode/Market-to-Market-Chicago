@@ -30,11 +30,11 @@ class Invite(TimestampedModel):
 
     @classmethod
     def get_invite_or_404(cls, code):
-        return get_object_or_404(cls, _code=b16decode(code, casefold=True))
+        return get_object_or_404(cls, _code=b16decode(code.upper()))
 
     @property
     def code(self):
-        return str(b16encode(self._code).lower(), 'utf-8')
+        return str(b16encode(self._code).lower(), 'utf-8') if self._code else None
 
     @property
     def link(self):

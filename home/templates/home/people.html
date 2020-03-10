@@ -1,5 +1,12 @@
 {% extends 'home/base.html' %}{% load static %}{% block content %}
-<ul id="people" class="card bulleted">
-  <li>Bill Gubrud &ndash; Owner, Market to Market Chicago</li>
+<ul id="people">
+  {% for person in people %}
+  {% include 'home/person_home.html' %}
+  {% endfor %}
 </ul>
+<div class="rectangles">
+  {% include 'home/ads/medium_rectangle2.html' %}
+  {% include 'home/ads/medium_rectangle3.html' %}
+  {% include 'home/ads/medium_rectangle4.html' %}
+</div>
 {% endblock %}

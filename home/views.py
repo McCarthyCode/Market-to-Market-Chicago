@@ -9,7 +9,7 @@ from django.db.models import Q
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 
-from .models import NewsItem
+from .models import NewsItem, Person
 from articles.models import Article
 from images.models import Album, Image
 from locations.models import Neighborhood, Location
@@ -67,6 +67,7 @@ def people(request):
 
     return render(request, 'home/people.html', {
         'title': 'People to Know',
+        'people': Person.objects.all().order_by('date_created'),
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,

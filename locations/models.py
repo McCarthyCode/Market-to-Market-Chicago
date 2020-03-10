@@ -67,6 +67,7 @@ class Location(NewsItem):
 
         return slugs[self.category]
 
+    @property
     def display_phone(self):
         return '(%s) %s-%s' % \
             (self.phone[0:3], self.phone[3:6], self.phone[6:10]) \
