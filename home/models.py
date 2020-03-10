@@ -35,8 +35,8 @@ class Person(NewsItem):
     image = models.ImageField(default=None, upload_to='people/')
     _image_hash = models.BinaryField(blank=True, null=True, default=None, max_length=16)
     bio = models.TextField()
-    phone = models.CharField(max_length=10)
-    email = models.EmailField()
+    phone = models.CharField(blank=True, null=True, max_length=10)
+    email = models.EmailField(blank=True, null=True)
 
     def __str__(self):
         return self.full_name
@@ -45,6 +45,8 @@ class Person(NewsItem):
         if self.image:
             self.resize_image()
             self.hash_image()
+
+        self.bio = re.sub(r'(\r\n){2,}', '\r\n', self.bio)
 
         super().save(*args, **kwargs)
 

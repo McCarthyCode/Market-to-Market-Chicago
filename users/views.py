@@ -9,6 +9,7 @@ from .models import Invite
 from events.models import Event
 
 from .forms import CreateInvitesForm, RegistrationForm
+from home.forms import CreatePersonForm
 from locations.forms import CreateLocationForm
 from articles.forms import CreateArticleForm
 
@@ -21,6 +22,7 @@ def index(request):
     if request.user.is_superuser:
         return render(request, 'users/index.html', {
             'create_article_form': CreateArticleForm(),
+            'create_person_form': CreatePersonForm(),
             'create_invites_form': CreateInvitesForm(),
             'invites': [x for x in Invite.objects.filter(sent=False).order_by('date_created') if not x.expired][:MAX_INVITES],
             'create_location_form': CreateLocationForm(),

@@ -430,6 +430,31 @@ article.category .info {
   color: #679452;
 }
 
+.person .info {
+  color: #679452;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+.person .info a {
+  color: #679452;
+  text-decoration: underline;
+}
+.person .info a:hover {
+  color: #97d5f7;
+}
+.person img {
+  margin: 0 auto 1rem auto;
+  width: 100%;
+}
+.person p:not(.info) {
+  text-align: justify;
+  margin-bottom: 1rem;
+}
+.person p:not(.info) br {
+  margin-bottom: 1rem;
+}
+
 .album .info {
   color: #679452;
   font-size: 1rem;
@@ -559,7 +584,7 @@ h5.h5, h5.h5 > a {
   color: #679452;
 }
 
-.card p:last-of-type:not(.info) {
+.card > :last-child:not(.info) {
   margin-bottom: 0;
 }
 

@@ -388,13 +388,15 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-bottom-right-radius: 0;
 }
 #content .container form .address > :not(:last-child),
-#content .container form .password-confirm > :not(:last-child) {
+#content .container form .password-confirm > :not(:last-child),
+#content .container form .name > :not(:last-child) {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   margin-bottom: -1px;
 }
 #content .container form .address > :not(:first-child),
-#content .container form .password-confirm > :not(:first-child) {
+#content .container form .password-confirm > :not(:first-child),
+#content .container form .name > :not(:first-child) {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }

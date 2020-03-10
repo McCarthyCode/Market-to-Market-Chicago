@@ -12,6 +12,7 @@
 @import '_home'
 @import '_category'
 @import '_article'
+@import '_person_home'
 @import '_album_home'
 @import '_event_home'
 @import '_location_home'
@@ -42,7 +43,7 @@ h3.h3, h3.h3 > a
 h5.h5, h5.h5 > a
   color: $green
 
-.card p:last-of-type:not(.info)
+.card > :last-child:not(.info)
   margin-bottom: 0
 
 ul.bulleted

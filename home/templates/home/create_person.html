@@ -1,0 +1,17 @@
+<form id="createPersonForm" action="{# url 'home:create-person' #}" method="POST">
+  {% csrf_token %}
+  <div class="name">
+    {{ create_person_form.prefix }}
+    {{ create_person_form.first_name }}
+    {{ create_person_form.last_name }}
+    {{ create_person_form.suffix }}
+  </div>
+  <div class="row">
+    <label class="col-12 col-md-4 form-control" for="{{ create_person_form.image.id_for_label }}">{{ create_person_form.image.label }}</label>
+    {{ create_person_form.image }}
+  </div>
+  {{ create_person_form.bio }}
+  {{ create_person_form.phone }}
+  {{ create_person_form.email }}
+  <input class="btn btn-primary form-control" type="submit" value="Submit">
+</form>
