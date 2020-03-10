@@ -443,8 +443,10 @@ article.category .info {
 .person .info a:hover {
   color: #97d5f7;
 }
-.person img {
+.person a.thumbnail {
   margin: 0 auto 1rem auto;
+}
+.person a.thumbnail img {
   width: 100%;
 }
 .person p:not(.info) {
