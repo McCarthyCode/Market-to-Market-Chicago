@@ -81,7 +81,7 @@ def people(request):
         'year': datetime.now(TZ).year,
     })
 
-def person(request):
+def create_person(request):
     if request.method != 'POST':
         return HttpResponseBadRequest()
 
@@ -124,6 +124,12 @@ def person(request):
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
+
+def update_person(request, person_id):
+    pass
+
+def delete_person(request, person_id):
+    pass
 
 def category(request, slug):
     if request.method != 'GET':

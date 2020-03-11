@@ -1,12 +1,13 @@
 {% extends 'home/base.html' %}{% load static %}{% block content %}
-<ul id="people">
-  {% for person in people %}
-  {% include 'home/person_home.html' %}
-  {% endfor %}
-</ul>
+{% include 'home/messages.html' %}
 <div class="rectangles">
   {% include 'home/ads/medium_rectangle2.html' %}
   {% include 'home/ads/medium_rectangle3.html' %}
   {% include 'home/ads/medium_rectangle4.html' %}
 </div>
+<ul id="people">
+  {% for person in people %}
+  {% include 'home/person.html' %}
+  {% endfor %}
+</ul>
 {% endblock %}
