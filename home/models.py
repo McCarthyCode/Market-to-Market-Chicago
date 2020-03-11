@@ -46,15 +46,15 @@ class Person(NewsItem):
         return self.full_name
 
     def save(self, *args, **kwargs):
-        if self.image:
-            self.generate_thumbnail()
-            self.hash_thumbnail()
-            self.resize_image()
-            self.hash_image()
-
         self.bio = re.sub(r'(\r\n){2,}', '\r\n', self.bio)
 
         super().save(*args, **kwargs)
+
+    def image_ops(self):
+        self.generate_thumbnail()
+        self.hash_thumbnail()
+        self.resize_image()
+        self.hash_image()
 
     def generate_thumbnail(self):
         img = Image.open(self.image).convert('RGB')

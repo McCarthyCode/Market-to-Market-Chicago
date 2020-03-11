@@ -4,16 +4,24 @@ from datetime import datetime
 from itertools import chain
 from operator import attrgetter
 
+from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import NewsItem, Person
+from users.models import Invite
 from articles.models import Article
 from images.models import Album, Image
 from locations.models import Neighborhood, Location
-from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE, NEWS_ITEMS_PER_PAGE
+
+from .forms import CreatePersonForm
+from users.forms import CreateInvitesForm, RegistrationForm
+from locations.forms import CreateLocationForm
+from articles.forms import CreateArticleForm
+
+from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE, NEWS_ITEMS_PER_PAGE, MAX_INVITES
 
 def index(request):
     if request.method != 'GET':
@@ -68,6 +76,50 @@ def people(request):
     return render(request, 'home/people.html', {
         'title': 'People to Know',
         'people': Person.objects.all().order_by('date_created'),
+        'user': request.user,
+        'name': NAME,
+        'year': datetime.now(TZ).year,
+    })
+
+def person(request):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    form = CreatePersonForm(request.POST, request.FILES)
+
+    if form.is_valid():
+        person = form.save()
+        person.prefix = form.cleaned_data.get('prefix')
+        person.first_name = form.cleaned_data.get('first_name')
+        person.last_name = form.cleaned_data.get('last_name')
+        person.suffix = form.cleaned_data.get('suffix')
+        person.bio = form.cleaned_data.get('bio')
+        person.phone = form.cleaned_data.get('phone')
+        person.email = form.cleaned_data.get('email')
+
+        person.image_ops()
+        person.save()
+
+        messages.success(request, 'You have successfully created a person to know.')
+
+        return redirect('users:index')
+
+    messages.error(request, 'There was an error creating a person to know.')
+
+    if request.user.is_superuser:
+        return render(request, 'users/index.html', {
+            'create_article_form': CreateArticleForm(),
+            'create_person_form': CreatePersonForm(request.POST),
+            'create_invites_form': CreateInvitesForm(),
+            'invites': [x for x in Invite.objects.filter(sent=False).order_by('date_created') if not x.expired][:MAX_INVITES],
+            'create_location_form': CreateLocationForm(),
+            'user': request.user,
+            'name': NAME,
+            'year': datetime.now(TZ).year,
+        })
+
+    return render(request, 'users/index.html', {
+        'create_location_form': CreateLocationForm(),
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,

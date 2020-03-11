@@ -1,17 +1,26 @@
-<form id="createPersonForm" action="{# url 'home:create-person' #}" method="POST">
+<form id="createPersonForm" action="{% url 'home:create-person' %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
+  {{ create_person_form.non_field_errors }}
+  {{ create_person_form.prefix.errors }}
+  {{ create_person_form.first_name.errors }}
+  {{ create_person_form.last_name.errors }}
+  {{ create_person_form.suffix.errors }}
   <div class="name">
     {{ create_person_form.prefix }}
     {{ create_person_form.first_name }}
     {{ create_person_form.last_name }}
     {{ create_person_form.suffix }}
   </div>
+  {{ create_person_form.image.errors }}
   <div class="row">
     <label class="col-12 col-md-4 form-control" for="{{ create_person_form.image.id_for_label }}">{{ create_person_form.image.label }}</label>
     {{ create_person_form.image }}
   </div>
+  {{ create_person_form.bio.errors }}
   {{ create_person_form.bio }}
+  {{ create_person_form.phone.errors }}
   {{ create_person_form.phone }}
+  {{ create_person_form.email.errors }}
   {{ create_person_form.email }}
   <input class="btn btn-primary form-control" type="submit" value="Submit">
 </form>
