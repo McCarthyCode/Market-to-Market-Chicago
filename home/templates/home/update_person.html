@@ -22,7 +22,7 @@
   {{ form.bio.errors }}
   {{ form.bio }}
   {{ form.phone.errors }}
-  {{ form.phone }}
+  <input type="text" name="phone" value="{{ person.display_phone }}" class="form-control" autocomplete="off" id="id_phone" placeholder="Phone (optional)">
   {{ form.email.errors }}
   {{ form.email }}
   <input class="btn btn-primary form-control" type="submit" value="Submit">
