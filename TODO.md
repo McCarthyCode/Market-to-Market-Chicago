@@ -2,12 +2,8 @@
 
 ## High Priorities
 
-- People to Know
-  - Home template
-    - Sass
-  - Person form
-- About/Contact
-  - Bio
+- Home page
+  - People to know
 - Images
   - Image model
     - md5 hash filenames
@@ -15,7 +11,9 @@
       - Thumbnail
     - Resize images on input
       - Full-sized (960, 720)
-      - Thumbnail (400, 364)
+      - Thumbnail (400, 375)
+- About/Contact
+  - Bio
 
 ## Medium Priorities
 

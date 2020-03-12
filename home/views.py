@@ -75,14 +75,14 @@ def people(request):
 
     return render(request, 'home/people.html', {
         'title': 'People to Know',
-        'people': Person.objects.all().order_by('date_created'),
+        'people': Person.objects.all().order_by('-date_updated'),
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
 
 def create_person(request):
-    if request.method != 'POST':
+    if not request.user.is_superuser or request.method != 'POST':
         return HttpResponseBadRequest()
 
     form = CreatePersonForm(request.POST, request.FILES)
@@ -128,6 +128,9 @@ def create_person(request):
     })
 
 def update_person(request, person_id):
+    if not request.user.is_superuser:
+        return HttpResponseBadRequest()
+
     person = get_object_or_404(Person, id=person_id)
 
     if request.method == 'GET':
@@ -180,7 +183,19 @@ def update_person(request, person_id):
     return redirect('home:people-to-know')
 
 def delete_person(request, person_id):
-    pass
+    if not request.user.is_superuser or request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    person = get_object_or_404(Person, id=person_id)
+
+    name = person.full_name
+    person.image.delete()
+    person.thumbnail.delete()
+    person.delete()
+
+    messages.success(request, 'You have successfully deleted %s.' % name)
+
+    return redirect('home:people-to-know')
 
 def category(request, slug):
     if request.method != 'GET':
