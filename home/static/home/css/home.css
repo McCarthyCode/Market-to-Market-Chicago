@@ -19,7 +19,6 @@
   transform: translateY(-50%);
 }
 
-#largeMobileBanner1,
 #mediumRectangle1b,
 #mediumRectangle2,
 #mediumRectangle3,
@@ -30,6 +29,7 @@
 #largeMobileBanner1 {
   width: 320px;
   height: 100px;
+  margin: 0 auto 1rem auto;
 }
 
 #mediumRectangle1b,
@@ -131,6 +131,135 @@
     border-right: 1px solid #818181;
   }
 }
+#content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password], #content .container form input[type=submit], #content .container form input[type=file], #content .container form textarea, #content .container form select, #content .container form label {
+  margin-bottom: 0.5rem;
+}
+#content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password],
+#content .container form textarea, #content .container form select, #content .container form label {
+  color: #ffffff;
+  border-color: #818181;
+  background-color: #333333;
+}
+#content .container form label.form-control {
+  cursor: pointer;
+}
+#content .container form select.form-control {
+  padding: 0 0.5rem;
+}
+#content .container form select.form-control option {
+  padding: 0;
+}
+#content .container form input[type=file] {
+  width: 100%;
+  height: 38px;
+  color: #ffffff;
+}
+#content .container form .input-group label {
+  cursor: pointer;
+}
+#content .container form .input-group .input-group-append {
+  border-color: #818181;
+  background-color: #818181;
+  width: 40px;
+  height: 38px;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  z-index: 3;
+}
+#content .container form .input-group .input-group-append input[type=radio], #content .container form .input-group .input-group-append input[type=checkbox], #content .container form .input-group .input-group-append .input-group-text {
+  cursor: pointer;
+  color: #ffffff;
+}
+#content .container form .input-group .input-group-append input[type=radio] {
+  height: 16px;
+  margin: auto;
+}
+#content .container form .input-group .input-group-append .input-group-text {
+  color: #ffffff;
+  border-color: #818181;
+  background-color: #818181;
+}
+#content .container form .input-group .input-group-append .input-group-text i {
+  min-width: 14px;
+}
+#content .container form .input-group-checkbox .input-group-append {
+  padding: 11px 0.75rem;
+}
+#content .container form .radio {
+  margin-bottom: 0;
+}
+#content .container form .radio li:not(.top) label {
+  border-top-left-radius: 0;
+}
+#content .container form .radio li:not(.top) .input-group-append {
+  border-top-right-radius: 0;
+}
+#content .container form .radio li:not(:last-child) label {
+  margin-bottom: 0;
+  border-bottom: 0;
+  border-bottom-left-radius: 0;
+}
+#content .container form .radio li:not(:last-child) .input-group-append {
+  border-bottom-right-radius: 0;
+}
+#content .container form .address > :not(:last-child),
+#content .container form .password-confirm > :not(:last-child),
+#content .container form .name > :not(:last-child) {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-bottom: -1px;
+}
+#content .container form .address > :not(:first-child),
+#content .container form .password-confirm > :not(:first-child),
+#content .container form .name > :not(:first-child) {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+#content .container form .city-state-zip > :nth-child(2) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#content .container form .city-state-zip > :last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#content .container form .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+#content .container form .errorlist {
+  color: #d5697d;
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .city-state-zip > :not(:last-child),
+.number > :not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .city-state-zip > :not(:first-child),
+.number > :not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+#content .container .alert p {
+  margin: 0;
+}
+#content .container .alert a:not(.close) {
+  text-decoration: underline;
+}
+#content .container .alert-danger p, #content .container .alert-danger a {
+  color: #721c24;
+}
+#content .container .alert-success p, #content .container .alert-success a {
+  color: #155724;
+}
+#content .container .alert-info p, #content .container .alert-info a {
+  color: #0c5460;
+}
+
 .modal {
   background-color: #33333380;
 }

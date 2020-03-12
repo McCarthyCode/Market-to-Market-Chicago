@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import NewsItem, Person
 from users.models import Invite
@@ -97,7 +97,9 @@ def create_person(request):
         person.phone = form.cleaned_data.get('phone')
         person.email = form.cleaned_data.get('email')
 
-        person.image_ops()
+        if 'image' in request.FILES:
+            person.image_ops()
+
         person.save()
 
         messages.success(request, 'You have successfully created a person to know.')
@@ -126,7 +128,56 @@ def create_person(request):
     })
 
 def update_person(request, person_id):
-    pass
+    person = get_object_or_404(Person, id=person_id)
+
+    if request.method == 'GET':
+        return render(request, 'home/update_person.html', {
+            'person': person,
+            'form': CreatePersonForm(instance=person),
+            'title': 'Update %s' % person.full_name,
+            'user': request.user,
+            'name': NAME,
+            'year': datetime.now(TZ).year,
+        })
+    elif request.method == 'POST':
+        person.image.delete()
+        person.thumbnail.delete()
+
+        form = CreatePersonForm(request.POST, request.FILES, instance=person)
+
+        if form.is_valid():
+            updated_person = form.save()
+            updated_person.prefix = form.cleaned_data.get('prefix')
+            updated_person.first_name = form.cleaned_data.get('first_name')
+            updated_person.last_name = form.cleaned_data.get('last_name')
+            updated_person.suffix = form.cleaned_data.get('suffix')
+            updated_person.bio = form.cleaned_data.get('bio')
+            updated_person.phone = form.cleaned_data.get('phone')
+            updated_person.email = form.cleaned_data.get('email')
+            updated_person._image_hash = None
+            updated_person._thumbnail_hash = None
+
+            if 'image' in request.FILES:
+                updated_person.image_ops()
+
+            updated_person.save()
+
+            messages.success(request, 'You have successfully updated %s.' % person.full_name)
+        else:
+            messages.error(request, 'There was an error updating %s.' % person.full_name)
+
+            return render(request, 'home/update_person.html', {
+                'person': person,
+                'form': form,
+                'title': '',
+                'user': request.user,
+                'name': NAME,
+                'year': datetime.now(TZ).year,
+            })
+    else:
+        return HttpResponseBadRequest()
+
+    return redirect('home:people-to-know')
 
 def delete_person(request, person_id):
     pass

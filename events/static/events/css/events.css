@@ -19,7 +19,6 @@
   transform: translateY(-50%);
 }
 
-#largeMobileBanner1,
 #mediumRectangle1b,
 #mediumRectangle2,
 #mediumRectangle3,
@@ -30,6 +29,7 @@
 #largeMobileBanner1 {
   width: 320px;
   height: 100px;
+  margin: 0 auto 1rem auto;
 }
 
 #mediumRectangle1b,

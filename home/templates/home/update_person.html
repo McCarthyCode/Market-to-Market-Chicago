@@ -1,0 +1,30 @@
+
+{% extends 'home/base.html' %}{% load static %}{% block content %}
+{% include 'home/messages.html' %}
+<form id="updatePersonForm" class="card" action="{% url 'home:update-person' person.id %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {{ form.prefix.errors }}
+  {{ form.first_name.errors }}
+  {{ form.last_name.errors }}
+  {{ form.suffix.errors }}
+  <div class="name">
+    {{ form.prefix }}
+    {{ form.first_name }}
+    {{ form.last_name }}
+    {{ form.suffix }}
+  </div>
+  {{ form.image.errors }}
+  <div class="row">
+    <label class="col-12 col-md-4 form-control" for="{{ form.image.id_for_label }}">{{ form.image.label }}</label>
+    {{ form.image }}
+  </div>
+  {{ form.bio.errors }}
+  {{ form.bio }}
+  {{ form.phone.errors }}
+  {{ form.phone }}
+  {{ form.email.errors }}
+  {{ form.email }}
+  <input class="btn btn-primary form-control" type="submit" value="Submit">
+</form>
+{% endblock %}

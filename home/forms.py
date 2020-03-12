@@ -45,6 +45,7 @@ class CreatePersonForm(forms.ModelForm):
         }),
     )
     image = forms.ImageField(
+        required=False,
         label='Profile Image',
         widget=forms.ClearableFileInput(attrs={
             'class': 'col-12 col-md-8',

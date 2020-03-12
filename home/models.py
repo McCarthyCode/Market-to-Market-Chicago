@@ -34,10 +34,10 @@ class Person(NewsItem):
     first_name = models.CharField(max_length=35)
     last_name = models.CharField(max_length=35)
     suffix = models.CharField(blank=True, null=True, max_length=5)
-    image = models.ImageField(default=None, upload_to='people/')
-    _image_hash = models.BinaryField(blank=True, null=True, default=None, max_length=16)
+    image = models.ImageField(blank=True, null=True, default=None, upload_to='people/')
+    _image_hash = models.BinaryField(editable=False, null=True, default=None, max_length=16)
     thumbnail = models.ImageField(editable=False, null=True, default=None, upload_to='people/')
-    _thumbnail_hash = models.BinaryField(blank=True, null=True, default=None, max_length=16)
+    _thumbnail_hash = models.BinaryField(editable=False, null=True, default=None, max_length=16)
     bio = models.TextField()
     phone = models.CharField(blank=True, null=True, max_length=10)
     email = models.EmailField(blank=True, null=True)
@@ -81,7 +81,7 @@ class Person(NewsItem):
             img_file = BytesIO()
             img.save(img_file, 'JPEG', quality=90)
 
-            new_name = 'thumbnail_' + self.image.name.split('.')[0] + '.jpg'
+            new_name = 'thumbnail_' + self.image.name.split('.')[0].replace('people/', '') + '.jpg'
             self.thumbnail.save(new_name, img_file)
 
     def hash_thumbnail(self, block_size=65536):
@@ -123,7 +123,8 @@ class Person(NewsItem):
             img_file = BytesIO()
             img.save(img_file, 'JPEG', quality=90)
 
-            new_name = self.image.name.split('.')[0] + '.jpg'
+            new_name = self.image.name.split('.')[0].replace('people/', '') + '.jpg'
+            self.image.delete()
             self.image.save(new_name, img_file)
 
     def hash_image(self, block_size=65536):
