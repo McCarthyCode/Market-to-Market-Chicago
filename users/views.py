@@ -120,7 +120,7 @@ def invite(request, code):
     from django.contrib.auth.hashers import make_password
 
     invite = Invite.get_invite_or_404(code)
-    if invite.user or not invite.sent:
+    if invite.user or not invite.sent or invite.expired:
         raise Http404
 
     if request.method == 'GET':
