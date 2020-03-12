@@ -8,6 +8,7 @@ from io import BytesIO
 from PIL import Image
 
 from django.db import models
+from django.shortcuts import render
 
 from mtm.settings import TZ, MEDIA_ROOT
 

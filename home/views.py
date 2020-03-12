@@ -33,14 +33,15 @@ def index(request):
             albums.append(album)
 
     articles = Article.objects.all()
-
     locations = Location.objects.all()
+    people = Person.objects.all()
 
     feed = sorted(
         chain(
             albums,
             articles,
             locations,
+            people,
         ),
         key=attrgetter('date_updated'),
         reverse=True,
