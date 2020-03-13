@@ -1,3 +1,4 @@
+import os
 import random
 
 from datetime import datetime
@@ -5,6 +6,7 @@ from itertools import chain
 from operator import attrgetter
 
 from django.contrib import messages
+from django.core.files import File
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseBadRequest
@@ -21,7 +23,10 @@ from users.forms import CreateInvitesForm, RegistrationForm
 from locations.forms import CreateLocationForm
 from articles.forms import CreateArticleForm
 
-from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE, NEWS_ITEMS_PER_PAGE, MAX_INVITES
+from mtm.settings import (
+    TZ, NAME, ARTICLES_PER_PAGE, NEWS_ITEMS_PER_PAGE, MAX_INVITES,
+    MEDIA_ROOT
+)
 
 def index(request):
     if request.method != 'GET':
@@ -144,12 +149,36 @@ def update_person(request, person_id):
             'year': datetime.now(TZ).year,
         })
     elif request.method == 'POST':
-        person.image.delete()
-        person.thumbnail.delete()
-
         form = CreatePersonForm(request.POST, request.FILES, instance=person)
 
         if form.is_valid():
+            if 'image' in request.FILES or not person.image:
+                # only delete image if hash exists and image is not being used elsewhere
+                if not Person.objects.filter(
+                    ~Q(id=person.id) & (
+                        Q(_image_hash=person._image_hash) |
+                        Q(_thumbnail_hash=person._image_hash)
+                    )
+                ) and person.image_hash:
+                    filename = '%s/people/%s.jpg' % (MEDIA_ROOT, person.image_hash)
+                    os.remove(filename)
+
+                # only delete thumbnail if hash exists and image is not being used elsewhere
+                if Person.objects.filter(
+                    ~Q(id=person.id) & (
+                        Q(_image_hash=person._thumbnail_hash) |
+                        Q(_thumbnail_hash=person._thumbnail_hash)
+                    )
+                ) and person.thumbnail_hash:
+                    person.thumbnail = None
+                else:
+                    person.thumbnail.delete()
+
+                person._image_hash = None
+                person._thumbnail_hash = None
+
+                person.save()
+
             updated_person = form.save()
             updated_person.prefix = form.cleaned_data.get('prefix')
             updated_person.first_name = form.cleaned_data.get('first_name')
@@ -158,8 +187,6 @@ def update_person(request, person_id):
             updated_person.bio = form.cleaned_data.get('bio')
             updated_person.phone = form.cleaned_data.get('phone')
             updated_person.email = form.cleaned_data.get('email')
-            updated_person._image_hash = None
-            updated_person._thumbnail_hash = None
 
             if 'image' in request.FILES:
                 updated_person.image_ops()
