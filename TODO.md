@@ -2,8 +2,6 @@
 
 ## High Priorities
 
-- Home page
-  - People to know
 - Images
   - Image model
     - md5 hash filenames
@@ -11,7 +9,7 @@
       - Thumbnail
     - Resize images on input
       - Full-sized (960, 720)
-      - Thumbnail (400, 375)
+      - Thumbnail (500, 375)
 - About/Contact
   - Bio
 
