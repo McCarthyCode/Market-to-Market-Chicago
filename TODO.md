@@ -2,14 +2,6 @@
 
 ## High Priorities
 
-- Images
-  - Image model
-    - md5 hash filenames
-      - Full-sized
-      - Thumbnail
-    - Resize images on input
-      - Full-sized (960, 720)
-      - Thumbnail (500, 375)
 - About/Contact
   - Bio
 

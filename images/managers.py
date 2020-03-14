@@ -129,7 +129,9 @@ class AlbumManager(models.Manager):
             filetype = magic.from_buffer(image.read(2048), mime=True)
 
             def accept():
-                Image.objects.create(image=image, album=album)
+                img = Image.objects.create(image=image, album=album)
+                img.image_ops()
+                img.save()
 
             actions = {
                 'image/gif': accept,
@@ -222,6 +224,7 @@ class AlbumManager(models.Manager):
 
     def delete_album(self, request, album_id):
         from .models import Album, Image
+        from articles.models import Article
 
         # Check if user is logged in
         if not request.user.is_authenticated:
@@ -252,9 +255,15 @@ class AlbumManager(models.Manager):
 
             raise PermissionDenied()
 
+        # Clear album from any articles
+        for article in Article.objects.filter(album=album):
+            article.album = None
+            article.save()
+
         # Image removal
         for image in Image.objects.filter(album=album):
             image.image.delete()
+            image.thumbnail.delete()
             image.delete()
 
         # Album removal
@@ -305,6 +314,7 @@ class ImageManager(models.Manager):
                 continue
 
             image.image.delete()
+            image.thumbnail.delete()
             image.delete()
 
             count += 1

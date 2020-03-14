@@ -28,18 +28,22 @@
   {% include 'images/delete_images.html' %}
 </div>
 {% endif %}
-<div id="album">
-{% for image in images %}
-  <a data-fancybox="gallery" href="{{ image.image.url }}" data-id="{{ image.id }}">
-    <img src="{{ image.image.url }}">
-  </a>
-{% empty %}
-{% if user.is_superuser or user.id == album.created_by.id %}
-  <p class="text-center empty">There are currently no images in this album. You may add images by clicking the "Add Images" button above.</p>
-{% else %}
-  <p class="text-center empty">There are currently no images in this album.</p>
-{% endif %}
-{% endfor %}
+<div class="card">
+  <div id="album">
+    {% for image in images %}
+    <div>
+      <a data-fancybox="gallery" href="{{ image.image.url }}" data-id="{{ image.id }}">
+        <img src="{{ image.thumbnail.url }}">
+      </a>
+    </div>
+    {% empty %}
+    {% if user.is_superuser or user.id == album.created_by.id %}
+    <p class="text-center empty">There are currently no images in this album. You may add images by clicking the "Add Images" button above.</p>
+    {% else %}
+    <p class="text-center empty">There are currently no images in this album.</p>
+    {% endif %}
+    {% endfor %}
+  </div>
 </div>
 {% include 'images/delete_album_modal.html' %}
 {% endblock %}

@@ -304,6 +304,30 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin: 0;
   padding: 0;
 }
+#content .container #album {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  margin-bottom: 0.5rem;
+}
+#content .container #album p.empty {
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  color: #818181;
+  font-style: italic;
+}
+#content .container #album a.active {
+  border: 8px solid #007bff;
+}
+#content .container #album > div {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#content .container #album > div > a > img {
+  width: 100%;
+}
 
 #controls {
   text-align: center;
@@ -319,29 +343,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 
 #deleteImagesForm input[type=checkbox] {
   display: none;
-}
-
-#album {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1px;
-}
-#album p.empty {
-  grid-column-start: 1;
-  grid-column-end: span 3;
-  color: #818181;
-  font-style: italic;
-}
-#album a.active {
-  border: 8px solid #007bff;
-}
-
-#album > a {
-  align-self: center;
-}
-
-#album > a > img {
-  width: 100%;
 }
 
 @media screen and (min-width: 576px) {

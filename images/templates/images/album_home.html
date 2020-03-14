@@ -4,7 +4,7 @@
   <div class="images">
   {% for image in image_preview %}
     <a data-fancybox="gallery" href="{{ image.image.url }}" data-id="{{ image.id }}">
-      <img src="{{ image.image.url }}">
+      <img src="{{ image.thumbnail.url }}">
     </a>
   {% endfor %}
   {% if images|length > 6 %}

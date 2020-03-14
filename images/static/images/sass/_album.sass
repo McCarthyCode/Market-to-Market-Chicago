@@ -2,6 +2,30 @@
   margin: 0
   padding: 0
 
+  #album
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    gap: 1px
+    margin-bottom: .5rem
+
+    p.empty
+      grid-column-start: 1
+      grid-column-end: span 3
+      color: $lighter-gray
+      font-style: italic
+
+    a.active
+      border: 8px solid $blue
+
+    > div
+      align-self: center
+      display: flex
+      justify-content: center
+      align-items: center
+
+      > a > img
+        width: 100%
+
 #controls
   text-align: center
   margin-bottom: .75rem
@@ -14,26 +38,6 @@
 
 #deleteImagesForm input[type="checkbox"]
   display: none
-
-#album
-  display: grid
-  grid-template-columns: 1fr 1fr 1fr
-  gap: 1px
-
-  p.empty
-    grid-column-start: 1
-    grid-column-end: span 3
-    color: $lighter-gray
-    font-style: italic
-
-  a.active
-    border: 8px solid $blue
-
-#album > a
-  align-self: center
-
-#album > a > img
-  width: 100%
 
 @media screen and (min-width: $breakpoint-sm)
   #content .container
