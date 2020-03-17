@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from mtm.settings import DEBUG, MEDIA_URL, MEDIA_ROOT
+from django.conf.urls import handler404, handler500
 from django.conf.urls.static import static
+
+from mtm.settings import DEBUG, MEDIA_URL, MEDIA_ROOT
 
 urlpatterns = [
     path('', include(('home.urls', 'home'), namespace='home')),
@@ -30,3 +32,6 @@ urlpatterns = [
 
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
+
+handler404 = 'home.views.handler404'
+handler500 = 'home.views.handler500'
