@@ -2,49 +2,45 @@
 
 ## High Priorities
 
+- user-select: none on topics
+- Events
+  - Event model
+    - Album
+  - Remove location from event form
+    - Dashboard
+    - EventManager
+    - JS
+  - Individual event page
+    - Images
+    - Update event
+      - Add repeat options
 - About/Contact
-  - Bio
+  - Bio (pending)
+- Site Tour
+  - Schedule
+  - Remote desktop install
+  - Walkthrough
+- Invoice
 
 ## Medium Priorities
 
+- Delete expired invites
+  - Custom management command
+    - https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/#howto-custom-management-commands
+  - cron job
 - Test for autocomplete bugs
 - Rename colors
 - Divide locations by category on neighborhood page
-- Home page (news feed)
-  - NewsItems
-    - Events
 - Add optional location field to articles
-- Dashboard
-  - Create event(s)
-    - Select checkbox on append click
-- Custom error pages
-  - 404
-  - 500
 - Events
-  - Add approved field
-    - Show only approved posts on calendar and in lists
-  - Add created_by (user) field
-    - Show on calendar and in lists if created_by == logged_in
   - All events page
     - Add search/filters
-    - Navigation
-      - Disabled next button
-    - Update event
-      - Add repeat options (requires model fields)
-  - Individual event page
-    - Update event(s)
-      - Select radio/checkbox on append click
-    - Delete event(s)
-      - Select radio on append click
-    - Images
-- Locations
-  - Individual category page
-    - Locations
-      - Search
-      - Filters
-        - Alphabetical
-        - By neighborhood
-- Drink specials
+- Category page
+  - Locations
+    - Search
+    - Filters
+      - Alphabetical
+      - By neighborhood
 - Consolidate duplicate entries
   - Neighborhood
   - Location
@@ -53,18 +49,12 @@
 
 ## Low Priorities
 
-- Dashboard
-  - Handle focusout of text input and click on autocomplete properly
 - Events
   - Add holiday field
   - All events page
     - Empty responses
       - Handle with proper status code
 - Move CATEGORIES to Location model
-- Strip periods from addresses on input
-- Make checkbox container clickable
-  - Add event
-  - Update event
 - Backup external libraries
 - Migrate users.js to add_event.js
 - Migrate #content rules to base.sass
@@ -105,3 +95,4 @@
 - Change grayscale colors to sensible names
 - Individual category page
   - Hide locations with certain categories?
+- Drink specials
