@@ -15,9 +15,11 @@
 <div class="card">
   <div id="album">
   {% for image in images_preview %}
-    <a data-fancybox="gallery" href="{{ image.image.url }}" data-id="{{ image.id }}">
-      <img src="{{ image.thumbnail.url }}">
-    </a>
+    <div>
+      <a data-fancybox="gallery" href="{{ image.image.url }}" data-id="{{ image.id }}">
+        <img src="{{ image.thumbnail.url }}">
+      </a>
+    </div>
   {% endfor %}
   {% if images|length > 15 %}
   <a class="see-more text-center" href="{% url 'images:album' article.album.slug article.album.id %}">
