@@ -99,14 +99,6 @@ class EventManager(models.Manager):
         ends_after = request.POST.get('ends-after', '0')
         location_id = request.POST.get('location-id', '0')
         location_name = request.POST.get('location-name', '')
-        category = request.POST.get('category', '-1')
-        neighborhood_id = request.POST.get('neighborhood-id', '0')
-        neighborhood_name = request.POST.get('neighborhood-name', '')
-        address1 = request.POST.get('address1', '')
-        address2 = request.POST.get('address2', '')
-        city = request.POST.get('city', '')
-        state = request.POST.get('state', '')
-        zip_code = request.POST.get('zip-code', '')
 
         # Data restructuring
         all_day = all_day_value == 'true'
@@ -125,12 +117,6 @@ class EventManager(models.Manager):
 
         if location_id:
             location_id = int(location_id)
-
-        if category:
-            category = int(category)
-
-        if neighborhood_id:
-            neighborhood_id = int(neighborhood_id)
 
         # Basic validations
         errors = []
@@ -211,31 +197,6 @@ class EventManager(models.Manager):
             location = None
         elif location_id > 0:
             location = Location.objects.get(id=location_id)
-        else:
-            location = Location.objects.create_location(
-                name=location_name,
-                category=category,
-                address1=address1,
-                city=city,
-                state=state,
-            )
-
-            if neighborhood_id:
-                neighborhood = Neighborhood.objects.get(id=neighborhood_id)
-            elif neighborhood_name:
-                neighborhood = Neighborhood.objects.create_neighborhood(name=neighborhood_name)
-            else:
-                neighborhood = None
-
-            location.neighborhood = neighborhood
-
-            if address2:
-                location.address2 = address2
-
-            if zip_code:
-                location.zip_code = zip_code
-
-            location.save()
 
         # Gather arguments and create event
         kwargs = {}

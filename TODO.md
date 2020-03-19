@@ -2,13 +2,10 @@
 
 ## High Priorities
 
+- Fix date picker formatting
 - Events
   - Event model
     - Album
-  - Remove location from event form
-    - Dashboard
-    - EventManager
-    - JS
   - Individual event page
     - Images
     - Update event
