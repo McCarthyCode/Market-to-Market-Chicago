@@ -233,6 +233,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-right: 0.25rem solid #444444;
   -webkit-transition: border-right 0.5s;
   transition: border-right 0.5s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
   text-align: center;
   cursor: pointer;
 }

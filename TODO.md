@@ -2,7 +2,6 @@
 
 ## High Priorities
 
-- user-select: none on topics
 - Events
   - Event model
     - Album
