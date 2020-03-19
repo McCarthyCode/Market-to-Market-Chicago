@@ -1,0 +1,68 @@
+# Site Features
+
+- Home page
+  - Navbar
+    - Brand
+    - Social
+    - Public links
+      - Home
+      - About Us/Contact
+    - User links
+      - Dashboard
+    - Footer
+      - sidebar (desktop)
+      - scrolling (mobile)
+  - Ads
+    - Large mobile banner at top
+    - Medium rectangle in sidebar
+    - 3 medium rectangles in news feed (random positions)
+  - NewsItems
+    - Albums
+    - Articles
+    - Locations
+    - People
+- Dashboard
+  - Admin only
+    - Create
+      - Article
+      - Person
+      - Invites
+    - View
+      - Invites
+  - All users
+    - Create
+      - Event
+      - Location
+      - Album
+- About Us/Contact page
+- Category page
+  - Locations
+  - Articles
+- Events page
+  - Calendar
+  - by Date
+  - by Location
+- Event page
+  - Details
+  - Map
+  - Update
+  - Delete
+- Location page
+  - Details
+  - Events
+  - Map
+  - Update
+  - Delete
+- Album page
+  - Controls
+    - Update title
+    - Add images
+    - Delete images
+    - Delete album
+  - Album
+  - Image viewer
+- Article page
+  - Body
+  - Album
+  - Update
+  - Delete
