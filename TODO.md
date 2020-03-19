@@ -42,6 +42,7 @@
   - Location
 - Scroll to top button
 - Add sidebar to dashboard
+- Add icons to input fields
 
 ## Low Priorities
 

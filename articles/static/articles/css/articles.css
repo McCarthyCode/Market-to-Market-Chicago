@@ -371,14 +371,16 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #locationAutocomplete,
 #neighborhoodAutocomplete,
 #neighborhoodAutocompleteLocation,
-#albumAutocomplete {
+#albumAutocomplete,
+#albumAutocompleteEvent {
   position: relative;
   z-index: 4;
 }
 #locationAutocomplete ul,
 #neighborhoodAutocomplete ul,
 #neighborhoodAutocompleteLocation ul,
-#albumAutocomplete ul {
+#albumAutocomplete ul,
+#albumAutocompleteEvent ul {
   position: absolute;
   bottom: 54px;
   right: 0;
@@ -391,7 +393,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #locationAutocomplete ul li,
 #neighborhoodAutocomplete ul li,
 #neighborhoodAutocompleteLocation ul li,
-#albumAutocomplete ul li {
+#albumAutocomplete ul li,
+#albumAutocompleteEvent ul li {
   border-radius: 4px;
   padding: 6px 12px;
   cursor: pointer;
@@ -402,7 +405,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #neighborhoodAutocompleteLocation ul li:hover,
 #neighborhoodAutocompleteLocation ul li.active,
 #albumAutocomplete ul li:hover,
-#albumAutocomplete ul li.active {
+#albumAutocomplete ul li.active,
+#albumAutocompleteEvent ul li:hover,
+#albumAutocompleteEvent ul li.active {
   color: #ffffff;
   background-color: #007bff;
 }
@@ -466,7 +471,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-bottom-right-radius: 0.25rem;
   z-index: 3;
 }
-#content .container form .input-group .input-group-append input[type=radio], #content .container form .input-group .input-group-append input[type=checkbox], #content .container form .input-group .input-group-append .input-group-text {
+#content .container form .input-group .input-group-append input[type=radio], #content .container form .input-group .input-group-append input[type=checkbox], #content .container form .input-group .input-group-append .calendar {
   cursor: pointer;
   color: #ffffff;
 }

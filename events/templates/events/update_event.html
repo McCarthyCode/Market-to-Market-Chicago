@@ -49,13 +49,29 @@
   <div id="locationInputGroup" class="input-group" data-target-input="nearest">
     <input id="locationName" class="form-control" type="text" name="location-name" placeholder="Location (search for existing)" autocomplete="off">
   {% endif %}
-    <div id="locationToggle" class="input-group-append">
+    <div id="locationToggle" class="input-group-append default-cursor">
       <div class="form-control input-group-text">
         <i class="fas fa-map-marker-alt"></i>
       </div>
     </div>
   </div>
   <div id="locationAutocomplete"></div>
+  {% if event.album %}
+  <input id="albumId" type="hidden" name="album-id" value="{{ event.album.id }}" autocomplete="off">
+  <div id="albumInputGroup" class="input-group" data-target-input="nearest">
+    <input id="albumName" class="form-control" type="text" name="album-name" value="{{ event.album.title }}" placeholder="Album (search for existing)" autocomplete="off">
+  {% else %}
+  <input id="albumId" type="hidden" name="album-id" value="0" autocomplete="off">
+  <div id="albumInputGroup" class="input-group" data-target-input="nearest">
+    <input id="albumName" class="form-control" type="text" name="album-name" placeholder="Album (search for existing)" autocomplete="off">
+  {% endif %}
+    <div id="albumToggle" class="input-group-append default-cursor">
+      <div class="form-control input-group-text">
+        <i class="fas fa-images"></i>
+      </div>
+    </div>
+  </div>
+  <div id="albumAutocompleteEvent"></div>
   {% if recurring %}
   <div id="singleEventInputGroupUpdate" class="input-group m-bottom-0">
     <label class="form-control" for="singleEventUpdate">Update only this instance</label>

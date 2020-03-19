@@ -356,7 +356,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-bottom-right-radius: 0.25rem;
   z-index: 3;
 }
-#content .container form .input-group .input-group-append input[type=radio], #content .container form .input-group .input-group-append input[type=checkbox], #content .container form .input-group .input-group-append .input-group-text {
+#content .container form .input-group .input-group-append input[type=radio], #content .container form .input-group .input-group-append input[type=checkbox], #content .container form .input-group .input-group-append .calendar {
   cursor: pointer;
   color: #ffffff;
 }

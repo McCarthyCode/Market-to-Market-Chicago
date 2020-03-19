@@ -41,6 +41,7 @@ class EventManager(models.Manager):
     def event(self, category_slug, location_slug, event_slug, event_id):
         from .models import Event, RecurringEvent
         from locations.models import CATEGORIES, Location
+        from images.models import Image, Album
 
         try:
             event = RecurringEvent.objects.get(id=event_id)
@@ -53,7 +54,7 @@ class EventManager(models.Manager):
 
             recurring = False
 
-        _category_slug = CATEGORIES[event.location.category] if event.location else 'misc'
+        _category_slug = CATEGORIES[event.location.category] if event.location else 'events'
         _location_slug = event.location.slug if event.location else 'undefined'
         _event_slug = event.slug
 
@@ -73,17 +74,21 @@ class EventManager(models.Manager):
         else:
             next_event = None
 
+        images = Image.objects.filter(album=event.album) if event.album else None
+
         return (True, {
             'event': event,
             'next_event': next_event,
             'category_name': Location.CATEGORY_CHOICES[event.location.category][1] if event.location else 'Miscellaneous',
             'category_slug': _category_slug,
             'recurring': recurring,
+            'images_preview': images[:14] if images and len(images) > 15 else images,
         })
 
     def create_event(self, request):
         from .models import Event, RecurringEvent
         from locations.models import Neighborhood, Location
+        from images.models import Album
 
         # Data collection
         name = request.POST.get('name', '')
@@ -99,6 +104,8 @@ class EventManager(models.Manager):
         ends_after = request.POST.get('ends-after', '0')
         location_id = request.POST.get('location-id', '0')
         location_name = request.POST.get('location-name', '')
+        album_id = request.POST.get('album-id', '0')
+        album_name = request.POST.get('location-name', '')
 
         # Data restructuring
         all_day = all_day_value == 'true'
@@ -117,6 +124,9 @@ class EventManager(models.Manager):
 
         if location_id:
             location_id = int(location_id)
+
+        if album_id:
+            album_id = int(album_id)
 
         # Basic validations
         errors = []
@@ -145,18 +155,11 @@ class EventManager(models.Manager):
         if ends == '':
             errors.append('Please enter an end condition.')
 
-        if location_id == 0 and location_name:
-            if not neighborhood_name:
-                errors.append('Please enter a neighborhood.')
+        if location_id <= 0 and location_name:
+            errors.append('The specified location could not be found.')
 
-            if not address1:
-                errors.append('Please enter an address.')
-
-            if not city:
-                errors.append('Please enter a city.')
-
-            if not state:
-                errors.append('Please enter a state code.')
+        if album_id <= 0 and album_name:
+            errors.append('The specified album could not be found.')
 
         # Datetime parsing
         def add_leading_zero_hour(date_str):
@@ -189,14 +192,26 @@ class EventManager(models.Manager):
             add_leading_zero_hour(ends_on_str)
             ends_on = TZ.localize(datetime.strptime(ends_on_str, '%m/%d/%Y %I:%M %p'))
 
-        if errors:
-            return (False, errors)
-
-        # Grab location object, create new one, or set to None
+        # Grab location object or set to None
         if location_id <= 0 and location_name == '':
             location = None
         elif location_id > 0:
-            location = Location.objects.get(id=location_id)
+            try:
+                location = Location.objects.get(id=location_id)
+            except Location.DoesNotExist:
+                errors.append('The specified location could not be found.')
+
+        # Grab album object or set to None
+        if album_id <= 0 or album_name == '':
+            album = None
+        elif album_id > 0:
+            try:
+                album = Album.objects.get(id=album_id)
+            except Album.DoesNotExist:
+                errors.append('The specified album could not be found.')
+
+        if errors:
+            return (False, errors)
 
         # Gather arguments and create event
         kwargs = {}
@@ -208,6 +223,9 @@ class EventManager(models.Manager):
 
         if location:
             kwargs['location'] = location
+
+        if album:
+            kwargs['album'] = album
 
         if frequency_units == 0:
             event = Event.objects.create_single_event(
@@ -251,6 +269,9 @@ class EventManager(models.Manager):
         if 'location' in kwargs:
             event.location = kwargs['location']
 
+        if 'album' in kwargs:
+            event.album = kwargs['album']
+
         event.save()
 
         return event
@@ -258,6 +279,7 @@ class EventManager(models.Manager):
     def update_event(self, request):
         from .models import Event, RecurringEvent
         from locations.models import Location, CATEGORIES
+        from images.models import Album
 
         # Data collection
         event_id = request.POST.get('id', '0')
@@ -267,6 +289,9 @@ class EventManager(models.Manager):
         date_start_str = request.POST.get('date-start', '')
         date_end_str = request.POST.get('date-end', '')
         location_id = request.POST.get('location-id', '0')
+        location_name = request.POST.get('location-name', '0')
+        album_id = request.POST.get('album-id', '0')
+        album_name = request.POST.get('album-name', '0')
         update = request.POST.get('update', '')
 
         # Data restructuring and validations
@@ -279,6 +304,9 @@ class EventManager(models.Manager):
 
         if location_id:
             location_id = int(location_id)
+
+        if album_id:
+            album_id = int(album_id)
 
         # Datetime parsing
         def add_leading_zero_hour(date_str):
@@ -322,8 +350,8 @@ class EventManager(models.Manager):
                 'errors': errors,
                 'event_found': True,
                 'args': [
-                    CATEGORIES[event.location.category],
-                    event.location.slug,
+                    CATEGORIES[event.location.category] if event.location else 'events',
+                    event.location.slug if event.location else 'undefined',
                     event.slug,
                     event.id,
                 ],
@@ -352,8 +380,8 @@ class EventManager(models.Manager):
                 if date_end_str:
                     event.date_end = date_end
 
-                # Grab location object, create new one, or set to None
-                if location_id <= 0 and location_name == '':
+                # Grab location object or set to None
+                if location_id <= 0 or location_name == '':
                     location = None
                 elif location_id > 0:
                     try:
@@ -363,14 +391,34 @@ class EventManager(models.Manager):
                             'errors': ['The specified location could not be found.'],
                             'event_found': True,
                             'args': [
-                                CATEGORIES[event.location.category],
-                                event.location.slug,
+                                CATEGORIES[event.location.category] if event.location else 'events',
+                                event.location.slug if event.location else 'undefined',
                                 event.slug,
                                 event.id,
                             ],
                         })
 
                 event.location = location
+
+                # Grab album object or set to None
+                if album_id <= 0 or album_name == '':
+                    album = None
+                elif album_id > 0:
+                    try:
+                        album = Album.objects.get(id=album_id)
+                    except Album.DoesNotExist:
+                        return (False, {
+                            'errors': ['The specified album could not be found.'],
+                            'event_found': True,
+                            'args': [
+                                CATEGORIES[event.location.category] if event.location else 'events',
+                                event.location.slug if event.location else 'undefined',
+                                event.slug,
+                                event.id,
+                            ],
+                        })
+
+                event.album = album
 
                 event.save()
             except Event.DoesNotExist:
@@ -382,8 +430,8 @@ class EventManager(models.Manager):
         return (True, {
             'success': 'You have successfully updated 1 event.',
             'args': [
-                CATEGORIES[event.location.category],
-                event.location.slug,
+                CATEGORIES[event.location.category] if event.location else 'events',
+                event.location.slug if event.location else 'undefined',
                 event.slug,
                 event.id,
             ],
@@ -415,8 +463,8 @@ class EventManager(models.Manager):
                 'errors': errors,
                 'event_found': event_found,
                 'args': [
-                    CATEGORIES[event.location.category],
-                    event.location.slug,
+                    CATEGORIES[event.location.category] if event.location else 'events',
+                    event.location.slug if event.location else 'undefined',
                     event.slug,
                     event.id,
                 ],
@@ -507,7 +555,7 @@ class EventManager(models.Manager):
                     else:
                         events.append({
                             'event': event,
-                            'category': CATEGORIES[event.location.category],
+                            'category': CATEGORIES[event.location.category] if event.location else 'events',
                             'tabindex': tabindex,
                         })
                     tabindex += 1
@@ -568,7 +616,7 @@ class EventManager(models.Manager):
                     for event in events_on_day:
                         events.append({
                             'event': event,
-                            'category': CATEGORIES[event.location.category],
+                            'category': CATEGORIES[event.location.category] if event.location else 'events',
                             'tabindex': tabindex,
                         })
                         tabindex += 1
@@ -932,6 +980,7 @@ class RecurringEventManager(models.Manager):
     def update_recurring_event(self, request, info):
         from .models import Event, RecurringEvent
         from locations.models import Location, CATEGORIES
+        from images.models import Album
 
         # Data collection
         event_id = request.POST.get('id', '0')
@@ -941,15 +990,9 @@ class RecurringEventManager(models.Manager):
         date_start_str = request.POST.get('date-start', '')
         date_end_str = request.POST.get('date-end', '')
         location_id = request.POST.get('location-id', '0')
-        # location_name = request.POST.get('location-name', '')
-        # category = request.POST.get('category', '-1')
-        # neighborhood_id = request.POST.get('neighborhood-id', '0')
-        # neighborhood_name = request.POST.get('neighborhood-name', '')
-        # address1 = request.POST.get('address1', '')
-        # address2 = request.POST.get('address2', '')
-        # city = request.POST.get('city', '')
-        # state = request.POST.get('state', '')
-        # zip_code = request.POST.get('zip-code', '')
+        location_name = request.POST.get('location-name', '0')
+        album_id = request.POST.get('album-id', '0')
+        album_name = request.POST.get('album-name', '0')
 
         # Relative delta values
         frequency_units = info.frequency_units - 1
@@ -964,6 +1007,7 @@ class RecurringEventManager(models.Manager):
         event_id = int(event_id)
         all_day = all_day_value == 'true'
         location_id = int(location_id)
+        album_id = int(album_id)
 
         # Datetime parsing
         def add_leading_zero_hour(date_str):
@@ -983,7 +1027,7 @@ class RecurringEventManager(models.Manager):
             date_start = date_start.replace(hour=0, minute=0, second=0, microsecond=0)
 
         # Grab location object or set to None
-        if location_id <= 0:
+        if location_id <= 0 or location_name == '':
             location = None
         else:
             try:
@@ -1004,7 +1048,36 @@ class RecurringEventManager(models.Manager):
                     'errors': ['The specified location could not be found.'],
                     'event_found': True,
                     'args': [
-                        CATEGORIES[event.location.category] if event.location else 'misc',
+                        CATEGORIES[event.location.category] if event.location else 'events',
+                        event.location.slug if location else 'undefined',
+                        event.slug,
+                        event.id,
+                    ],
+                })
+
+        # Grab album object or set to None
+        if album_id <= 0 or album_name == '':
+            album = None
+        else:
+            try:
+                album = Album.objects.get(id=album_id)
+            except Album.DoesNotExist:
+                try:
+                    event = Event.objects.get(id=event_id)
+                except Event.DoesNotExist:
+                    return (False, {
+                        'errors': [
+                            'The specified event could not be found.',
+                            'The specified album could not be found.',
+                        ],
+                        'event_found': False,
+                    })
+
+                return (False, {
+                    'errors': ['The specified album could not be found.'],
+                    'event_found': True,
+                    'args': [
+                        CATEGORIES[event.location.category] if event.location else 'events',
                         event.location.slug if location else 'undefined',
                         event.slug,
                         event.id,
@@ -1039,6 +1112,7 @@ class RecurringEventManager(models.Manager):
                 )
 
             event.location = location
+            event.album = album
 
             event.save()
 
@@ -1046,7 +1120,7 @@ class RecurringEventManager(models.Manager):
             'success': 'You have successfully updated %d event%s.' % (events_len, '' if events_len == 1 else 's'),
             'event_found': True,
             'args': [
-                CATEGORIES[event.location.category] if location else 'misc',
+                CATEGORIES[event.location.category] if location else 'events',
                 event.location.slug if location else 'undefined',
                 event.slug,
                 event.id,

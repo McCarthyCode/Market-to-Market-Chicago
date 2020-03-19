@@ -8,12 +8,10 @@
   <i class="fas fa-chevron-right"></i>
   <a href="{% url 'locations:location' category_slug event.location.slug event.location.id %}">{{ event.location.name }}</a>
   <i class="fas fa-chevron-right"></i>
-  {{ event.name }}
-  {% else %}
-  <a href="{% url 'home:category' category_slug %}">{{ category_name }}</a>
+  {% endif %}
+  <a href="{% url 'events:index' %}">Events</a>
   <i class="fas fa-chevron-right"></i>
   {{ event.name }}
-  {% endif %}
 </p>
 <h3 class="h3">Details</h3>
 <table id="details" class="card">
@@ -48,6 +46,27 @@
   {% include 'home/ads/medium_rectangle3.html' %}
   {% include 'home/ads/medium_rectangle4.html' %}
 </div>
+{% if event.album %}
+<h3 class="h3"><a href="{% url 'images:album' event.album.slug event.album.id %}">{{ event.album.title }}</a></h3>
+<div class="card">
+  <div id="album">
+  {% for image in images_preview %}
+    <div>
+      <a data-fancybox="gallery" href="{{ image.image.url }}" data-id="{{ image.id }}">
+        <img src="{{ image.thumbnail.url }}">
+      </a>
+    </div>
+  {% endfor %}
+  {% if images|length > 15 %}
+  <a class="see-more text-center" href="{% url 'images:album' event.album.slug event.album.id %}">
+    <i class="fas fa-chevron-circle-right"></i>
+    <br>
+    More
+  </a>
+  {% endif %}
+  </div>
+</div>
+{% endif %}
 {% if event.location %}
 <h3 class="h3">Map</h3>
 <div id="map" class="card">

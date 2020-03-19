@@ -52,6 +52,113 @@
   margin: 0 0.25rem 0.5rem 0.25rem;
 }
 
+#content .container {
+  margin: 0;
+  padding: 0;
+}
+#content .container #album {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  margin-bottom: 0.5rem;
+}
+#content .container #album p.empty {
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  color: #818181;
+  font-style: italic;
+}
+#content .container #album a.active {
+  border: 8px solid #007bff;
+}
+#content .container #album > div {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#content .container #album > div > a > img {
+  width: 100%;
+}
+
+#controls {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+#controls button {
+  margin-bottom: 0.25rem;
+}
+
+#updateTitle, #addImages, #deleteImages {
+  display: none;
+}
+
+#deleteImagesForm input[type=checkbox] {
+  display: none;
+}
+
+@media screen and (min-width: 576px) {
+  #content .container {
+    margin: 0 auto;
+    padding: 0.5rem 0;
+  }
+
+  #album {
+    gap: 0.5rem;
+  }
+}
+@media screen and (min-width: 1634px) {
+  #album {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  #album p.empty {
+    grid-column-start: 2;
+  }
+}
+#locationAutocomplete,
+#neighborhoodAutocomplete,
+#neighborhoodAutocompleteLocation,
+#albumAutocomplete,
+#albumAutocompleteEvent {
+  position: relative;
+  z-index: 4;
+}
+#locationAutocomplete ul,
+#neighborhoodAutocomplete ul,
+#neighborhoodAutocompleteLocation ul,
+#albumAutocomplete ul,
+#albumAutocompleteEvent ul {
+  position: absolute;
+  bottom: 54px;
+  right: 0;
+  left: 0;
+  margin-bottom: 0;
+  border-radius: 4px;
+  color: #000000;
+  background-color: #ffffff;
+}
+#locationAutocomplete ul li,
+#neighborhoodAutocomplete ul li,
+#neighborhoodAutocompleteLocation ul li,
+#albumAutocomplete ul li,
+#albumAutocompleteEvent ul li {
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+#locationAutocomplete ul li:hover, #locationAutocomplete ul li.active,
+#neighborhoodAutocomplete ul li:hover,
+#neighborhoodAutocomplete ul li.active,
+#neighborhoodAutocompleteLocation ul li:hover,
+#neighborhoodAutocompleteLocation ul li.active,
+#albumAutocomplete ul li:hover,
+#albumAutocomplete ul li.active,
+#albumAutocompleteEvent ul li:hover,
+#albumAutocompleteEvent ul li.active {
+  color: #ffffff;
+  background-color: #007bff;
+}
+
 .container .card, .container .empty-card {
   background-color: #444444;
   border: 1px solid #818181;
@@ -399,16 +506,16 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   height: 38px;
   z-index: 3;
 }
-#content form .input-group-append:not(.default-cursor) {
-  cursor: pointer;
-}
-#content form .input-group-append:not(.default-cursor) .input-group-text {
+#content form .input-group-append .input-group-text {
   color: #ffffff;
   border-color: #818181;
   background-color: #818181;
 }
-#content form .input-group-append:not(.default-cursor) .input-group-text i {
+#content form .input-group-append .input-group-text i {
   min-width: 14px;
+}
+#content form .input-group-append:not(.default-cursor) {
+  cursor: pointer;
 }
 
 #tabs {
@@ -834,11 +941,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   display: none;
 }
 
-#locationToggle {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
 @media screen and (min-width: 576px) {
   #weekdayList li label {
     width: 2.5rem;
@@ -879,7 +981,7 @@ h1.h1 {
   color: #dcdcaa;
 }
 
-h3.h3 {
+h3.h3, h3.h3 > a, h3.h3 > a:hover {
   color: #bb846e;
 }
 

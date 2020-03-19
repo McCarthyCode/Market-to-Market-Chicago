@@ -5,6 +5,7 @@ from django.shortcuts import render
 
 from home.models import TimestampedModel, NewsItem
 from locations.models import Location
+from images.models import Album
 from .managers import EventManager, RecurringEventManager, RepeatInfoManager, WeekdayManager
 from mtm.settings import TZ
 
@@ -16,6 +17,7 @@ class Event(NewsItem):
     date_start = models.DateTimeField()
     date_end = models.DateTimeField(null=True, blank=True)
     location = models.ForeignKey(Location, null=True, blank=True, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, null=True, blank=True, on_delete=models.CASCADE)
     objects = EventManager()
 
     def save(self, *args, **kwargs):

@@ -166,4 +166,74 @@ $(document).ready(() => {
       $(this).remove();
     });
   });
+
+  // Search for existing albums;
+  // select from autocomplete list on arrow key event
+  let $albumId = $('#albumId');
+  let $albumName = $('#albumName');
+  let albumPosition = -1;
+  let albumLength = 0;
+  let $albumAutocompleteEvent = $('#albumAutocompleteEvent');
+
+  $albumName.on('input', function (event) {
+    $('#albumAutocompleteEvent ul').remove();
+
+    $albumId.val(0);
+
+    let text = $(this).val();
+    if (text !== '') {
+      $.get('/images/autocomplete', {'q': text}, function (response) {
+        $albumAutocompleteEvent.append(response);
+
+        albumPosition = -1;
+        albumLength = $('#albumAutocompleteEvent li').length;
+      });
+    }
+  });
+
+  // Select from autocomplete from arrow or enter key event
+  $albumName.keydown(function (event) {
+    switch (event.keyCode) {
+      case 13: // enter
+        event.preventDefault();
+        let $active = $('#albumAutocompleteEvent li.active');
+        if ($('#albumAutocompleteEvent li').length === 1) {
+          $active = $('#albumAutocompleteEvent li:first-child');
+        }
+        $albumId.val($active.data('id'));
+        $albumName.val($active.text());
+
+        $('#albumAutocompleteEvent ul').remove();
+        break;
+
+      case 38: // arrow up
+        albumPosition = albumPosition === -1 ? albumLength - 1 : (albumPosition - 1 + albumLength) % albumLength;
+        $('#albumAutocompleteEvent li').removeClass('active');
+        $(`#albumAutocompleteEvent li:nth-child(${albumPosition + 1})`).addClass('active');
+        break;
+
+      case 40: // arrow down
+        albumPosition = albumPosition === -1 ? 0 : (albumPosition + 1) % albumLength;
+        $('#albumAutocompleteEvent li').removeClass('active');
+        $(`#albumAutocompleteEvent li:nth-child(${albumPosition + 1})`).addClass('active');
+        break;
+    }
+  });
+
+  // Select from autocomplete from click event
+  $albumAutocompleteEvent.on('click', 'ul li', function () {
+    $albumId.val($(this).data('id'));
+    $albumName.val($(this).text());
+
+    $('#albumAutocompleteEvent ul').fadeOut(500, function () {
+      $(this).remove();
+    });
+  });
+
+  // Remove autocomplete list on focusout
+  $albumName.focusout(function () {
+    $('#albumAutocompleteEvent ul').fadeOut(500, function () {
+      $(this).remove();
+    });
+  });
 });

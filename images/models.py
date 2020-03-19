@@ -33,7 +33,7 @@ class Album(NewsItem):
         return render(request, 'images/album_home.html', {
             'album': self,
             'images': images,
-            'image_preview': images[:5] if len(images) > 6 else images,
+            'images_preview': images[:5] if len(images) > 6 else images,
         })
 
     @property
