@@ -323,21 +323,21 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #0c5460;
 }
 
-.container .table thead {
+.container .mwd-table thead {
   color: #dcdcaa;
   font-weight: bold;
 }
-.container .table thead td, .container .table thead th {
+.container .mwd-table thead td, .container .mwd-table thead th {
   border: 0;
 }
-.container .table tbody {
+.container .mwd-table tbody {
   color: #ffffff;
 }
-.container .table tbody td, .container .table tbody th {
+.container .mwd-table tbody td, .container .mwd-table tbody th {
   border-top: 1px solid #818181;
   white-space: nowrap;
 }
-.container .table tbody td.empty {
+.container .mwd-table tbody td.empty {
   color: #818181;
   text-align: center;
   font-style: italic;

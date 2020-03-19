@@ -2,14 +2,6 @@
 
 ## High Priorities
 
-- Fix date picker formatting
-- Events
-  - Event model
-    - Album
-  - Individual event page
-    - Images
-    - Update event
-      - Add repeat options
 - About/Contact
   - Bio (pending)
 - Site Tour
@@ -20,12 +12,11 @@
 
 ## Medium Priorities
 
+- Rename colors
 - Delete expired invites
   - Custom management command
     - https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/#howto-custom-management-commands
   - cron job
-- Test for autocomplete bugs
-- Rename colors
 - Divide locations by category on neighborhood page
 - Add optional location field to articles
 - Events
@@ -51,6 +42,9 @@
   - All events page
     - Empty responses
       - Handle with proper status code
+  - Individual event page
+    - Update event
+      - Add repeat options
 - Move CATEGORIES to Location model
 - Backup external libraries
 - Migrate users.js to add_event.js
@@ -93,3 +87,4 @@
 - Individual category page
   - Hide locations with certain categories?
 - Drink specials
+- Test for autocomplete bugs
