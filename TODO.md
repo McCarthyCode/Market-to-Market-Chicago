@@ -2,6 +2,7 @@
 
 ## High Priorities
 
+- Backups
 - About/Contact
   - Bio (pending)
 - Site Tour
@@ -12,25 +13,29 @@
 
 ## Medium Priorities
 
-- Rename colors
 - Delete expired invites
   - Custom management command
     - https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/#howto-custom-management-commands
   - cron job
-- Divide locations by category on neighborhood page
-- Add optional location field to articles
 - Events
-  - All events page
-    - Add search/filters
+  - Delete RepeatInfo along with RecurringEvent
+  - Individual location page
+    - Make pretty
+      - Add visual month and dates
+      - Weekly view
+  - Neighborhood page
+    - Make pretty
+      - Add visual month and dates
+      - Weekly view
+        - View only first event per weekday
+- Neighborhood page
+  - Divide locations by category
 - Category page
   - Locations
     - Search
     - Filters
       - Alphabetical
       - By neighborhood
-- Consolidate duplicate entries
-  - Neighborhood
-  - Location
 - Scroll to top button
 - Add sidebar to dashboard
 - Add icons to input fields
@@ -40,11 +45,30 @@
 - Events
   - Add holiday field
   - All events page
+    - Prevent scroll to top on tab selection (previous code? iPhone model?)
+    - Fix bug where tapping a link scrolls to top and doesn't follow link
+    - Add search/filters
     - Empty responses
-      - Handle with proper status code
+      - Handle with proper status code (204)
   - Individual event page
     - Update event
       - Add repeat options
+  - Weekly updates (commands/crontab)
+    - Delete past events
+    - Create future events
+    - Add fields to RecurringEvent model
+      - Weekly list
+- Locations
+  - Individual location page
+    - Events
+      - Add paginiation
+        - Front end (see more link)
+        - Back end
+  - Neighborhood page
+    - Events
+      - Add paginiation
+        - Front end (see more link)
+        - Back end
 - Move CATEGORIES to Location model
 - Backup external libraries
 - Migrate users.js to add_event.js
@@ -53,38 +77,14 @@
   - Users
   - Locations
   - Events
-- Events
-  - All events page (read event)
-    - Prevent scroll to top on tab selection
-    - Fix bug where tapping a link scrolls to top and doesn't follow link
-  - Delete event
-    - Delete info along with RecurringEvent
-  - Weekly updates (commands/crontab)
-    - Delete past events
-    - Create future events
-    - Add fields to RecurringEvent model
-      - Weekly list
-  - DST bug
-- Locations
-  - Individual location page
-    - Events
-      - Make pretty
-        - Add no wrap
-        - Add visual month and dates
-      - Weekly view
-        - View only first event per weekday
-      - Add paginiation
-        - Front end (see more link)
-        - Back end
-- Change mtm.settings to django.conf.settings
 - Change forms to Django forms
 - Move global/grid Sass to separate files
 - Change generated ID's to lower camelcase
 - Add modals to delete forms
-- Change title regex names to slug
 - Restructure CATEGORY_CHOICES object
-- Change grayscale colors to sensible names
-- Individual category page
-  - Hide locations with certain categories?
 - Drink specials
 - Test for autocomplete bugs
+- Add optional location field to articles (ask Bill)
+- Consolidate duplicate entries
+  - Neighborhood
+  - Location
