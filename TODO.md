@@ -2,22 +2,18 @@
 
 ## High Priorities
 
-- Backups
-- About/Contact
-  - Bio (pending)
-- Site Tour
-  - Schedule
-  - Remote desktop install
-  - Walkthrough
-- Invoice
+ - Wait on Bill
+  - About/Contact
+    - Bio
+  - Site Tour
+    - Schedule
+    - Remote desktop install
+    - Walkthrough
 
 ## Medium Priorities
 
-- Delete expired invites
-  - Custom management command
-    - https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/#howto-custom-management-commands
-  - cron job
 - Events
+  - Home page item
   - Delete RepeatInfo along with RecurringEvent
   - Individual location page
     - Make pretty
