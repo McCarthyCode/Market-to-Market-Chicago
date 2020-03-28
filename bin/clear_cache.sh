@@ -1,12 +1,13 @@
 #!/bin/bash
 
 declare -a apps=(
-    "mtm"
-    "users"
-    "locations"
-    "events"
-    "images"
-    "articles"
+  "mtm"
+  "home"
+  "users"
+  "locations"
+  "events"
+  "images"
+  "articles"
 )
 
 for i in "${apps[@]}"; do

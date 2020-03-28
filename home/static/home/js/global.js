@@ -2,7 +2,7 @@ $(document).ready(() => {
   const breakpointMd = 768;
 
   console.log('This site brought to you by McCarthy Web Design.');
-  console.log('https://mccarthy-web-design.000webhostapp.com/');
+  console.log('https://mccarthywebdesign.com/');
 
   // external link icon
   $('a.external-link')
