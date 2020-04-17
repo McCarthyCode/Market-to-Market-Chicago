@@ -16,6 +16,8 @@ urlpatterns = [
 
 if DEBUG:
     urlpatterns += [
+        re_path(r'^400/', views.handler400),
+        re_path(r'^403/', views.handler403),
         re_path(r'^404/', views.handler404),
         re_path(r'^500/', views.handler500),
     ]

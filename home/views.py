@@ -28,11 +28,17 @@ from mtm.settings import (
     MEDIA_ROOT
 )
 
+def handler400(request, exception=None):
+    return render(request, 'home/errors/400.html', status=400)
+
+def handler403(request, exception=None):
+    return render(request, 'home/errors/403.html', status=403)
+
 def handler404(request, exception=None):
-    return render(request, 'home/404.html', status=404)
+    return render(request, 'home/errors/404.html', status=404)
 
 def handler500(request, exception=None):
-    return render(request, 'home/500.html', status=500)
+    return render(request, 'home/errors/500.html', status=500)
 
 def index(request):
     if request.method != 'GET':
