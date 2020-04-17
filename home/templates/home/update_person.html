@@ -25,6 +25,8 @@
   <input type="text" name="phone" value="{{ person.display_phone }}" class="form-control" autocomplete="off" id="id_phone" placeholder="Phone (optional)">
   {{ form.email.errors }}
   {{ form.email }}
+  {{ form.website.errors }}
+  {{ form.website }}
   <input class="btn btn-primary form-control" type="submit" value="Submit">
 </form>
 {% endblock %}

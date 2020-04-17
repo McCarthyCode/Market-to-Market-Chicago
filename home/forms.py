@@ -79,6 +79,15 @@ class CreatePersonForm(forms.ModelForm):
             'autocomplete': 'off',
         }),
     )
+    website = forms.CharField(
+        required=False,
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Website (optional)',
+            'autocomplete': 'off',
+        }),
+    )
 
     def clean(self):
         super().clean()
@@ -93,5 +102,5 @@ class CreatePersonForm(forms.ModelForm):
         model = Person
         fields = [
             'prefix', 'first_name', 'last_name', 'suffix',
-            'image', 'bio', 'phone', 'email'
+            'image', 'bio', 'phone', 'email', 'website',
         ]
