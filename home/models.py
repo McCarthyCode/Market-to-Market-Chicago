@@ -42,6 +42,7 @@ class Person(NewsItem):
     bio = models.TextField()
     phone = models.CharField(blank=True, null=True, max_length=10)
     email = models.EmailField(blank=True, null=True)
+    website = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.full_name

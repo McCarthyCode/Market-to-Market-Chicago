@@ -114,6 +114,7 @@ def create_person(request):
         person.bio = form.cleaned_data.get('bio')
         person.phone = form.cleaned_data.get('phone')
         person.email = form.cleaned_data.get('email')
+        person.website = form.cleaned_data.get('website')
 
         if 'image' in request.FILES:
             person.image_ops()
@@ -199,6 +200,7 @@ def update_person(request, person_id):
             updated_person.bio = form.cleaned_data.get('bio')
             updated_person.phone = form.cleaned_data.get('phone')
             updated_person.email = form.cleaned_data.get('email')
+            updated_person.website = form.cleaned_data.get('website')
 
             if 'image' in request.FILES:
                 updated_person.image_ops()
