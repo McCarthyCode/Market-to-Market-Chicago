@@ -2,13 +2,16 @@
 
 ## High Priorities
 
- - Wait on Bill
+- Wait on Bill
   - About/Contact
     - Bio
   - Site Tour
     - Schedule
     - Remote desktop install
     - Walkthrough
+- Autocorrect bugs
+  - Double text on enter
+  - Double selection on hover
 
 ## Medium Priorities
 
