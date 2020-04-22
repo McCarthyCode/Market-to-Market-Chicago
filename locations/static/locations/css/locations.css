@@ -175,8 +175,11 @@
     border-right: 1px solid #818181;
   }
 }
-#content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password], #content .container form input[type=submit], #content .container form input[type=file], #content .container form textarea, #content .container form select, #content .container form label {
+#content .container form input[type=text]:not(:last-child), #content .container form input[type=number]:not(:last-child), #content .container form input[type=password]:not(:last-child), #content .container form input[type=submit]:not(:last-child), #content .container form input[type=file]:not(:last-child), #content .container form textarea:not(:last-child), #content .container form select:not(:last-child), #content .container form label:not(:last-child) {
   margin-bottom: 0.5rem;
+}
+#content .container form input[type=text]:last-child, #content .container form input[type=number]:last-child, #content .container form input[type=password]:last-child, #content .container form input[type=submit]:last-child, #content .container form input[type=file]:last-child, #content .container form textarea:last-child, #content .container form select:last-child, #content .container form label:last-child {
+  margin-bottom: 0;
 }
 #content .container form input[type=text], #content .container form input[type=number], #content .container form input[type=password],
 #content .container form textarea, #content .container form select, #content .container form label {
@@ -593,6 +596,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border: 0;
 }
 
+#updateLocationForm {
+  padding-bottom: 0.5rem;
+}
 #updateLocationForm input[name=address1] {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;

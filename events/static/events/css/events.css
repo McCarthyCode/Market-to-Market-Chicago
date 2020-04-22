@@ -849,6 +849,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     right: 0;
   }
 }
+#updateEventForm {
+  padding-bottom: 0.5rem;
+}
 #updateEventForm input[name=address1] {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;

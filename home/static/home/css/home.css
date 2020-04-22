@@ -228,6 +228,7 @@
 #content .container form .name > :not(:last-child) {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+  border-bottom: 0;
   margin-bottom: -1px;
 }
 #content .container form .address > :not(:first-child),
@@ -635,6 +636,10 @@ article.category .info {
 }
 .person .actions > * {
   margin: 0 0.25rem;
+}
+
+#updatePersonForm {
+  padding-bottom: 0.5rem;
 }
 
 .album .info {

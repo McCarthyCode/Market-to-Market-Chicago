@@ -31,12 +31,17 @@ SECRET_KEY = content[:-1]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '10.0.0.100',
-    '67.205.139.60',
-]
+if DEBUG:
+    ALLOWED_HOSTS = [
+        'localhost',
+        '10.0.0.100',
+    ]
+else:
+    ALLOWED_HOSTS = [
+        '67.205.139.60',
+        'mtmchicago.com',
+        'www.mtmchicago.com',
+    ]
 
 
 # Application definition
@@ -202,7 +207,7 @@ MAX_INVITES = 20
 
 # Domain name and protocol for invite URLs
 if DEBUG:
-    DOMAIN = 'http://10.0.0.100:8000'
+    DOMAIN = 'http://10.0.0.100:8080'
 else:
     DOMAIN = 'http://67.205.139.60'
     # DOMAIN = 'https://mtmchicago.com'
