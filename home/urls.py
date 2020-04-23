@@ -5,6 +5,10 @@ from mtm.settings import DEBUG
 
 urlpatterns = [
     path('', views.index, name='index'),
+    re_path(r'^400/', views.handler400),
+    re_path(r'^403/', views.handler403),
+    re_path(r'^404/', views.handler404),
+    re_path(r'^500/', views.handler500),
     path('about/', views.about, name='about'),
     path('people-to-know/', views.people, name='people-to-know'),
     path('create-person/', views.create_person, name='create-person'),
@@ -14,10 +18,3 @@ urlpatterns = [
     re_path(r'^(?P<slug>(nightlife|restaurants|nightlife-restaurants|arts-and-entertainment|health-and-fitness|sports|non-profit))/$', views.category, name='category'),
 ]
 
-if DEBUG:
-    urlpatterns += [
-        re_path(r'^400/', views.handler400),
-        re_path(r'^403/', views.handler403),
-        re_path(r'^404/', views.handler404),
-        re_path(r'^500/', views.handler500),
-    ]
