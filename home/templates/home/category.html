@@ -1,4 +1,61 @@
-{% extends 'home/base.html' %}{% load static %}{% block content %}{% include 'home/messages.html' %}
+{% extends 'home/base.html' %}{% load static %}
+
+{% block large_mobile_banner1 %}
+
+{% if category_slug == 'nightlife' %}
+{% include 'home/ads/large_mobile_banner02.html' %}
+{% elif category_slug == 'restaurants' %}
+{% include 'home/ads/large_mobile_banner03.html' %}
+{% elif category_slug == 'arts-and-entertainment' %}
+{% include 'home/ads/large_mobile_banner04.html' %}
+{% elif category_slug == 'arts-and-entertainment' %}
+{% include 'home/ads/large_mobile_banner04.html' %}
+{% elif category_slug == 'health-and-fitness' %}
+{% include 'home/ads/large_mobile_banner05.html' %}
+{% elif category_slug == 'sports' %}
+{% include 'home/ads/large_mobile_banner06.html' %}
+{% elif category_slug == 'non-profit' %}
+{% include 'home/ads/large_mobile_banner07.html' %}
+{% endif %}
+
+{% endblock %}
+
+{% block medium_rectangle1a %}
+
+{% if category_slug == 'nightlife' %}
+{% include 'home/ads/medium_rectangle05a.html' %}
+{% elif category_slug == 'restaurants' %}
+{% include 'home/ads/medium_rectangle09a.html' %}
+{% elif category_slug == 'arts-and-entertainment' %}
+{% include 'home/ads/medium_rectangle13a.html' %}
+{% elif category_slug == 'health-and-fitness' %}
+{% include 'home/ads/medium_rectangle17a.html' %}
+{% elif category_slug == 'sports' %}
+{% include 'home/ads/medium_rectangle21a.html' %}
+{% elif category_slug == 'non-profit' %}
+{% include 'home/ads/medium_rectangle25a.html' %}
+{% endif %}
+
+{% endblock %}
+
+{% block medium_rectangle1b %}
+
+{% if category_slug == 'nightlife' %}
+{% include 'home/ads/medium_rectangle05b.html' %}
+{% elif category_slug == 'restaurants' %}
+{% include 'home/ads/medium_rectangle09b.html' %}
+{% elif category_slug == 'arts-and-entertainment' %}
+{% include 'home/ads/medium_rectangle13b.html' %}
+{% elif category_slug == 'health-and-fitness' %}
+{% include 'home/ads/medium_rectangle17b.html' %}
+{% elif category_slug == 'non-profit' %}
+{% include 'home/ads/medium_rectangle25b.html' %}
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+{% include 'home/messages.html' %}
 <section id="locations">
   <h3 class="h3">Locations</h3>
   <ul id="byNeighborhood">
@@ -22,9 +79,31 @@
   {% endif %}
 </section>
 <section class="rectangles">
-  {% include 'home/ads/medium_rectangle2.html' %}
-  {% include 'home/ads/medium_rectangle3.html' %}
-  {% include 'home/ads/medium_rectangle4.html' %}
+  {% if category_slug == 'nightlife' %}
+  {% include 'home/ads/medium_rectangle06.html' %}
+  {% include 'home/ads/medium_rectangle07.html' %}
+  {% include 'home/ads/medium_rectangle08.html' %}
+  {% elif category_slug == 'restaurants' %}
+  {% include 'home/ads/medium_rectangle10.html' %}
+  {% include 'home/ads/medium_rectangle11.html' %}
+  {% include 'home/ads/medium_rectangle12.html' %}
+  {% elif category_slug == 'arts-and-entertainment' %}
+  {% include 'home/ads/medium_rectangle14.html' %}
+  {% include 'home/ads/medium_rectangle15.html' %}
+  {% include 'home/ads/medium_rectangle16.html' %}
+  {% elif category_slug == 'health-and-fitness' %}
+  {% include 'home/ads/medium_rectangle18.html' %}
+  {% include 'home/ads/medium_rectangle19.html' %}
+  {% include 'home/ads/medium_rectangle20.html' %}
+  {% elif category_slug == 'sports' %}
+  {% include 'home/ads/medium_rectangle22.html' %}
+  {% include 'home/ads/medium_rectangle23.html' %}
+  {% include 'home/ads/medium_rectangle24.html' %}
+  {% elif category_slug == 'non-profit' %}
+  {% include 'home/ads/medium_rectangle26.html' %}
+  {% include 'home/ads/medium_rectangle27.html' %}
+  {% include 'home/ads/medium_rectangle28.html' %}
+  {% endif %}
 </section>
 <section id="articles">
   <input type="hidden" name="category-slug" value="{{ category_slug }}">

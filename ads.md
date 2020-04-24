@@ -101,3 +101,11 @@ Below is a listing of every ad space currently available on the site. Not all sp
 - Medium Rectangle 50
 - Medium Rectangle 51
 - Medium Rectangle 52
+
+## Article `/articles/<article-name>/<article-id>/`
+- Large Mobile Banner 19
+- Large Mobile Banner 20
+- Medium Rectangle 53
+- Medium Rectangle 54
+- Medium Rectangle 55
+- Medium Rectangle 56

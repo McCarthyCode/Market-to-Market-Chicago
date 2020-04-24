@@ -270,6 +270,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container form .name > :not(:last-child) {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+  border-bottom: 0;
   margin-bottom: -1px;
 }
 #content .container form .address > :not(:first-child),

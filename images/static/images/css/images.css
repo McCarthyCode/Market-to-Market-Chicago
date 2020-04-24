@@ -26,7 +26,8 @@
   margin: 0 auto 0.5rem auto;
 }
 
-#largeMobileBanner1 {
+#largeMobileBanner1,
+#largeMobileBanner2 {
   width: 320px;
   height: 100px;
   margin: 0 auto 1rem auto;
@@ -397,6 +398,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container form .name > :not(:last-child) {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+  border-bottom: 0;
   margin-bottom: -1px;
 }
 #content .container form .address > :not(:first-child),

@@ -1,4 +1,18 @@
-{% extends 'home/base.html' %}{% load static %}{% block content %}
+{% extends 'home/base.html' %}{% load static %}
+
+{% block large_mobile_banner1 %}
+{% include 'home/ads/large_mobile_banner11.html' %}
+{% endblock %}
+
+{% block medium_rectangle1a %}
+{% include 'home/ads/medium_rectangle37a.html' %}
+{% endblock %}
+
+{% block medium_rectangle1b %}
+{% include 'home/ads/medium_rectangle37b.html' %}
+{% endblock %}
+
+{% block content %}
 <h3 class="h3">Contact</h3>
 <div class="contact text-center card">
   <h5 class="h5">
@@ -9,9 +23,9 @@
   </h5>
 </div>
 <div class="rectangles">
-  {% include 'home/ads/medium_rectangle2.html' %}
-  {% include 'home/ads/medium_rectangle3.html' %}
-  {% include 'home/ads/medium_rectangle4.html' %}
+  {% include 'home/ads/medium_rectangle38.html' %}
+  {% include 'home/ads/medium_rectangle39.html' %}
+  {% include 'home/ads/medium_rectangle40.html' %}
 </div>
 <h3 class="h3">About Us</h3>
 <div class="card">
@@ -19,4 +33,5 @@
     This is where the bio will go.
   </p>
 </div>
+{% include 'home/ads/large_mobile_banner12.html' %}
 {% endblock %}

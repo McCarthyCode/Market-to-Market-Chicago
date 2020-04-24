@@ -1,4 +1,22 @@
-{% extends 'events/base.html' %}{% load static %}{% block content %}
+{% extends 'events/base.html' %}{% load static %}
+
+{% block large_mobile_banner1 %}
+{% include 'home/ads/large_mobile_banner17.html' %}
+{% endblock %}
+
+{% block large_mobile_banner2 %}
+{% include 'home/ads/large_mobile_banner18.html' %}
+{% endblock %}
+
+{% block medium_rectangle1a %}
+{% include 'home/ads/medium_rectangle49a.html' %}
+{% endblock %}
+
+{% block medium_rectangle1b %}
+{% include 'home/ads/medium_rectangle49b.html' %}
+{% endblock %}
+
+{% block content %}
 {% include 'home/messages.html' %}
 <p id="breadcrumbs">
   {% if event.location %}
@@ -42,9 +60,9 @@
   </tbody>
 </table>
 <div class="rectangles">
-  {% include 'home/ads/medium_rectangle2.html' %}
-  {% include 'home/ads/medium_rectangle3.html' %}
-  {% include 'home/ads/medium_rectangle4.html' %}
+  {% include 'home/ads/medium_rectangle50.html' %}
+  {% include 'home/ads/medium_rectangle51.html' %}
+  {% include 'home/ads/medium_rectangle52.html' %}
 </div>
 {% if event.album %}
 <h3 class="h3"><a href="{% url 'images:album' event.album.slug event.album.id %}">{{ event.album.title }}</a></h3>

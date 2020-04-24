@@ -2,6 +2,7 @@
 
 ## High Priorities
 
+- Transitions
 - Wait on Bill
   - About/Contact
     - Bio
