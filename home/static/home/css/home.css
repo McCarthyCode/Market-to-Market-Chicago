@@ -26,7 +26,8 @@
   margin: 0 auto 0.5rem auto;
 }
 
-#largeMobileBanner1 {
+#largeMobileBanner1,
+#largeMobileBanner2 {
   width: 320px;
   height: 100px;
   margin: 0 auto 1rem auto;

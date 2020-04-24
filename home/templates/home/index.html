@@ -1,4 +1,18 @@
-{% extends 'home/base.html' %}{% load static %}{% block content %}
+{% extends 'home/base.html' %}{% load static %}
+
+{% block large_mobile_banner1 %}
+{% include 'home/ads/large_mobile_banner01.html' %}
+{% endblock %}
+
+{% block medium_rectangle1a %}
+{% include 'home/ads/medium_rectangle01a.html' %}
+{% endblock %}
+
+{% block medium_rectangle1b %}
+{% include 'home/ads/medium_rectangle01b.html' %}
+{% endblock %}
+
+{% block content %}
 <input type="hidden" name="ads-order" value="{{ ads_order }}">
 <ul id="newsFeed">
 {% load custom_tags %}
@@ -7,27 +21,27 @@
 {{ news_item|safe }}
 {% if forloop.counter0|modulo:15 == 4 %}
 {% if ads_order.0 == 0 %}
-{% include 'home/ads/medium_rectangle2.html' %}
+{% include 'home/ads/medium_rectangle02.html' %}
 {% elif ads_order.0 == 1 %}
-{% include 'home/ads/medium_rectangle3.html' %}
+{% include 'home/ads/medium_rectangle03.html' %}
 {% elif ads_order.0 == 2 %}
-{% include 'home/ads/medium_rectangle4.html' %}
+{% include 'home/ads/medium_rectangle04.html' %}
 {% endif %}
 {% elif forloop.counter0|modulo:15 == 9 %}
 {% if ads_order.1 == 0 %}
-{% include 'home/ads/medium_rectangle2.html' %}
+{% include 'home/ads/medium_rectangle02.html' %}
 {% elif ads_order.1 == 1 %}
-{% include 'home/ads/medium_rectangle3.html' %}
+{% include 'home/ads/medium_rectangle03.html' %}
 {% elif ads_order.1 == 2 %}
-{% include 'home/ads/medium_rectangle4.html' %}
+{% include 'home/ads/medium_rectangle04.html' %}
 {% endif %}
 {% elif forloop.counter0|modulo:15 == 14 %}
 {% if ads_order.2 == 0 %}
-{% include 'home/ads/medium_rectangle2.html' %}
+{% include 'home/ads/medium_rectangle02.html' %}
 {% elif ads_order.2 == 1 %}
-{% include 'home/ads/medium_rectangle3.html' %}
+{% include 'home/ads/medium_rectangle03.html' %}
 {% elif ads_order.2 == 2 %}
-{% include 'home/ads/medium_rectangle4.html' %}
+{% include 'home/ads/medium_rectangle04.html' %}
 {% endif %}
 {% endif %}
 {% endfor %}

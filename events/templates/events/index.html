@@ -1,4 +1,23 @@
-{% extends 'events/base.html' %}{% load static %}{% block content %}{% include 'home/messages.html' %}
+{% extends 'events/base.html' %}{% load static %}
+
+{% block large_mobile_banner1 %}
+{% include 'home/ads/large_mobile_banner08.html' %}
+{% endblock %}
+
+{% block large_mobile_banner2 %}
+{% include 'home/ads/large_mobile_banner09.html' %}
+{% endblock %}
+
+{% block medium_rectangle1a %}
+{% include 'home/ads/medium_rectangle29a.html' %}
+{% endblock %}
+
+{% block medium_rectangle1b %}
+{% include 'home/ads/medium_rectangle29b.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'home/messages.html' %}
 <ul id="tabs">
   <li id="tabsCalendar" data-href="#calendar">Calendar</li>
   <li id="tabsByDate" data-href="#byDate">by Date</li>
@@ -23,8 +42,8 @@
   {% include 'events/by_location.html' %}
 </div>
 <div class="rectangles">
-  {% include 'home/ads/medium_rectangle2.html' %}
-  {% include 'home/ads/medium_rectangle3.html' %}
-  {% include 'home/ads/medium_rectangle4.html' %}
+  {% include 'home/ads/medium_rectangle30.html' %}
+  {% include 'home/ads/medium_rectangle31.html' %}
+  {% include 'home/ads/medium_rectangle32.html' %}
 </div>
 {% endblock %}

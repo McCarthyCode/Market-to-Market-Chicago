@@ -1,13 +1,31 @@
-{% extends 'articles/base.html' %}{% load static %}{% block content %}
+{% extends 'articles/base.html' %}{% load static %}
+
+{% block large_mobile_banner1 %}
+{% include 'home/ads/large_mobile_banner19.html' %}
+{% endblock %}
+
+{% block large_mobile_banner2 %}
+{% include 'home/ads/large_mobile_banner20.html' %}
+{% endblock %}
+
+{% block medium_rectangle1a %}
+{% include 'home/ads/medium_rectangle53a.html' %}
+{% endblock %}
+
+{% block medium_rectangle1b %}
+{% include 'home/ads/medium_rectangle53b.html' %}
+{% endblock %}
+
+{% block content %}
 {% include 'home/messages.html' %}
 <article class="card">
   <p class="info">Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} <span class="text-nowrap">Updated {{ article.date_updated|date:"N j, Y." }}</span>{% endif %} From <a href="{% if article.category == 0 %}{% url 'home:category' 'nightlife' %}{% elif article.category == 1 %}{% url 'home:category' 'restaurants' %}{% elif article.category == 2 %}{% url 'home:category' 'arts-and-entertainment' %}{% elif article.category == 3 %}{% url 'home:category' 'health-and-fitness' %}{% elif article.category == 4 %}{% url 'home:category' 'sports' %}{% elif article.category == 5 %}{% url 'home:category' 'non-profit' %}{% else %}{% url 'home:category' 'events' %}{% endif %}">{{ article.get_category_display }}</a>.</p>
   {{ article.body|linebreaks }}
 </article>
 <div class="rectangles">
-  {% include 'home/ads/medium_rectangle2.html' %}
-  {% include 'home/ads/medium_rectangle3.html' %}
-  {% include 'home/ads/medium_rectangle4.html' %}
+  {% include 'home/ads/medium_rectangle54.html' %}
+  {% include 'home/ads/medium_rectangle55.html' %}
+  {% include 'home/ads/medium_rectangle56.html' %}
 </div>
 {% if article.album %}
 <h3 class="h3"><a href="{% url 'images:album' article.album.slug article.album.id %}">{{ article.album.title }} <span class="text-nowrap">({{ images|length }} image{% if images|length != 1 %}s{% endif %})</span></a></h3>

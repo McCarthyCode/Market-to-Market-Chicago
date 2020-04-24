@@ -1,9 +1,9 @@
 {% extends 'images/base.html' %}{% block content %}
 {% include 'home/messages.html' %}
 <div class="rectangles">
-  {% include 'home/ads/medium_rectangle2.html' %}
-  {% include 'home/ads/medium_rectangle3.html' %}
-  {% include 'home/ads/medium_rectangle4.html' %}
+  {% include 'home/ads/medium_rectangle02.html' %}
+  {% include 'home/ads/medium_rectangle03.html' %}
+  {% include 'home/ads/medium_rectangle04.html' %}
 </div>
 {% if user.is_superuser or user.id == album.created_by.id %}
 <div id="controls">
