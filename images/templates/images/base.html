@@ -125,18 +125,21 @@
       {% include 'home/topics.html' %}
     </section>
     <section id="mediumRectangle1Container" class="d-none d-md-block">
-      {% include 'home/ads/medium_rectangle01a.html' %}
+      {% block medium_rectangle1a %}{% endblock %}
     </section>
     <section id="content">
       <div class="container">
         <h1 class="h1 text-center">{{ album.title }}</h1>
       </div>
-      {% include 'home/ads/large_mobile_banner01.html' %}
-      {% include 'home/ads/medium_rectangle01b.html' %}
+      {% block large_mobile_banner1 %}{% endblock %}
+      {% block leaderboard1 %}{% endblock %}
+      {% block medium_rectangle1b %}{% endblock %}
       <div class="container">
         {% block content %}
         {% endblock %}
       </div>
+      {% block large_mobile_banner2 %}{% endblock %}
+      {% block leaderboard2 %}{% endblock %}
     </section>
     {% include 'home/footer.html' %}
   </div>

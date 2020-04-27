@@ -20,8 +20,20 @@
 
 #largeMobileBanner1,
 #largeMobileBanner2
+  display: block
   width: 320px
   height: 100px
+
+#leaderboard1,
+#leaderboard2
+  display: none
+  width: 728px
+  height: 90px
+
+#largeMobileBanner1,
+#largeMobileBanner2,
+#leaderboard1,
+#leaderboard2
   margin: 0 auto 1rem auto
 
 #mediumRectangle1b,
@@ -41,3 +53,12 @@
   #mediumRectangle3,
   #mediumRectangle4
     margin: 0 .25rem .5rem .25rem
+
+@media screen and ( min-width: 1041px )
+  #largeMobileBanner1,
+  #largeMobileBanner2
+    display: none
+
+  #leaderboard1,
+  #leaderboard2
+    display: block

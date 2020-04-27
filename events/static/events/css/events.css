@@ -28,8 +28,22 @@
 
 #largeMobileBanner1,
 #largeMobileBanner2 {
+  display: block;
   width: 320px;
   height: 100px;
+}
+
+#leaderboard1,
+#leaderboard2 {
+  display: none;
+  width: 728px;
+  height: 90px;
+}
+
+#largeMobileBanner1,
+#largeMobileBanner2,
+#leaderboard1,
+#leaderboard2 {
   margin: 0 auto 1rem auto;
 }
 
@@ -53,6 +67,17 @@
   margin: 0 0.25rem 0.5rem 0.25rem;
 }
 
+@media screen and (min-width: 1041px) {
+  #largeMobileBanner1,
+#largeMobileBanner2 {
+    display: none;
+  }
+
+  #leaderboard1,
+#leaderboard2 {
+    display: block;
+  }
+}
 #content .container {
   margin: 0;
   padding: 0;

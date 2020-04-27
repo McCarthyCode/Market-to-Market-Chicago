@@ -143,12 +143,14 @@
         <h1 class="h1 text-center">{% if event %}{{ event.name }} <span class="text-nowrap">({{ event.date_start|date:"D. N j" }})</span>{% else %}Events{% endif %}</h1>
       </div>
       {% block large_mobile_banner1 %}{% endblock %}
+      {% block leaderboard1 %}{% endblock %}
       {% block medium_rectangle1b %}{% endblock %}
       <div class="container">
         {% block content %}
         {% endblock %}
       </div>
       {% block large_mobile_banner2 %}{% endblock %}
+      {% block leaderboard2 %}{% endblock %}
     </section>
     {% include 'home/footer.html' %}
   </div>
