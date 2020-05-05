@@ -12,6 +12,13 @@ class CreateArticleForm(forms.ModelForm):
             'placeholder': 'Title',
         }),
     )
+    author = forms.CharField(
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Author',
+        }),
+    )
     body = forms.CharField(
         label='',
         widget=forms.Textarea(attrs={
@@ -71,4 +78,4 @@ class CreateArticleForm(forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = ['title', 'body', 'album', 'category']
+        fields = ['title', 'author', 'body', 'album', 'category']

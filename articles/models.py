@@ -24,6 +24,7 @@ class Article(NewsItem):
     body = models.TextField()
     album = models.ForeignKey(Album, null=True, blank=True, on_delete=models.CASCADE)
     category = models.PositiveSmallIntegerField(default=0, choices=CATEGORY_CHOICES)
+    author = models.CharField(max_length=127)
     objects = ArticleManager()
 
     def render(self, request):
