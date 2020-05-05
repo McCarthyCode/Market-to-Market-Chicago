@@ -30,15 +30,15 @@ class NewsItem(TimestampedModel):
     class Meta:
         abstract = True
 
-class Person(NewsItem):
+from images.models import ThumbnailedImage
+
+class Person(NewsItem, ThumbnailedImage):
     prefix = models.CharField(blank=True, null=True, max_length=5)
     first_name = models.CharField(max_length=35)
     last_name = models.CharField(max_length=35)
     suffix = models.CharField(blank=True, null=True, max_length=5)
     image = models.ImageField(blank=True, null=True, default=None, upload_to='people/')
-    _image_hash = models.BinaryField(editable=False, null=True, default=None, max_length=16)
     thumbnail = models.ImageField(editable=False, null=True, default=None, upload_to='people/')
-    _thumbnail_hash = models.BinaryField(editable=False, null=True, default=None, max_length=16)
     bio = models.TextField()
     phone = models.CharField(blank=True, null=True, max_length=10)
     email = models.EmailField(blank=True, null=True)
