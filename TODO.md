@@ -2,6 +2,12 @@
 
 ## High Priorities
 
+- Ads
+- Mobile bug
+- Articles
+  - Image bug
+  - Add image at top
+  - Adjust line breaks
 - Transitions
 - Wait on Bill
   - About/Contact

@@ -1,27 +1,28 @@
-article, .article
-  .info
-    color: $green
-    font-size: 1rem
-    font-style: italic
-    margin-bottom: .5rem
-
-    a
+#content .container
+  article, .article
+    .info
       color: $green
-      text-decoration: underline
-
-    a:hover
-      color: $cyan
-
-  p:not(.info)
-    text-align: justify
-    margin-bottom: 1rem
-
-    br
+      font-size: 1rem
+      font-style: italic
       margin-bottom: 1rem
 
-article.category
-  h5.h5 > a
-    color: $yellow
+      a
+        color: $green
+        text-decoration: underline
 
-  .info
-    color: $green
+      a:hover
+        color: $cyan
+
+    p:not(.info)
+      text-align: justify
+      margin-bottom: 1rem
+
+    p:not(.info):last-of-type
+      margin-bottom: .5rem
+
+  article.category
+    h5.h5 > a
+      color: $yellow
+
+    .info
+      color: $green
