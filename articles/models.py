@@ -33,6 +33,6 @@ class Article(NewsItem):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        self.body = re.sub(r'(\r\n){2,}', '\r\n', self.body)
+        self.body = re.sub(r'(\r\n){2,}', '\r\n\r\n', self.body)
 
         super().save(*args, **kwargs)

@@ -25,6 +25,7 @@
 {% endblock %}
 
 {% block content %}
+<h1 class="h1 text-center">{{ article.title }}</h1>
 {% include 'home/messages.html' %}
 <article class="card">
   <p class="info">Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} <span class="text-nowrap">Updated {{ article.date_updated|date:"N j, Y." }}</span>{% endif %} From <a href="{% if article.category == 0 %}{% url 'home:category' 'nightlife' %}{% elif article.category == 1 %}{% url 'home:category' 'restaurants' %}{% elif article.category == 2 %}{% url 'home:category' 'arts-and-entertainment' %}{% elif article.category == 3 %}{% url 'home:category' 'health-and-fitness' %}{% elif article.category == 4 %}{% url 'home:category' 'sports' %}{% elif article.category == 5 %}{% url 'home:category' 'non-profit' %}{% else %}{% url 'home:category' 'events' %}{% endif %}">{{ article.get_category_display }}</a>.</p>
