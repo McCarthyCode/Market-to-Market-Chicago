@@ -603,31 +603,30 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     grid-column: 1/span 3;
   }
 }
-article .info, .article .info {
+#content .container article .info, #content .container .article .info {
   color: #679452;
   font-size: 1rem;
   font-style: italic;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
-article .info a, .article .info a {
+#content .container article .info a, #content .container .article .info a {
   color: #679452;
   text-decoration: underline;
 }
-article .info a:hover, .article .info a:hover {
+#content .container article .info a:hover, #content .container .article .info a:hover {
   color: #97d5f7;
 }
-article p:not(.info), .article p:not(.info) {
+#content .container article p:not(.info), #content .container .article p:not(.info) {
   text-align: justify;
   margin-bottom: 1rem;
 }
-article p:not(.info) br, .article p:not(.info) br {
-  margin-bottom: 1rem;
+#content .container article p:not(.info):last-of-type, #content .container .article p:not(.info):last-of-type {
+  margin-bottom: 0.5rem;
 }
-
-article.category h5.h5 > a {
+#content .container article.category h5.h5 > a {
   color: #dcdcaa;
 }
-article.category .info {
+#content .container article.category .info {
   color: #679452;
 }
 

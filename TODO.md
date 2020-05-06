@@ -4,9 +4,14 @@
 
 - Ads
 - Mobile bug
+- gubrud -> info
+- Albums (hold off)
+  - Show on homepage option
+  - Add categories
 - Articles
-  - Image bug
-  - Add image at top
+  - Author class
+    - Profile Pic
+    - Name
   - Adjust line breaks
 - Transitions
 - Wait on Bill

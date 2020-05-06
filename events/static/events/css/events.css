@@ -28,8 +28,22 @@
 
 #largeMobileBanner1,
 #largeMobileBanner2 {
+  display: block;
   width: 320px;
   height: 100px;
+}
+
+#leaderboard1,
+#leaderboard2 {
+  display: none;
+  width: 728px;
+  height: 90px;
+}
+
+#largeMobileBanner1,
+#largeMobileBanner2,
+#leaderboard1,
+#leaderboard2 {
   margin: 0 auto 1rem auto;
 }
 
@@ -53,6 +67,17 @@
   margin: 0 0.25rem 0.5rem 0.25rem;
 }
 
+@media screen and (min-width: 1041px) {
+  #largeMobileBanner1,
+#largeMobileBanner2 {
+    display: none;
+  }
+
+  #leaderboard1,
+#leaderboard2 {
+    display: block;
+  }
+}
 #content .container {
   margin: 0;
   padding: 0;
@@ -522,7 +547,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #tabs {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 0.5rem;
+  gap: 0.25rem;
   margin-bottom: 1rem;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -576,7 +601,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   background-color: #818181;
   display: grid;
   grid-template: [top] 2rem [row0] 1fr [row1] 1fr [row2] 1fr [row3] 1fr [row4] 1fr [row5] 1fr [row6]/[col0] 1fr [col1] 1fr [col2] 1fr [col3] 1fr [col4] 1fr [col5] 1fr [col6] 1fr [end];
-  grid-gap: 0.5rem;
+  gap: 1px;
   padding: 1px;
 }
 #calendarGrid .header {
