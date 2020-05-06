@@ -1,35 +1,35 @@
 {% extends 'images/base.html' %}
 
 {% block large_mobile_banner1 %}
-{% include 'home/ads/large_mobile_banner21.html' %}
+{# include 'home/ads/large_mobile_banner21.html' #}
 {% endblock %}
 
 {% block leaderboard1 %}
-{% include 'home/ads/leaderboard21.html' %}
+{# include 'home/ads/leaderboard21.html' #}
 {% endblock %}
 
 {% block large_mobile_banner2 %}
-{% include 'home/ads/large_mobile_banner22.html' %}
+{# include 'home/ads/large_mobile_banner22.html' #}
 {% endblock %}
 
 {% block leaderboard2 %}
-{% include 'home/ads/leaderboard22.html' %}
+{# include 'home/ads/leaderboard22.html' #}
 {% endblock %}
 
 {% block medium_rectangle1a %}
-{% include 'home/ads/medium_rectangle57a.html' %}
+{# include 'home/ads/medium_rectangle57a.html' #}
 {% endblock %}
 
 {% block medium_rectangle1b %}
-{% include 'home/ads/medium_rectangle57b.html' %}
+{# include 'home/ads/medium_rectangle57b.html' #}
 {% endblock %}
 
 {% block content %}
 {% include 'home/messages.html' %}
 <div class="rectangles">
-  {% include 'home/ads/medium_rectangle58.html' %}
-  {% include 'home/ads/medium_rectangle59.html' %}
-  {% include 'home/ads/medium_rectangle60.html' %}
+  {# include 'home/ads/medium_rectangle58.html' #}
+  {# include 'home/ads/medium_rectangle59.html' #}
+  {# include 'home/ads/medium_rectangle60.html' #}
 </div>
 {% if user.is_superuser or user.id == album.created_by.id %}
 <div id="controls">

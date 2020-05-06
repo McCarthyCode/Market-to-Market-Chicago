@@ -1,27 +1,27 @@
 {% extends 'home/base.html' %}{% load static %}
 
 {% block large_mobile_banner1 %}
-{% include 'home/ads/large_mobile_banner10.html' %}
+{# include 'home/ads/large_mobile_banner10.html' #}
 {% endblock %}
 
 {% block leaderboard1 %}
-{% include 'home/ads/leaderboard10.html' %}
+{# include 'home/ads/leaderboard10.html' #}
 {% endblock %}
 
 {% block medium_rectangle1a %}
-{% include 'home/ads/medium_rectangle33a.html' %}
+{# include 'home/ads/medium_rectangle33a.html' #}
 {% endblock %}
 
 {% block medium_rectangle1b %}
-{% include 'home/ads/medium_rectangle33b.html' %}
+{# include 'home/ads/medium_rectangle33b.html' #}
 {% endblock %}
 
 {% block content %}
 {% include 'home/messages.html' %}
 <div class="rectangles">
-  {% include 'home/ads/medium_rectangle34.html' %}
-  {% include 'home/ads/medium_rectangle35.html' %}
-  {% include 'home/ads/medium_rectangle36.html' %}
+  {# include 'home/ads/medium_rectangle34.html' #}
+  {# include 'home/ads/medium_rectangle35.html' #}
+  {# include 'home/ads/medium_rectangle36.html' #}
 </div>
 <ul id="people">
   {% for person in people %}
