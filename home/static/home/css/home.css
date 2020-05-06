@@ -603,30 +603,31 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     grid-column: 1/span 3;
   }
 }
-#content .container article .info, #content .container .article .info {
+article .info, .article .info {
   color: #679452;
   font-size: 1rem;
   font-style: italic;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
-#content .container article .info a, #content .container .article .info a {
+article .info a, .article .info a {
   color: #679452;
   text-decoration: underline;
 }
-#content .container article .info a:hover, #content .container .article .info a:hover {
+article .info a:hover, .article .info a:hover {
   color: #97d5f7;
 }
-#content .container article p:not(.info), #content .container .article p:not(.info) {
+article p:not(.info), .article p:not(.info) {
   text-align: justify;
   margin-bottom: 1rem;
 }
-#content .container article p:not(.info):last-of-type, #content .container .article p:not(.info):last-of-type {
-  margin-bottom: 0.5rem;
+article p:not(.info) br, .article p:not(.info) br {
+  margin-bottom: 1rem;
 }
-#content .container article.category h5.h5 > a {
+
+article.category h5.h5 > a {
   color: #dcdcaa;
 }
-#content .container article.category .info {
+article.category .info {
   color: #679452;
 }
 
@@ -683,7 +684,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 .album .images {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 1px;
+  gap: 0.25rem;
 }
 .album .images > a {
   align-self: center;

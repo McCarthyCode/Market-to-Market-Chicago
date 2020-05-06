@@ -28,22 +28,8 @@
 
 #largeMobileBanner1,
 #largeMobileBanner2 {
-  display: block;
   width: 320px;
   height: 100px;
-}
-
-#leaderboard1,
-#leaderboard2 {
-  display: none;
-  width: 728px;
-  height: 90px;
-}
-
-#largeMobileBanner1,
-#largeMobileBanner2,
-#leaderboard1,
-#leaderboard2 {
   margin: 0 auto 1rem auto;
 }
 
@@ -67,17 +53,6 @@
   margin: 0 0.25rem 0.5rem 0.25rem;
 }
 
-@media screen and (min-width: 1041px) {
-  #largeMobileBanner1,
-#largeMobileBanner2 {
-    display: none;
-  }
-
-  #leaderboard1,
-#leaderboard2 {
-    display: block;
-  }
-}
 #footer {
   position: fixed;
   padding: 0.25rem;
@@ -487,7 +462,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container #album {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 1px;
+  gap: 0.25rem;
   margin-bottom: 0.5rem;
 }
 #content .container #album p.empty {
