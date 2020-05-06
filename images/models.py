@@ -15,7 +15,7 @@ from django.shortcuts import render
 
 from home.models import TimestampedModel, NewsItem
 from .managers import AlbumManager, ImageManager
-from mtm.settings import MEDIA_ROOT
+from mtm.settings import TZ, MEDIA_ROOT
 
 class Album(NewsItem):
     title = models.CharField(max_length=255)
@@ -66,7 +66,7 @@ class ThumbnailedImage(models.Model):
         self, relative_path=None, max_size=(960, 720), thumbnail_size=(400, 360),
     ):
         if relative_path == None:
-            relative_path = self.date_created.strftime('img/%Y/%m/%d')
+            relative_path = self.date_created.astimezone(TZ).strftime('img/%Y/%m/%d/')
 
         self._generate_thumbnail(relative_path, thumbnail_size)
         self._hash_thumbnail(relative_path)
