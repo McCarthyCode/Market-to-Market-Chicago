@@ -31,17 +31,13 @@ SECRET_KEY = content[:-1]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-if DEBUG:
-    ALLOWED_HOSTS = [
-        'localhost',
-        '10.0.0.100',
-    ]
-else:
-    ALLOWED_HOSTS = [
-        '67.205.139.60',
-        'mtmchicago.com',
-        'www.mtmchicago.com',
-    ]
+ALLOWED_HOSTS = [
+    'localhost',
+    '10.0.0.100',
+    '67.205.139.60',
+    'mtmchicago.com',
+    'www.mtmchicago.com',
+]
 
 
 # Application definition
