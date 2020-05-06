@@ -173,6 +173,7 @@ class ThumbnailedImage(models.Model):
 
 class Image(TimestampedModel, ThumbnailedImage):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
+    objects = ImageManager()
 
     def save(self, *args, **kwargs):
         self.album.date_updated = datetime.utcnow()
