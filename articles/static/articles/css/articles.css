@@ -313,7 +313,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container #album {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 0.25rem;
+  gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
 #content .container #album p.empty {

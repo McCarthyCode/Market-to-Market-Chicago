@@ -684,7 +684,7 @@ article.category .info {
 .album .images {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 .album .images > a {
   align-self: center;
