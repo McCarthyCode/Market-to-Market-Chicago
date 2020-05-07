@@ -611,19 +611,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-bottom: 0;
 }
 
-#content .container article .info, #content .container .article .info {
-  color: #679452;
-  font-size: 1rem;
-  font-style: italic;
-  margin-bottom: 1rem;
-}
-#content .container article .info a, #content .container .article .info a {
-  color: #679452;
-  text-decoration: underline;
-}
-#content .container article .info a:hover, #content .container .article .info a:hover {
-  color: #97d5f7;
-}
 #content .container article p:not(.info), #content .container .article p:not(.info) {
   text-align: justify;
   margin-bottom: 1rem;
@@ -681,6 +668,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     border-bottom-left-radius: 0;
   }
 }
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
 html, body {
   max-height: 100%;
 }
@@ -751,14 +743,31 @@ h5.h5, h5.h5 > a {
 #content .container .card {
   background-color: #444444;
   border: 1px solid #818181;
-  padding: 1rem 1rem 0.5rem 1rem;
+  padding: 1rem;
   margin-bottom: 1rem;
+}
+#content .container .card :last-child {
+  margin-bottom: 0;
 }
 #content .container .card p {
   margin-bottom: 1rem;
 }
 #content .container .card p:not(.info) {
   color: #ffffff;
+}
+
+.info {
+  color: #679452;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+.info a {
+  color: #679452;
+  text-decoration: underline;
+}
+.info a:hover {
+  color: #97d5f7;
 }
 
 @media screen and (min-width: 768px) {

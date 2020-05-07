@@ -12,7 +12,7 @@ from django.http import (
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 
 from .forms import AuthorForm, ArticleForm
-from .models import Article
+from .models import Author, Article
 from images.models import Image
 from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE
 
@@ -172,6 +172,24 @@ def delete(request, slug, article_id):
     messages.success(request, 'You have successfully deleted the article "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
     return redirect('users:index')
+
+def author(request, author_id):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    try:
+        author = get_object_or_404(Author, id=author_id)
+    except Http404:
+        messages.error(request, 'The specified author could not be found.')
+
+        return redirect('users:index')
+
+    return render(request, 'articles/author.html', {
+        'author': author,
+        'update_author_form': AuthorForm(instance=author),
+        'name': NAME,
+        'year': datetime.now(TZ).year,
+    })
 
 def create_author(request):
     if not request.user.is_superuser or request.method != 'POST':

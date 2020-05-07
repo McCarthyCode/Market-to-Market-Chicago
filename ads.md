@@ -118,3 +118,10 @@ Below is a listing of every ad space currently available on the site. Not all sp
 - Medium Rectangle 58
 - Medium Rectangle 59
 - Medium Rectangle 60
+
+## Author `/authors/<author-id>/`
+- Leaderboard/Large Mobile Banner 23
+- Medium Rectangle 61
+- Medium Rectangle 62
+- Medium Rectangle 63
+- Medium Rectangle 64

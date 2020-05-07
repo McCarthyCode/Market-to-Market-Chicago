@@ -603,19 +603,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     grid-column: 1/span 3;
   }
 }
-#content .container article .info, #content .container .article .info {
-  color: #679452;
-  font-size: 1rem;
-  font-style: italic;
-  margin-bottom: 1rem;
-}
-#content .container article .info a, #content .container .article .info a {
-  color: #679452;
-  text-decoration: underline;
-}
-#content .container article .info a:hover, #content .container .article .info a:hover {
-  color: #97d5f7;
-}
 #content .container article p:not(.info), #content .container .article p:not(.info) {
   text-align: justify;
   margin-bottom: 1rem;
