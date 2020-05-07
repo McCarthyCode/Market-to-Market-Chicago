@@ -2,18 +2,17 @@
 
 ## High Priorities
 
-- Ads
 - Mobile bug
-- gubrud -> info
-- Albums (hold off)
-  - Show on homepage option
-  - Add categories
+- Transitions
 - Articles
   - Author class
     - Profile Pic
     - Name
-  - Adjust line breaks
-- Transitions
+- Editorials & Opinions
+- gubrud -> info
+- Albums (hold off)
+  - Show on homepage option
+  - Add categories
 - Wait on Bill
   - About/Contact
     - Bio
@@ -98,4 +97,5 @@
 - Add optional location field to articles (ask Bill)
 - Consolidate duplicate entries
   - Neighborhood
+  - Location
   - Location
