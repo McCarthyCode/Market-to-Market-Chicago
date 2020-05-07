@@ -10,8 +10,8 @@ nav {
 }
 nav .navbar-brand {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
   color: #dcdcaa !important;
 }
 nav .navbar-brand:hover {
@@ -28,8 +28,8 @@ nav .social li {
 nav .social li a {
   padding: 0 0.25rem;
   color: #97d5f7;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
 }
 nav .social li a:hover {
   color: #ffffff;
@@ -38,8 +38,8 @@ nav #navbarMenuButton {
   border: none !important;
   color: #569cd6 !important;
   background-color: #1e1e1e;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
   cursor: pointer;
 }
 nav #navbarMenuButton:hover {
@@ -95,8 +95,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     padding: 0 0.5rem;
     vertical-align: middle;
     color: #569cd6 !important;
-    -webkit-transition: color 0.5s;
-    transition: color 0.5s;
+    -webkit-transition: color 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out;
   }
   nav #navbarCollapse ul .nav-item a.nav-link:hover {
     color: #ffffff !important;
@@ -420,8 +420,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #ffffff;
   background-color: #818181;
   margin-bottom: 0.5rem;
-  -webkit-transition: background-color 0.5s;
-  transition: background-color 0.5s;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
 }
 #createEventForm button:hover {
   background-color: #007bff;
@@ -457,8 +457,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   vertical-align: middle;
   text-align: center;
   background-color: #818181 !important;
-  -webkit-transition: background-color 0.25s;
-  transition: background-color 0.25s;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

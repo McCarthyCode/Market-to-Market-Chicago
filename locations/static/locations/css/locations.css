@@ -326,8 +326,8 @@ nav {
 }
 nav .navbar-brand {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
   color: #dcdcaa !important;
 }
 nav .navbar-brand:hover {
@@ -344,8 +344,8 @@ nav .social li {
 nav .social li a {
   padding: 0 0.25rem;
   color: #97d5f7;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
 }
 nav .social li a:hover {
   color: #ffffff;
@@ -354,8 +354,8 @@ nav #navbarMenuButton {
   border: none !important;
   color: #569cd6 !important;
   background-color: #1e1e1e;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
   cursor: pointer;
 }
 nav #navbarMenuButton:hover {
@@ -411,8 +411,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     padding: 0 0.5rem;
     vertical-align: middle;
     color: #569cd6 !important;
-    -webkit-transition: color 0.5s;
-    transition: color 0.5s;
+    -webkit-transition: color 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out;
   }
   nav #navbarCollapse ul .nav-item a.nav-link:hover {
     color: #ffffff !important;
@@ -439,8 +439,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   padding: 0.25rem 0;
   background-color: #444444;
   border-right: 0.25rem solid #444444;
-  -webkit-transition: border-right 0.5s;
-  transition: border-right 0.5s;
+  -webkit-transition: border-right 0.15s ease-in-out;
+  transition: border-right 0.15s ease-in-out;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
