@@ -8,10 +8,10 @@ from django.shortcuts import render, redirect
 from .models import Invite
 from events.models import Event
 
-from .forms import CreateInvitesForm, RegistrationForm
-from home.forms import CreatePersonForm
-from locations.forms import CreateLocationForm
-from articles.forms import CreateArticleForm
+from .forms import InvitesForm, RegistrationForm
+from home.forms import PersonForm
+from locations.forms import LocationForm
+from articles.forms import AuthorForm, ArticleForm
 
 from mtm.settings import NAME, TZ, MAX_INVITES
 
@@ -21,18 +21,19 @@ def index(request):
 
     if request.user.is_superuser:
         return render(request, 'users/index.html', {
-            'create_article_form': CreateArticleForm(),
-            'create_person_form': CreatePersonForm(),
-            'create_invites_form': CreateInvitesForm(),
+            'create_person_form': PersonForm(),
+            'create_author_form': AuthorForm(),
+            'create_article_form': ArticleForm(),
+            'create_invites_form': InvitesForm(),
             'invites': [x for x in Invite.objects.filter(sent=False).order_by('date_created') if not x.expired][:MAX_INVITES],
-            'create_location_form': CreateLocationForm(),
+            'create_location_form': LocationForm(),
             'user': request.user,
             'name': NAME,
             'year': datetime.now(TZ).year,
         })
 
     return render(request, 'users/index.html', {
-        'create_location_form': CreateLocationForm(),
+        'create_location_form': LocationForm(),
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
@@ -97,7 +98,7 @@ def create_invites(request):
     if request.method != 'POST' or not request.user.is_superuser:
         return HttpResponseBadRequest()
 
-    form = CreateInvitesForm(request.POST)
+    form = InvitesForm(request.POST)
 
     if form.is_valid():
         qty = form.cleaned_data['qty']

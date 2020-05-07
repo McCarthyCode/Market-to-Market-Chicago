@@ -9,7 +9,7 @@ from images.models import Album
 from .managers import EventManager, RecurringEventManager, RepeatInfoManager, WeekdayManager
 from mtm.settings import TZ
 
-class Event(NewsItem):
+class Event(TimestampedModel, NewsItem):
     name = models.CharField(max_length=255)
     slug = models.SlugField(default='', max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)

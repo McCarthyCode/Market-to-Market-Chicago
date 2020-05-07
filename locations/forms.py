@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Location, Neighborhood
 from mtm.settings import URL_REGEX, HTTP_HTTPS_REGEX, PHONE_REGEX
 
-class CreateLocationForm(forms.ModelForm):
+class LocationForm(forms.ModelForm):
     name = forms.CharField(
         label='',
         widget=forms.TextInput(attrs={

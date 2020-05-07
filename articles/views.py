@@ -11,7 +11,7 @@ from django.http import (
 )
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 
-from .forms import CreateArticleForm
+from .forms import AuthorForm, ArticleForm
 from .models import Article
 from images.models import Image
 from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE
@@ -37,7 +37,7 @@ def article(request, slug, article_id):
         'article': article,
         'images': images,
         'images_preview': images[:14] if images and len(images) > 15 else images,
-        'update_article_form': CreateArticleForm(instance=article),
+        'update_article_form': ArticleForm(instance=article),
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
@@ -87,7 +87,7 @@ def create(request):
 
         return redirect('users:index')
 
-    form = CreateArticleForm(request.POST)
+    form = ArticleForm(request.POST)
 
     if form.is_valid():
         try:
@@ -123,7 +123,7 @@ def update(request, slug, article_id):
         return redirect('users:index')
 
     article = get_object_or_404(Article, id=article_id)
-    form = CreateArticleForm(request.POST, instance=article)
+    form = ArticleForm(request.POST, instance=article)
 
     if form.is_valid():
         try:
@@ -172,3 +172,43 @@ def delete(request, slug, article_id):
     messages.success(request, 'You have successfully deleted the article "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
     return redirect('users:index')
+
+def create_author(request):
+    if not request.user.is_superuser or request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    form = AuthorForm(request.POST, request.FILES)
+
+    if form.is_valid():
+        author = form.save()
+
+        if 'image' in request.FILES:
+            author.image_ops()
+
+        author.save()
+
+        messages.success(request, 'You have successfully created an author.')
+
+        return redirect('users:index')
+
+    messages.error(request, 'There was an error creating an author.')
+
+    if request.user.is_superuser:
+        return render(request, 'users/index.html', {
+            'create_person_form': PersonForm(),
+            'create_author_form': AuthorForm(request.POST),
+            'create_article_form': ArticleForm(),
+            'create_invites_form': InvitesForm(),
+            'invites': [x for x in Invite.objects.filter(sent=False).order_by('date_created') if not x.expired][:MAX_INVITES],
+            'create_location_form': LocationForm(),
+            'user': request.user,
+            'name': NAME,
+            'year': datetime.now(TZ).year,
+        })
+
+    return render(request, 'users/index.html', {
+        'create_location_form': LocationForm(),
+        'user': request.user,
+        'name': NAME,
+        'year': datetime.now(TZ).year,
+    })

@@ -38,6 +38,9 @@ js_output_create_album="images/static/images/js/create_album.min.js"
 js_input_update_album="images/static/images/js/update_album.js"
 js_output_update_album="images/static/images/js/update_album.min.js"
 
+js_input_create_author="articles/static/articles/js/create_author.js"
+js_output_create_author="articles/static/articles/js/create_author.min.js"
+
 js_input_create_article="articles/static/articles/js/create_article.js"
 js_output_create_article="articles/static/articles/js/create_article.min.js"
 
@@ -60,6 +63,7 @@ declare -a commands=(
   # "java -jar $closure_compiler --js $js_input_update_location --js_output_file $js_output_update_location"
   # "java -jar $closure_compiler --js $js_input_create_album --js_output_file $js_output_create_album"
   # "java -jar $closure_compiler --js $js_input_update_album --js_output_file $js_output_update_album"
+  "java -jar $closure_compiler --js $js_input_create_author --js_output_file $js_output_create_author"
   # "java -jar $closure_compiler --js $js_input_create_article --js_output_file $js_output_create_article"
   # "java -jar $closure_compiler --js $js_input_update_article --js_output_file $js_output_update_article"
   # "java -jar $closure_compiler --js $js_input_article_autocomplete --js_output_file $js_output_article_autocomplete"

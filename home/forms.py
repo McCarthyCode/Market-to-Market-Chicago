@@ -1,11 +1,11 @@
 from django import forms
 from django.utils.translation import gettext as _
 
-from .models import Person
+from images.models import Person
 
 from mtm.settings import PHONE_REGEX
 
-class CreatePersonForm(forms.ModelForm):
+class PersonForm(forms.ModelForm):
     prefix = forms.CharField(
         required=False,
         label='',

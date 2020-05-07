@@ -17,7 +17,7 @@ from home.models import TimestampedModel, NewsItem
 from .managers import AlbumManager, ImageManager
 from mtm.settings import TZ, MEDIA_ROOT
 
-class Album(NewsItem):
+class Album(TimestampedModel, NewsItem):
     title = models.CharField(max_length=255)
     slug = models.SlugField(default='', max_length=255, null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -46,7 +46,7 @@ class Album(NewsItem):
 
         return latest_change
 
-class ThumbnailedImage(models.Model):
+class ThumbnailedImage(TimestampedModel):
     image = models.ImageField(default=None, upload_to='img/%Y/%m/%d/')
     _image_hash = models.BinaryField(editable=False, null=True, default=None, max_length=16)
     thumbnail = models.ImageField(editable=False, default=None, upload_to='img/%Y/%m/%d/')
@@ -171,7 +171,7 @@ class ThumbnailedImage(models.Model):
     class Meta:
         abstract = True
 
-class Image(TimestampedModel, ThumbnailedImage):
+class Image(ThumbnailedImage):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     objects = ImageManager()
 
@@ -186,3 +186,57 @@ class Image(TimestampedModel, ThumbnailedImage):
         self.album.save()
 
         super().delete(*args, **kwargs)
+
+class AbstractPerson(NewsItem, ThumbnailedImage):
+    prefix = models.CharField(blank=True, null=True, max_length=5)
+    first_name = models.CharField(max_length=35)
+    last_name = models.CharField(max_length=35)
+    suffix = models.CharField(blank=True, null=True, max_length=5)
+    bio = models.TextField()
+    phone = models.CharField(blank=True, null=True, max_length=10)
+    email = models.EmailField(blank=True, null=True)
+    website = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return self.full_name
+
+    def save(self, *args, **kwargs):
+        self.bio = re.sub(r'(\r\n){2,}', '\r\n', self.bio)
+
+        super().save(*args, **kwargs)
+
+    def render(self, request):
+        return render(request, 'home/person_home.html', {
+            'person': self,
+        })
+
+    @property
+    def full_name(self):
+        full_name = self.first_name + ' ' + self.last_name
+
+        if self.prefix:
+            full_name = self.prefix + ' ' + full_name
+
+        if self.suffix:
+            full_name = full_name + ' ' + self.suffix
+
+        return full_name
+
+    @property
+    def display_phone(self):
+        return '(%s) %s-%s' % \
+            (self.phone[0:3], self.phone[3:6], self.phone[6:10]) \
+            if self.phone else ''
+
+    class Meta:
+        abstract = True
+
+class Person(AbstractPerson):
+    image = models.ImageField(blank=True, null=True, default=None, upload_to='people/%Y/%m/%d/')
+    thumbnail = models.ImageField(editable=False, null=True, default=None, upload_to='people/%Y/%m/%d/')
+
+    def image_ops(self):
+        super().image_ops(relative_path=self.date_created.astimezone(TZ).strftime('people/%Y/%m/%d/'))
+
+    class Meta:
+        verbose_name_plural = 'people'

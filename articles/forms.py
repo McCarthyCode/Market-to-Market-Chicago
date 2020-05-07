@@ -1,10 +1,112 @@
 from django import forms
 from django.core.exceptions import PermissionDenied
 
-from .models import Article
+from .models import Author, Article
 from images.models import Album
+from mtm.settings import PHONE_REGEX
 
-class CreateArticleForm(forms.ModelForm):
+class AuthorForm(forms.ModelForm):
+    prefix = forms.CharField(
+        required=False,
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Prefix (optional, e.g. Dr., Mr., Ms., etc.)',
+            'autocomplete': 'off',
+            'maxlength': 5,
+        }),
+    )
+    first_name = forms.CharField(
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'First Name',
+            'autocomplete': 'off',
+            'maxlength': 35,
+        }),
+    )
+    last_name = forms.CharField(
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Last Name',
+            'autocomplete': 'off',
+            'maxlength': 35,
+        }),
+    )
+    suffix = forms.CharField(
+        required=False,
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Suffix (optional, e.g. Jr., IV, M.D., etc.)',
+            'autocomplete': 'off',
+            'maxlength': 5,
+        }),
+    )
+    image = forms.ImageField(
+        required=False,
+        label='Profile Image',
+        widget=forms.ClearableFileInput(attrs={
+            'class': 'col-12 col-md-8',
+            'autocomplete': 'off',
+        }),
+    )
+    bio = forms.CharField(
+        required=False,
+        label='',
+        widget=forms.Textarea(attrs={
+            'rows': 5,
+            'class': 'form-control',
+            'placeholder': 'Bio (optional)',
+            'autocomplete': 'off',
+        }),
+    )
+    phone = forms.CharField(
+        required=False,
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Phone (optional)',
+            'autocomplete': 'off',
+        }),
+    )
+    email = forms.EmailField(
+        required=False,
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Email (optional)',
+            'autocomplete': 'off',
+        }),
+    )
+    website = forms.CharField(
+        required=False,
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Website (optional)',
+            'autocomplete': 'off',
+        }),
+    )
+
+    def clean(self):
+        super().clean()
+        cleaned_data = self.cleaned_data
+
+        if cleaned_data['phone']:
+            cleaned_data['phone'] = PHONE_REGEX.sub(r'\2\3\4', cleaned_data['phone'])
+
+        return cleaned_data
+
+    class Meta:
+        model = Author
+        fields = [
+            'prefix', 'first_name', 'last_name', 'suffix',
+            'image', 'bio', 'phone', 'email', 'website',
+        ]
+
+class ArticleForm(forms.ModelForm):
     title = forms.CharField(
         label='',
         widget=forms.TextInput(attrs={

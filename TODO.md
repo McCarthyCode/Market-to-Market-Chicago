@@ -26,6 +26,8 @@
 
 ## Medium Priorities
 
+- Dashboard
+  - Consolidate expand/contract scripts
 - Events
   - Home page item
   - Delete RepeatInfo along with RecurringEvent

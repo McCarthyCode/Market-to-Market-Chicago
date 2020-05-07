@@ -1,0 +1,28 @@
+<form id="createAuthorForm" action="{% url 'articles:create-author' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ create_author_form.non_field_errors }}
+  {{ create_author_form.prefix.errors }}
+  {{ create_author_form.first_name.errors }}
+  {{ create_author_form.last_name.errors }}
+  {{ create_author_form.suffix.errors }}
+  <div class="name">
+    {{ create_author_form.prefix }}
+    {{ create_author_form.first_name }}
+    {{ create_author_form.last_name }}
+    {{ create_author_form.suffix }}
+  </div>
+  {{ create_author_form.image.errors }}
+  <div class="row">
+    <label class="col-12 col-md-4 form-control" for="{{ create_author_form.image.id_for_label }}">{{ create_author_form.image.label }}</label>
+    {{ create_author_form.image }}
+  </div>
+  {{ create_author_form.bio.errors }}
+  {{ create_author_form.bio }}
+  {{ create_author_form.phone.errors }}
+  {{ create_author_form.phone }}
+  {{ create_author_form.email.errors }}
+  {{ create_author_form.email }}
+  {{ create_author_form.website.errors }}
+  {{ create_author_form.website }}
+  <input class="btn btn-primary form-control" type="submit" value="Submit">
+</form>

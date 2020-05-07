@@ -6,10 +6,19 @@ from django.db import models
 from django.shortcuts import render
 
 from home.models import TimestampedModel, NewsItem
-from images.models import Album
+from images.models import Album, AbstractPerson
 from .managers import ArticleManager
+from mtm.settings import TZ
 
-class Article(NewsItem):
+class Author(AbstractPerson):
+    bio = models.TextField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True, default=None, upload_to='authors/%Y/%m/%d/')
+    thumbnail = models.ImageField(editable=False, null=True, default=None, upload_to='authors/%Y/%m/%d/')
+
+    def image_ops(self):
+        super().image_ops(relative_path=self.date_created.astimezone(TZ).strftime('authors/%Y/%m/%d/'))
+
+class Article(TimestampedModel, NewsItem):
     CATEGORY_CHOICES = [
         (0, 'Nightlife'),
         (1, 'Restaurants'),
@@ -24,7 +33,7 @@ class Article(NewsItem):
     body = models.TextField()
     album = models.ForeignKey(Album, null=True, blank=True, on_delete=models.CASCADE)
     category = models.PositiveSmallIntegerField(default=0, choices=CATEGORY_CHOICES)
-    author = models.CharField(max_length=127)
+    author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.CASCADE)
     objects = ArticleManager()
 
     def render(self, request):

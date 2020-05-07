@@ -12,16 +12,16 @@ from django.db.models import Q
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import NewsItem, Person
+from .models import NewsItem
 from users.models import Invite
 from articles.models import Article
-from images.models import Album, Image
+from images.models import Album, Image, Person
 from locations.models import Neighborhood, Location
 
-from .forms import CreatePersonForm
-from users.forms import CreateInvitesForm, RegistrationForm
-from locations.forms import CreateLocationForm
-from articles.forms import CreateArticleForm
+from .forms import PersonForm
+from users.forms import InvitesForm, RegistrationForm
+from locations.forms import LocationForm
+from articles.forms import AuthorForm, ArticleForm
 
 from mtm.settings import (
     TZ, NAME, ARTICLES_PER_PAGE, NEWS_ITEMS_PER_PAGE, MAX_INVITES,
@@ -103,10 +103,10 @@ def create_person(request):
     if not request.user.is_superuser or request.method != 'POST':
         return HttpResponseBadRequest()
 
-    form = CreatePersonForm(request.POST, request.FILES)
+    form = PersonForm(request.POST, request.FILES)
 
     if form.is_valid():
-        person = form.save()
+        person = form.save(commit=False)
         person.prefix = form.cleaned_data.get('prefix')
         person.first_name = form.cleaned_data.get('first_name')
         person.last_name = form.cleaned_data.get('last_name')
@@ -129,18 +129,19 @@ def create_person(request):
 
     if request.user.is_superuser:
         return render(request, 'users/index.html', {
-            'create_article_form': CreateArticleForm(),
-            'create_person_form': CreatePersonForm(request.POST),
-            'create_invites_form': CreateInvitesForm(),
+            'create_person_form': PersonForm(request.POST),
+            'create_author_form': AuthorForm(),
+            'create_article_form': ArticleForm(),
+            'create_invites_form': InvitesForm(),
             'invites': [x for x in Invite.objects.filter(sent=False).order_by('date_created') if not x.expired][:MAX_INVITES],
-            'create_location_form': CreateLocationForm(),
+            'create_location_form': LocationForm(),
             'user': request.user,
             'name': NAME,
             'year': datetime.now(TZ).year,
         })
 
     return render(request, 'users/index.html', {
-        'create_location_form': CreateLocationForm(),
+        'create_location_form': LocationForm(),
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
@@ -155,14 +156,14 @@ def update_person(request, person_id):
     if request.method == 'GET':
         return render(request, 'home/update_person.html', {
             'person': person,
-            'form': CreatePersonForm(instance=person),
+            'form': PersonForm(instance=person),
             'title': 'Update %s' % person.full_name,
             'user': request.user,
             'name': NAME,
             'year': datetime.now(TZ).year,
         })
     elif request.method == 'POST':
-        form = CreatePersonForm(request.POST, request.FILES, instance=person)
+        form = PersonForm(request.POST, request.FILES, instance=person)
 
         if form.is_valid():
             if 'image' in request.FILES or not person.image:
