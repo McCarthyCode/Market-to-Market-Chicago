@@ -232,8 +232,6 @@ def delete_person(request, person_id):
     person = get_object_or_404(Person, id=person_id)
 
     name = person.full_name
-    person.image.delete()
-    person.thumbnail.delete()
     person.delete()
 
     messages.success(request, 'You have successfully deleted %s.' % name)

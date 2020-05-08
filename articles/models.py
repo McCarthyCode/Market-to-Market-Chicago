@@ -6,17 +6,24 @@ from django.db import models
 from django.shortcuts import render
 
 from home.models import TimestampedModel, NewsItem
-from images.models import Album, AbstractPerson
+from images.models import Album, ThumbnailedImage, AbstractPerson
 from .managers import ArticleManager
 from mtm.settings import TZ
 
-class Author(AbstractPerson):
-    bio = models.TextField(blank=True, null=True)
+class AuthorImage(ThumbnailedImage):
     image = models.ImageField(blank=True, null=True, default=None, upload_to='authors/%Y/%m/%d/')
     thumbnail = models.ImageField(editable=False, null=True, default=None, upload_to='authors/%Y/%m/%d/')
 
     def image_ops(self):
         super().image_ops(relative_path=self.date_created.astimezone(TZ).strftime('authors/%Y/%m/%d/'))
+
+class Author(AbstractPerson):
+    profile_image = models.ForeignKey(AuthorImage, on_delete=models.CASCADE, blank=True, null=True, default=None)
+    bio = models.TextField(blank=True, null=True)
+
+    def delete(self):
+        self.profile_image.delete()
+        return super().delete()
 
 class Article(TimestampedModel, NewsItem):
     CATEGORY_CHOICES = [

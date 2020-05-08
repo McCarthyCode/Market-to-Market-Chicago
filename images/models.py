@@ -54,13 +54,15 @@ class ThumbnailedImage(TimestampedModel):
 
     @classmethod
     def create(cls, *args, **kwargs):
-        image = cls(**kwargs)
-        image.image_ops()
-
-        return image
+        return cls(*args, **kwargs)
 
     def __str__(self):
         return self.image.name
+
+    def delete(self):
+        self.image.delete()
+        self.thumbnail.delete()
+        return super().delete()
 
     def image_ops(
         self, relative_path=None, max_size=(960, 720), thumbnail_size=(400, 360),
@@ -187,7 +189,7 @@ class Image(ThumbnailedImage):
 
         super().delete(*args, **kwargs)
 
-class AbstractPerson(NewsItem, ThumbnailedImage):
+class AbstractPerson(TimestampedModel, NewsItem):
     prefix = models.CharField(blank=True, null=True, max_length=5)
     first_name = models.CharField(max_length=35)
     last_name = models.CharField(max_length=35)
@@ -231,12 +233,19 @@ class AbstractPerson(NewsItem, ThumbnailedImage):
     class Meta:
         abstract = True
 
-class Person(AbstractPerson):
+class PersonImage(ThumbnailedImage):
     image = models.ImageField(blank=True, null=True, default=None, upload_to='people/%Y/%m/%d/')
     thumbnail = models.ImageField(editable=False, null=True, default=None, upload_to='people/%Y/%m/%d/')
 
     def image_ops(self):
         super().image_ops(relative_path=self.date_created.astimezone(TZ).strftime('people/%Y/%m/%d/'))
+
+class Person(AbstractPerson):
+    profile_image = models.ForeignKey(PersonImage, on_delete=models.CASCADE, blank=True, null=True, default=None)
+
+    def delete(self):
+        self.profile_image.delete()
+        return super().delete()
 
     class Meta:
         verbose_name_plural = 'people'
