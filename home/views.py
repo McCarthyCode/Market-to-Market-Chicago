@@ -15,7 +15,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import NewsItem
 from users.models import Invite
 from articles.models import Article
-from images.models import Album, Image, Person
+from images.models import Album, Image, Person, PersonImage
 from locations.models import Neighborhood, Location
 
 from .forms import PersonForm
@@ -107,21 +107,18 @@ def create_person(request):
 
     if form.is_valid():
         person = form.save(commit=False)
-        person.prefix = form.cleaned_data.get('prefix')
-        person.first_name = form.cleaned_data.get('first_name')
-        person.last_name = form.cleaned_data.get('last_name')
-        person.suffix = form.cleaned_data.get('suffix')
-        person.bio = form.cleaned_data.get('bio')
-        person.phone = form.cleaned_data.get('phone')
-        person.email = form.cleaned_data.get('email')
-        person.website = form.cleaned_data.get('website')
 
         if 'image' in request.FILES:
-            person.image_ops()
+            profile_image = PersonImage.objects.create(image=request.FILES.get('image'))
+            profile_image.image_ops()
+            profile_image.save()
+            person.profile_image = profile_image
 
         person.save()
 
-        messages.success(request, 'You have successfully created a person to know.')
+        full_name = person.full_name
+        punctuation = full_name[-1]
+        messages.success(request, 'You have successfully created a person to know named "%s%s"' % (full_name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
         return redirect('users:index')
 
@@ -166,45 +163,44 @@ def update_person(request, person_id):
         form = PersonForm(request.POST, request.FILES, instance=person)
 
         if form.is_valid():
-            if 'image' in request.FILES or not person.image:
+            if 'image' in request.FILES and person.profile_image:
                 # only delete image if hash exists and image is not being used elsewhere
                 if not Person.objects.filter(
                     ~Q(id=person.id) & (
-                        Q(_image_hash=person._image_hash) |
-                        Q(_thumbnail_hash=person._image_hash)
+                        Q(profile_image___image_hash=person.profile_image._image_hash) |
+                        Q(profile_image___thumbnail_hash=person.profile_image._image_hash)
                     )
-                ) and person.image_hash:
-                    filename = '%s/people/%s.jpg' % (MEDIA_ROOT, person.image_hash)
+                ) and person.profile_image._image_hash:
+                    filename = '%s/people/%s/%s.jpg' % (MEDIA_ROOT, person.profile_image.date_created.astimezone(TZ).strftime('%Y/%m/%d'), person.profile_image.image_hash)
                     os.remove(filename)
 
                 # only delete thumbnail if hash exists and image is not being used elsewhere
                 if Person.objects.filter(
                     ~Q(id=person.id) & (
-                        Q(_image_hash=person._thumbnail_hash) |
-                        Q(_thumbnail_hash=person._thumbnail_hash)
+                        Q(profile_image___image_hash=person.profile_image._thumbnail_hash) |
+                        Q(profile_image___thumbnail_hash=person.profile_image._thumbnail_hash)
                     )
-                ) and person.thumbnail_hash:
-                    person.thumbnail = None
+                ) and person.profile_image.thumbnail_hash:
+                    person.profile_image.thumbnail = None
                 else:
-                    person.thumbnail.delete()
+                    person.profile_image.thumbnail.delete()
 
-                person._image_hash = None
-                person._thumbnail_hash = None
+                person.profile_image._image_hash = None
+                person.profile_image._thumbnail_hash = None
 
                 person.save()
 
             updated_person = form.save()
-            updated_person.prefix = form.cleaned_data.get('prefix')
-            updated_person.first_name = form.cleaned_data.get('first_name')
-            updated_person.last_name = form.cleaned_data.get('last_name')
-            updated_person.suffix = form.cleaned_data.get('suffix')
-            updated_person.bio = form.cleaned_data.get('bio')
-            updated_person.phone = form.cleaned_data.get('phone')
-            updated_person.email = form.cleaned_data.get('email')
-            updated_person.website = form.cleaned_data.get('website')
 
             if 'image' in request.FILES:
-                updated_person.image_ops()
+                profile_image = PersonImage.objects.create(image=request.FILES.get('image'))
+                profile_image.image_ops()
+                profile_image.save()
+                updated_person.profile_image = profile_image
+            elif form.cleaned_data.get('clear_image'):
+                updated_person.profile_image.delete()
+                updated_person.profile_image.save()
+                updated_person.profile_image = None
 
             updated_person.save()
 

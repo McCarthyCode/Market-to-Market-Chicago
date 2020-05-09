@@ -47,10 +47,14 @@ class PersonForm(forms.ModelForm):
     image = forms.ImageField(
         required=False,
         label='Profile Image',
-        widget=forms.ClearableFileInput(attrs={
+        widget=forms.FileInput(attrs={
             'class': 'col-12 col-md-8',
             'autocomplete': 'off',
         }),
+    )
+    clear_image = forms.BooleanField(
+        required=False,
+        label='Clear Existing Image',
     )
     bio = forms.CharField(
         label='',
@@ -102,5 +106,5 @@ class PersonForm(forms.ModelForm):
         model = Person
         fields = [
             'prefix', 'first_name', 'last_name', 'suffix',
-            'image', 'bio', 'phone', 'email', 'website',
+            'bio', 'phone', 'email', 'website',
         ]
