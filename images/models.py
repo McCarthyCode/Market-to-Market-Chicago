@@ -190,6 +190,7 @@ class Image(ThumbnailedImage):
         super().delete(*args, **kwargs)
 
 class AbstractPerson(TimestampedModel, NewsItem):
+    slug = models.SlugField(max_length=70)
     prefix = models.CharField(blank=True, null=True, max_length=5)
     first_name = models.CharField(max_length=35)
     last_name = models.CharField(max_length=35)
@@ -203,6 +204,7 @@ class AbstractPerson(TimestampedModel, NewsItem):
         return self.full_name
 
     def save(self, *args, **kwargs):
+        self.slug = slugify(self.full_name)
         self.bio = re.sub(r'(\r\n){2,}', '\r\n', self.bio)
 
         super().save(*args, **kwargs)
