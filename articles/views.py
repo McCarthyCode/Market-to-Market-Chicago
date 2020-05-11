@@ -321,3 +321,22 @@ def update_author(request, slug, author_id):
     return HttpResponseRedirect(
         reverse('articles:update-author', args=[slug, author_id])
     )
+
+def delete_author(request, slug, author_id):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    author = get_object_or_404(Author, id=author_id)
+    full_name = author.full_name
+
+    try:
+        author.delete()
+    except OSError:
+        messages.error(request, 'There was an issue deleting the specified author.')
+
+        return redirect('users:index')
+
+    punctuation = full_name[-1]
+    messages.success(request, 'You have successfully deleted the author named "%s%s"' % (full_name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
+
+    return redirect('users:index')
