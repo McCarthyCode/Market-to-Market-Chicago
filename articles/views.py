@@ -1,20 +1,24 @@
+import os
+
 from datetime import datetime
 
 from django.contrib import messages
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.core.paginator import Paginator, EmptyPage
+from django.db.models import Q
 from django.http import (
     Http404,
     HttpResponse,
     HttpResponseBadRequest,
+    HttpResponseForbidden,
     HttpResponseRedirect,
 )
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 
 from .forms import AuthorForm, ArticleForm
-from .models import Author, Article
+from .models import AuthorImage, Author, Article
 from images.models import Image
-from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE
+from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE, MEDIA_ROOT
 
 def article(request, slug, article_id):
     if request.method != 'GET':
@@ -118,9 +122,7 @@ def update(request, slug, article_id):
         return HttpResponseBadRequest()
 
     if not request.user.is_superuser:
-        messages.error(request, 'You do not have permission to update this article.')
-
-        return redirect('users:index')
+        return HttpResponseForbidden()
 
     article = get_object_or_404(Article, id=article_id)
     form = ArticleForm(request.POST, instance=article)
@@ -173,7 +175,7 @@ def delete(request, slug, article_id):
 
     return redirect('users:index')
 
-def author(request, author_id):
+def author(request, slug, author_id):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
@@ -183,6 +185,11 @@ def author(request, author_id):
         messages.error(request, 'The specified author could not be found.')
 
         return redirect('users:index')
+
+    if slug != author.slug:
+        return HttpResponseRedirect(
+            reverse('articles:author', args=[author.slug, author_id])
+        )
 
     return render(request, 'articles/author.html', {
         'author': author,
@@ -201,11 +208,16 @@ def create_author(request):
         author = form.save()
 
         if 'image' in request.FILES:
-            author.image_ops()
+            profile_image = AuthorImage.objects.create(image=request.FILES.get('image'))
+            profile_image.image_ops()
+            profile_image.save()
+            author.profile_image = profile_image
 
         author.save()
 
-        messages.success(request, 'You have successfully created an author.')
+        full_name = author.full_name
+        punctuation = full_name[-1]
+        messages.success(request, 'You have successfully created an author named "%s%s"' % (full_name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
         return redirect('users:index')
 
@@ -230,3 +242,82 @@ def create_author(request):
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
+
+def update_author(request, slug, author_id):
+    if not request.user.is_superuser:
+        return HttpResponseForbidden()
+
+    author = get_object_or_404(Author, id=author_id)
+
+    if request.method == 'GET':
+        return render(request, 'articles/update_author.html', {
+            'author': author,
+            'form': AuthorForm(instance=author),
+            'title': 'Update %s' % author.full_name,
+            'user': request.user,
+            'name': NAME,
+            'year': datetime.now(TZ).year,
+        })
+    elif request.method == 'POST':
+        form = AuthorForm(request.POST, request.FILES, instance=author)
+
+        if form.is_valid():
+            if 'image' in request.FILES and author.profile_image:
+                # only delete image if hash exists and image is not being used elsewhere
+                if not Author.objects.filter(
+                    ~Q(id=author.id) & (
+                        Q(profile_image___image_hash=author.profile_image._image_hash) |
+                        Q(profile_image___thumbnail_hash=author.profile_image._image_hash)
+                    )
+                ) and author.profile_image._image_hash:
+                    filename = '%s/authors/%s/%s.jpg' % (MEDIA_ROOT, author.profile_image.date_created.astimezone(TZ).strftime('%Y/%m/%d'), author.profile_image.image_hash)
+                    os.remove(filename)
+
+                # only delete thumbnail if hash exists and image is not being used elsewhere
+                if Author.objects.filter(
+                    ~Q(id=author.id) & (
+                        Q(profile_image___image_hash=author.profile_image._thumbnail_hash) |
+                        Q(profile_image___thumbnail_hash=author.profile_image._thumbnail_hash)
+                    )
+                ) and author.profile_image.thumbnail_hash:
+                    author.profile_image.thumbnail = None
+                else:
+                    author.profile_image.thumbnail.delete()
+
+                author.profile_image._image_hash = None
+                author.profile_image._thumbnail_hash = None
+
+                author.save()
+
+            updated_author = form.save()
+
+            if 'image' in request.FILES:
+                profile_image = AuthorImage.objects.create(image=request.FILES.get('image'))
+                profile_image.image_ops()
+                profile_image.save()
+                updated_author.profile_image = profile_image
+            elif form.cleaned_data.get('clear_image'):
+                updated_author.profile_image.delete()
+                updated_author.profile_image.save()
+                updated_author.profile_image = None
+
+            updated_author.save()
+
+            messages.success(request, 'You have successfully updated %s.' % author.full_name)
+        else:
+            messages.error(request, 'There was an error updating %s.' % author.full_name)
+
+            return render(request, 'home/update_author.html', {
+                'author': author,
+                'form': form,
+                'title': '',
+                'user': request.user,
+                'name': NAME,
+                'year': datetime.now(TZ).year,
+            })
+    else:
+        return HttpResponseBadRequest()
+
+    return HttpResponseRedirect(
+        reverse('articles:update-author', args=[slug, author_id])
+    )

@@ -2,7 +2,7 @@
   <h3 class="h3">{{ person.full_name }}</h3>
   <p class="info">Created on {{ person.date_created|date:"N j, Y." }}{% if person.updated_later %} <span class="text-nowrap">Updated {{ person.date_updated|date:"N j, Y." }}</span>{% endif %} <span class="text-nowrap">From <a href="{% url 'home:people-to-know' %}">People to Know</a>.</span></p>
   {% if person.profile_image.image and person.profile_image.thumbnail %}
-  <a class="thumbnail" style="max-width: {{ person.profile_image.thumbnail.width }}px;" data-fancybox="gallery" href="{{ person.profile_image.image.url }}">
+  <a class="profile-image" style="max-width: {{ person.profile_image.thumbnail.width }}px;" data-fancybox="gallery" href="{{ person.profile_image.image.url }}">
     <img src="{{ person.profile_image.thumbnail.url }}" alt="{{ person.full_name }}">
   </a>
   {% endif %}

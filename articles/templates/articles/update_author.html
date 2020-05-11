@@ -1,6 +1,6 @@
 {% extends 'home/base.html' %}{% load static %}{% block content %}
 {% include 'home/messages.html' %}
-<form id="updatePersonForm" class="card" action="{% url 'home:update-person' person.id %}" method="POST" enctype="multipart/form-data">
+<form id="updateAuthorForm" class="card" action="{% url 'articles:update-author' author.slug author.id %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form.non_field_errors }}
   {{ form.prefix.errors }}
@@ -18,7 +18,7 @@
     <label class="col-12 col-md-4 form-control" for="{{ form.image.id_for_label }}">{{ form.image.label }}</label>
     {{ form.image }}
   </div>
-  {% if person.profile_image %}
+  {% if author.profile_image %}
   {{ form.clear_image.errors }}
   <div class="checkbox">
     <div class="input-group input-group-checkbox" data-target-input="nearest">
@@ -32,7 +32,7 @@
   {{ form.bio.errors }}
   {{ form.bio }}
   {{ form.phone.errors }}
-  <input type="text" name="phone" value="{{ person.display_phone }}" class="form-control" autocomplete="off" id="id_phone" placeholder="Phone (optional)">
+  <input type="text" name="phone" value="{{ author.display_phone }}" class="form-control" autocomplete="off" id="id_phone" placeholder="Phone (optional)">
   {{ form.email.errors }}
   {{ form.email }}
   {{ form.website.errors }}

@@ -9,7 +9,11 @@ from django.contrib import messages
 from django.core.files import File
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import (
+    HttpResponse,
+    HttpResponseBadRequest,
+    HttpResponseForbidden,
+)
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import NewsItem
@@ -146,7 +150,7 @@ def create_person(request):
 
 def update_person(request, person_id):
     if not request.user.is_superuser:
-        return HttpResponseBadRequest()
+        return HttpResponseForbidden()
 
     person = get_object_or_404(Person, id=person_id)
 

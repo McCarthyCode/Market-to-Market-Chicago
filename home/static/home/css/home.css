@@ -617,41 +617,37 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #679452;
 }
 
-.person .info {
+.person .info, .author .info {
   color: #679452;
   font-size: 1rem;
   font-style: italic;
   margin-bottom: 0.5rem;
 }
-.person .info a {
+.person .info a, .author .info a {
   color: #679452;
   text-decoration: underline;
 }
-.person .info a:hover {
+.person .info a:hover, .author .info a:hover {
   color: #97d5f7;
 }
-.person a.thumbnail {
+.person a.profile-image, .author a.profile-image {
   margin: 0 auto 1rem auto;
 }
-.person a.thumbnail img {
+.person a.profile-image img, .author a.profile-image img {
   width: 100%;
 }
-.person p:not(.info) {
+.person p:not(.info), .author p:not(.info) {
   text-align: justify;
   margin-bottom: 1rem;
 }
-.person p:not(.info) br {
+.person p:not(.info) br, .author p:not(.info) br {
   margin-bottom: 1rem;
 }
-.person .actions {
+.person .actions, .author .actions {
   margin: 0 -0.25rem;
 }
-.person .actions > * {
+.person .actions > *, .author .actions > * {
   margin: 0 0.25rem;
-}
-
-#updatePersonForm {
-  padding-bottom: 0.5rem;
 }
 
 .album .info {

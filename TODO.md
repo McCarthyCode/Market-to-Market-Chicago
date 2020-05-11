@@ -26,6 +26,9 @@
 
 ## Medium Priorities
 
+- Change 'user' to request.user
+  - Views
+  - Templates
 - Dashboard
   - Consolidate expand/contract scripts
 - Events

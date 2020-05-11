@@ -52,6 +52,10 @@ class AuthorForm(forms.ModelForm):
             'autocomplete': 'off',
         }),
     )
+    clear_image = forms.BooleanField(
+        required=False,
+        label='Clear Existing Image',
+    )
     bio = forms.CharField(
         required=False,
         label='',
