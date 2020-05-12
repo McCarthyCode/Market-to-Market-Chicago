@@ -1,6 +1,6 @@
 #!/bin/bash
 
-closure_compiler="/opt/closure-compiler/closure-compiler-v20190929.jar"
+closure_compiler="bin/closure-compiler-v20200504.jar"
 
 js_input_global="home/static/home/js/global.js"
 js_output_global="home/static/home/js/global.min.js"
@@ -63,7 +63,7 @@ declare -a commands=(
   # "java -jar $closure_compiler --js $js_input_update_location --js_output_file $js_output_update_location"
   # "java -jar $closure_compiler --js $js_input_create_album --js_output_file $js_output_create_album"
   # "java -jar $closure_compiler --js $js_input_update_album --js_output_file $js_output_update_album"
-  "java -jar $closure_compiler --js $js_input_create_author --js_output_file $js_output_create_author"
+  # "java -jar $closure_compiler --js $js_input_create_author --js_output_file $js_output_create_author"
   # "java -jar $closure_compiler --js $js_input_create_article --js_output_file $js_output_create_article"
   # "java -jar $closure_compiler --js $js_input_update_article --js_output_file $js_output_update_article"
   # "java -jar $closure_compiler --js $js_input_article_autocomplete --js_output_file $js_output_article_autocomplete"
