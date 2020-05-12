@@ -153,6 +153,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #locationAutocomplete,
 #neighborhoodAutocomplete,
 #neighborhoodAutocompleteLocation,
+#authorAutocomplete,
 #albumAutocomplete,
 #albumAutocompleteEvent {
   position: relative;
@@ -161,6 +162,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #locationAutocomplete ul,
 #neighborhoodAutocomplete ul,
 #neighborhoodAutocompleteLocation ul,
+#authorAutocomplete ul,
 #albumAutocomplete ul,
 #albumAutocompleteEvent ul {
   position: absolute;
@@ -175,6 +177,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #locationAutocomplete ul li,
 #neighborhoodAutocomplete ul li,
 #neighborhoodAutocompleteLocation ul li,
+#authorAutocomplete ul li,
 #albumAutocomplete ul li,
 #albumAutocompleteEvent ul li {
   border-radius: 4px;
@@ -186,6 +189,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #neighborhoodAutocomplete ul li.active,
 #neighborhoodAutocompleteLocation ul li:hover,
 #neighborhoodAutocompleteLocation ul li.active,
+#authorAutocomplete ul li:hover,
+#authorAutocomplete ul li.active,
 #albumAutocomplete ul li:hover,
 #albumAutocomplete ul li.active,
 #albumAutocompleteEvent ul li:hover,

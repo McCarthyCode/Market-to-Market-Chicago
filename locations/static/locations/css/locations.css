@@ -81,6 +81,7 @@
 #locationAutocomplete,
 #neighborhoodAutocomplete,
 #neighborhoodAutocompleteLocation,
+#authorAutocomplete,
 #albumAutocomplete,
 #albumAutocompleteEvent {
   position: relative;
@@ -89,6 +90,7 @@
 #locationAutocomplete ul,
 #neighborhoodAutocomplete ul,
 #neighborhoodAutocompleteLocation ul,
+#authorAutocomplete ul,
 #albumAutocomplete ul,
 #albumAutocompleteEvent ul {
   position: absolute;
@@ -103,6 +105,7 @@
 #locationAutocomplete ul li,
 #neighborhoodAutocomplete ul li,
 #neighborhoodAutocompleteLocation ul li,
+#authorAutocomplete ul li,
 #albumAutocomplete ul li,
 #albumAutocompleteEvent ul li {
   border-radius: 4px;
@@ -114,6 +117,8 @@
 #neighborhoodAutocomplete ul li.active,
 #neighborhoodAutocompleteLocation ul li:hover,
 #neighborhoodAutocompleteLocation ul li.active,
+#authorAutocomplete ul li:hover,
+#authorAutocomplete ul li.active,
 #albumAutocomplete ul li:hover,
 #albumAutocomplete ul li.active,
 #albumAutocompleteEvent ul li:hover,
@@ -132,6 +137,15 @@
 }
 .container .card {
   color: #ffffff;
+}
+.container .card p {
+  margin-bottom: 1rem;
+}
+.container .card p:not(.info) {
+  color: #ffffff;
+}
+.container .card :last-child {
+  margin-bottom: 0;
 }
 .container .empty-card {
   color: #818181;

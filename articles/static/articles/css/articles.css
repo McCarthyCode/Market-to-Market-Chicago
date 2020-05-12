@@ -397,6 +397,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #locationAutocomplete,
 #neighborhoodAutocomplete,
 #neighborhoodAutocompleteLocation,
+#authorAutocomplete,
 #albumAutocomplete,
 #albumAutocompleteEvent {
   position: relative;
@@ -405,6 +406,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #locationAutocomplete ul,
 #neighborhoodAutocomplete ul,
 #neighborhoodAutocompleteLocation ul,
+#authorAutocomplete ul,
 #albumAutocomplete ul,
 #albumAutocompleteEvent ul {
   position: absolute;
@@ -419,6 +421,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #locationAutocomplete ul li,
 #neighborhoodAutocomplete ul li,
 #neighborhoodAutocompleteLocation ul li,
+#authorAutocomplete ul li,
 #albumAutocomplete ul li,
 #albumAutocompleteEvent ul li {
   border-radius: 4px;
@@ -430,6 +433,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #neighborhoodAutocomplete ul li.active,
 #neighborhoodAutocompleteLocation ul li:hover,
 #neighborhoodAutocompleteLocation ul li.active,
+#authorAutocomplete ul li:hover,
+#authorAutocomplete ul li.active,
 #albumAutocomplete ul li:hover,
 #albumAutocomplete ul li.active,
 #albumAutocompleteEvent ul li:hover,
@@ -448,6 +453,15 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 .container .card {
   color: #ffffff;
+}
+.container .card p {
+  margin-bottom: 1rem;
+}
+.container .card p:not(.info) {
+  color: #ffffff;
+}
+.container .card :last-child {
+  margin-bottom: 0;
 }
 .container .empty-card {
   color: #818181;
@@ -611,12 +625,21 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-bottom: 0;
 }
 
+#content .container article .info, #content .container .article .info {
+  color: #679452;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+#content .container article .info a, #content .container .article .info a {
+  color: #679452;
+  text-decoration: underline;
+}
+#content .container article .info a:hover, #content .container .article .info a:hover {
+  color: #97d5f7;
+}
 #content .container article p:not(.info), #content .container .article p:not(.info) {
   text-align: justify;
-  margin-bottom: 1rem;
-}
-#content .container article p:not(.info):last-of-type, #content .container .article p:not(.info):last-of-type {
-  margin-bottom: 0.5rem;
 }
 #content .container article.category h5.h5 > a {
   color: #dcdcaa;

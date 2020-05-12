@@ -4,17 +4,19 @@
   {{ hidden }}
   {% endfor %}
   {% for field in create_article_form.visible_fields %}
-  {% if field.id_for_label != 'id_category' %}
+  {% if field.id_for_label == 'id_author' %}
   {{ field }}
-  {% endif %}
-  {% if field.id_for_label == 'id_album' %}
+  <div id="authorAutocomplete"></div>
+  {% elif field.id_for_label == 'id_album' %}
+  {{ field }}
   <div id="albumAutocomplete"></div>
-  {% endif %}
-  {% if field.id_for_label == 'id_category' %}
+  {% elif field.id_for_label == 'id_category' %}
   <div class="row">
     <label id="categoryLabel" class="form-control col-12 col-md-6" for="id_category">{{ field.label }}</label>
     {{ field }}
   </div>
+  {% else %}
+  {{ field }}
   {% endif %}
   {% endfor %}
   <input class="btn btn-primary form-control" type="submit" value="Submit">

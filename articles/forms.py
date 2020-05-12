@@ -123,6 +123,14 @@ class ArticleForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Author',
+            'autocomplete': 'off',
+        }),
+    )
+    author_id = forms.CharField(
+        required=False,
+        label='',
+        widget=forms.HiddenInput(attrs={
+            'autocomplete': 'off',
         }),
     )
     body = forms.CharField(
@@ -159,6 +167,26 @@ class ArticleForm(forms.ModelForm):
     def clean(self):
         super().clean()
         cleaned_data = self.cleaned_data
+
+        if 'author_id' not in cleaned_data:
+            cleaned_data['author'] = None
+        elif cleaned_data['author_id'] == '':
+            cleaned_data['author'] = None
+
+            del cleaned_data['author_id']
+        else:
+            author_id = int(cleaned_data['author_id'])
+            if author_id == 0:
+                cleaned_data['author'] = None
+            else:
+                try:
+                    author = Author.objects.get(id=author_id)
+                except Author.DoesNotExist:
+                    raise forms.ValidationError('The specified author could not be found.')
+
+                cleaned_data['author'] = author
+
+            del cleaned_data['author_id']
 
         if 'album_id' not in cleaned_data:
             cleaned_data['album'] = None

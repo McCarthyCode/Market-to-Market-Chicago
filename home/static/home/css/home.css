@@ -89,6 +89,15 @@
 .container .card {
   color: #ffffff;
 }
+.container .card p {
+  margin-bottom: 1rem;
+}
+.container .card p:not(.info) {
+  color: #ffffff;
+}
+.container .card :last-child {
+  margin-bottom: 0;
+}
 .container .empty-card {
   color: #818181;
   font-style: italic;
@@ -603,12 +612,21 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     grid-column: 1/span 3;
   }
 }
+#content .container article .info, #content .container .article .info {
+  color: #679452;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+#content .container article .info a, #content .container .article .info a {
+  color: #679452;
+  text-decoration: underline;
+}
+#content .container article .info a:hover, #content .container .article .info a:hover {
+  color: #97d5f7;
+}
 #content .container article p:not(.info), #content .container .article p:not(.info) {
   text-align: justify;
-  margin-bottom: 1rem;
-}
-#content .container article p:not(.info):last-of-type, #content .container .article p:not(.info):last-of-type {
-  margin-bottom: 0.5rem;
 }
 #content .container article.category h5.h5 > a {
   color: #dcdcaa;
@@ -777,10 +795,6 @@ h3.h3, h3.h3 > a {
 
 h5.h5, h5.h5 > a {
   color: #679452;
-}
-
-.card > :last-child:not(.info) {
-  margin-bottom: 0;
 }
 
 ul.bulleted {

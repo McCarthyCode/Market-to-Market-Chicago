@@ -8,4 +8,7 @@
 {% for album in albums %}
   <li data-id="{{ album.id }}">{{ album.title }}</li>
 {% endfor %}
+{% for author in authors %}
+  <li data-id="{{ author.id }}">{{ author.full_name }}</li>
+{% endfor %}
 </ul>

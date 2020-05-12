@@ -24,12 +24,7 @@ def article(request, slug, article_id):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    try:
-        article = Article.objects.get(id=article_id)
-    except Article.DoesNotExist:
-        messages.error(request, 'The specified article could not be found.')
-
-        return redirect('users:index')
+    article = get_object_or_404(Article, id=article_id)
 
     if slug != article.slug:
         return HttpResponseRedirect(
@@ -179,12 +174,7 @@ def author(request, slug, author_id):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    try:
-        author = get_object_or_404(Author, id=author_id)
-    except Http404:
-        messages.error(request, 'The specified author could not be found.')
-
-        return redirect('users:index')
+    author = get_object_or_404(Author, id=author_id)
 
     if slug != author.slug:
         return HttpResponseRedirect(
@@ -340,3 +330,16 @@ def delete_author(request, slug, author_id):
     messages.success(request, 'You have successfully deleted the author named "%s%s"' % (full_name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
     return redirect('users:index')
+
+def author_autocomplete(request):
+    query = request.GET.get('q', '')
+    authors = []
+
+    if query == '' or not request.user.is_superuser:
+        return render(request, 'home/autocomplete.html', {'authors': []})
+
+    return render(request, 'home/autocomplete.html', {
+        'authors': Author.objects.filter(
+            Q(first_name__icontains=query) | Q(last_name__icontains=query)
+        ).order_by('last_name')[:5],
+    })
