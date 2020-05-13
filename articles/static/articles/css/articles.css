@@ -144,8 +144,8 @@ nav {
 }
 nav .navbar-brand {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
   color: #dcdcaa !important;
 }
 nav .navbar-brand:hover {
@@ -162,8 +162,8 @@ nav .social li {
 nav .social li a {
   padding: 0 0.25rem;
   color: #97d5f7;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
 }
 nav .social li a:hover {
   color: #ffffff;
@@ -172,8 +172,8 @@ nav #navbarMenuButton {
   border: none !important;
   color: #569cd6 !important;
   background-color: #1e1e1e;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
   cursor: pointer;
 }
 nav #navbarMenuButton:hover {
@@ -229,8 +229,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     padding: 0 0.5rem;
     vertical-align: middle;
     color: #569cd6 !important;
-    -webkit-transition: color 0.5s;
-    transition: color 0.5s;
+    -webkit-transition: color 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out;
   }
   nav #navbarCollapse ul .nav-item a.nav-link:hover {
     color: #ffffff !important;
@@ -257,8 +257,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   padding: 0.25rem 0;
   background-color: #444444;
   border-right: 0.25rem solid #444444;
-  -webkit-transition: border-right 0.5s;
-  transition: border-right 0.5s;
+  -webkit-transition: border-right 0.15s ease-in-out;
+  transition: border-right 0.15s ease-in-out;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -397,6 +397,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #locationAutocomplete,
 #neighborhoodAutocomplete,
 #neighborhoodAutocompleteLocation,
+#authorAutocomplete,
 #albumAutocomplete,
 #albumAutocompleteEvent {
   position: relative;
@@ -405,6 +406,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #locationAutocomplete ul,
 #neighborhoodAutocomplete ul,
 #neighborhoodAutocompleteLocation ul,
+#authorAutocomplete ul,
 #albumAutocomplete ul,
 #albumAutocompleteEvent ul {
   position: absolute;
@@ -419,6 +421,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #locationAutocomplete ul li,
 #neighborhoodAutocomplete ul li,
 #neighborhoodAutocompleteLocation ul li,
+#authorAutocomplete ul li,
 #albumAutocomplete ul li,
 #albumAutocompleteEvent ul li {
   border-radius: 4px;
@@ -430,6 +433,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #neighborhoodAutocomplete ul li.active,
 #neighborhoodAutocompleteLocation ul li:hover,
 #neighborhoodAutocompleteLocation ul li.active,
+#authorAutocomplete ul li:hover,
+#authorAutocomplete ul li.active,
 #albumAutocomplete ul li:hover,
 #albumAutocomplete ul li.active,
 #albumAutocompleteEvent ul li:hover,
@@ -448,6 +453,15 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 .container .card {
   color: #ffffff;
+}
+.container .card p {
+  margin-bottom: 1rem;
+}
+.container .card p:not(.info) {
+  color: #ffffff;
+}
+.container .card > :last-child {
+  margin-bottom: 0 !important;
 }
 .container .empty-card {
   color: #818181;
@@ -615,7 +629,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #679452;
   font-size: 1rem;
   font-style: italic;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 #content .container article .info a, #content .container .article .info a {
   color: #679452;
@@ -624,12 +638,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container article .info a:hover, #content .container .article .info a:hover {
   color: #97d5f7;
 }
+#content .container article a.profile-image, #content .container .article a.profile-image {
+  margin: 0 auto 1rem auto;
+}
 #content .container article p:not(.info), #content .container .article p:not(.info) {
   text-align: justify;
-  margin-bottom: 1rem;
-}
-#content .container article p:not(.info):last-of-type, #content .container .article p:not(.info):last-of-type {
-  margin-bottom: 0.5rem;
 }
 #content .container article.category h5.h5 > a {
   color: #dcdcaa;
@@ -681,6 +694,39 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     border-bottom-left-radius: 0;
   }
 }
+.person .info, .author .info {
+  color: #679452;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+.person .info a, .author .info a {
+  color: #679452;
+  text-decoration: underline;
+}
+.person .info a:hover, .author .info a:hover {
+  color: #97d5f7;
+}
+.person a.profile-image, .author a.profile-image {
+  margin: 0 auto 1rem auto;
+}
+.person a.profile-image img, .author a.profile-image img {
+  width: 100%;
+}
+.person p:not(.info), .author p:not(.info) {
+  text-align: justify;
+  margin-bottom: 1rem;
+}
+.person p:not(.info) br, .author p:not(.info) br {
+  margin-bottom: 1rem;
+}
+.person .actions, .author .actions {
+  margin: 0 -0.25rem;
+}
+.person .actions > *, .author .actions > * {
+  margin: 0 0.25rem;
+}
+
 html, body {
   max-height: 100%;
 }
@@ -751,8 +797,11 @@ h5.h5, h5.h5 > a {
 #content .container .card {
   background-color: #444444;
   border: 1px solid #818181;
-  padding: 1rem 1rem 0.5rem 1rem;
+  padding: 1rem;
   margin-bottom: 1rem;
+}
+#content .container .card :last-child {
+  margin-bottom: 0;
 }
 #content .container .card p {
   margin-bottom: 1rem;

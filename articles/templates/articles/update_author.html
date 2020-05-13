@@ -1,0 +1,42 @@
+{% extends 'home/base.html' %}{% load static %}{% block content %}
+{% include 'home/messages.html' %}
+<form id="updateAuthorForm" class="card" action="{% url 'articles:update-author' author.slug author.id %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {{ form.prefix.errors }}
+  {{ form.first_name.errors }}
+  {{ form.last_name.errors }}
+  {{ form.suffix.errors }}
+  <div class="name">
+    {{ form.prefix }}
+    {{ form.first_name }}
+    {{ form.last_name }}
+    {{ form.suffix }}
+  </div>
+  {{ form.image.errors }}
+  <div class="row">
+    <label class="col-12 col-md-4 form-control" for="{{ form.image.id_for_label }}">{{ form.image.label }}</label>
+    {{ form.image }}
+  </div>
+  {% if author.profile_image %}
+  {{ form.clear_image.errors }}
+  <div class="checkbox">
+    <div class="input-group input-group-checkbox" data-target-input="nearest">
+      <label class="form-control" for="{{ form.clear_image.id_for_label }}">{{ form.clear_image.label }}</label>
+      <div class="input-group-append">
+        {{ form.clear_image }}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {{ form.bio.errors }}
+  {{ form.bio }}
+  {{ form.phone.errors }}
+  <input type="text" name="phone" value="{{ author.display_phone }}" class="form-control" autocomplete="off" id="id_phone" placeholder="Phone (optional)">
+  {{ form.email.errors }}
+  {{ form.email }}
+  {{ form.website.errors }}
+  {{ form.website }}
+  <input class="btn btn-primary form-control" type="submit" value="Update">
+</form>
+{% endblock %}

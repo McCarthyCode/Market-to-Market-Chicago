@@ -1,11 +1,11 @@
 from django import forms
 from django.utils.translation import gettext as _
 
-from .models import Person
+from images.models import Person
 
 from mtm.settings import PHONE_REGEX
 
-class CreatePersonForm(forms.ModelForm):
+class PersonForm(forms.ModelForm):
     prefix = forms.CharField(
         required=False,
         label='',
@@ -47,10 +47,14 @@ class CreatePersonForm(forms.ModelForm):
     image = forms.ImageField(
         required=False,
         label='Profile Image',
-        widget=forms.ClearableFileInput(attrs={
+        widget=forms.FileInput(attrs={
             'class': 'col-12 col-md-8',
             'autocomplete': 'off',
         }),
+    )
+    clear_image = forms.BooleanField(
+        required=False,
+        label='Clear Existing Image',
     )
     bio = forms.CharField(
         label='',
@@ -102,5 +106,5 @@ class CreatePersonForm(forms.ModelForm):
         model = Person
         fields = [
             'prefix', 'first_name', 'last_name', 'suffix',
-            'image', 'bio', 'phone', 'email', 'website',
+            'bio', 'phone', 'email', 'website',
         ]

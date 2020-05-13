@@ -19,6 +19,8 @@
 @import '_article_album'
 @import '_create_update_article'
 
+@import '_author'
+
 html, body
   max-height: 100%
 
@@ -82,8 +84,11 @@ h5.h5, h5.h5 > a
 #content .container .card
   background-color: $mid-gray
   border: 1px solid $light-gray
-  padding: 1rem 1rem .5rem 1rem
+  padding: 1rem
   margin-bottom: 1rem
+
+  :last-child
+    margin-bottom: 0
 
   p
     margin-bottom: 1rem

@@ -8,7 +8,7 @@ from .validators import validate_password
 from .models import Invite
 from mtm.settings import MAX_INVITES
 
-class CreateInvitesForm(forms.Form):
+class InvitesForm(forms.Form):
     qty = forms.IntegerField(
         label='Number of Invites',
         validators=[

@@ -1,0 +1,47 @@
+{% extends 'articles/base.html' %}
+
+{% block large_mobile_banner1 %}
+{# include 'home/ads/large_mobile_banner23.html' #}
+{% endblock %}
+
+{% block leaderboard1 %}
+{# include 'home/ads/leaderboard23.html' #}
+{% endblock %}
+
+{% block medium_rectangle1a %}
+{# include 'home/ads/medium_rectangle61a.html' #}
+{% endblock %}
+
+{% block medium_rectangle1b %}
+{# include 'home/ads/medium_rectangle61b.html' #}
+{% endblock %}
+
+{% block title %}{{ author.full_name }}{% endblock %}
+
+{% block content %}
+<div class="card author">
+  <p class="info">Created on {{ author.date_created|date:"N j, Y." }}{% if author.updated_later %} <span class="text-nowrap">Updated {{ author.date_updated|date:"N j, Y." }}</span>{% endif %}</p>
+  {% if author.profile_image %}
+  <a class="profile-image" data-fancybox="gallery" href="{{ author.profile_image.image.url }}">
+    <img src="{{ author.profile_image.thumbnail.url }}">
+  </a>
+  {% endif %}
+  {% if request.user.is_superuser %}
+  <h3 class="h3">Actions</h3>
+  <div class="row actions">
+    <a href="{% url 'articles:update-author' author.slug author.id %}" class="btn btn-secondary">Update</a>
+    <button id="deleteAuthorButton" class="btn btn-danger" data-toggle="modal" data-target="#deleteAuthorModal">Delete</button>
+  </div>
+  {% include 'articles/delete_author_modal.html' %}
+  {% endif %}
+</div>
+{% if author.bio %}
+<h3 class="h3">Bio</h3>
+<div class="card">{{ author.bio|linebreaks }}</div>
+{% endif %}
+{# if articles #}
+<!-- <h3 class="h3">Articles</h3> -->
+{# for article in articles #}
+{# endfor #}
+{# endif #}
+{% endblock %}

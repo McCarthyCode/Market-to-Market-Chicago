@@ -14,7 +14,7 @@ from django.urls import reverse
 from mtm.settings import TZ, NAME, GOOGLE_MAPS_API_KEY
 from .models import Neighborhood, Location, CATEGORIES
 from events.models import Event, RecurringEvent
-from .forms import CreateLocationForm
+from .forms import LocationForm
 
 def neighborhood_autocomplete(request):
     if request.method != 'GET':
@@ -79,7 +79,7 @@ def location(request, category_slug, location_slug, location_id):
     return render(request, 'locations/location.html', {
         **response,
         'title': name,
-        'update_location_form': CreateLocationForm(instance=location),
+        'update_location_form': LocationForm(instance=location),
         'user': request.user,
         'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
         'name': NAME,
@@ -90,7 +90,7 @@ def create_location(request):
     if request.method != 'POST':
         return HttpResponseBadRequest()
 
-    form = CreateLocationForm(request.POST)
+    form = LocationForm(request.POST)
 
     if form.is_valid():
         try:
@@ -117,7 +117,7 @@ def update_location(request, category_slug, location_slug, location_id):
 
     location = get_object_or_404(Location, pk=location_id)
 
-    form = CreateLocationForm(request.POST)
+    form = LocationForm(request.POST)
     if form.is_valid():
         location.name = form.cleaned_data['name']
         location.category = form.cleaned_data['category']

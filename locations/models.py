@@ -28,7 +28,7 @@ class Neighborhood(TimestampedModel):
     def __str__(self):
         return self.name
 
-class Location(NewsItem):
+class Location(TimestampedModel, NewsItem):
     CATEGORY_CHOICES = [
         (0, 'Nightlife'),
         (1, 'Restaurants'),

@@ -2,18 +2,17 @@
 
 ## High Priorities
 
-- Ads
 - Mobile bug
-- gubrud -> info
-- Albums (hold off)
-  - Show on homepage option
-  - Add categories
+- Transitions
 - Articles
   - Author class
     - Profile Pic
     - Name
-  - Adjust line breaks
-- Transitions
+- Editorials & Opinions
+- gubrud -> info
+- Albums (hold off)
+  - Show on homepage option
+  - Add categories
 - Wait on Bill
   - About/Contact
     - Bio
@@ -27,6 +26,11 @@
 
 ## Medium Priorities
 
+- Change 'user' to request.user
+  - Views
+  - Templates
+- Dashboard
+  - Consolidate expand/contract scripts
 - Events
   - Home page item
   - Delete RepeatInfo along with RecurringEvent
@@ -98,4 +102,5 @@
 - Add optional location field to articles (ask Bill)
 - Consolidate duplicate entries
   - Neighborhood
+  - Location
   - Location

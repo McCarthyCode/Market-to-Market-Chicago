@@ -34,6 +34,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     '10.0.0.100',
+    '10.0.0.127',
     '67.205.139.60',
     'mtmchicago.com',
     'www.mtmchicago.com',

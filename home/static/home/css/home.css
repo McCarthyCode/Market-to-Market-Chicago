@@ -89,6 +89,15 @@
 .container .card {
   color: #ffffff;
 }
+.container .card p {
+  margin-bottom: 1rem;
+}
+.container .card p:not(.info) {
+  color: #ffffff;
+}
+.container .card > :last-child {
+  margin-bottom: 0 !important;
+}
 .container .empty-card {
   color: #818181;
   font-style: italic;
@@ -338,8 +347,8 @@ nav {
 }
 nav .navbar-brand {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
   color: #dcdcaa !important;
 }
 nav .navbar-brand:hover {
@@ -356,8 +365,8 @@ nav .social li {
 nav .social li a {
   padding: 0 0.25rem;
   color: #97d5f7;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
 }
 nav .social li a:hover {
   color: #ffffff;
@@ -366,8 +375,8 @@ nav #navbarMenuButton {
   border: none !important;
   color: #569cd6 !important;
   background-color: #1e1e1e;
-  -webkit-transition: color 0.5s;
-  transition: color 0.5s;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
   cursor: pointer;
 }
 nav #navbarMenuButton:hover {
@@ -423,8 +432,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     padding: 0 0.5rem;
     vertical-align: middle;
     color: #569cd6 !important;
-    -webkit-transition: color 0.5s;
-    transition: color 0.5s;
+    -webkit-transition: color 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out;
   }
   nav #navbarCollapse ul .nav-item a.nav-link:hover {
     color: #ffffff !important;
@@ -451,8 +460,8 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   padding: 0.25rem 0;
   background-color: #444444;
   border-right: 0.25rem solid #444444;
-  -webkit-transition: border-right 0.5s;
-  transition: border-right 0.5s;
+  -webkit-transition: border-right 0.15s ease-in-out;
+  transition: border-right 0.15s ease-in-out;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -607,7 +616,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #679452;
   font-size: 1rem;
   font-style: italic;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 #content .container article .info a, #content .container .article .info a {
   color: #679452;
@@ -616,12 +625,11 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .container article .info a:hover, #content .container .article .info a:hover {
   color: #97d5f7;
 }
+#content .container article a.profile-image, #content .container .article a.profile-image {
+  margin: 0 auto 1rem auto;
+}
 #content .container article p:not(.info), #content .container .article p:not(.info) {
   text-align: justify;
-  margin-bottom: 1rem;
-}
-#content .container article p:not(.info):last-of-type, #content .container .article p:not(.info):last-of-type {
-  margin-bottom: 0.5rem;
 }
 #content .container article.category h5.h5 > a {
   color: #dcdcaa;
@@ -630,41 +638,37 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #679452;
 }
 
-.person .info {
+.person .info, .author .info {
   color: #679452;
   font-size: 1rem;
   font-style: italic;
   margin-bottom: 0.5rem;
 }
-.person .info a {
+.person .info a, .author .info a {
   color: #679452;
   text-decoration: underline;
 }
-.person .info a:hover {
+.person .info a:hover, .author .info a:hover {
   color: #97d5f7;
 }
-.person a.thumbnail {
+.person a.profile-image, .author a.profile-image {
   margin: 0 auto 1rem auto;
 }
-.person a.thumbnail img {
+.person a.profile-image img, .author a.profile-image img {
   width: 100%;
 }
-.person p:not(.info) {
+.person p:not(.info), .author p:not(.info) {
   text-align: justify;
   margin-bottom: 1rem;
 }
-.person p:not(.info) br {
+.person p:not(.info) br, .author p:not(.info) br {
   margin-bottom: 1rem;
 }
-.person .actions {
+.person .actions, .author .actions {
   margin: 0 -0.25rem;
 }
-.person .actions > * {
+.person .actions > *, .author .actions > * {
   margin: 0 0.25rem;
-}
-
-#updatePersonForm {
-  padding-bottom: 0.5rem;
 }
 
 .album .info {
@@ -794,10 +798,6 @@ h3.h3, h3.h3 > a {
 
 h5.h5, h5.h5 > a {
   color: #679452;
-}
-
-.card > :last-child:not(.info) {
-  margin-bottom: 0;
 }
 
 ul.bulleted {
