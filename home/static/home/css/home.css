@@ -95,8 +95,8 @@
 .container .card p:not(.info) {
   color: #ffffff;
 }
-.container .card :last-child {
-  margin-bottom: 0;
+.container .card > :last-child {
+  margin-bottom: 0 !important;
 }
 .container .empty-card {
   color: #818181;
@@ -624,6 +624,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 #content .container article .info a:hover, #content .container .article .info a:hover {
   color: #97d5f7;
+}
+#content .container article a.profile-image, #content .container .article a.profile-image {
+  margin: 0 auto 1rem auto;
 }
 #content .container article p:not(.info), #content .container .article p:not(.info) {
   text-align: justify;

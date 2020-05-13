@@ -207,8 +207,8 @@
 .container .card p:not(.info) {
   color: #ffffff;
 }
-.container .card :last-child {
-  margin-bottom: 0;
+.container .card > :last-child {
+  margin-bottom: 0 !important;
 }
 .container .empty-card {
   color: #818181;
