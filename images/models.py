@@ -240,10 +240,10 @@ class PersonImage(ThumbnailedImage):
     thumbnail = models.ImageField(editable=False, null=True, default=None, upload_to='people/%Y/%m/%d/')
 
     def image_ops(self):
-        super().image_ops(relative_path=self.date_created.astimezone(TZ).strftime('people/%Y/%m/%d/'))
+        super().image_ops(relative_path=self.date_created.astimezone(TZ).strftime('people/%Y/%m/%d/'), thumbnail_size=(200, 180))
 
 class Person(AbstractPerson):
-    profile_image = models.ForeignKey(PersonImage, on_delete=models.CASCADE, blank=True, null=True, default=None)
+    profile_image = models.ForeignKey(PersonImage, on_delete=models.SET_NULL, blank=True, null=True, default=None)
 
     def delete(self):
         self.profile_image.delete()

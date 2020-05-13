@@ -16,8 +16,8 @@ class Event(TimestampedModel, NewsItem):
     all_day = models.BooleanField(default=False)
     date_start = models.DateTimeField()
     date_end = models.DateTimeField(null=True, blank=True)
-    location = models.ForeignKey(Location, null=True, blank=True, on_delete=models.CASCADE)
-    album = models.ForeignKey(Album, null=True, blank=True, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, null=True, blank=True, on_delete=models.SET_NULL)
+    album = models.ForeignKey(Album, null=True, blank=True, on_delete=models.SET_NULL)
     objects = EventManager()
 
     def save(self, *args, **kwargs):

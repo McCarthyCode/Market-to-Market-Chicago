@@ -15,10 +15,10 @@ class AuthorImage(ThumbnailedImage):
     thumbnail = models.ImageField(editable=False, null=True, default=None, upload_to='authors/%Y/%m/%d/')
 
     def image_ops(self):
-        super().image_ops(relative_path=self.date_created.astimezone(TZ).strftime('authors/%Y/%m/%d/'))
+        super().image_ops(relative_path=self.date_created.astimezone(TZ).strftime('authors/%Y/%m/%d/'), thumbnail_size=(200, 180))
 
 class Author(AbstractPerson):
-    profile_image = models.ForeignKey(AuthorImage, on_delete=models.CASCADE, blank=True, null=True, default=None)
+    profile_image = models.ForeignKey(AuthorImage, on_delete=models.SET_NULL, blank=True, null=True, default=None)
     bio = models.TextField(blank=True, null=True)
 
     def delete(self):
@@ -38,9 +38,9 @@ class Article(TimestampedModel, NewsItem):
     title = models.CharField(max_length=255)
     slug = models.SlugField(default='', max_length=255, null=True, blank=True)
     body = models.TextField()
-    album = models.ForeignKey(Album, null=True, blank=True, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, null=True, blank=True, on_delete=models.SET_NULL)
     category = models.PositiveSmallIntegerField(default=0, choices=CATEGORY_CHOICES)
-    author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL)
     objects = ArticleManager()
 
     def render(self, request):

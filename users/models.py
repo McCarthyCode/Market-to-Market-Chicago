@@ -13,7 +13,7 @@ from home.models import TimestampedModel
 from mtm.settings import TZ, DOMAIN, INVITES_EXPIRY
 
 class Invite(TimestampedModel):
-    user = models.ForeignKey(User, default=None, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, default=None, null=True, blank=True, on_delete=models.SET_NULL)
     sent = models.BooleanField(default=False)
     _code = models.BinaryField(max_length=16, unique=True)
 
