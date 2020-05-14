@@ -2,8 +2,8 @@
 
 ## Type of Ad and Dimensions
 - Leaderboard (728x90)
-- Large Mobile Banner (320x100)
-- Medium Rectangle (300x250)
+- Large Mobile Banner (640x200)
+- Medium Rectangle (600x500)
 
 Below is a listing of every ad space currently available on the site. Not all spaces need to be occupied.
 

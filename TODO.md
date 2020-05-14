@@ -2,10 +2,10 @@
 
 ## High Priorities
 
-- Mobile bug
-- Editorials & Opinions
+- Hamburger
+- Mobile bug/testing
 - Albums (hold off)
-  - Show on homepage option
+  - Show/Hide on homepage option
   - Add categories
 - Wait on Bill
   - About/Contact
