@@ -242,7 +242,7 @@ def category(request, slug):
     if request.method != 'GET':
         return HttpResponseBadRequest()
 
-    neighborhoods = Neighborhood.objects.all().order_by('name')
+    neighborhoods = [] if slug == 'editorials-and-opinions' else Neighborhood.objects.all().order_by('name')
     locations_by_neighborhood = []
 
     slug_to_id = {
@@ -260,6 +260,7 @@ def category(request, slug):
         'arts-and-entertainment': 'Arts & Entertainment','health-and-fitness': 'Health & Fitness',
         'sports': 'Sports',
         'non-profit': 'Non-profit',
+        'editorials-and-opinions': 'Editorials & Opinions',
     }
 
     for neighborhood in neighborhoods:
@@ -289,9 +290,10 @@ def category(request, slug):
         'title': slug_to_name[slug],
         'category_slug': slug,
         'locations_by_neighborhood': sorted(locations_by_neighborhood, key=len_locations, reverse=True),
-        'articles': Article.objects
-            .filter(category=slug_to_id[slug])
-            .order_by('-date_updated')[:ARTICLES_PER_PAGE],
+        'articles': None if slug == 'editorials-and-opinions' else \
+            Article.objects
+                .filter(category=slug_to_id[slug])
+                .order_by('-date_updated')[:ARTICLES_PER_PAGE],
         'show_category': False,
         'user': request.user,
         'name': NAME,
