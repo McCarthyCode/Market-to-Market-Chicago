@@ -3,11 +3,9 @@
 ## High Priorities
 
 - Mobile bug
-- Transitions
 - Articles
-  - Author class
-    - Profile Pic
-    - Name
+  - Margins on rows
+  - Name instead of ID on author update
 - Editorials & Opinions
 - gubrud -> info
 - Albums (hold off)
