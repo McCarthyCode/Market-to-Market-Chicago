@@ -4,7 +4,6 @@
 
 - Mobile bug
 - Articles
-  - Margins on rows
   - Name instead of ID on author update
 - Editorials & Opinions
 - Albums (hold off)
