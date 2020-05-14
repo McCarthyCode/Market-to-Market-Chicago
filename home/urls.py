@@ -15,6 +15,6 @@ urlpatterns = [
     re_path(r'update-person/(?P<person_id>[1-9]\d*)/', views.update_person, name='update-person'),
     re_path(r'delete-person/(?P<person_id>[1-9]\d*)/', views.delete_person, name='delete-person'),
     path('news-feed/', views.news_feed, name='news-feed'),
-    re_path(r'^(?P<slug>(nightlife|restaurants|nightlife-restaurants|arts-and-entertainment|health-and-fitness|sports|non-profit))/$', views.category, name='category'),
+    re_path(r'^(?P<slug>(nightlife|restaurants|nightlife-restaurants|arts-and-entertainment|health-and-fitness|sports|non-profit|editorials-and-opinions))/$', views.category, name='category'),
 ]
 

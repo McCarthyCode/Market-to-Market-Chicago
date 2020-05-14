@@ -29,10 +29,11 @@ class Article(TimestampedModel, NewsItem):
     CATEGORY_CHOICES = [
         (0, 'Nightlife'),
         (1, 'Restaurants'),
-        (2, 'Arts & Entertainment'),
-        (3, 'Health & Fitness'),
-        (4, 'Sports'),
-        (5, 'Non-profit'),
+        (3, 'Arts & Entertainment'),
+        (4, 'Health & Fitness'),
+        (5, 'Sports'),
+        (6, 'Non-profit'),
+        (7, 'Editorials & Opinions'),
     ]
 
     title = models.CharField(max_length=255)
