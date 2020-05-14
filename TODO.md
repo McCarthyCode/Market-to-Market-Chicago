@@ -4,7 +4,7 @@
 
 - Mobile bug
 - Articles
-  - Name instead of ID on author update
+  - Switch info with profile-image
 - Editorials & Opinions
 - Albums (hold off)
   - Show on homepage option

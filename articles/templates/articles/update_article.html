@@ -4,6 +4,7 @@
   {{ hidden }}
   {% endfor %}
   <input type="hidden" id="albumTitle" value="{% if article.album %}{{ article.album.title }}{% else %}0{% endif %}">
+  <input type="hidden" id="authorName" value="{% if article.author %}{{ article.author.full_name }}{% else %}0{% endif %}">
   {% for field in update_article_form.visible_fields %}
   {% if field.id_for_label == 'id_author' %}
   {{ field }}
