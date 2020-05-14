@@ -3,9 +3,6 @@
 ## High Priorities
 
 - Mobile bug
-- Articles
-  - Switch info with profile-image
-- Editorials & Opinions
 - Albums (hold off)
   - Show on homepage option
   - Add categories
