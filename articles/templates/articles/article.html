@@ -29,12 +29,12 @@
 {% block content %}
 {% include 'home/messages.html' %}
 <article class="card">
+  <p class="info">By <a href="{% url 'articles:author' article.author.slug article.author.id %}">{{ article.author }}</a>. Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} <span class="text-nowrap">Updated {{ article.date_updated|date:"N j, Y." }}</span>{% endif %} From <a href="{% if article.category == 0 %}{% url 'home:category' 'nightlife' %}{% elif article.category == 1 %}{% url 'home:category' 'restaurants' %}{% elif article.category == 2 %}{% url 'home:category' 'arts-and-entertainment' %}{% elif article.category == 3 %}{% url 'home:category' 'health-and-fitness' %}{% elif article.category == 4 %}{% url 'home:category' 'sports' %}{% elif article.category == 5 %}{% url 'home:category' 'non-profit' %}{% else %}{% url 'home:category' 'events' %}{% endif %}">{{ article.get_category_display }}</a>.</p>
   {% if article.author.profile_image %}
   <a class="profile-image" data-fancybox="gallery" href="{{ article.author.profile_image.image.url }}">
     <img src="{{ article.author.profile_image.thumbnail.url }}">
   </a>
   {% endif %}
-  <p class="info">By <a href="{% url 'articles:author' article.author.slug article.author.id %}">{{ article.author }}</a>. Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} <span class="text-nowrap">Updated {{ article.date_updated|date:"N j, Y." }}</span>{% endif %} From <a href="{% if article.category == 0 %}{% url 'home:category' 'nightlife' %}{% elif article.category == 1 %}{% url 'home:category' 'restaurants' %}{% elif article.category == 2 %}{% url 'home:category' 'arts-and-entertainment' %}{% elif article.category == 3 %}{% url 'home:category' 'health-and-fitness' %}{% elif article.category == 4 %}{% url 'home:category' 'sports' %}{% elif article.category == 5 %}{% url 'home:category' 'non-profit' %}{% else %}{% url 'home:category' 'events' %}{% endif %}">{{ article.get_category_display }}</a>.</p>
   {{ article.body|linebreaks }}
 </article>
 <div class="rectangles">

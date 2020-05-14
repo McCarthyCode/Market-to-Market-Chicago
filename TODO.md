@@ -3,11 +3,7 @@
 ## High Priorities
 
 - Mobile bug
-- Articles
-  - Margins on rows
-  - Name instead of ID on author update
 - Editorials & Opinions
-- gubrud -> info
 - Albums (hold off)
   - Show on homepage option
   - Add categories

@@ -44,3 +44,5 @@ declare -a args=(
 for i in "${args[@]}"; do
   sass --watch $i &
 done
+
+clear
