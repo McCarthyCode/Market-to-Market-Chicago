@@ -23,6 +23,9 @@
 {% elif category_slug == 'non-profit' %}
 {# include 'home/ads/large_mobile_banner07.html' #}
 {# include 'home/ads/leaderboard07.html' #}
+{% elif category_slug == 'editorials-and-opinions' %}
+{# include 'home/ads/large_mobile_banner24.html' #}
+{# include 'home/ads/leaderboard24.html' #}
 {% endif %}
 
 {% endblock %}
@@ -41,22 +44,8 @@
 {# include 'home/ads/medium_rectangle21a.html' #}
 {% elif category_slug == 'non-profit' %}
 {# include 'home/ads/medium_rectangle25a.html' #}
-{% endif %}
-
-{% endblock %}
-
-{% block medium_rectangle1b %}
-
-{% if category_slug == 'nightlife' %}
-{% include 'home/ads/medium_rectangle05b.html' %}
-{% elif category_slug == 'restaurants' %}
-{# include 'home/ads/medium_rectangle09b.html' #}
-{% elif category_slug == 'arts-and-entertainment' %}
-{# include 'home/ads/medium_rectangle13b.html' #}
-{% elif category_slug == 'health-and-fitness' %}
-{# include 'home/ads/medium_rectangle17b.html' #}
-{% elif category_slug == 'non-profit' %}
-{# include 'home/ads/medium_rectangle25b.html' #}
+{% elif category_slug == 'editorials-and-opinions' %}
+{# include 'home/ads/medium_rectangle65a.html' #}
 {% endif %}
 
 {% endblock %}
@@ -89,29 +78,40 @@
 {% endif %}
 <section class="rectangles">
   {% if category_slug == 'nightlife' %}
+  {% include 'home/ads/medium_rectangle05b.html' %}
   {# include 'home/ads/medium_rectangle06.html' #}
   {# include 'home/ads/medium_rectangle07.html' #}
   {# include 'home/ads/medium_rectangle08.html' #}
   {% elif category_slug == 'restaurants' %}
+  {# include 'home/ads/medium_rectangle09b.html' #}
   {# include 'home/ads/medium_rectangle10.html' #}
   {# include 'home/ads/medium_rectangle11.html' #}
   {# include 'home/ads/medium_rectangle12.html' #}
   {% elif category_slug == 'arts-and-entertainment' %}
+  {# include 'home/ads/medium_rectangle13b.html' #}
   {# include 'home/ads/medium_rectangle14.html' #}
   {# include 'home/ads/medium_rectangle15.html' #}
   {# include 'home/ads/medium_rectangle16.html' #}
   {% elif category_slug == 'health-and-fitness' %}
+  {# include 'home/ads/medium_rectangle17b.html' #}
   {# include 'home/ads/medium_rectangle18.html' #}
   {# include 'home/ads/medium_rectangle19.html' #}
   {# include 'home/ads/medium_rectangle20.html' #}
   {% elif category_slug == 'sports' %}
+  {# include 'home/ads/medium_rectangle21b.html' #}
   {# include 'home/ads/medium_rectangle22.html' #}
   {# include 'home/ads/medium_rectangle23.html' #}
   {# include 'home/ads/medium_rectangle24.html' #}
   {% elif category_slug == 'non-profit' %}
+  {# include 'home/ads/medium_rectangle25b.html' #}
   {# include 'home/ads/medium_rectangle26.html' #}
   {# include 'home/ads/medium_rectangle27.html' #}
   {# include 'home/ads/medium_rectangle28.html' #}
+  {% elif category_slug == 'editorials-and-opinions' %}
+  {# include 'home/ads/medium_rectangle65b.html' #}
+  {# include 'home/ads/medium_rectangle66.html' #}
+  {# include 'home/ads/medium_rectangle67.html' #}
+  {# include 'home/ads/medium_rectangle68.html' #}
   {% endif %}
 </section>
 <section id="articles">

@@ -1,13 +1,13 @@
 #!/bin/bash
 
-leaderboard1=( 23 )
+leaderboard1=( 24 )
 leaderboard2=(  )
-large_mobile_banner1=( 23 )
+large_mobile_banner1=( 24 )
 large_mobile_banner2=(  )
-medium_rectangle1=( 61 )
-medium_rectangle2=( 62 )
-medium_rectangle3=( 63 )
-medium_rectangle4=( 64 )
+medium_rectangle1=( 65 )
+medium_rectangle2=( 66 )
+medium_rectangle3=( 67 )
+medium_rectangle4=( 68 )
 
 for i in "${leaderboard1[@]}" ; do
     output=`printf 'leaderboard%02d.html' $i`

@@ -56,6 +56,13 @@ Below is a listing of every ad space currently available on the site. Not all sp
 - Medium Rectangle 27
 - Medium Rectangle 28
 
+## Editorials & Opinions `/editorials-and-opinions/` (infinite scrolling articles)
+- Leaderboard/Large Mobile Banner 24
+- Medium Rectangle 65
+- Medium Rectangle 66
+- Medium Rectangle 67
+- Medium Rectangle 68
+
 ## Events `/events/`
 - Leaderboard/Large Mobile Banner 8
 - Leaderboard/Large Mobile Banner 9

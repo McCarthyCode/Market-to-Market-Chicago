@@ -12,10 +12,6 @@
 {# include 'home/ads/medium_rectangle61a.html' #}
 {% endblock %}
 
-{% block medium_rectangle1b %}
-{# include 'home/ads/medium_rectangle61b.html' #}
-{% endblock %}
-
 {% block title %}{{ author.full_name }}{% endblock %}
 
 {% block content %}
@@ -34,6 +30,12 @@
   </div>
   {% include 'articles/delete_author_modal.html' %}
   {% endif %}
+</div>
+<div class="rectangles">
+  {# include 'home/ads/medium_rectangle61b.html' #}
+  {# include 'home/ads/medium_rectangle62.html' #}
+  {# include 'home/ads/medium_rectangle63.html' #}
+  {# include 'home/ads/medium_rectangle64.html' #}
 </div>
 {% if author.bio %}
 <h3 class="h3">Bio</h3>
