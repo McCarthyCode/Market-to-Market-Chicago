@@ -3,7 +3,7 @@
   {% include 'home/social.html' %}
   <a class="navbar-brand" href="{% url 'home:index' %}">MTM Chicago</a>
   <button id="navbarMenuButton" class="d-md-none ml-auto" type="button">
-    <i class="fas fa-bars"></i>
+    <i class="fas fa-bars fa-2x"></i>
   </button>
   <div id="navbarCollapse" class="ml-auto">
     <ul class="navbar-nav">
@@ -28,16 +28,19 @@
         <a class="nav-link" href="{% url 'home:category' 'restaurants' %}">Restaurants</a>
       </li>
       <li class="d-md-none nav-item">
-        <a class="nav-link" href="{% url 'home:category' 'arts-and-entertainment' %}">Arts & Entertainment</a>
+        <a class="nav-link" href="{% url 'home:category' 'arts-and-entertainment' %}">Arts &amp; Entertainment</a>
       </li>
       <li class="d-md-none nav-item">
-        <a class="nav-link" href="{% url 'home:category' 'health-and-fitness' %}">Health & Fitness</a>
+        <a class="nav-link" href="{% url 'home:category' 'health-and-fitness' %}">Health &amp; Fitness</a>
       </li>
       <li class="d-md-none nav-item">
         <a class="nav-link" href="{% url 'home:category' 'sports' %}">Sports</a>
       </li>
       <li class="d-md-none nav-item">
         <a class="nav-link" href="{% url 'home:category' 'non-profit' %}">Non-profit</a>
+      </li>
+      <li class="d-md-none nav-item">
+        <a class="nav-link" href="{% url 'home:category' 'editorials-and-opinions' %}">Editorials &amp; Opinions</a>
       </li>
       <li class="d-md-none nav-item">
         <a class="nav-link" href="{% url 'events:index' %}">Events</a>

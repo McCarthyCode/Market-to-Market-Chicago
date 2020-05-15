@@ -317,7 +317,7 @@ nav .navbar-brand:hover {
 }
 nav .social {
   position: absolute;
-  right: 4rem;
+  right: 73px;
   top: 23px;
 }
 nav .social li {
@@ -339,6 +339,10 @@ nav #navbarMenuButton {
   -webkit-transition: color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out;
   cursor: pointer;
+}
+nav #navbarMenuButton i {
+  line-height: 38px;
+  margin-right: 1px;
 }
 nav #navbarMenuButton:hover {
   color: #ffffff !important;
@@ -418,7 +422,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   background-color: #818181;
 }
 #topics ul.topics li {
-  padding: 2px 0;
+  padding: 0.25rem 0;
   background-color: #444444;
   border-right: 0.25rem solid #444444;
   -webkit-transition: border-right 0.15s ease-in-out;
@@ -448,51 +452,45 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-right: 0.25rem solid #d5697d;
 }
 #topics ul.topics li:nth-child(2) {
-  border-left: 0.25rem solid #bf82ba;
-}
-#topics ul.topics li:nth-child(2):hover, #topics ul.topics li:nth-child(2).active {
-  border-right: 0.25rem solid #bf82ba;
-}
-#topics ul.topics li:nth-child(3) {
   border-left: 0.25rem solid #bb846e;
 }
-#topics ul.topics li:nth-child(3):hover, #topics ul.topics li:nth-child(3).active {
+#topics ul.topics li:nth-child(2):hover, #topics ul.topics li:nth-child(2).active {
   border-right: 0.25rem solid #bb846e;
 }
-#topics ul.topics li:nth-child(4) {
+#topics ul.topics li:nth-child(3) {
   border-left: 0.25rem solid #dcdcaa;
 }
-#topics ul.topics li:nth-child(4):hover, #topics ul.topics li:nth-child(4).active {
+#topics ul.topics li:nth-child(3):hover, #topics ul.topics li:nth-child(3).active {
   border-right: 0.25rem solid #dcdcaa;
 }
-#topics ul.topics li:nth-child(5) {
+#topics ul.topics li:nth-child(4) {
   border-left: 0.25rem solid #679452;
 }
-#topics ul.topics li:nth-child(5):hover, #topics ul.topics li:nth-child(5).active {
+#topics ul.topics li:nth-child(4):hover, #topics ul.topics li:nth-child(4).active {
   border-right: 0.25rem solid #679452;
 }
-#topics ul.topics li:nth-child(6) {
+#topics ul.topics li:nth-child(5) {
   border-left: 0.25rem solid #48b6a0;
 }
-#topics ul.topics li:nth-child(6):hover, #topics ul.topics li:nth-child(6).active {
+#topics ul.topics li:nth-child(5):hover, #topics ul.topics li:nth-child(5).active {
   border-right: 0.25rem solid #48b6a0;
 }
-#topics ul.topics li:nth-child(7) {
+#topics ul.topics li:nth-child(6) {
   border-left: 0.25rem solid #97d5f7;
 }
-#topics ul.topics li:nth-child(7):hover, #topics ul.topics li:nth-child(7).active {
+#topics ul.topics li:nth-child(6):hover, #topics ul.topics li:nth-child(6).active {
   border-right: 0.25rem solid #97d5f7;
 }
-#topics ul.topics li:nth-child(8) {
+#topics ul.topics li:nth-child(7) {
   border-left: 0.25rem solid #569cd6;
 }
-#topics ul.topics li:nth-child(8):hover, #topics ul.topics li:nth-child(8).active {
+#topics ul.topics li:nth-child(7):hover, #topics ul.topics li:nth-child(7).active {
   border-right: 0.25rem solid #569cd6;
 }
-#topics ul.topics li:nth-child(9) {
+#topics ul.topics li:nth-child(8) {
   border-left: 0.25rem solid #9f62c2;
 }
-#topics ul.topics li:nth-child(9):hover, #topics ul.topics li:nth-child(9).active {
+#topics ul.topics li:nth-child(8):hover, #topics ul.topics li:nth-child(8).active {
   border-right: 0.25rem solid #9f62c2;
 }
 

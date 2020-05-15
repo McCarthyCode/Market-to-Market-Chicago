@@ -355,7 +355,7 @@ nav .navbar-brand:hover {
 }
 nav .social {
   position: absolute;
-  right: 4rem;
+  right: 73px;
   top: 23px;
 }
 nav .social li {
@@ -377,6 +377,10 @@ nav #navbarMenuButton {
   -webkit-transition: color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out;
   cursor: pointer;
+}
+nav #navbarMenuButton i {
+  line-height: 38px;
+  margin-right: 1px;
 }
 nav #navbarMenuButton:hover {
   color: #ffffff !important;
