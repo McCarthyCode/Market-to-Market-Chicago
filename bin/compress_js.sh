@@ -2,74 +2,33 @@
 
 closure_compiler="bin/closure-compiler-v20200504.jar"
 
-js_input_global="home/static/home/js/global.js"
-js_output_global="home/static/home/js/global.min.js"
-
-js_input_infinite_scroll_home="home/static/home/js/infinite_scroll_home.js"
-js_output_infinite_scroll_home="home/static/home/js/infinite_scroll_home.min.js"
-
-js_input_infinite_scroll_category="home/static/home/js/infinite_scroll_category.js"
-js_output_infinite_scroll_category="home/static/home/js/infinite_scroll_category.min.js"
-
-js_input_create_person="home/static/home/js/create_person.js"
-js_output_create_person="home/static/home/js/create_person.min.js"
-
-js_input_create_view_invites="users/static/users/js/create_view_invites.js"
-js_output_create_view_invites="users/static/users/js/create_view_invites.min.js"
-
-js_input_events="events/static/events/js/events.js"
-js_output_events="events/static/events/js/events.min.js"
-
-js_input_create_event="events/static/events/js/create_event.js"
-js_output_create_event="events/static/events/js/create_event.min.js"
-
-js_input_update_event="events/static/events/js/update_event.js"
-js_output_update_event="events/static/events/js/update_event.min.js"
-
-js_input_create_location="locations/static/locations/js/create_location.js"
-js_output_create_location="locations/static/locations/js/create_location.min.js"
-
-js_input_update_location="locations/static/locations/js/update_location.js"
-js_output_update_location="locations/static/locations/js/update_location.min.js"
-
-js_input_create_album="images/static/images/js/create_album.js"
-js_output_create_album="images/static/images/js/create_album.min.js"
-
-js_input_update_album="images/static/images/js/update_album.js"
-js_output_update_album="images/static/images/js/update_album.min.js"
-
-js_input_create_author="articles/static/articles/js/create_author.js"
-js_output_create_author="articles/static/articles/js/create_author.min.js"
-
-js_input_create_article="articles/static/articles/js/create_article.js"
-js_output_create_article="articles/static/articles/js/create_article.min.js"
-
-js_input_update_article="articles/static/articles/js/update_article.js"
-js_output_update_article="articles/static/articles/js/update_article.min.js"
-
-js_input_article_autocomplete="articles/static/articles/js/article_autocomplete.js"
-js_output_article_autocomplete="articles/static/articles/js/article_autocomplete.min.js"
-
-declare -a commands=(
-  # "java -jar $closure_compiler --js $js_input_global --js_output_file $js_output_global"
-  # "java -jar $closure_compiler --js $js_input_infinite_scroll_home --js_output_file $js_output_infinite_scroll_home"
-  # "java -jar $closure_compiler --js $js_input_infinite_scroll_category --js_output_file $js_output_infinite_scroll_category"
-  # "java -jar $closure_compiler --js $js_input_create_person --js_output_file $js_output_create_person"
-  # "java -jar $closure_compiler --js $js_input_create_view_invites --js_output_file $js_output_create_view_invites"
-  # "java -jar $closure_compiler --js $js_input_events --js_output_file $js_output_events"
-  # "java -jar $closure_compiler --js $js_input_create_event --js_output_file $js_output_create_event"
-  # "java -jar $closure_compiler --js $js_input_update_event --js_output_file $js_output_update_event"
-  # "java -jar $closure_compiler --js $js_input_create_location --js_output_file $js_output_create_location"
-  # "java -jar $closure_compiler --js $js_input_update_location --js_output_file $js_output_update_location"
-  # "java -jar $closure_compiler --js $js_input_create_album --js_output_file $js_output_create_album"
-  # "java -jar $closure_compiler --js $js_input_update_album --js_output_file $js_output_update_album"
-  # "java -jar $closure_compiler --js $js_input_create_author --js_output_file $js_output_create_author"
-  # "java -jar $closure_compiler --js $js_input_create_article --js_output_file $js_output_create_article"
-  # "java -jar $closure_compiler --js $js_input_update_article --js_output_file $js_output_update_article"
-  # "java -jar $closure_compiler --js $js_input_article_autocomplete --js_output_file $js_output_article_autocomplete"
+declare -a files=(
+  "home/static/home/js/global"
+  "home/static/home/js/infinite_scroll_home"
+  "home/static/home/js/infinite_scroll_category"
+  "home/static/home/js/create_person"
+  "users/static/users/js/create_view_invites"
+  "events/static/events/js/events"
+  "events/static/events/js/create_event"
+  "events/static/events/js/update_event"
+  "locations/static/locations/js/create_location"
+  "locations/static/locations/js/update_location"
+  "images/static/images/js/create_album"
+  "images/static/images/js/update_album"
+  "articles/static/articles/js/create_author"
+  "articles/static/articles/js/create_article"
+  "articles/static/articles/js/update_article"
+  "articles/static/articles/js/article_autocomplete"
 )
 
-for i in "${commands[@]}"; do
-  echo "$i"
-  $i
+for i in "${files[@]}" ; do
+  input="$i.js"
+  output="$i.min.js"
+
+  cmd="java -jar $closure_compiler --js $input --js_output_file $output"
+  
+  if [ $input -nt $output ] ; then
+    echo "$cmd"
+    $cmd
+  fi
 done
