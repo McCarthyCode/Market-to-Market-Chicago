@@ -252,6 +252,7 @@ def category(request, slug):
         'health-and-fitness': 4,
         'sports': 5,
         'non-profit': 6,
+        'editorials-and-opinions': 7,
     }
 
     slug_to_name = {
@@ -289,11 +290,10 @@ def category(request, slug):
     return render(request, 'home/category.html', {
         'title': slug_to_name[slug],
         'category_slug': slug,
-        'locations_by_neighborhood': sorted(locations_by_neighborhood, key=len_locations, reverse=True),
-        'articles': None if slug == 'editorials-and-opinions' else \
-            Article.objects
-                .filter(category=slug_to_id[slug])
-                .order_by('-date_updated')[:ARTICLES_PER_PAGE],
+        'locations_by_neighborhood': [] if slug == 'editorials-and-opinions' else sorted(locations_by_neighborhood, key=len_locations, reverse=True),
+        'articles': Article.objects
+            .filter(category=slug_to_id[slug])
+            .order_by('-date_updated')[:ARTICLES_PER_PAGE],
         'show_category': False,
         'user': request.user,
         'name': NAME,
