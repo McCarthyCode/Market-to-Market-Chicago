@@ -20,6 +20,7 @@ from mtm.settings import TZ, MEDIA_ROOT
 class Album(TimestampedModel, NewsItem):
     title = models.CharField(max_length=255)
     slug = models.SlugField(default='', max_length=255, null=True, blank=True)
+    homepage = models.BooleanField(default=False)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     objects = AlbumManager()
 

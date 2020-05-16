@@ -1,34 +1,45 @@
 from datetime import datetime
 
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.http import (
     HttpResponseBadRequest,
     HttpResponseRedirect,
 )
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 
 from .models import Album, Image
-from .forms import UpdateAlbumTitleForm, AddImagesForm
+from .forms import CreateAlbumForm, UpdateAlbumTitleForm, AddImagesForm
 from mtm.settings import TZ, NAME
 
 def create_album(request):
     if request.method != 'POST':
         return HttpResponseBadRequest()
 
-    try:
-        response = Album.objects.create_album(request)
-    except ValidationError as errors:
-        for error in errors:
-            messages.error(request, error)
+    form = CreateAlbumForm(request.POST, request.FILES)
+    if form.is_valid():
+        album = form.save(commit=False)
+        album.created_by = get_object_or_404(User, id=request.user.id)
+        album.save()
 
-        return redirect('users:index')
+        images = request.FILES.getlist('images', [])
+        for image in images:
+            img = Image.objects.create(image=image, album=album)
+            img.image_ops()
+            img.save()
 
-    messages.success(request, response['success'])
+        len_images = len(images)
+        punctuation = album.title[-1]
+        messages.success(request, 'You have successfully uploaded %d image%s to the album "%s%s"' % (len_images, '' if len_images == 1 else 's', album.title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
-    return HttpResponseRedirect(
-        reverse('images:album', args=response['args'])
-    )
+        return HttpResponseRedirect(
+            reverse('images:album', args=[album.slug, album.id])
+        )
+
+    messages.error(request, 'There was an error uploading the album.')
+
+    return redirect('users:index')
 
 def album(request, slug, album_id):
     if request.method != 'GET':

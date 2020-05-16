@@ -2,7 +2,6 @@
 
 ## High Priorities
 
-- Hamburger
 - Mobile bug/testing
 - Albums (hold off)
   - Show/Hide on homepage option

@@ -1,6 +1,18 @@
 <form id="createAlbumForm" action="{% url 'images:create' %}" enctype="multipart/form-data" method="POST">
   {% csrf_token %}
-  <input class="form-control" type="text" name="title" placeholder="Title" max_length="255" autocomplete="off" required>
-  <input type="file" name="images" accept="image/x-png,image/gif,image/jpeg" multiple required>
+  {{ create_album_form.title.errors }}
+  {{ create_album_form.title }}
+  {{ create_album_form.images.errors }}
+  <div class="row">
+    <label class="col-12 col-md-4 form-control" for="{{ create_album_form.images.id_for_label }}">{{ create_album_form.images.label }}</label>
+    {{ create_album_form.images }}
+  </div>
+  {{ create_album_form.homepage.errors }}
+  <div class="input-group input-group-checkbox" data-target-input="nearest">
+    <label class="form-control" for="{{ create_album_form.homepage.id_for_label }}">{{ create_album_form.homepage.label }}</label>
+    <div class="input-group-append">
+      {{ create_album_form.homepage }}
+    </div>
+  </div>
   <input class="btn btn-primary form-control" type="submit" value="Submit">
 </form>

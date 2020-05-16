@@ -26,7 +26,7 @@ for i in "${files[@]}" ; do
   output="$i.min.js"
 
   cmd="java -jar $closure_compiler --js $input --js_output_file $output"
-  
+
   if [ $input -nt $output ] ; then
     echo "$cmd"
     $cmd

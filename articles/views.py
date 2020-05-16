@@ -15,10 +15,23 @@ from django.http import (
 )
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 
-from .forms import AuthorForm, ArticleForm
 from .models import AuthorImage, Author, Article
+from users.models import Invite
 from images.models import Image
-from mtm.settings import TZ, NAME, ARTICLES_PER_PAGE, MEDIA_ROOT
+
+from .forms import AuthorForm, ArticleForm
+from home.forms import PersonForm
+from users.forms import InvitesForm
+from locations.forms import LocationForm
+from images.forms import CreateAlbumForm
+
+from mtm.settings import (
+    TZ,
+    NAME,
+    ARTICLES_PER_PAGE,
+    MEDIA_ROOT,
+    MAX_INVITES,
+)
 
 def article(request, slug, article_id):
     if request.method != 'GET':
@@ -220,6 +233,7 @@ def create_author(request):
             'create_invites_form': InvitesForm(),
             'invites': [x for x in Invite.objects.filter(sent=False).order_by('date_created') if not x.expired][:MAX_INVITES],
             'create_location_form': LocationForm(),
+            'create_album_form': CreateAlbumForm(),
             'user': request.user,
             'name': NAME,
             'year': datetime.now(TZ).year,
@@ -227,6 +241,7 @@ def create_author(request):
 
     return render(request, 'users/index.html', {
         'create_location_form': LocationForm(),
+        'create_album_form': CreateAlbumForm(),
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,

@@ -580,7 +580,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-bottom-left-radius: 0;
 }
 #content .container form .row {
-  margin: 0 0 0.5rem 0;
+  margin: 0;
 }
 #content .container form .errorlist {
   color: #d5697d;

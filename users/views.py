@@ -17,6 +17,7 @@ from .forms import InvitesForm, RegistrationForm
 from home.forms import PersonForm
 from locations.forms import LocationForm
 from articles.forms import AuthorForm, ArticleForm
+from images.forms import CreateAlbumForm
 
 from mtm.settings import NAME, TZ, MAX_INVITES
 
@@ -32,6 +33,7 @@ def index(request):
             'create_invites_form': InvitesForm(),
             'invites': [x for x in Invite.objects.filter(sent=False).order_by('date_created') if not x.expired][:MAX_INVITES],
             'create_location_form': LocationForm(),
+            'create_album_form': CreateAlbumForm(),
             'user': request.user,
             'name': NAME,
             'year': datetime.now(TZ).year,

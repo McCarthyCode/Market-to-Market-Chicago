@@ -9,43 +9,6 @@ from django.shortcuts import reverse
 from django.utils.translation import ugettext as _
 
 class AlbumManager(models.Manager):
-    def create_album(self, request):
-        # Data collection
-        title = request.POST.get('title', '')
-        images = request.FILES.getlist('images', [])
-
-        # Validations
-        errors = []
-
-        if not title:
-            errors.append(ValidationError(_('Please enter a title.'), code='invalid'))
-
-        if not images:
-            errors.append(ValidationError(_('Please upload at least one image.'), code='invalid'))
-
-        try:
-            user = User.objects.get(id=request.user.id)
-        except User.DoesNotExist:
-            errors.append(ValidationError(_('There was an error retrieving the user\'s ID.'), code='invalid'))
-
-        # Raise errors if any
-        if errors:
-            raise ValidationError(errors, code='invalid')
-
-        # Album creation
-        album = self.create(title=title, created_by=user)
-
-        # Image creation
-        self.upload_images(album, images)
-
-        # Return success
-        len_images = len(images)
-        punctuation = title[-1]
-        return {
-            'success': 'You have successfully uploaded %d image%s to the album "%s%s"' % (len_images, '' if len_images == 1 else 's', title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'),
-            'args': [album.slug, album.id],
-        }
-
     def album(self, album_title, album_id):
         from .models import Album, Image
 
