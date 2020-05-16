@@ -82,9 +82,7 @@ def create(request):
         return HttpResponseBadRequest()
 
     if not request.user.is_superuser:
-        messages.error(request, 'You do not have permission to create an article.')
-
-        return redirect('users:index')
+        return HttpResponseForbidden()
 
     form = ArticleForm(request.POST)
 
@@ -143,9 +141,7 @@ def delete(request, slug, article_id):
         return HttpResponseBadRequest()
 
     if not request.user.is_superuser:
-        messages.error(request, 'You do not have permission to update this article.')
-
-        return redirect('users:index')
+        return HttpResponseForbidden()
 
     try:
         article = get_object_or_404(Article, id=article_id)
@@ -189,8 +185,11 @@ def author(request, slug, author_id):
     })
 
 def create_author(request):
-    if not request.user.is_superuser or request.method != 'POST':
+    if request.method != 'POST':
         return HttpResponseBadRequest()
+
+    if not request.user.is_superuser:
+        return HttpResponseForbidden()
 
     form = AuthorForm(request.POST, request.FILES)
 

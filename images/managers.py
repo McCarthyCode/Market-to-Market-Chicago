@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.db import models
+from django.http import HttpResponseForbidden
 from django.shortcuts import reverse
 from django.utils.translation import ugettext as _
 
@@ -103,13 +104,9 @@ class AlbumManager(models.Manager):
             # Check permissions
             try:
                 if request.user != album.created_by and not request.user.is_superuser:
-                    messages.error(request, 'You do not have permission to edit this album.')
-
-                    raise PermissionDenied()
+                    return HttpResponseForbidden()
             except User.DoesNotExist:
-                messages.error(request, 'You do not have permission to edit this album.')
-
-                raise PermissionDenied()
+                return HttpResponseForbidden()
 
             album.save()
 
@@ -168,13 +165,9 @@ class AlbumManager(models.Manager):
         # Check permissions
         try:
             if request.user != album.created_by and not request.user.is_superuser:
-                messages.error(request, 'You do not have permission to edit this album.')
-
-                raise PermissionDenied()
+                return HttpResponseForbidden()
         except User.DoesNotExist:
-            messages.error(request, 'You do not have permission to edit this album.')
-
-            raise PermissionDenied()
+            return HttpResponseForbidden()
 
         # Image creation
         self.upload_images(album, images)
@@ -211,13 +204,9 @@ class AlbumManager(models.Manager):
         # Check permissions
         try:
             if request.user != album.created_by and not request.user.is_superuser:
-                messages.error(request, 'You do not have permission to edit this album.')
-
-                raise PermissionDenied()
+                return HttpResponseForbidden()
         except User.DoesNotExist:
-            messages.error(request, 'You do not have permission to edit this album.')
-
-            raise PermissionDenied()
+            return HttpResponseForbidden()
 
         # Image removal
         return Image.objects.remove_images(album, images)
@@ -247,13 +236,9 @@ class AlbumManager(models.Manager):
         # Check permissions
         try:
             if request.user != album.created_by and not request.user.is_superuser:
-                messages.error(request, 'You do not have permission to edit this album.')
-
-                raise PermissionDenied()
+                return HttpResponseForbidden()
         except User.DoesNotExist:
-            messages.error(request, 'You do not have permission to edit this album.')
-
-            raise PermissionDenied()
+            return HttpResponseForbidden()
 
         # Clear album from any articles
         for article in Article.objects.filter(album=album):
@@ -277,7 +262,10 @@ class AlbumManager(models.Manager):
         query = request.GET.get('q', '')
         albums = []
 
-        if query == '' or not request.user.is_superuser:
+        if not request.user.is_superuser:
+            return HttpResponseForbidden()
+
+        if query == '':
             return {'albums': []}
 
         for album in Album.objects.filter(title__icontains=query) \

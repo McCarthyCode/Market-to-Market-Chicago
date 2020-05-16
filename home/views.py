@@ -104,8 +104,11 @@ def people(request):
     })
 
 def create_person(request):
-    if not request.user.is_superuser or request.method != 'POST':
+    if request.method != 'POST':
         return HttpResponseBadRequest()
+
+    if not request.user.is_superuser:
+        return HttpResponseForbidden()
 
     form = PersonForm(request.POST, request.FILES)
 
@@ -226,8 +229,11 @@ def update_person(request, person_id):
     return redirect('home:people-to-know')
 
 def delete_person(request, person_id):
-    if not request.user.is_superuser or request.method != 'GET':
+    if request.method != 'GET':
         return HttpResponseBadRequest()
+
+    if not request.user.is_superuser:
+        return HttpResponseForbidden()
 
     person = get_object_or_404(Person, id=person_id)
 

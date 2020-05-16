@@ -2,7 +2,12 @@ from datetime import datetime
 
 from django.contrib import messages
 from django.core.exceptions import ValidationError
-from django.http import HttpResponse, HttpResponseBadRequest, Http404
+from django.http import (
+    HttpResponse,
+    HttpResponseBadRequest,
+    HttpResponseForbidden,
+    Http404
+)
 from django.shortcuts import render, redirect
 
 from .models import Invite
@@ -95,8 +100,11 @@ def logout(request):
     return redirect('users:index')
 
 def create_invites(request):
-    if request.method != 'POST' or not request.user.is_superuser:
+    if request.method != 'POST':
         return HttpResponseBadRequest()
+
+    if not request.user.is_superuser:
+        return HttpResponseForbidden()
 
     form = InvitesForm(request.POST)
 
@@ -186,8 +194,11 @@ def invite(request, code):
     return redirect('users:index')
 
 def mark_invite_sent(request, code):
-    if request.method != 'GET' or not request.user.is_superuser:
+    if request.method != 'GET':
         return HttpResponseBadRequest()
+
+    if not request.user.is_superuser:
+        return HttpResponseForbidden()
 
     invite = Invite.get_invite_or_404(code)
     invite.sent = True
@@ -198,8 +209,11 @@ def mark_invite_sent(request, code):
     return redirect('users:index')
 
 def delete_invite(request, code):
-    if request.method != 'GET' or not request.user.is_superuser:
+    if request.method != 'GET':
         return HttpResponseBadRequest()
+
+    if not request.user.is_superuser:
+        return HttpResponseForbidden()
 
     invite = Invite.get_invite_or_404(code)
     invite_id = invite.id
