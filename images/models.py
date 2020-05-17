@@ -10,6 +10,7 @@ from io import BytesIO
 from slugify import slugify
 
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
@@ -59,11 +60,6 @@ class ThumbnailedImage(TimestampedModel):
 
     def __str__(self):
         return self.image.name
-
-    def delete(self):
-        self.image.delete()
-        self.thumbnail.delete()
-        return super().delete()
 
     def image_ops(
         self, relative_path=None, max_size=(960, 720), thumbnail_size=(400, 360),
@@ -188,7 +184,17 @@ class Image(ThumbnailedImage):
         self.album.date_updated = datetime.utcnow()
         self.album.save()
 
-        super().delete(*args, **kwargs)
+        if not Image.objects.filter(
+            ~Q(id=self.id) &
+            Q(date_created__date=self.date_created.date()) & (
+                Q(_image_hash=self._image_hash) |
+                Q(_thumbnail_hash=self._thumbnail_hash)
+            )
+        ):
+            self.image.delete()
+            self.thumbnail.delete()
+
+        return super().delete(*args, **kwargs)
 
 class AbstractPerson(TimestampedModel, NewsItem):
     slug = models.SlugField(max_length=70)
@@ -242,6 +248,19 @@ class PersonImage(ThumbnailedImage):
 
     def image_ops(self):
         super().image_ops(relative_path=self.date_created.astimezone(TZ).strftime('people/%Y/%m/%d/'), thumbnail_size=(200, 180))
+
+    def delete(self, *args, **kwargs):
+        if not PersonImage.objects.filter(
+            ~Q(id=self.id) &
+            Q(date_created__date=self.date_created.date()) & (
+                Q(_image_hash=self._image_hash) |
+                Q(_thumbnail_hash=self._thumbnail_hash)
+            )
+        ):
+            self.image.delete()
+            self.thumbnail.delete()
+
+        return super().delete(*args, **kwargs)
 
 class Person(AbstractPerson):
     profile_image = models.ForeignKey(PersonImage, on_delete=models.SET_NULL, blank=True, null=True, default=None)

@@ -17,6 +17,19 @@ class AuthorImage(ThumbnailedImage):
     def image_ops(self):
         super().image_ops(relative_path=self.date_created.astimezone(TZ).strftime('authors/%Y/%m/%d/'), thumbnail_size=(200, 180))
 
+    def delete(self, *args, **kwargs):
+        if not AuthorImage.objects.filter(
+            ~Q(id=self.id) &
+            Q(date_created__date=self.date_created.date()) & (
+                Q(_image_hash=self._image_hash) |
+                Q(_thumbnail_hash=self._thumbnail_hash)
+            )
+        ):
+            self.image.delete()
+            self.thumbnail.delete()
+
+        return super().delete(*args, **kwargs)
+
 class Author(AbstractPerson):
     profile_image = models.ForeignKey(AuthorImage, on_delete=models.SET_NULL, blank=True, null=True, default=None)
     bio = models.TextField(blank=True, null=True)
