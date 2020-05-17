@@ -264,8 +264,6 @@ class ImageManager(models.Manager):
 
                 continue
 
-            image.image.delete()
-            image.thumbnail.delete()
             image.delete()
 
             count += 1
