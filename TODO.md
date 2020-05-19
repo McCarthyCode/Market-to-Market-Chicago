@@ -3,12 +3,13 @@
 ## High Priorities
 
 - Mobile bug/testing
-- Albums (hold off)
-  - Show/Hide on homepage option
+- Albums
   - Add categories
 - Wait on Bill
+  - People to Know
+    - Bios
   - About/Contact
-    - Bio
+    - Profile images
   - Site Tour
     - Schedule
     - Remote desktop install

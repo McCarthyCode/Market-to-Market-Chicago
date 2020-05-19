@@ -102,6 +102,21 @@ def update_album_title(request, slug, album_id):
         reverse('images:album', args=response['args'])
     )
 
+def homepage_toggle(request, slug, album_id):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    album = get_object_or_404(Album, id=album_id)
+
+    album.homepage = not album.homepage
+    album.save()
+
+    messages.success(request, 'You have successfully added "%s" to the homepage.' % album.title if album.homepage else 'You have successfully removed "%s" from the homepage.' % album.title)
+
+    return HttpResponseRedirect(
+        reverse('images:album', args=[slug, album_id])
+    )
+
 def add_images(request, slug, album_id):
     if request.method != 'POST':
         return HttpResponseBadRequest()

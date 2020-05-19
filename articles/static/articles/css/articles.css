@@ -374,7 +374,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   text-align: center;
   margin-bottom: 0.75rem;
 }
-#controls button {
+#controls .btn {
   margin-bottom: 0.25rem;
 }
 
