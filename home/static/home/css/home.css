@@ -793,7 +793,7 @@ body a:hover {
   text-decoration: underline;
 }
 
-h1.h1, h3.h3, h5.h5 {
+h1.h1, h3.h3, h4.h4, h5.h5 {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
 }
 
@@ -805,6 +805,7 @@ h3.h3, h3.h3 > a {
   color: #bb846e;
 }
 
+h4.h4, h4.h4 > a,
 h5.h5, h5.h5 > a {
   color: #679452;
 }
@@ -830,6 +831,10 @@ ul.bulleted li.empty::marker {
 
 #content .container {
   padding: 0 1rem;
+}
+
+a.profile-image {
+  margin: 0 auto 1rem auto;
 }
 
 #grid {
