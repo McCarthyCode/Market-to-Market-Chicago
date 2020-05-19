@@ -3,7 +3,6 @@
 ## High Priorities
 
 - Albums
-  - Add category to info
   - Add category to Create Album form
   - Add Update Album Category form
   - Add to category feed
