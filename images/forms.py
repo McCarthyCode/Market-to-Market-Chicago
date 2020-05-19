@@ -21,9 +21,9 @@ class CreateAlbumForm(forms.ModelForm):
             'multiple': '',
         }),
     )
-    homepage = forms.BooleanField(
+    feed = forms.BooleanField(
         required=False,
-        label='View on Homepage',
+        label='View in News Feeds',
     )
 
     def clean(self):
@@ -33,7 +33,7 @@ class CreateAlbumForm(forms.ModelForm):
 
     class Meta:
         model = Album
-        fields = ['title', 'homepage']
+        fields = ['title', 'feed']
 
 class UpdateAlbumTitleForm(forms.ModelForm):
     title = forms.CharField(

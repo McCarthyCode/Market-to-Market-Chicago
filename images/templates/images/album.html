@@ -32,10 +32,10 @@
 <div id="controls">
   <button id="updateTitleButton" class="btn btn-secondary">Update Title</button>
   <button id="addImagesButton" class="btn btn-secondary">Add Images</button>
-  {% if album.homepage %}
-  <a class="btn btn-secondary" href="{% url 'images:homepage-toggle' album.slug album.id %}">Hide from Homepage</a>
+  {% if album.feed %}
+  <a class="btn btn-secondary" href="{% url 'images:feed-toggle' album.slug album.id %}">Hide from News Feeds</a>
   {% else %}
-  <a class="btn btn-secondary" href="{% url 'images:homepage-toggle' album.slug album.id %}">Show on Homepage</a>
+  <a class="btn btn-secondary" href="{% url 'images:feed-toggle' album.slug album.id %}">Show on News Feeds</a>
   {% endif %}
   {% if images %}
   <button id="deleteImagesButton" class="btn btn-secondary">Delete Images</button>

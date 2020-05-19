@@ -2,9 +2,11 @@
 
 ## High Priorities
 
-- Mobile bug/testing
 - Albums
-  - Add categories
+  - Add category to info
+  - Add category to Create Album form
+  - Add Update Album Category form
+  - Add to category feed
 - Wait on Bill
   - People to Know
     - Bios
@@ -14,12 +16,12 @@
     - Schedule
     - Remote desktop install
     - Walkthrough
-- Autocorrect bugs
-  - Double text on enter
-  - Double selection on hover
 
 ## Medium Priorities
 
+- Autocorrect bugs
+  - Double text on enter
+  - Double selection on hover
 - Change 'user' to request.user
   - Views
   - Templates

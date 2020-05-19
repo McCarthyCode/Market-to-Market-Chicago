@@ -49,7 +49,7 @@ def index(request):
         return HttpResponseBadRequest()
 
     albums = []
-    for album in Album.objects.filter(homepage=True):
+    for album in Album.objects.filter(feed=True):
         if Image.objects.filter(album=album):
             albums.append(album)
 
