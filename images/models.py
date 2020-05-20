@@ -19,9 +19,20 @@ from .managers import AlbumManager, ImageManager
 from mtm.settings import TZ, MEDIA_ROOT
 
 class Album(TimestampedModel, NewsItem):
+    CATEGORY_CHOICES = [
+        (0, 'Nightlife'),
+        (1, 'Restaurants'),
+        (3, 'Arts & Entertainment'),
+        (4, 'Health & Fitness'),
+        (5, 'Sports'),
+        (6, 'Non-profit'),
+        (7, 'Editorials & Opinions'),
+    ]
+
     title = models.CharField(max_length=255)
     slug = models.SlugField(default='', max_length=255, null=True, blank=True)
-    homepage = models.BooleanField(default=False)
+    category = models.PositiveSmallIntegerField(default=0, choices=CATEGORY_CHOICES)
+    feed = models.BooleanField(default=False)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     objects = AlbumManager()
 
@@ -33,6 +44,15 @@ class Album(TimestampedModel, NewsItem):
         images = Image.objects.filter(album=self)
 
         return render(request, 'images/album_home.html', {
+            'album': self,
+            'images': images,
+            'images_preview': images[:5] if len(images) > 6 else images,
+        })
+
+    def render_category(self, request):
+        images = Image.objects.filter(album=self)
+
+        return render(request, 'images/album_category.html', {
             'album': self,
             'images': images,
             'images_preview': images[:5] if len(images) > 6 else images,

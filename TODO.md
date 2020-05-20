@@ -2,23 +2,21 @@
 
 ## High Priorities
 
-- Mobile bug/testing
-- Albums (hold off)
-  - Show/Hide on homepage option
-  - Add categories
 - Wait on Bill
+  - People to Know
+    - Bios
   - About/Contact
-    - Bio
+    - Profile images
   - Site Tour
     - Schedule
     - Remote desktop install
     - Walkthrough
-- Autocorrect bugs
-  - Double text on enter
-  - Double selection on hover
 
 ## Medium Priorities
 
+- Autocorrect bugs
+  - Double text on enter
+  - Double selection on hover
 - Change 'user' to request.user
   - Views
   - Templates

@@ -15,34 +15,29 @@ $(document).ready(function () {
 
   // infinite scrolling
   let $content = $('#content');
-  let $articles = $('#articles');
-  let $lastArticle = $articles.find('article:last-of-type');
+  let $categoryFeed = $('#categoryFeed');
+  let $lastItem = $categoryFeed.find('> li:last-of-type');
 
-  let categorySlug = $('input[name="category-slug"]').val();
-  let articlesEmpty = false;
+  let feedEmpty = false;
   let ajaxInProgress = false;
   let page = 2;
 
   $content.on('scroll', function () {
-    $lastArticle = $articles.find('article:last-of-type');
+    $lastItem = $categoryFeed.find('> li:last-of-type');
 
-    if (!ajaxInProgress && !articlesEmpty && $lastArticle.isInViewport()) {
+    if (!ajaxInProgress && !feedEmpty && $lastItem.isInViewport()) {
       ajaxInProgress = true;
 
-      $.ajax('/articles/by-page/', {
-        'data': {
-          'page': page,
-          'category': categorySlug,
-        },
+      $.ajax(`/${$('input[name="category-slug"]').val()}/${page}/`, {
         'success': function (response) {
-          $articles.append(response);
+          $categoryFeed.append(response);
           page++;
           ajaxInProgress = false;
         },
         'statusCode': {
           204: function () {
-            $articles.append('<p class="empty-card">No more articles to display.</p>');
-            articlesEmpty = true;
+            $categoryFeed.append('<li class="empty-card">No more items to display.</li>');
+            feedEmpty = true;
             ajaxInProgress = false;
           }
         }

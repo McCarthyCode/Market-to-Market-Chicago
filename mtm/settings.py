@@ -195,7 +195,6 @@ GOOGLE_MAPS_API_KEY = content[:-1]
 
 # Page length for paginators
 NEWS_ITEMS_PER_PAGE = 15
-ARTICLES_PER_PAGE = 10
 
 
 # Maximum number of invites at a time

@@ -1,4 +1,4 @@
-<form id="updateArticleForm" action="{% url 'articles:update' article.slug article.id %}" method="POST">
+<form id="updateArticleForm" class="card" action="{% url 'articles:update' article.slug article.id %}" method="POST">
   {% csrf_token %}
   {% for hidden in update_article_form.hidden_fields %}
   {{ hidden }}
@@ -13,8 +13,8 @@
   {{ field }}
   <div id="albumAutocomplete"></div>
   {% elif field.id_for_label == 'id_category' %}
-  <div class="row">
-    <label id="categoryLabel" class="form-control col-12 col-md-6" for="id_category">{{ field.label }}</label>
+  <div class="row select">
+    <label class="form-control col-12 col-md-6" for="id_category">{{ field.label }}</label>
     {{ field }}
   </div>
   {% else %}

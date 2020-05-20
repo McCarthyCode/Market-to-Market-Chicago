@@ -111,11 +111,11 @@
   text-align: center;
   margin-bottom: 0.75rem;
 }
-#controls button {
+#controls .btn {
   margin-bottom: 0.25rem;
 }
 
-#updateTitle, #addImages, #deleteImages {
+#updateAlbum, #addImages, #deleteImages {
   display: none;
 }
 
