@@ -1,24 +1,34 @@
 <form id="updateLocationForm" class="card" action="{% url 'locations:update' category_slug location.slug location.id %}" method="POST">
   {% csrf_token %}
   <input type="hidden" name="neighborhood_id" autocomplete="off" value="{{ update_location_form.neighborhood.value }}" id="id_neighborhood_id">
+  {{ update_location_form.name.errors }}
   {{ update_location_form.name }}
-  <div class="row">
-    <label id="categoryLabel" class="form-control col-12 col-md-6" for="id_category">{{ update_location_form.category.label }}</label>
+  {{ update_location_form.category.errors }}
+  <div class="row select">
+    <label class="form-control col-12 col-md-6" for="{{ update_location_form.category.id_for_label }}">{{ update_location_form.category.label }}</label>
     {{ update_location_form.category }}
   </div>
   <input type="text" name="neighborhood" value="{{ location.neighborhood.name }}" autocomplete="off" placeholder="Neighborhood (enter name to search for existing or to create new)" required="" id="id_neighborhood" class="form-control">
   <div id="neighborhoodAutocompleteLocation"></div>
+  {{ update_location_form.address1.errors }}
+  {{ update_location_form.address2.errors }}
   <div class="address">
     {{ update_location_form.address1 }}
     {{ update_location_form.address2 }}
   </div>
+  {{ update_location_form.city.errors }}
+  {{ update_location_form.state.errors }}
+  {{ update_location_form.zip_code.errors }}
   <div class="row city-state-zip">
     {{ update_location_form.city }}
     {{ update_location_form.state }}
     {{ update_location_form.zip_code }}
   </div>
+  {{ update_location_form.website.errors }}
   {{ update_location_form.website }}
+  {{ update_location_form.phone.errors }}
   <input type="text" name="phone" value="{{ location.display_phone }}" class="form-control col-12" placeholder="Phone (optional)" autocomplete="off" id="id_phone">
+  {{ update_location_form.no_kitchen.errors }}
   <div id="noKitchenContainer"{% if location.category != 0 and location.category != 2 %} style="display: none;"{% endif %}>
     <div class="input-group input-group-checkbox" data-target-input="nearest">
       <label class="form-control" for="{{ update_location_form.no_kitchen.id_for_label }}">{{ update_location_form.no_kitchen.label }}</label>

@@ -70,9 +70,7 @@
 {% endif %}
 {% if user.is_superuser %}
 <h3 class="h3">Update</h3>
-<div class="card">
-  {% include 'articles/update_article.html' %}
-</div>
+{% include 'articles/update_article.html' %}
 <h3 class="h3">Delete</h3>
 <div class="card">
   {% include 'articles/delete_article_form.html' %}

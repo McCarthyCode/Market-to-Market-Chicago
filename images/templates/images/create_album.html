@@ -14,5 +14,10 @@
       {{ create_album_form.feed }}
     </div>
   </div>
+  {{ create_album_form.category.errors }}
+  <div class="row select">
+    <label class="form-control col-12 col-md-6" for="{{ create_album_form.category.id_for_label }}">{{ create_album_form.category.label }}</label>
+    {{ create_album_form.category }}
+  </div>
   <input class="btn btn-primary form-control" type="submit" value="Submit">
 </form>

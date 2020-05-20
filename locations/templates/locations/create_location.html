@@ -3,24 +3,35 @@
   {% for hidden in create_location_form.hidden_fields %}
   {{ hidden }}
   {% endfor %}
+  {{ create_location_form.name.errors }}
   {{ create_location_form.name }}
-  <div class="row">
-    <label id="categoryLabel" class="form-control col-12 col-md-6" for="id_category">{{ create_location_form.category.label }}</label>
+  {{ create_location_form.category.errors }}
+  <div class="row select">
+    <label class="form-control col-12 col-md-6" for="{{ create_location_form.category.id_for_label }}">{{ create_location_form.category.label }}</label>
     {{ create_location_form.category }}
   </div>
+  {{ create_location_form.neighborhood.errors }}
   {{ create_location_form.neighborhood }}
   <div id="neighborhoodAutocompleteLocation"></div>
+  {{ create_location_form.address1.errors }}
+  {{ create_location_form.address2.errors }}
   <div class="address">
     {{ create_location_form.address1 }}
     {{ create_location_form.address2 }}
   </div>
+  {{ create_location_form.city.errors }}
+  {{ create_location_form.state.errors }}
+  {{ create_location_form.zip_code.errors }}
   <div class="row city-state-zip">
     {{ create_location_form.city }}
     {{ create_location_form.state }}
     {{ create_location_form.zip_code }}
   </div>
+  {{ create_location_form.website.errors }}
   {{ create_location_form.website }}
+  {{ create_location_form.phone.errors }}
   {{ create_location_form.phone }}
+  {{ create_location_form.no_kitchen.errors }}
   <div id="noKitchenContainer">
     <div class="input-group input-group-checkbox" data-target-input="nearest">
       <label class="form-control" for="{{ create_location_form.no_kitchen.id_for_label }}">{{ create_location_form.no_kitchen.label }}</label>

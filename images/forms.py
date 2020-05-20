@@ -16,7 +16,7 @@ class CreateAlbumForm(forms.ModelForm):
     images = forms.ImageField(
         label='Images',
         widget=forms.FileInput(attrs={
-            'class': 'col-8',
+            'class': 'col-12 col-md-8',
             'accept': 'image/*',
             'multiple': '',
         }),
@@ -24,6 +24,13 @@ class CreateAlbumForm(forms.ModelForm):
     feed = forms.BooleanField(
         required=False,
         label='View in News Feeds',
+    )
+    category = forms.ChoiceField(
+        label='Category',
+        choices=Album.CATEGORY_CHOICES,
+        widget=forms.Select(attrs={
+            'class': 'form-control col-12 col-md-6',
+        }),
     )
 
     def clean(self):
@@ -33,7 +40,7 @@ class CreateAlbumForm(forms.ModelForm):
 
     class Meta:
         model = Album
-        fields = ['title', 'feed']
+        fields = ['title', 'feed', 'category']
 
 class UpdateAlbumTitleForm(forms.ModelForm):
     title = forms.CharField(

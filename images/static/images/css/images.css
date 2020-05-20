@@ -366,6 +366,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-color: #818181;
   background-color: #333333;
 }
+#content .container form .row {
+  margin: 0;
+}
 #content .container form label.form-control {
   cursor: pointer;
 }
@@ -450,8 +453,15 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-#content .container form .row {
-  margin: 0;
+#content .container form .select > :not(:last-child) {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+#content .container form .select > :not(:first-child) {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
 }
 #content .container form .errorlist {
   color: #d5697d;
@@ -459,14 +469,31 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 
 @media screen and (min-width: 768px) {
-  .city-state-zip > :not(:last-child),
-.number > :not(:last-child) {
+  #content .container form .city-state-zip > :not(:last-child),
+#content .container form .number > :not(:last-child) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
-  .city-state-zip > :not(:first-child),
-.number > :not(:first-child) {
+  #content .container form .city-state-zip > :not(:first-child),
+#content .container form .number > :not(:first-child) {
     border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  #content .container form .select > :first-child {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+  }
+  #content .container form .select > :last-child {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
+  #content .container form .select > :not(:last-child) {
+    border-bottom: 1px solid #818181;
+    border-top-right-radius: 0;
+    margin-bottom: 0.5rem;
+  }
+  #content .container form .select > :not(:first-child) {
+    border-left: 0;
     border-bottom-left-radius: 0;
   }
 }
