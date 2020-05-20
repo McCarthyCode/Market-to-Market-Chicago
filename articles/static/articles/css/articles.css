@@ -378,7 +378,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-bottom: 0.25rem;
 }
 
-#updateTitle, #addImages, #deleteImages {
+#updateAlbum, #addImages, #deleteImages {
   display: none;
 }
 

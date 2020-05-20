@@ -10,7 +10,7 @@ from django.http import (
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 
 from .models import Album, Image
-from .forms import CreateAlbumForm, UpdateAlbumTitleForm, AddImagesForm
+from .forms import CreateAlbumForm, UpdateAlbumForm, AddImagesForm
 from mtm.settings import TZ, NAME
 
 def create_album(request):
@@ -65,41 +65,43 @@ def album(request, slug, album_id):
 
         return actions[response['status']]()
 
-    update_album_title = UpdateAlbumTitleForm()
+    update_album_form = UpdateAlbumForm()
     add_images = AddImagesForm()
 
     return render(request, 'images/album.html', {
         **response,
-        'update_album_title': update_album_title,
+        'update_album_form': update_album_form,
         'add_images': add_images,
         'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
 
-def update_album_title(request, slug, album_id):
+def update(request, slug, album_id):
     if request.method != 'POST':
         return HttpResponseBadRequest()
 
-    try:
-        response = Album.objects.update_title(request, album_id)
-    except ValidationError as errors:
-        for error in errors:
-            if error != 'The specified album could not be found.':
-                messages.error(request, error)
+    album = get_object_or_404(Album, id=album_id)
+
+    form = UpdateAlbumForm(request.POST, instance=album)
+
+    if form.is_valid():
+        _album = form.save()
+
+        title = _album.title
+        punctuation = title[-1]
+        messages.success(request, 'You have sucessfully updated "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
         return HttpResponseRedirect(
             reverse('images:album', args=[slug, album_id])
         )
-    except PermissionDenied:
-        return HttpResponseRedirect(
-            reverse('images:album', args=[slug, album_id])
-        )
 
-    messages.success(request, response['success'])
+    title = album.title
+    punctuation = title[-1]
+    messages.error(request, 'There was an error updating "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
     return HttpResponseRedirect(
-        reverse('images:album', args=response['args'])
+        reverse('images:album', args=[slug, album_id])
     )
 
 def feed_toggle(request, slug, album_id):

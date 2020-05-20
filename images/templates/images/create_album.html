@@ -7,17 +7,17 @@
     <label class="col-12 col-md-4 form-control" for="{{ create_album_form.images.id_for_label }}">{{ create_album_form.images.label }}</label>
     {{ create_album_form.images }}
   </div>
+  {{ create_album_form.category.errors }}
+  <div class="row select">
+    <label class="form-control col-12 col-md-6" for="{{ create_album_form.category.id_for_label }}">{{ create_album_form.category.label }}</label>
+    {{ create_album_form.category }}
+  </div>
   {{ create_album_form.feed.errors }}
   <div class="input-group input-group-checkbox" data-target-input="nearest">
     <label class="form-control" for="{{ create_album_form.feed.id_for_label }}">{{ create_album_form.feed.label }}</label>
     <div class="input-group-append">
       {{ create_album_form.feed }}
     </div>
-  </div>
-  {{ create_album_form.category.errors }}
-  <div class="row select">
-    <label class="form-control col-12 col-md-6" for="{{ create_album_form.category.id_for_label }}">{{ create_album_form.category.label }}</label>
-    {{ create_album_form.category }}
   </div>
   <input class="btn btn-primary form-control" type="submit" value="Submit">
 </form>

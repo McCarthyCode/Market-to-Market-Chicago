@@ -21,9 +21,35 @@ class CreateAlbumForm(forms.ModelForm):
             'multiple': '',
         }),
     )
+    category = forms.ChoiceField(
+        label='Category',
+        choices=Album.CATEGORY_CHOICES,
+        widget=forms.Select(attrs={
+            'class': 'form-control col-12 col-md-6',
+        }),
+    )
     feed = forms.BooleanField(
         required=False,
         label='View in News Feeds',
+    )
+
+    def clean(self):
+        super().clean()
+        return self.cleaned_data
+
+    class Meta:
+        model = Album
+        fields = ['title', 'feed', 'category']
+
+class UpdateAlbumForm(forms.ModelForm):
+    title = forms.CharField(
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Title',
+            'autocomplete': 'off',
+        }),
+        validators=[MaxLengthValidator(255)],
     )
     category = forms.ChoiceField(
         label='Category',
@@ -32,28 +58,18 @@ class CreateAlbumForm(forms.ModelForm):
             'class': 'form-control col-12 col-md-6',
         }),
     )
+    feed = forms.BooleanField(
+        required=False,
+        label='View in News Feeds',
+    )
 
     def clean(self):
         super().clean()
-        cleaned_data = self.cleaned_data
-        return cleaned_data
+        return self.cleaned_data
 
     class Meta:
         model = Album
         fields = ['title', 'feed', 'category']
-
-class UpdateAlbumTitleForm(forms.ModelForm):
-    title = forms.CharField(
-        label='',
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': 'Title',
-        }),
-    )
-
-    class Meta:
-        model = Album
-        fields = ['title']
 
 class AddImagesForm(forms.ModelForm):
     images = forms.ImageField(

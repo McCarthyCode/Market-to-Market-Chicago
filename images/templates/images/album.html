@@ -30,21 +30,16 @@
 </div>
 {% if user.is_superuser or user.id == album.created_by.id %}
 <div id="controls">
-  <button id="updateTitleButton" class="btn btn-secondary">Update Title</button>
+  <button id="updateAlbumButton" class="btn btn-secondary">Update Album Info</button>
   <button id="addImagesButton" class="btn btn-secondary">Add Images</button>
-  {% if album.feed %}
-  <a class="btn btn-secondary" href="{% url 'images:feed-toggle' album.slug album.id %}">Hide from News Feeds</a>
-  {% else %}
-  <a class="btn btn-secondary" href="{% url 'images:feed-toggle' album.slug album.id %}">Show on News Feeds</a>
-  {% endif %}
   {% if images %}
   <button id="deleteImagesButton" class="btn btn-secondary">Delete Images</button>
   {% endif %}
   <button id="deleteAlbumButton" class="btn btn-secondary" data-toggle="modal" data-target="#deleteAlbumModal">Delete Album</button>
 </div>
-<div id="updateTitle" class="card">
-  <h3 class="h3">Update Album Title</h3>
-  {% include 'images/update_album_title.html' %}
+<div id="updateAlbum" class="card">
+  <h3 class="h3">Update Album Info</h3>
+  {% include 'images/update_album.html' %}
 </div>
 <div id="addImages" class="card">
   <h3 class="h3">Add Image(s) to Album</h3>

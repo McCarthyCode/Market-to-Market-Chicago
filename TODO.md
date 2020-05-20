@@ -3,7 +3,6 @@
 ## High Priorities
 
 - Albums
-  - Add Update Album Category form
   - Add to category feed
 - Wait on Bill
   - People to Know

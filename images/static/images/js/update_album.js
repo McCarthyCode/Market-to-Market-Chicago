@@ -1,11 +1,11 @@
 $(document).ready(() => {
   // Buttons
-  let $updateTitleButton = $('#updateTitleButton');
+  let $updateAlbumButton = $('#updateAlbumButton');
   let $addImagesButton = $('#addImagesButton');
   let $deleteImagesButton = $('#deleteImagesButton');
 
   // Cards
-  let $updateTitle = $('#updateTitle');
+  let $updateAlbum = $('#updateAlbum');
   let $addImages = $('#addImages');
   let $deleteImages = $('#deleteImages');
 
@@ -14,24 +14,24 @@ $(document).ready(() => {
 
   // Show/hide forms on button click
   let deleteFormActive = false;
-  $updateTitleButton.click(() => {
+  $updateAlbumButton.click(() => {
     deleteFormActive = false;
 
-    if ($updateTitle.is(':visible')) {
-      $updateTitle.slideUp(500);
+    if ($updateAlbum.is(':visible')) {
+      $updateAlbum.slideUp(500);
     } else if ($addImages.is(':visible')) {
-      $addImages.slideUp(500, () => $updateTitle.slideDown(500));
+      $addImages.slideUp(500, () => $updateAlbum.slideDown(500));
     } else if ($deleteImages.is(':visible')) {
-      $deleteImages.slideUp(500, () => $updateTitle.slideDown(500));
+      $deleteImages.slideUp(500, () => $updateAlbum.slideDown(500));
     } else {
-      $updateTitle.slideDown(500);
+      $updateAlbum.slideDown(500);
     }
   });
   $addImagesButton.click(() => {
     deleteFormActive = false;
 
-    if ($updateTitle.is(':visible')) {
-      $updateTitle.slideUp(500, () => $addImages.slideDown(500));
+    if ($updateAlbum.is(':visible')) {
+      $updateAlbum.slideUp(500, () => $addImages.slideDown(500));
     } else if ($addImages.is(':visible')) {
       $addImages.slideUp(500);
     } else if ($deleteImages.is(':visible')) {
@@ -43,8 +43,8 @@ $(document).ready(() => {
   $deleteImagesButton.click(() => {
     deleteFormActive = true;
 
-    if ($updateTitle.is(':visible')) {
-      $updateTitle.slideUp(500, () => $deleteImages.slideDown(500));
+    if ($updateAlbum.is(':visible')) {
+      $updateAlbum.slideUp(500, () => $deleteImages.slideDown(500));
     } else if ($addImages.is(':visible')) {
       $addImages.slideUp(500, () => $deleteImages.slideDown(500));
     } else if ($deleteImages.is(':visible')) {

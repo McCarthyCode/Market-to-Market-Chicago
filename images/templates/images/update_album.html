@@ -1,0 +1,19 @@
+<form id="updateAlbumForm" action="{% url 'images:update' album.slug album.id %}" method="POST">
+  {% csrf_token %}
+  {{ update_album_form.title.errors }}
+  {{ update_album_form.title }}
+  {{ update_album_form.images.errors }}
+  {{ update_album_form.category.errors }}
+  <div class="row select">
+    <label class="form-control col-12 col-md-6" for="{{ update_album_form.category.id_for_label }}">{{ update_album_form.category.label }}</label>
+    {{ update_album_form.category }}
+  </div>
+  {{ update_album_form.feed.errors }}
+  <div class="input-group input-group-checkbox" data-target-input="nearest">
+    <label class="form-control" for="{{ update_album_form.feed.id_for_label }}">{{ update_album_form.feed.label }}</label>
+    <div class="input-group-append">
+      <input type="checkbox" name="feed" id="id_feed"{% if album.feed %} checked{% endif %}>
+    </div>
+  </div>
+  <input class="btn btn-primary form-control" type="submit" value="Update">
+</form>
