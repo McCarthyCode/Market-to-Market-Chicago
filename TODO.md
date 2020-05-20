@@ -2,8 +2,6 @@
 
 ## High Priorities
 
-- Albums
-  - Add to category feed
 - Wait on Bill
   - People to Know
     - Bios

@@ -49,6 +49,15 @@ class Album(TimestampedModel, NewsItem):
             'images_preview': images[:5] if len(images) > 6 else images,
         })
 
+    def render_category(self, request):
+        images = Image.objects.filter(album=self)
+
+        return render(request, 'images/album_category.html', {
+            'album': self,
+            'images': images,
+            'images_preview': images[:5] if len(images) > 6 else images,
+        })
+
     @property
     def date_album_images_updated(self):
         latest_change = self.date_updated

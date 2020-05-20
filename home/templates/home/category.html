@@ -50,6 +50,11 @@
 
 {% endblock %}
 
+{% block js %}
+<!-- <script type="text/javascript" src="{% static 'home/js/infinite_scroll_category.js' %}"></script> -->
+<script type="text/javascript" src="{% static 'home/js/infinite_scroll_category.min.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 {% include 'home/messages.html' %}
 {% if title != 'Editorials & Opinions' %}
@@ -114,11 +119,11 @@
   {# include 'home/ads/medium_rectangle68.html' #}
   {% endif %}
 </section>
-<section id="articles">
+<section id="feed">
   <input type="hidden" name="category-slug" value="{{ category_slug }}">
-  <h3 class="h3">Articles</h3>
-  {% include 'articles/article_category.html' %}
+  <h3 class="h3">Articles & Photo Albums</h3>
+  <ul id="categoryFeed">
+    {% include 'home/category_feed.html' %}
+  </ul>
 </ul>
-<!-- <script type="text/javascript" src="{% static 'home/js/infinite_scroll_category.js' %}"></script> -->
-<script type="text/javascript" src="{% static 'home/js/infinite_scroll_category.min.js' %}"></script>
 {% endblock %}

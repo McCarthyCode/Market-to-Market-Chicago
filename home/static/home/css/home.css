@@ -630,6 +630,13 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-bottom: 0;
 }
 
+#categoryFeed li.category {
+  margin-bottom: 0.5rem;
+}
+#categoryFeed li.category h5.h5 > a {
+  color: #dcdcaa;
+}
+
 @media screen and (min-width: 576px) {
   #byNeighborhood {
     grid-template-columns: 1fr 1fr;
@@ -666,12 +673,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 #content .container article p:not(.info), #content .container .article p:not(.info) {
   text-align: justify;
-}
-#content .container article.category h5.h5 > a {
-  color: #dcdcaa;
-}
-#content .container article.category .info {
-  color: #679452;
 }
 
 .person .info, .author .info {

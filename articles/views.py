@@ -28,7 +28,6 @@ from images.forms import CreateAlbumForm
 from mtm.settings import (
     TZ,
     NAME,
-    ARTICLES_PER_PAGE,
     MEDIA_ROOT,
     MAX_INVITES,
 )
@@ -54,41 +53,6 @@ def article(request, slug, article_id):
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
-
-def by_page(request):
-    if request.method != 'GET':
-        return HttpResponseBadRequest()
-
-    category = request.GET.get('category', '')
-    page = request.GET.get('page', '')
-
-    if not page:
-        page = 1
-    else:
-        page = int(page)
-
-    if not category:
-        articles = Article.objects.all().order_by('-date_updated')
-    else:
-        slug_to_id = {
-            'nightlife': 0,
-            'restaurants': 1,
-            'arts-and-entertainment': 2,
-            'health-and-fitness': 3,
-            'sports': 4,
-            'non-profit': 5,
-        }
-
-        articles = Article.objects.filter(category=slug_to_id[category]).order_by('-date_updated')
-
-    articles_paginator = Paginator(articles, ARTICLES_PER_PAGE)
-
-    try:
-        return render(request, 'articles/article_category.html', {
-            'articles': articles_paginator.page(page).object_list,
-        })
-    except EmptyPage as exception:
-        return HttpResponse(exception, status=204)
 
 def create(request):
     if request.method != 'POST':

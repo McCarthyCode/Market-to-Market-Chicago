@@ -62,6 +62,11 @@ class Article(TimestampedModel, NewsItem):
             'article': self,
         })
 
+    def render_category(self, request):
+        return render(request, 'articles/article_category.html', {
+            'article': self,
+        })
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         self.body = re.sub(r'(\r\n){2,}', '\r\n\r\n', self.body)

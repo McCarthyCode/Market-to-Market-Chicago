@@ -28,7 +28,10 @@ from locations.forms import LocationForm
 from articles.forms import AuthorForm, ArticleForm
 
 from mtm.settings import (
-    TZ, NAME, ARTICLES_PER_PAGE, NEWS_ITEMS_PER_PAGE, MAX_INVITES,
+    TZ,
+    NAME,
+    NEWS_ITEMS_PER_PAGE,
+    MAX_INVITES,
     MEDIA_ROOT
 )
 
@@ -265,7 +268,8 @@ def category(request, slug):
     slug_to_name = {
         'nightlife': 'Nightlife',
         'restaurants': 'Restaurants',
-        'arts-and-entertainment': 'Arts & Entertainment','health-and-fitness': 'Health & Fitness',
+        'arts-and-entertainment': 'Arts & Entertainment',
+        'health-and-fitness': 'Health & Fitness',
         'sports': 'Sports',
         'non-profit': 'Non-profit',
         'editorials-and-opinions': 'Editorials & Opinions',
@@ -291,6 +295,23 @@ def category(request, slug):
                 'locations': locations,
             })
 
+
+    albums = []
+    for album in Album.objects.filter(feed=True, category=slug_to_id[slug])[:NEWS_ITEMS_PER_PAGE]:
+        if Image.objects.filter(album=album):
+            albums.append(album)
+
+    articles = Article.objects.filter(category=slug_to_id[slug])[:NEWS_ITEMS_PER_PAGE]
+
+    feed = sorted(
+        chain(
+            albums,
+            articles,
+        ),
+        key=attrgetter('date_updated'),
+        reverse=True,
+    )[:NEWS_ITEMS_PER_PAGE]
+
     def len_locations(obj):
         return len(obj['locations'])
 
@@ -298,9 +319,7 @@ def category(request, slug):
         'title': slug_to_name[slug],
         'category_slug': slug,
         'locations_by_neighborhood': [] if slug == 'editorials-and-opinions' else sorted(locations_by_neighborhood, key=len_locations, reverse=True),
-        'articles': Article.objects
-            .filter(category=slug_to_id[slug])
-            .order_by('-date_updated')[:ARTICLES_PER_PAGE],
+        'feed': feed,
         'show_category': False,
         'user': request.user,
         'name': NAME,
@@ -346,6 +365,46 @@ def news_feed(request):
         return render(request, 'home/news_feed.html', {
             'feed': news_feed_paginator.page(page).object_list,
             'ads_order': ads_order,
+        })
+    except EmptyPage as exception:
+        return HttpResponse(exception, status=204)
+
+def category_feed(request, slug, page):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    page = int(page)
+
+    slug_to_id = {
+        'nightlife': 0,
+        'restaurants': 1,
+        'arts-and-entertainment': 3,
+        'health-and-fitness': 4,
+        'sports': 5,
+        'non-profit': 6,
+    }
+
+    albums = []
+    for album in Album.objects.filter(feed=True, category=slug_to_id[slug])[:NEWS_ITEMS_PER_PAGE]:
+        if Image.objects.filter(album=album):
+            albums.append(album)
+
+    articles = Article.objects.filter(category=slug_to_id[slug])[:NEWS_ITEMS_PER_PAGE]
+
+    feed = sorted(
+        chain(
+            albums,
+            articles,
+        ),
+        key=attrgetter('date_updated'),
+        reverse=True,
+    )
+
+    feed_paginator = Paginator(feed, NEWS_ITEMS_PER_PAGE)
+
+    try:
+        return render(request, 'home/category_feed.html', {
+            'feed': feed_paginator.page(page).object_list,
         })
     except EmptyPage as exception:
         return HttpResponse(exception, status=204)

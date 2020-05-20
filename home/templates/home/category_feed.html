@@ -1,0 +1,7 @@
+{% load custom_tags %}
+{% for item in feed %}
+{% render_category_item request item as feed_item %}
+{{ feed_item|safe }}
+{% empty %}
+<p class="empty-card">No items to display.</p>
+{% endfor %}
