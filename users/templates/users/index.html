@@ -1,7 +1,7 @@
 {% extends 'users/base.html' %}
 {% load static %}
 {% block content %}
-{% if not user.is_authenticated %}
+{% if not request.user.is_authenticated %}
 <div class="container logged-out">
   {% include 'home/messages.html' %}
   <h1 class="h1 text-center">Login</h1>
@@ -17,7 +17,7 @@
 <div class="container logged-in">
   <h1 class="h1 text-center">Dashboard</h1>
   {% include 'home/messages.html' %}
-  {% if user.is_superuser %}
+  {% if request.user.is_superuser %}
   <div id="createPerson" class="card">
     <h3 class="h3">Create Person to Know<i class="fa fa-chevron-down"></i></h3>
     {% include 'home/create_person.html' %}

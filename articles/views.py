@@ -49,7 +49,6 @@ def article(request, slug, article_id):
         'images': images,
         'images_preview': images[:14] if images and len(images) > 15 else images,
         'update_article_form': ArticleForm(instance=article),
-        'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
@@ -198,7 +197,6 @@ def create_author(request):
             'invites': [x for x in Invite.objects.filter(sent=False).order_by('date_created') if not x.expired][:MAX_INVITES],
             'create_location_form': LocationForm(),
             'create_album_form': CreateAlbumForm(),
-            'user': request.user,
             'name': NAME,
             'year': datetime.now(TZ).year,
         })
@@ -206,7 +204,6 @@ def create_author(request):
     return render(request, 'users/index.html', {
         'create_location_form': LocationForm(),
         'create_album_form': CreateAlbumForm(),
-        'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
@@ -222,7 +219,6 @@ def update_author(request, slug, author_id):
             'author': author,
             'form': AuthorForm(instance=author),
             'title': 'Update %s' % author.full_name,
-            'user': request.user,
             'name': NAME,
             'year': datetime.now(TZ).year,
         })
@@ -279,7 +275,6 @@ def update_author(request, slug, author_id):
                 'author': author,
                 'form': form,
                 'title': '',
-                'user': request.user,
                 'name': NAME,
                 'year': datetime.now(TZ).year,
             })

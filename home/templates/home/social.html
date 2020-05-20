@@ -1,4 +1,4 @@
-<ul class="social {% if user.is_authenticated %}logged-in{% else %}logged-out{% endif %}">
+<ul class="social {% if request.user.is_authenticated %}logged-in{% else %}logged-out{% endif %}">
   <li>
     <a href="https://www.facebook.com/mtmchi/"><i class="fab fa-facebook-f"></i></a>
   </li>

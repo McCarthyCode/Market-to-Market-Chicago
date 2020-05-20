@@ -72,7 +72,6 @@ def album(request, slug, album_id):
         **response,
         'update_album_form': update_album_form,
         'add_images': add_images,
-        'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })

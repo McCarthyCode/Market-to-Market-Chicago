@@ -17,9 +17,6 @@
 - Autocorrect bugs
   - Double text on enter
   - Double selection on hover
-- Change 'user' to request.user
-  - Views
-  - Templates
 - Dashboard
   - Consolidate expand/contract scripts
 - Events
