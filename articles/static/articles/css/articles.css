@@ -734,15 +734,18 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 .person a.profile-image img, .author a.profile-image img {
   width: 100%;
 }
-.person h5.h5 > i, .author h5.h5 > i {
-  padding-right: 0.5rem;
-}
 .person p:not(.info), .author p:not(.info) {
   text-align: justify;
   margin-bottom: 1rem;
 }
 .person p:not(.info) br, .author p:not(.info) br {
   margin-bottom: 1rem;
+}
+.person .contact h5.h5 i, .person .contact h5.h5 a, .author .contact h5.h5 i, .author .contact h5.h5 a {
+  color: #48b6a0;
+}
+.person .contact h5.h5 i, .author .contact h5.h5 i {
+  margin-right: 0.5em;
 }
 .person .actions, .author .actions {
   margin: 0 -0.25rem;

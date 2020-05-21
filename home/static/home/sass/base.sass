@@ -35,18 +35,15 @@ body
   a:hover
     text-decoration: underline
 
-h1.h1, h3.h3, h4.h4, h5.h5
+h1.h1, h3.h3, h5.h5
   font-family: $font-title
 
-h1.h1
+h1.h1, h1.h1 > a,
+h5.h5, h5.h5 > a
   color: $yellow
 
 h3.h3, h3.h3 > a
   color: $orange
-
-h4.h4, h4.h4 > a,
-h5.h5, h5.h5 > a
-  color: $green
 
 ul.bulleted
   list-style: disc
@@ -68,14 +65,32 @@ ul.bulleted
 #content .container
   padding: 0 1rem
 
-a.profile-image
-  margin: 0 auto 1rem auto
-
 #grid
   display: grid
   grid-template-columns: [left] 301px [sidebar-right] auto [right]
   grid-template-rows: [top] 69px [nav-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
   height: 100vh
+
+a.profile-image
+  margin: 0 auto 1rem auto
+
+.about
+  .info-flex
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-evenly
+    align-items: center
+    margin-bottom: 1rem
+
+    > div
+      text-align: center
+      margin-right: .5rem
+
+    > a
+      margin-left: .5rem
+
+  .card:not(:last-child)
+    margin-bottom: .5rem
 
 @media screen and (min-width: $breakpoint-md)
   #grid
