@@ -22,6 +22,33 @@
     <img src="{{ author.profile_image.thumbnail.url }}">
   </a>
   {% endif %}
+  {% if author.bio %}
+  <h3 class="h3">Bio</h3>
+  {{ author.bio|linebreaks }}
+  {% endif %}
+  {% if author.phone or author.email or author.website or author.facebook or author.twitter or author.instagram %}
+  <h3 class="h3">Contact</h3>
+  <div class="contact">
+    {% if author.phone %}
+    <h5 class="h5 text-center"><i class="fa fa-mobile" aria-hidden="true"></i><a href="tel:+1{{ author.phone }}">{{ author.display_phone }}</a></h5>
+    {% endif %}
+    {% if author.email %}
+    <h5 class="h5 text-center"><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:{{ author.email }}">{{ author.email }}</a></h5>
+    {% endif %}
+    {% if author.facebook %}
+    <h5 class="h5 text-center"><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/{{ author.facebook }}">@{{ author.facebook }}</a></h5>
+    {% endif %}
+    {% if author.twitter %}
+    <h5 class="h5 text-center"><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ author.twitter }}">@{{ author.twitter }}</a></h5>
+    {% endif %}
+    {% if author.instagram %}
+    <h5 class="h5 text-center"><i class="fab fa-instagram"></i><a href="https://www.instagram.com/{{ author.instagram }}">@{{ author.instagram }}</a></h5>
+    {% endif %}
+    {% if author.website %}
+    <h5 class="h5 text-center"><i class="fas fa-link"></i><a href="{{ author.website }}">{{ author.website }}</a></h5>
+    {% endif %}
+  </div>
+  {% endif %}
   {% if request.user.is_superuser %}
   <h3 class="h3">Actions</h3>
   <div class="row actions">
@@ -37,10 +64,6 @@
   {# include 'home/ads/medium_rectangle63.html' #}
   {# include 'home/ads/medium_rectangle64.html' #}
 </div>
-{% if author.bio %}
-<h3 class="h3">Bio</h3>
-<div class="card">{{ author.bio|linebreaks }}</div>
-{% endif %}
 {# if articles #}
 <!-- <h3 class="h3">Articles</h3> -->
 {# for article in articles #}

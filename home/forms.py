@@ -92,6 +92,33 @@ class PersonForm(forms.ModelForm):
             'autocomplete': 'off',
         }),
     )
+    facebook = forms.CharField(
+        required=False,
+        label='facebook.com/',
+        widget=forms.TextInput(attrs={
+            'class': 'col-12 col-md-6 form-control',
+            'placeholder': '(optional)',
+            'autocomplete': 'off',
+        }),
+    )
+    twitter = forms.CharField(
+        required=False,
+        label='twitter.com/',
+        widget=forms.TextInput(attrs={
+            'class': 'col-12 col-md-6 form-control',
+            'placeholder': '(optional)',
+            'autocomplete': 'off',
+        }),
+    )
+    instagram = forms.CharField(
+        required=False,
+        label='instagram.com/',
+        widget=forms.TextInput(attrs={
+            'class': 'col-12 col-md-6 form-control',
+            'placeholder': '(optional)',
+            'autocomplete': 'off',
+        }),
+    )
 
     def clean(self):
         super().clean()
@@ -107,4 +134,5 @@ class PersonForm(forms.ModelForm):
         fields = [
             'prefix', 'first_name', 'last_name', 'suffix',
             'bio', 'phone', 'email', 'website',
+            'facebook', 'twitter', 'instagram',
         ]

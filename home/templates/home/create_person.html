@@ -18,11 +18,26 @@
   </div>
   {{ create_person_form.bio.errors }}
   {{ create_person_form.bio }}
+  {{ create_person_form.facebook.errors }}
+  <div class="row social">
+    <label class="col-12 col-md-6 form-control" for="{{ create_person_form.facebook.id_for_label }}">{{ create_person_form.facebook.label }}</label>
+    {{ create_person_form.facebook }}
+  </div>
+  {{ create_person_form.instagram.errors }}
+  <div class="row social">
+    <label class="col-12 col-md-6 form-control" for="{{ create_person_form.instagram.id_for_label }}">{{ create_person_form.instagram.label }}</label>
+    {{ create_person_form.instagram }}
+  </div>
+  {{ create_person_form.twitter.errors }}
+  <div class="row social">
+    <label class="col-12 col-md-6 form-control" for="{{ create_person_form.twitter.id_for_label }}">{{ create_person_form.twitter.label }}</label>
+    {{ create_person_form.twitter }}
+  </div>
+  {{ create_person_form.website.errors }}
+  {{ create_person_form.website }}
   {{ create_person_form.phone.errors }}
   {{ create_person_form.phone }}
   {{ create_person_form.email.errors }}
   {{ create_person_form.email }}
-  {{ create_person_form.website.errors }}
-  {{ create_person_form.website }}
   <input class="btn btn-primary form-control" type="submit" value="Submit">
 </form>

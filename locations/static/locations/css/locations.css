@@ -316,13 +316,15 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-#content .container form .select > :not(:last-child) {
+#content .container form .select > :not(:last-child),
+#content .container form .social > :not(:last-child) {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   border-bottom: 0;
   margin-bottom: 0;
 }
-#content .container form .select > :not(:first-child) {
+#content .container form .select > :not(:first-child),
+#content .container form .social > :not(:first-child) {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
@@ -342,20 +344,24 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-  #content .container form .select > :first-child {
+  #content .container form .select > :first-child,
+#content .container form .social > :first-child {
     border-top-left-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
   }
-  #content .container form .select > :last-child {
+  #content .container form .select > :last-child,
+#content .container form .social > :last-child {
     border-top-right-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;
   }
-  #content .container form .select > :not(:last-child) {
+  #content .container form .select > :not(:last-child),
+#content .container form .social > :not(:last-child) {
     border-bottom: 1px solid #818181;
     border-top-right-radius: 0;
     margin-bottom: 0.5rem;
   }
-  #content .container form .select > :not(:first-child) {
+  #content .container form .select > :not(:first-child),
+#content .container form .social > :not(:first-child) {
     border-left: 0;
     border-bottom-left-radius: 0;
   }

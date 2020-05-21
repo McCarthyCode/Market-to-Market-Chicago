@@ -7,16 +7,28 @@
   </a>
   {% endif %}
   {{ person.bio|linebreaks|truncatewords:100 }}
-  {% if person.phone or person.email or person.website %}
-  <h3 class="h3 text-center">Contact</h3>
+  {% if person.phone or person.email or person.website or person.facebook or person.twitter or person.instagram %}
+  <h3 class="h3">Contact</h3>
+  <div class="contact">
+    {% if person.phone %}
+    <h5 class="h5 text-center"><i class="fa fa-mobile" aria-hidden="true"></i><a href="tel:+1{{ person.phone }}">{{ person.display_phone }}</a></h5>
+    {% endif %}
+    {% if person.email %}
+    <h5 class="h5 text-center"><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:{{ person.email }}">{{ person.email }}</a></h5>
+    {% endif %}
+    {% if person.facebook %}
+    <h5 class="h5 text-center"><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/{{ person.facebook }}">@{{ person.facebook }}</a></h5>
+    {% endif %}
+    {% if person.twitter %}
+    <h5 class="h5 text-center"><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ person.twitter }}">@{{ person.twitter }}</a></h5>
+    {% endif %}
+    {% if person.instagram %}
+    <h5 class="h5 text-center"><i class="fab fa-instagram"></i><a href="https://www.instagram.com/{{ person.instagram }}">@{{ person.instagram }}</a></h5>
+    {% endif %}
+    {% if person.website %}
+    <h5 class="h5 text-center"><i class="fas fa-link"></i><a href="{{ person.website }}">{{ person.website }}</a></h5>
+    {% endif %}
+  </div>
   {% endif %}
-  {% if person.phone %}
-  <h5 class="h5 text-center"><i class="fa fa-mobile" aria-hidden="true"></i> <a href="tel:+1{{ person.phone }}">{{ person.display_phone }}</a></h5>
-  {% endif %}
-  {% if person.email %}
-  <h5 class="h5 text-center"><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{{ person.email }}">{{ person.email }}</a></h5>
-  {% endif %}
-  {% if person.website %}
-  <h5 class="h5 text-center"><i class="fas fa-link"></i> <a href="{{ person.website }}">{{ person.website }}</a></h5>
   {% endif %}
 </li>

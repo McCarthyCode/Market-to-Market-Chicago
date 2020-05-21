@@ -2,11 +2,23 @@
 
 ## High Priorities
 
+- Contact
+  - Images
+    - Billy Gubrud
+    - Clinton Bigelow
+    - Michael Radford
+- People to Know
+  - Peter Thaddeus
+    - Contact
+      - https://www.facebook.com/peterthaddeusart/
+      - https://www.instagram.com/thaddeus_art/
+- Ads
+  - Cram
+  - R Public House
+  - Lark (https://larkchicago.com)
+  - Kit Kat (https://kitkatchicago.com)
+  - MWD
 - Wait on Bill
-  - People to Know
-    - Bios
-  - About/Contact
-    - Profile images
   - Site Tour
     - Schedule
     - Remote desktop install

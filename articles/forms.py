@@ -66,6 +66,42 @@ class AuthorForm(forms.ModelForm):
             'autocomplete': 'off',
         }),
     )
+    facebook = forms.CharField(
+        required=False,
+        label='facebook.com/',
+        widget=forms.TextInput(attrs={
+            'class': 'col-12 col-md-6 form-control',
+            'placeholder': '(optional)',
+            'autocomplete': 'off',
+        }),
+    )
+    twitter = forms.CharField(
+        required=False,
+        label='twitter.com/',
+        widget=forms.TextInput(attrs={
+            'class': 'col-12 col-md-6 form-control',
+            'placeholder': '(optional)',
+            'autocomplete': 'off',
+        }),
+    )
+    instagram = forms.CharField(
+        required=False,
+        label='instagram.com/',
+        widget=forms.TextInput(attrs={
+            'class': 'col-12 col-md-6 form-control',
+            'placeholder': '(optional)',
+            'autocomplete': 'off',
+        }),
+    )
+    website = forms.CharField(
+        required=False,
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Website (optional)',
+            'autocomplete': 'off',
+        }),
+    )
     phone = forms.CharField(
         required=False,
         label='',
@@ -84,15 +120,6 @@ class AuthorForm(forms.ModelForm):
             'autocomplete': 'off',
         }),
     )
-    website = forms.CharField(
-        required=False,
-        label='',
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': 'Website (optional)',
-            'autocomplete': 'off',
-        }),
-    )
 
     def clean(self):
         super().clean()
@@ -108,6 +135,7 @@ class AuthorForm(forms.ModelForm):
         fields = [
             'prefix', 'first_name', 'last_name', 'suffix',
             'image', 'bio', 'phone', 'email', 'website',
+            'facebook', 'twitter', 'instagram',
         ]
 
 class ArticleForm(forms.ModelForm):
