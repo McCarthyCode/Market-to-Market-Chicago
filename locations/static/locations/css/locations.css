@@ -26,9 +26,21 @@
   margin: 0 auto 0.5rem auto;
 }
 
+#mediumRectangle1a > img,
+#mediumRectangle1b > img,
+#mediumRectangle2 > img,
+#mediumRectangle3 > img,
+#mediumRectangle4 > img {
+  width: 300px;
+  height: 250px;
+}
+
 #largeMobileBanner1,
 #largeMobileBanner2 {
   display: block;
+}
+#largeMobileBanner1 > img,
+#largeMobileBanner2 > img {
   width: 320px;
   height: 100px;
 }
@@ -36,6 +48,9 @@
 #leaderboard1,
 #leaderboard2 {
   display: none;
+}
+#leaderboard1 > img,
+#leaderboard2 > img {
   width: 728px;
   height: 90px;
 }
@@ -47,23 +62,13 @@
   margin: 0 auto 1rem auto;
 }
 
-#mediumRectangle1b,
-#mediumRectangle2,
-#mediumRectangle3,
-#mediumRectangle4 {
-  width: 300px;
-  height: 250px;
-}
-
 .rectangles {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   margin-bottom: 0.5rem;
 }
-.rectangles #mediumRectangle2,
-.rectangles #mediumRectangle3,
-.rectangles #mediumRectangle4 {
+.rectangles > * {
   margin: 0 0.25rem 0.5rem 0.25rem;
 }
 
