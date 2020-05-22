@@ -1,11 +1,13 @@
 {% extends 'locations/base.html' %}{% load static %}
 
 {% block large_mobile_banner1 %}
+<!-- </div> -->
 {# include 'home/ads/large_mobile_banner15.html' #}
 {% endblock %}
 
 {% block leaderboard1 %}
 {# include 'home/ads/leaderboard15.html' #}
+<!-- <div class="container"> -->
 {% endblock %}
 
 {% block large_mobile_banner2 %}
@@ -30,29 +32,30 @@
   {{ location.name }}
 </p>
 <h3 class="h3">Details</h3>
-<table id="details" class="card">
-  <tbody>
-    <tr>
-      <td>Address</td>
-      <td>{{ location.name }}<br>
-      {{ location.address1 }}<br>{% if location.address2 %}
-      {{ location.address2 }}<br>{% endif %}
-      {{ location.city }}, {{ location.state }}{% if location.zip_code %} {{ location.zip_code }}{% endif %}</td>
-    </tr>
-    {% if event.description %}<tr>
-      <td>Description</td>
-      <td>{{ event.description|linebreaks }}</td>
-    </tr>{% endif %}
-    {% if location.website %}<tr>
-      <td>Website</td>
-      <td><a class="external-link" href="{{ location.website }}">{{ location.website }}</a></td>
-    </tr>{% endif %}
-    {% if location.phone %}<tr>
-      <td>Phone</td>
-      <td><a href="tel:+1{{ location.phone }}">{{ location.display_phone }}</a></td>
-    </tr>{% endif %}
-  </tbody>
-</table>
+<div class="card">
+  <p class="info">Created on {{ location.date_created|date:"N j, Y." }}{% if location.updated_later %} <span class="text-nowrap">Updated {{ location.date_updated|date:"N j, Y." }}</span>{% endif %} <span class="text-nowrap"></span></p>
+  <table id="details">
+    <tbody>
+      <tr>
+        <td>Address</td>
+        <td>
+          {{ location.name }}<br>
+          {{ location.address1 }}<br>{% if location.address2 %}
+          {{ location.address2 }}<br>{% endif %}
+          {{ location.city }}, {{ location.state }}{% if location.zip_code %} {{ location.zip_code }}{% endif %}
+        </td>
+      </tr>
+      {% if location.website %}<tr>
+        <td>Website</td>
+        <td><a class="external-link" href="{{ location.website }}">{{ location.website }}</a></td>
+      </tr>{% endif %}
+      {% if location.phone %}<tr>
+        <td>Phone</td>
+        <td><a href="tel:+1{{ location.phone }}">{{ location.display_phone }}</a></td>
+      </tr>{% endif %}
+    </tbody>
+  </table>
+</div>
 <div class="rectangles">
   {# include 'home/ads/medium_rectangle45b.html' #}
   {# include 'home/ads/medium_rectangle46.html' #}

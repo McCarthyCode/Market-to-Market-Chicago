@@ -644,26 +644,30 @@ h3.h3 {
 #content .container {
   padding: 0.5rem 0;
 }
-#content .container > :last-child, #content .alert p {
-  margin-bottom: 0;
-}
-#content .h1 {
+#content .container .card .h1 {
   margin-bottom: 1rem;
 }
-#content .h1 .h3 a {
+#content .container .card .h3 a {
   color: #bb846e;
 }
-#content .h1 p {
+#content .container .card p {
   color: #ffffff;
 }
-#content .h1 p.info {
+#content .container .card p.info {
   color: #679452;
+  font-size: 1rem;
   font-style: italic;
   margin-bottom: 0.5rem;
 }
-#content .h1 p.info a {
+#content .container .card p.info a {
   color: #679452;
   text-decoration: underline;
+}
+#content .container .card p.info a:hover {
+  color: #97d5f7;
+}
+#content .container > :last-child, #content .alert p {
+  margin-bottom: 0;
 }
 
 #content .container .card {

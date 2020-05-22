@@ -52,6 +52,7 @@
 </div>
 {% endif %}
 <div class="card">
+  <p class="info">Created on {{ album.date_created|date:"N j, Y." }}{% if album.updated_later %} <span class="text-nowrap">Updated {{ album.date_updated|date:"N j, Y." }}</span>{% endif %} <span class="text-nowrap">From <a href="{% if album.category == 0 %}{% url 'home:category' 'nightlife' %}{% elif album.category == 1 %}{% url 'home:category' 'restaurants' %}{% elif album.category == 3 %}{% url 'home:category' 'arts-and-entertainment' %}{% elif album.category == 4 %}{% url 'home:category' 'health-and-fitness' %}{% elif album.category == 5 %}{% url 'home:category' 'sports' %}{% elif album.category == 6 %}{% url 'home:category' 'non-profit' %}{% elif album.category == 7 %}{% url 'home:category' 'editorials-and-opinions' %}{% endif %}">{{ album.get_category_display }}</a>.</span></p>
   <div id="album">
     {% for image in images %}
     <div>

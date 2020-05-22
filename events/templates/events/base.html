@@ -141,10 +141,8 @@
     <section id="content">
       <div class="container">
         <h1 class="h1 text-center">{% if event %}{{ event.name }} <span class="text-nowrap">({{ event.date_start|date:"D. N j" }})</span>{% else %}Events{% endif %}</h1>
-      </div>
-      {% block large_mobile_banner1 %}{% endblock %}
-      {% block leaderboard1 %}{% endblock %}
-      <div class="container">
+        {% block large_mobile_banner1 %}{% endblock %}
+        {% block leaderboard1 %}{% endblock %}
         {% block content %}
         {% endblock %}
       </div>

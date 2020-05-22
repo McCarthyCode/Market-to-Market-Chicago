@@ -26,21 +26,9 @@
   margin: 0 auto 0.5rem auto;
 }
 
-#mediumRectangle1a > img,
-#mediumRectangle1b > img,
-#mediumRectangle2 > img,
-#mediumRectangle3 > img,
-#mediumRectangle4 > img {
-  width: 300px;
-  height: 250px;
-}
-
 #largeMobileBanner1,
 #largeMobileBanner2 {
   display: block;
-}
-#largeMobileBanner1 > img,
-#largeMobileBanner2 > img {
   width: 320px;
   height: 100px;
 }
@@ -48,9 +36,6 @@
 #leaderboard1,
 #leaderboard2 {
   display: none;
-}
-#leaderboard1 > img,
-#leaderboard2 > img {
   width: 728px;
   height: 90px;
 }
@@ -62,13 +47,23 @@
   margin: 0 auto 1rem auto;
 }
 
+#mediumRectangle1b,
+#mediumRectangle2,
+#mediumRectangle3,
+#mediumRectangle4 {
+  width: 300px;
+  height: 250px;
+}
+
 .rectangles {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   margin-bottom: 0.5rem;
 }
-.rectangles > * {
+.rectangles #mediumRectangle2,
+.rectangles #mediumRectangle3,
+.rectangles #mediumRectangle4 {
   margin: 0 0.25rem 0.5rem 0.25rem;
 }
 
@@ -322,7 +317,7 @@ nav .navbar-brand:hover {
 }
 nav .social {
   position: absolute;
-  right: 71px;
+  right: 73px;
   top: 23px;
 }
 nav .social li {
@@ -339,7 +334,6 @@ nav .social li a:hover {
 }
 nav #navbarMenuButton {
   border: none !important;
-  width: 44px;
   color: #569cd6 !important;
   background-color: #1e1e1e;
   -webkit-transition: color 0.15s ease-in-out;
@@ -529,22 +523,22 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 #content .h1 {
   margin-bottom: 1rem;
 }
-#content .h1 .h3 a {
+#content .h3 a {
   color: #bb846e;
 }
-#content .h1 p {
+#content p {
   color: #ffffff;
 }
-#content .h1 p.info {
+#content p.info {
   color: #679452;
   font-style: italic;
   margin-bottom: 0.5rem;
 }
-#content .h1 p.info a {
+#content p.info a {
   color: #679452;
   text-decoration: underline;
 }
-#content .h1 p.read-more {
+#content p.info p.read-more {
   margin: 0;
 }
 #content form input[type=text], #content form input[type=number], #content form input[type=password],
@@ -861,6 +855,10 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 #details td p:last-child {
   margin-bottom: 0;
+}
+#details td.undefined {
+  color: #bbbbbb;
+  font-style: italic;
 }
 #details td:first-child {
   text-align: right;
