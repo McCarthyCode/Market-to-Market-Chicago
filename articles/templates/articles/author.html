@@ -15,6 +15,7 @@
 {% block title %}{{ author.full_name }}{% endblock %}
 
 {% block content %}
+{% include 'home/messages.html' %}
 <div class="card author">
   <p class="info">Created on {{ author.date_created|date:"N j, Y." }}{% if author.updated_later %} <span class="text-nowrap">Updated {{ author.date_updated|date:"N j, Y." }}</span>{% endif %}</p>
   {% if author.profile_image %}

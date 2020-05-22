@@ -49,6 +49,7 @@
 
 ## Low Priorities
 
+- Change title variables to title template blocks
 - Events
   - Add holiday field
   - All events page
@@ -94,5 +95,4 @@
 - Add optional location field to articles (ask Bill)
 - Consolidate duplicate entries
   - Neighborhood
-  - Location
   - Location
