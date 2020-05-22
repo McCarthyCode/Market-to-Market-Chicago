@@ -1,11 +1,13 @@
 {% extends 'events/base.html' %}{% load static %}
 
 {% block large_mobile_banner1 %}
+<!-- </div> -->
 {# include 'home/ads/large_mobile_banner17.html' #}
 {% endblock %}
 
 {% block leaderboard1 %}
 {# include 'home/ads/leaderboard17.html' #}
+<!-- <div class="container"> -->
 {% endblock %}
 
 {% block large_mobile_banner2 %}
@@ -36,33 +38,36 @@
   {{ event.name }}
 </p>
 <h3 class="h3">Details</h3>
-<table id="details" class="card">
-  <tbody>
-    <tr>
-      <td>Time</td>
-      <td>{% if event.all_day %}All Day{% else %}{{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}{% endif %}</td>
-    </tr>
-    <tr>
-      <td>Location</td>
-      {% if event.location %}
-      <td><a href="{% url 'locations:location' category_slug event.location.slug event.location.id %}">{{ event.location.name }}</a><br>
-      {{ event.location.address1 }}<br>{% if event.location.address2 %}
-      {{ event.location.address2 }}<br>{% endif %}
-      {{ event.location.city }}, {{ event.location.state }}{% if event.location.zip_code %} {{ event.location.zip_code }}{% endif %}</td>
-      {% else %}
-      <td>undefined</td>
-      {% endif %}
-    </tr>
-    {% if event.description %}<tr>
-      <td>Description</td>
-      <td>{{ event.description|linebreaks }}</td>
-    </tr>{% endif %}
-    {% if next_event %}<tr>
-      <td>Next Event</td>
-      <td><a href="{% url 'events:event' category_slug 'undefined' next_event.slug next_event.id %}">{{ next_event.date_start|date:"F j, Y" }}</a></td>
-    </tr>{% endif %}
-  </tbody>
-</table>
+<div class="card">
+  <p class="info">Created on {{ event.date_created|date:"N j, Y." }}{% if event.updated_later %} <span class="text-nowrap">Updated {{ event.date_updated|date:"N j, Y." }}</span>{% endif %} <span class="text-nowrap"></span></p>
+  <table id="details">
+    <tbody>
+      <tr>
+        <td>Time</td>
+        <td>{% if event.all_day %}All Day{% else %}{{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}{% endif %}</td>
+      </tr>
+      <tr>
+        <td>Location</td>
+        {% if event.location %}
+        <td><a href="{% url 'locations:location' category_slug event.location.slug event.location.id %}">{{ event.location.name }}</a><br>
+        {{ event.location.address1 }}<br>{% if event.location.address2 %}
+        {{ event.location.address2 }}<br>{% endif %}
+        {{ event.location.city }}, {{ event.location.state }}{% if event.location.zip_code %} {{ event.location.zip_code }}{% endif %}</td>
+        {% else %}
+        <td class="undefined">undefined</td>
+        {% endif %}
+      </tr>
+      {% if event.description %}<tr>
+        <td>Description</td>
+        <td>{{ event.description|linebreaks }}</td>
+      </tr>{% endif %}
+      {% if next_event %}<tr>
+        <td>Next Event</td>
+        <td><a href="{% url 'events:event' category_slug 'undefined' next_event.slug next_event.id %}">{{ next_event.date_start|date:"F j, Y" }}</a></td>
+      </tr>{% endif %}
+    </tbody>
+  </table>
+</div>
 <div class="rectangles">
   {# include 'home/ads/medium_rectangle49b.html' #}
   {# include 'home/ads/medium_rectangle50.html' #}

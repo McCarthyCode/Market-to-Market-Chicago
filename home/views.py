@@ -374,6 +374,7 @@ def category_feed(request, slug, page):
         'health-and-fitness': 4,
         'sports': 5,
         'non-profit': 6,
+        'editorials-and-opinions': 7,
     }
 
     albums = []

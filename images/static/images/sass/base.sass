@@ -62,26 +62,31 @@ h3.h3
   .container
     padding: .5rem 0
 
+    .card
+      .h1
+        margin-bottom: 1rem
+
+      .h3 a
+        color: $orange
+
+      p
+        color: $white
+
+      p.info
+        color: $green
+        font-size: 1rem
+        font-style: italic
+        margin-bottom: .5rem
+
+        a
+          color: $green
+          text-decoration: underline
+
+        a:hover
+          color: $cyan
+
   .container > :last-child, .alert p
     margin-bottom: 0
-
-  .h1
-    margin-bottom: 1rem
-
-    .h3 a
-      color: $orange
-
-    p
-      color: $white
-
-    p.info
-      color: $green
-      font-style: italic
-      margin-bottom: .5rem
-
-      a
-        color: $green
-        text-decoration: underline
 
 #content .container .card
   background-color: $mid-gray

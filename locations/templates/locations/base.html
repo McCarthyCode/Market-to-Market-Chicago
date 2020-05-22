@@ -128,10 +128,8 @@
     <section id="content">
       <div class="container">
         <h1 class="h1 text-center">{{ title }}</h1>
-      </div>
-      {% block large_mobile_banner1 %}{% endblock %}
-      {% block leaderboard1 %}{% endblock %}
-      <div class="container">
+        {% block large_mobile_banner1 %}{% endblock %}
+        {% block leaderboard1 %}{% endblock %}
         {% block content %}{% endblock %}
       </div>
       {% block large_mobile_banner2 %}{% endblock %}
