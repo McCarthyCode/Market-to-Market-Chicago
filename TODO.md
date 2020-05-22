@@ -3,18 +3,6 @@
 ## High Priorities
 
 - Hamburger
-- Authors
-  - Billy Gubrud (5)
-    - Billy has been working in LGBT media in Chicago for over 20 years. In 2000, Billy secured an advertising contract with the Chicago Cubs, making them the first professional sports team to advertise in an LGBT publication, and solidifying the team as a staple in the Chicago LGBT community. The following year, he founded and organized the first-ever recognized Gay Day sporting event in the world, Out at the Ballgame (now branded Out at Wrigley, and still organized by Billy and MTM). Out at Wrigley is now entering its 20th year!
-  - Michael Christopher Radford (1)
-    - Arts and Entertainment Editor
-    - Michael is a singer/actor/dancer/model from Valparaiso, Indiana. He is a recent graduate from Southern Illinois University - Carbondale with a BFA in Musical Theatre.
-    - michael@mtmchicago.com
-- People to Know
-  - Peter Thaddeus
-    - Contact
-      - https://www.facebook.com/peterthaddeusart/
-      - https://www.instagram.com/thaddeus_art/
 - Ads
   - Cram
   - R Public House
@@ -29,6 +17,7 @@
 
 ## Medium Priorities
 
+- Take update author redirect to author page
 - Autocorrect bugs
   - Double text on enter
   - Double selection on hover
@@ -60,6 +49,7 @@
 
 ## Low Priorities
 
+- Change title variables to title template blocks
 - Events
   - Add holiday field
   - All events page
@@ -105,5 +95,4 @@
 - Add optional location field to articles (ask Bill)
 - Consolidate duplicate entries
   - Neighborhood
-  - Location
   - Location

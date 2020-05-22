@@ -1,4 +1,8 @@
-{% extends 'home/base.html' %}{% load static %}{% block content %}
+{% extends 'articles/base.html' %}{% load static %}
+
+{% block title %}Update <a href="{% url 'articles:author' author.slug author.id %}">{{ author.full_name }}</a>{% endblock %}
+
+{% block content %}
 {% include 'home/messages.html' %}
 <form id="updateAuthorForm" class="card" action="{% url 'articles:update-author' author.slug author.id %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}

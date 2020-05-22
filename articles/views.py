@@ -218,7 +218,6 @@ def update_author(request, slug, author_id):
         return render(request, 'articles/update_author.html', {
             'author': author,
             'form': AuthorForm(instance=author),
-            'title': 'Update %s' % author.full_name,
             'name': NAME,
             'year': datetime.now(TZ).year,
         })
@@ -274,7 +273,6 @@ def update_author(request, slug, author_id):
             return render(request, 'home/update_author.html', {
                 'author': author,
                 'form': form,
-                'title': '',
                 'name': NAME,
                 'year': datetime.now(TZ).year,
             })
@@ -282,7 +280,7 @@ def update_author(request, slug, author_id):
         return HttpResponseBadRequest()
 
     return HttpResponseRedirect(
-        reverse('articles:update-author', args=[slug, author_id])
+        reverse('articles:author', args=[slug, author_id])
     )
 
 def delete_author(request, slug, author_id):

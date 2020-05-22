@@ -37,8 +37,16 @@ body
 h1.h1, h3.h3, h5.h5
   font-family: $font-title
 
-h1.h1
+h1.h1, h1.h1 > a
   color: $yellow
+
+h1.h1 >
+  a
+    text-decoration: underline
+    @include transition(color, .15s)
+
+  a:hover
+    color: $light-blue
 
 h3.h3, h3.h3 > a
   color: $orange
