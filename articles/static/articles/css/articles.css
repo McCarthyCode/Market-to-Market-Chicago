@@ -742,11 +742,12 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 .person p:not(.info) br, .author p:not(.info) br {
   margin-bottom: 1rem;
 }
-.person .contact h5.h5 i, .person .contact h5.h5 a, .author .contact h5.h5 i, .author .contact h5.h5 a {
-  color: #48b6a0;
-}
 .person .contact h5.h5 i, .author .contact h5.h5 i {
+  color: #dcdcaa;
   margin-right: 0.5em;
+}
+.person .contact h5.h5 a, .author .contact h5.h5 a {
+  color: #569cd6;
 }
 .person .actions, .author .actions {
   margin: 0 -0.25rem;
