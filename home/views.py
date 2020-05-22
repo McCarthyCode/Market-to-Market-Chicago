@@ -78,7 +78,6 @@ def index(request):
         'title': 'Market to Market Chicago',
         'feed': feed[:NEWS_ITEMS_PER_PAGE],
         'ads_order': ads_order,
-        'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
@@ -89,7 +88,6 @@ def about(request):
 
     return render(request, 'home/about.html', {
         'title': 'About Market to Market Chicago',
-        'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
@@ -101,7 +99,6 @@ def people(request):
     return render(request, 'home/people.html', {
         'title': 'People to Know',
         'people': Person.objects.all().order_by('-date_updated'),
-        'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
@@ -143,14 +140,12 @@ def create_person(request):
             'invites': [x for x in Invite.objects.filter(sent=False).order_by('date_created') if not x.expired][:MAX_INVITES],
             'create_location_form': LocationForm(),
             'create_album_form': CreateAlbumForm(),
-            'user': request.user,
             'name': NAME,
             'year': datetime.now(TZ).year,
         })
 
     return render(request, 'users/index.html', {
         'create_location_form': LocationForm(),
-        'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })
@@ -166,7 +161,6 @@ def update_person(request, person_id):
             'person': person,
             'form': PersonForm(instance=person),
             'title': 'Update %s' % person.full_name,
-            'user': request.user,
             'name': NAME,
             'year': datetime.now(TZ).year,
         })
@@ -223,7 +217,6 @@ def update_person(request, person_id):
                 'person': person,
                 'form': form,
                 'title': '',
-                'user': request.user,
                 'name': NAME,
                 'year': datetime.now(TZ).year,
             })
@@ -321,7 +314,6 @@ def category(request, slug):
         'locations_by_neighborhood': [] if slug == 'editorials-and-opinions' else sorted(locations_by_neighborhood, key=len_locations, reverse=True),
         'feed': feed,
         'show_category': False,
-        'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })

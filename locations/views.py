@@ -80,7 +80,6 @@ def location(request, category_slug, location_slug, location_id):
         **response,
         'title': name,
         'update_location_form': LocationForm(instance=location),
-        'user': request.user,
         'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
         'name': NAME,
         'year': datetime.now(TZ).year,

@@ -21,7 +21,6 @@ def index(request):
     current_month = datetime.now(TZ).replace(day=1, hour=0, minute=0, second=0, microsecond=0)
 
     return render(request, 'events/index.html', {
-        'user': request.user,
         'calendar': Event.objects.calendar(request),
         'by_date': Event.objects.by_date(request),
         'by_location': Event.objects.by_location(request),
@@ -55,7 +54,6 @@ def event(request, category_slug, location_slug, event_slug, event_id):
 
     return render(request, 'events/event.html', {
         **response,
-        'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
         'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,

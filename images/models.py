@@ -226,6 +226,9 @@ class AbstractPerson(TimestampedModel, NewsItem):
     phone = models.CharField(blank=True, null=True, max_length=10)
     email = models.EmailField(blank=True, null=True)
     website = models.URLField(blank=True, null=True)
+    facebook = models.CharField(blank=True, null=True, max_length=70)
+    twitter = models.CharField(blank=True, null=True, max_length=70)
+    instagram = models.CharField(blank=True, null=True, max_length=70)
 
     def __str__(self):
         return self.full_name

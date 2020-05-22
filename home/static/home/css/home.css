@@ -26,9 +26,21 @@
   margin: 0 auto 0.5rem auto;
 }
 
+#mediumRectangle1a > img,
+#mediumRectangle1b > img,
+#mediumRectangle2 > img,
+#mediumRectangle3 > img,
+#mediumRectangle4 > img {
+  width: 300px;
+  height: 250px;
+}
+
 #largeMobileBanner1,
 #largeMobileBanner2 {
   display: block;
+}
+#largeMobileBanner1 > img,
+#largeMobileBanner2 > img {
   width: 320px;
   height: 100px;
 }
@@ -36,6 +48,9 @@
 #leaderboard1,
 #leaderboard2 {
   display: none;
+}
+#leaderboard1 > img,
+#leaderboard2 > img {
   width: 728px;
   height: 90px;
 }
@@ -47,23 +62,13 @@
   margin: 0 auto 1rem auto;
 }
 
-#mediumRectangle1b,
-#mediumRectangle2,
-#mediumRectangle3,
-#mediumRectangle4 {
-  width: 300px;
-  height: 250px;
-}
-
 .rectangles {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   margin-bottom: 0.5rem;
 }
-.rectangles #mediumRectangle2,
-.rectangles #mediumRectangle3,
-.rectangles #mediumRectangle4 {
+.rectangles > * {
   margin: 0 0.25rem 0.5rem 0.25rem;
 }
 
@@ -283,13 +288,15 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-#content .container form .select > :not(:last-child) {
+#content .container form .select > :not(:last-child),
+#content .container form .social > :not(:last-child) {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   border-bottom: 0;
   margin-bottom: 0;
 }
-#content .container form .select > :not(:first-child) {
+#content .container form .select > :not(:first-child),
+#content .container form .social > :not(:first-child) {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
@@ -309,20 +316,24 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-  #content .container form .select > :first-child {
+  #content .container form .select > :first-child,
+#content .container form .social > :first-child {
     border-top-left-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
   }
-  #content .container form .select > :last-child {
+  #content .container form .select > :last-child,
+#content .container form .social > :last-child {
     border-top-right-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;
   }
-  #content .container form .select > :not(:last-child) {
+  #content .container form .select > :not(:last-child),
+#content .container form .social > :not(:last-child) {
     border-bottom: 1px solid #818181;
     border-top-right-radius: 0;
     margin-bottom: 0.5rem;
   }
-  #content .container form .select > :not(:first-child) {
+  #content .container form .select > :not(:first-child),
+#content .container form .social > :not(:first-child) {
     border-left: 0;
     border-bottom-left-radius: 0;
   }
@@ -382,7 +393,7 @@ nav .navbar-brand:hover {
 }
 nav .social {
   position: absolute;
-  right: 73px;
+  right: 71px;
   top: 23px;
 }
 nav .social li {
@@ -399,6 +410,7 @@ nav .social li a:hover {
 }
 nav #navbarMenuButton {
   border: none !important;
+  width: 44px;
   color: #569cd6 !important;
   background-color: #1e1e1e;
   -webkit-transition: color 0.15s ease-in-out;
@@ -591,7 +603,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-bottom: 0.5rem;
 }
 
-.contact i {
+.contact h5.h5 > i {
   margin-right: 0.5em;
 }
 .contact h5.h5:last-of-type {
@@ -700,6 +712,12 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 .person p:not(.info) br, .author p:not(.info) br {
   margin-bottom: 1rem;
+}
+.person .contact h5.h5 i, .person .contact h5.h5 a, .author .contact h5.h5 i, .author .contact h5.h5 a {
+  color: #48b6a0;
+}
+.person .contact h5.h5 i, .author .contact h5.h5 i {
+  margin-right: 0.5em;
 }
 .person .actions, .author .actions {
   margin: 0 -0.25rem;
@@ -821,21 +839,17 @@ body a:hover {
   text-decoration: underline;
 }
 
-h1.h1, h3.h3, h4.h4, h5.h5 {
+h1.h1, h3.h3, h5.h5 {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
 }
 
-h1.h1 {
+h1.h1, h1.h1 > a,
+h5.h5, h5.h5 > a {
   color: #dcdcaa;
 }
 
 h3.h3, h3.h3 > a {
   color: #bb846e;
-}
-
-h4.h4, h4.h4 > a,
-h5.h5, h5.h5 > a {
-  color: #679452;
 }
 
 ul.bulleted {
@@ -861,15 +875,33 @@ ul.bulleted li.empty::marker {
   padding: 0 1rem;
 }
 
-a.profile-image {
-  margin: 0 auto 1rem auto;
-}
-
 #grid {
   display: grid;
   grid-template-columns: [left] 301px [sidebar-right] auto [right];
   grid-template-rows: [top] 69px [nav-bottom] auto [footer-tall-top] 19.2px [footer-short-top] 17px [gradient-top] 32px [bottom];
   height: 100vh;
+}
+
+a.profile-image {
+  margin: 0 auto 1rem auto;
+}
+
+.about .info-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.about .info-flex > div {
+  text-align: center;
+  margin-right: 0.5rem;
+}
+.about .info-flex > a {
+  margin-left: 0.5rem;
+}
+.about .card:not(:last-child) {
+  margin-bottom: 0.5rem;
 }
 
 @media screen and (min-width: 768px) {

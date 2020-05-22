@@ -31,12 +31,27 @@
   {% endif %}
   {{ form.bio.errors }}
   {{ form.bio }}
+  {{ form.facebook.errors }}
+  <div class="row social">
+    <label class="col-12 col-md-6 form-control" for="{{ form.facebook.id_for_label }}">{{ form.facebook.label }}</label>
+    {{ form.facebook }}
+  </div>
+  {{ form.instagram.errors }}
+  <div class="row social">
+    <label class="col-12 col-md-6 form-control" for="{{ form.instagram.id_for_label }}">{{ form.instagram.label }}</label>
+    {{ form.instagram }}
+  </div>
+  {{ form.twitter.errors }}
+  <div class="row social">
+    <label class="col-12 col-md-6 form-control" for="{{ form.twitter.id_for_label }}">{{ form.twitter.label }}</label>
+    {{ form.twitter }}
+  </div>
+  {{ form.website.errors }}
+  {{ form.website }}
   {{ form.phone.errors }}
   <input type="text" name="phone" value="{{ author.display_phone }}" class="form-control" autocomplete="off" id="id_phone" placeholder="Phone (optional)">
   {{ form.email.errors }}
   {{ form.email }}
-  {{ form.website.errors }}
-  {{ form.website }}
   <input class="btn btn-primary form-control" type="submit" value="Update">
 </form>
 {% endblock %}

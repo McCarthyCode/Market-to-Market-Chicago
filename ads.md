@@ -1,9 +1,9 @@
 # Projected Ad Space Listing
 
 ## Type of Ad and Dimensions
-- Leaderboard (728x90)
-- Large Mobile Banner (640x200)
-- Medium Rectangle (600x500)
+- Leaderboard (728x90 desktop/1456x180 mobile)
+- Large Mobile Banner (320x100 desktop/640x200 mobile)
+- Medium Rectangle (300x250 desktop/600x500 mobile)
 
 Below is a listing of every ad space currently available on the site. Not all spaces need to be occupied.
 

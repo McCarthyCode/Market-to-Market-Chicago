@@ -34,14 +34,12 @@ def index(request):
             'invites': [x for x in Invite.objects.filter(sent=False).order_by('date_created') if not x.expired][:MAX_INVITES],
             'create_location_form': LocationForm(),
             'create_album_form': CreateAlbumForm(),
-            'user': request.user,
             'name': NAME,
             'year': datetime.now(TZ).year,
         })
 
     return render(request, 'users/index.html', {
         'create_location_form': LocationForm(),
-        'user': request.user,
         'name': NAME,
         'year': datetime.now(TZ).year,
     })

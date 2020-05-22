@@ -28,7 +28,7 @@
   {# include 'home/ads/medium_rectangle59.html' #}
   {# include 'home/ads/medium_rectangle60.html' #}
 </div>
-{% if user.is_superuser or user.id == album.created_by.id %}
+{% if request.user.is_superuser or request.user.id == album.created_by.id %}
 <div id="controls">
   <button id="updateAlbumButton" class="btn btn-secondary">Update Album Info</button>
   <button id="addImagesButton" class="btn btn-secondary">Add Images</button>
@@ -60,7 +60,7 @@
       </a>
     </div>
     {% empty %}
-    {% if user.is_superuser or user.id == album.created_by.id %}
+    {% if request.user.is_superuser or request.user.id == album.created_by.id %}
     <p class="text-center empty">There are currently no images in this album. You may add images by clicking the "Add Images" button above.</p>
     {% else %}
     <p class="text-center empty">There are currently no images in this album.</p>

@@ -26,9 +26,21 @@
   margin: 0 auto 0.5rem auto;
 }
 
+#mediumRectangle1a > img,
+#mediumRectangle1b > img,
+#mediumRectangle2 > img,
+#mediumRectangle3 > img,
+#mediumRectangle4 > img {
+  width: 300px;
+  height: 250px;
+}
+
 #largeMobileBanner1,
 #largeMobileBanner2 {
   display: block;
+}
+#largeMobileBanner1 > img,
+#largeMobileBanner2 > img {
   width: 320px;
   height: 100px;
 }
@@ -36,6 +48,9 @@
 #leaderboard1,
 #leaderboard2 {
   display: none;
+}
+#leaderboard1 > img,
+#leaderboard2 > img {
   width: 728px;
   height: 90px;
 }
@@ -47,23 +62,13 @@
   margin: 0 auto 1rem auto;
 }
 
-#mediumRectangle1b,
-#mediumRectangle2,
-#mediumRectangle3,
-#mediumRectangle4 {
-  width: 300px;
-  height: 250px;
-}
-
 .rectangles {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   margin-bottom: 0.5rem;
 }
-.rectangles #mediumRectangle2,
-.rectangles #mediumRectangle3,
-.rectangles #mediumRectangle4 {
+.rectangles > * {
   margin: 0 0.25rem 0.5rem 0.25rem;
 }
 
@@ -153,7 +158,7 @@ nav .navbar-brand:hover {
 }
 nav .social {
   position: absolute;
-  right: 73px;
+  right: 71px;
   top: 23px;
 }
 nav .social li {
@@ -170,6 +175,7 @@ nav .social li a:hover {
 }
 nav #navbarMenuButton {
   border: none !important;
+  width: 44px;
   color: #569cd6 !important;
   background-color: #1e1e1e;
   -webkit-transition: color 0.15s ease-in-out;
@@ -453,13 +459,15 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-#content .container form .select > :not(:last-child) {
+#content .container form .select > :not(:last-child),
+#content .container form .social > :not(:last-child) {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   border-bottom: 0;
   margin-bottom: 0;
 }
-#content .container form .select > :not(:first-child) {
+#content .container form .select > :not(:first-child),
+#content .container form .social > :not(:first-child) {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
@@ -479,20 +487,24 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-  #content .container form .select > :first-child {
+  #content .container form .select > :first-child,
+#content .container form .social > :first-child {
     border-top-left-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
   }
-  #content .container form .select > :last-child {
+  #content .container form .select > :last-child,
+#content .container form .social > :last-child {
     border-top-right-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;
   }
-  #content .container form .select > :not(:last-child) {
+  #content .container form .select > :not(:last-child),
+#content .container form .social > :not(:last-child) {
     border-bottom: 1px solid #818181;
     border-top-right-radius: 0;
     margin-bottom: 0.5rem;
   }
-  #content .container form .select > :not(:first-child) {
+  #content .container form .select > :not(:first-child),
+#content .container form .social > :not(:first-child) {
     border-left: 0;
     border-bottom-left-radius: 0;
   }

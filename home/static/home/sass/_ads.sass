@@ -18,17 +18,30 @@
 #mediumRectangle4
   margin: 0 auto .5rem auto
 
+#mediumRectangle1a,
+#mediumRectangle1b,
+#mediumRectangle2,
+#mediumRectangle3,
+#mediumRectangle4
+  > img
+    width: 300px
+    height: 250px
+
 #largeMobileBanner1,
 #largeMobileBanner2
   display: block
-  width: 320px
-  height: 100px
+
+  > img
+    width: 320px
+    height: 100px
 
 #leaderboard1,
 #leaderboard2
   display: none
-  width: 728px
-  height: 90px
+
+  > img
+    width: 728px
+    height: 90px
 
 #largeMobileBanner1,
 #largeMobileBanner2,
@@ -36,22 +49,13 @@
 #leaderboard2
   margin: 0 auto 1rem auto
 
-#mediumRectangle1b,
-#mediumRectangle2,
-#mediumRectangle3,
-#mediumRectangle4
-  width: 300px
-  height: 250px
-
 .rectangles
   display: flex
   justify-content: space-around
   flex-wrap: wrap
   margin-bottom: .5rem
 
-  #mediumRectangle2,
-  #mediumRectangle3,
-  #mediumRectangle4
+  > *
     margin: 0 .25rem .5rem .25rem
 
 @media screen and ( min-width: 1041px )
