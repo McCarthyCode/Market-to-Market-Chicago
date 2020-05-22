@@ -386,7 +386,7 @@ nav .navbar-brand:hover {
 }
 nav .social {
   position: absolute;
-  right: 73px;
+  right: 71px;
   top: 23px;
 }
 nav .social li {
@@ -403,6 +403,7 @@ nav .social li a:hover {
 }
 nav #navbarMenuButton {
   border: none !important;
+  width: 44px;
   color: #569cd6 !important;
   background-color: #1e1e1e;
   -webkit-transition: color 0.15s ease-in-out;
