@@ -205,8 +205,7 @@ MAX_INVITES = 20
 if DEBUG:
     DOMAIN = 'http://10.0.0.100:8080'
 else:
-    DOMAIN = 'http://67.205.139.60'
-    # DOMAIN = 'https://mtmchicago.com'
+    DOMAIN = 'https://mtmchicago.com'
 
 
 # Expiry duration for invites
