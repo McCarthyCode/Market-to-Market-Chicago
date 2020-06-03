@@ -29,12 +29,12 @@ Go back to the virtual environment and install project dependencies.
 Generate a secret key and pipe the output to a file. Change the newly created file's permissions to `rw-------`, or `0600`. Note that you will need to add the file to `.gitignore` if you keep it somewhere other than `$BASE_DIR/auth`. Also, your directory structure will likely differ from the one used by `SECRET_KEY_FILE` in `mtm/settings.py`. Change the path to `secret.txt` in `SECRET_KEY_FILE` in `mtm/settings.py` to match your system's directory structure.
 
     $ mkdir auth
-    $ python generate_secret_key.py > auth/secret.txt
-    $ sudo chmod 600 secret.txt
+    $ python bin/generate_secret_key.py > auth/secret.txt
+    $ sudo chmod 0600 auth/secret.txt
 
 Alternatively, export it as an environment variable and edit `mtm/settings.py` to read the string that way.
 
-    $ export SECRET_KEY=$(python generate_secret_key.py)
+    $ export SECRET_KEY=$(python bin/generate_secret_key.py)
 
 In `settings.py`, change
 
