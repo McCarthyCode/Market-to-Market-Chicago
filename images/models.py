@@ -288,9 +288,9 @@ class PersonImage(ThumbnailedImage):
 class Person(AbstractPerson):
     profile_image = models.ForeignKey(PersonImage, on_delete=models.SET_NULL, blank=True, null=True, default=None)
 
-    def delete(self):
+    def delete(self, *args, **kwargs):
         self.profile_image.delete()
-        return super().delete()
+        return super().delete(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = 'people'

@@ -34,9 +34,9 @@ class Author(AbstractPerson):
     profile_image = models.ForeignKey(AuthorImage, on_delete=models.SET_NULL, blank=True, null=True, default=None)
     bio = models.TextField(blank=True, null=True)
 
-    def delete(self):
+    def delete(self, *args, **kwargs):
         self.profile_image.delete()
-        return super().delete()
+        return super().delete(*args, **kwargs)
 
 class Article(TimestampedModel, NewsItem):
     CATEGORY_CHOICES = [
