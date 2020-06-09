@@ -356,14 +356,14 @@ def update_contact(request, contact_id):
             return render(request, 'home/update_contact.html', {
                 'contact': contact,
                 'form': form,
-                'title': '',
+                'title': 'Update %s' % contact.full_name,
                 'name': NAME,
                 'year': datetime.now(TZ).year,
             })
     else:
         return HttpResponseBadRequest()
 
-    return redirect('home:people-to-know')
+    return redirect('home:about')
 
 def delete_contact(request, contact_id):
     if request.method != 'GET':

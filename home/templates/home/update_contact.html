@@ -1,0 +1,59 @@
+{% extends 'home/base.html' %}{% load static %}{% block content %}
+{% include 'home/messages.html' %}
+<form id="updateContactForm" class="card" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {{ form.prefix.errors }}
+  {{ form.first_name.errors }}
+  {{ form.last_name.errors }}
+  {{ form.suffix.errors }}
+  <div class="name">
+    {{ form.prefix }}
+    {{ form.first_name }}
+    {{ form.last_name }}
+    {{ form.suffix }}
+  </div>
+  {{ form.image.errors }}
+  <div class="row">
+    <label class="col-12 col-md-4 form-control" for="{{ form.image.id_for_label }}">{{ form.image.label }}</label>
+    {{ form.image }}
+  </div>
+  {% if person.profile_image %}
+  {{ form.clear_image.errors }}
+  <div class="checkbox">
+    <div class="input-group input-group-checkbox" data-target-input="nearest">
+      <label class="form-control" for="{{ form.clear_image.id_for_label }}">{{ form.clear_image.label }}</label>
+      <div class="input-group-append">
+        {{ form.clear_image }}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {{ form.title.errors }}
+  {{ form.title }}
+  {{ form.bio.errors }}
+  {{ form.bio }}
+  {{ form.facebook.errors }}
+  <div class="row social">
+    <label class="col-12 col-md-6 form-control" for="{{ form.facebook.id_for_label }}">{{ form.facebook.label }}</label>
+    {{ form.facebook }}
+  </div>
+  {{ form.instagram.errors }}
+  <div class="row social">
+    <label class="col-12 col-md-6 form-control" for="{{ form.instagram.id_for_label }}">{{ form.instagram.label }}</label>
+    {{ form.instagram }}
+  </div>
+  {{ form.twitter.errors }}
+  <div class="row social">
+    <label class="col-12 col-md-6 form-control" for="{{ form.twitter.id_for_label }}">{{ form.twitter.label }}</label>
+    {{ form.twitter }}
+  </div>
+  {{ form.website.errors }}
+  {{ form.website }}
+  {{ form.phone.errors }}
+  <input type="text" name="phone" value="{{ person.display_phone }}" class="form-control" autocomplete="off" id="id_phone" placeholder="Phone (optional)">
+  {{ form.email.errors }}
+  {{ form.email }}
+  <input class="btn btn-primary form-control" type="submit" value="Update">
+</form>
+{% endblock %}
