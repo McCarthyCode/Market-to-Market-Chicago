@@ -294,3 +294,31 @@ class Person(AbstractPerson):
 
     class Meta:
         verbose_name_plural = 'people'
+
+class ContactImage(ThumbnailedImage):
+    image = models.ImageField(blank=True, null=True, default=None, upload_to='contacts/%Y/%m/%d/')
+    thumbnail = models.ImageField(editable=False, null=True, default=None, upload_to='contacts/%Y/%m/%d/')
+
+    def image_ops(self):
+        super().image_ops(relative_path=self.date_created.astimezone(TZ).strftime('contacts/%Y/%m/%d/'), thumbnail_size=(200, 180))
+
+    def delete(self, *args, **kwargs):
+        if not ContactImage.objects.filter(
+            ~Q(id=self.id) &
+            Q(date_created__date=self.date_created.date()) & (
+                Q(_image_hash=self._image_hash) |
+                Q(_thumbnail_hash=self._thumbnail_hash)
+            )
+        ):
+            self.image.delete()
+            self.thumbnail.delete()
+
+        return super().delete(*args, **kwargs)
+
+class Contact(AbstractPerson):
+    profile_image = models.OneToOneField(ContactImage, on_delete=models.SET_NULL, blank=True, null=True, default=None)
+    title = models.CharField(max_length=70)
+
+    def delete(self, *args, **kwargs):
+        self.profile_image.delete()
+        return super().delete(*args, **kwargs)
