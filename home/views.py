@@ -87,6 +87,7 @@ def about(request):
         return HttpResponseBadRequest()
 
     return render(request, 'home/about.html', {
+        'contacts': Contact.objects.all(),
         'title': 'About Market to Market Chicago',
         'name': NAME,
         'year': datetime.now(TZ).year,

@@ -13,6 +13,7 @@
 {% endblock %}
 
 {% block content %}
+{% include 'home/messages.html' %}
 <section class="contact">
   <h3 class="h3">Contact</h3>
   <div class="text-center card">
@@ -44,75 +45,36 @@
       Our other areas of focus include events organization, management and promotion. We currently promote and organize Out at Wrigley and the many pre- and post-parties bookending the event. We were also brought on this past year to help promote the Blackhawks first official Pride Night.
     </p>
   </div>
+  {% for contact in contacts %}
   <div class="card">
     <div class="info-flex">
       <div>
-        <h5 class="h5">Billy Gubrud</h5>
+        <h5 class="h5">{{ contact.full_name }}</h5>
         <p>
-          Owner/Publisher<br>
-          <a href="mailto:gubrud@mtmchicago.com">gubrud@mtmchicago.com</a><br>
-          <a href="tel:+12244040873">(224) 404-0873</a>
+          {{ contact.title }}<br>
+          {% if contact.email %}
+          <a href="mailto:{{ contact.email }}">{{ contact.email }}</a><br>
+          {% endif %}
+          {% if contact.phone %}
+          <a href="tel:+1{{ contact.phone }}">{{ contact.display_phone }}</a><br>
+          {% endif %}
+          {% if contact.website %}
+          <a href="{{ contact.website }}">{{ contact.website }}</a><br>
+          {% endif %}
         </p>
       </div>
-      <a data-fancybox="gallery" href="{% static 'home/img/bios/87a9ab305ef88601d3516cd2329e7ed1.jpg' %}">
-        <img src="{% static 'home/img/bios/8207de1c34a110f7f9dbfc6f7116eec1.jpg' %}">
+      <a data-fancybox="gallery" href="{{ contact.profile_image.image.url }}">
+        <img src="{{ contact.profile_image.thumbnail.url }}">
       </a>
     </div>
-    <p>
-      Billy has been working in LGBT media in Chicago for over 20 years. In 2000, Billy secured an advertising contract with the Chicago Cubs, making them the first professional sports team to advertise in an LGBT publication, and solidifying the team as a staple in the Chicago LGBT community. The following year, he founded and organized the first-ever recognized Gay Day sporting event in the world, Out at the Ballgame (now branded Out at Wrigley, and still organized by Billy and MTM). Out at Wrigley is now entering its 20th year!
-    </p>
-  </div>
-  <div class="card">
-    <div class="info-flex">
-      <div>
-        <h5 class="h5">Clinton Bigelow</h5>
-        <p>
-          Director of Media<br>
-          <a href="mailto:bigelow@mtmchicago.com">bigelow@mtmchicago.com</a>
-        </p>
-      </div>
-      <a data-fancybox="gallery" href="{% static 'home/img/bios/5358fa5195c01eab3534c7f7307a2282.jpg' %}">
-        <img src="{% static 'home/img/bios/3e205d93c65b153e4ed0a763d6f1dd4d.jpg' %}">
-      </a>
+    {{ contact.bio|linebreaks }}
+    <h3 class="h3">Actions</h3>
+    <div class="btn-container">
+      <a class="btn btn-secondary" href="{% url 'home:update-contact' contact.id %}">Update</a>
+      <a class="btn btn-danger" href="{% url 'home:delete-contact' contact.id %}">Delete</a>
     </div>
-    <p>
-      Graduate of Full Sail University and current Chicago transplant. Experience working as a photographer and a Camera Operator and Lighting Tech for Live Events, Film, and Television. Also a big film buff.
-    </p>
   </div>
-  <div class="card">
-    <div class="info-flex">
-      <div>
-        <h5 class="h5">Michael Christopher Radford</h5>
-        <p>
-          Arts and Entertainment Editor<br>
-          <a href="mailto:michael@mtmchicago.com">michael@mtmchicago.com</a>
-        </p>
-      </div>
-      <a data-fancybox="gallery" href="{% static 'home/img/bios/49f2060506f2c8de3a7e5ea1dc60921e.jpg' %}">
-        <img src="{% static 'home/img/bios/b6c6d9d4a6755ece38a68713814b14c6.jpg' %}">
-      </a>
-    </div>
-    <p>
-      Michael is a singer/actor/dancer/model from Valparaiso, Indiana. He is a recent graduate from Southern Illinois University - Carbondale with a BFA in Musical Theatre.
-    </p>
-  </div>
-  <div class="card">
-    <div class="info-flex">
-      <div>
-        <h5 class="h5">R Marshall</h5>
-        <p>
-          Lifestyle Editor<br>
-          <a href="Rmarshall@mtmchicago.com">Rmarshall@mtmchicago.com</a>
-        </p>
-      </div>
-      <a data-fancybox="gallery" href="{% static 'home/img/bios/9b817987ea1fdd80bca09b666f5dab51.jpg' %}">
-        <img src="{% static 'home/img/bios/31f2d5f22f4b57869ceaefdff375bb71.jpg' %}">
-      </a>
-    </div>
-    <p>
-      R is a writer, actor, singer, activist, and pastor who is currently starting the church Sanctuary Chicago. After receiving a BFA in Theatre and BS in Psychology, they went on to obtain a MA in Religious Studies. R enjoys theatre, television, books, taking in local culture, and is always open to making friends. If you see them out and about, feel free to say hello!
-    </p>
-  </div>
+  {% endfor %}
 </section>
 {# include 'home/ads/large_mobile_banner12.html' #}
 {% endblock %}
