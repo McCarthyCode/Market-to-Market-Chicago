@@ -68,11 +68,13 @@
       </a>
     </div>
     {{ contact.bio|linebreaks }}
+    {% if request.user.is_superuser %}
     <h3 class="h3">Actions</h3>
     <div class="btn-container">
       <a class="btn btn-secondary" href="{% url 'home:update-contact' contact.id %}">Update</a>
       <a class="btn btn-danger" href="{% url 'home:delete-contact' contact.id %}">Delete</a>
     </div>
+    {% endif %}
   </div>
   {% endfor %}
 </section>
