@@ -14,7 +14,7 @@ from .models import Invite
 from events.models import Event
 
 from .forms import InvitesForm, RegistrationForm
-from home.forms import PersonForm
+from home.forms import PersonForm, ContactForm
 from locations.forms import LocationForm
 from articles.forms import AuthorForm, ArticleForm
 from images.forms import CreateAlbumForm
@@ -28,6 +28,7 @@ def index(request):
     if request.user.is_superuser:
         return render(request, 'users/index.html', {
             'create_person_form': PersonForm(),
+            'create_contact_form': ContactForm(),
             'create_author_form': AuthorForm(),
             'create_article_form': ArticleForm(),
             'create_invites_form': InvitesForm(),

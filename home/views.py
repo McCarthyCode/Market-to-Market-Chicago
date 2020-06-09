@@ -19,10 +19,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import NewsItem
 from users.models import Invite
 from articles.models import Article
-from images.models import Album, Image, Person, PersonImage
+from images.models import Album, Image, Person, PersonImage, Contact, ContactImage
 from locations.models import Neighborhood, Location
 
-from .forms import PersonForm
+from .forms import PersonForm, ContactForm
 from users.forms import InvitesForm, RegistrationForm
 from locations.forms import LocationForm
 from articles.forms import AuthorForm, ArticleForm
@@ -240,6 +240,145 @@ def delete_person(request, person_id):
     messages.success(request, 'You have successfully deleted %s.' % name)
 
     return redirect('home:people-to-know')
+
+def create_contact(request):
+    if request.method != 'POST':
+        return HttpResponseBadRequest()
+
+    if not request.user.is_superuser:
+        return HttpResponseForbidden()
+
+    form = ContactForm(request.POST, request.FILES)
+
+    if form.is_valid():
+        contact = form.save(commit=False)
+
+        if 'image' in request.FILES:
+            profile_image = ContactImage.objects.create(image=request.FILES.get('image'))
+            profile_image.image_ops()
+            profile_image.save()
+            contact.profile_image = profile_image
+
+        contact.save()
+
+        full_name = contact.full_name
+        punctuation = full_name[-1]
+        messages.success(request, 'You have successfully created a contact named "%s%s"' % (full_name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
+
+        return redirect('users:index')
+
+    messages.error(request, 'There was an error creating a contact.')
+
+    if request.user.is_superuser:
+        return render(request, 'users/index.html', {
+            'create_person_form': PersonForm(),
+            'create_contact_form': ContactForm(request.POST),
+            'create_author_form': AuthorForm(),
+            'create_article_form': ArticleForm(),
+            'create_invites_form': InvitesForm(),
+            'invites': [x for x in Invite.objects.filter(sent=False).order_by('date_created') if not x.expired][:MAX_INVITES],
+            'create_location_form': LocationForm(),
+            'create_album_form': CreateAlbumForm(),
+            'name': NAME,
+            'year': datetime.now(TZ).year,
+        })
+
+    return render(request, 'users/index.html', {
+        'create_location_form': LocationForm(),
+        'name': NAME,
+        'year': datetime.now(TZ).year,
+    })
+
+def update_contact(request, contact_id):
+    if not request.user.is_superuser:
+        return HttpResponseForbidden()
+
+    contact = get_object_or_404(Contact, id=contact_id)
+
+    if request.method == 'GET':
+        return render(request, 'home/update_contact.html', {
+            'contact': contact,
+            'form': ContactForm(instance=contact),
+            'title': 'Update %s' % contact.full_name,
+            'name': NAME,
+            'year': datetime.now(TZ).year,
+        })
+    elif request.method == 'POST':
+        form = ContactForm(request.POST, request.FILES, instance=contact)
+
+        if form.is_valid():
+            if 'image' in request.FILES and contact.profile_image:
+                # only delete image if hash exists and image is not being used elsewhere
+                if not Contact.objects.filter(
+                    ~Q(id=contact.id) & (
+                        Q(profile_image___image_hash=contact.profile_image._image_hash) |
+                        Q(profile_image___thumbnail_hash=contact.profile_image._image_hash)
+                    )
+                ) and contact.profile_image._image_hash:
+                    filename = '%s/contacts/%s/%s.jpg' % (MEDIA_ROOT, contact.profile_image.date_created.astimezone(TZ).strftime('%Y/%m/%d'), contact.profile_image.image_hash)
+                    os.remove(filename)
+
+                # only delete thumbnail if hash exists and image is not being used elsewhere
+                if Contact.objects.filter(
+                    ~Q(id=contact.id) & (
+                        Q(profile_image___image_hash=contact.profile_image._thumbnail_hash) |
+                        Q(profile_image___thumbnail_hash=contact.profile_image._thumbnail_hash)
+                    )
+                ) and contact.profile_image.thumbnail_hash:
+                    contact.profile_image.thumbnail = None
+                else:
+                    contact.profile_image.thumbnail.delete()
+
+                contact.profile_image._image_hash = None
+                contact.profile_image._thumbnail_hash = None
+
+                contact.save()
+
+            updated_contact = form.save()
+
+            if 'image' in request.FILES:
+                profile_image = ContactImage.objects.create(image=request.FILES.get('image'))
+                profile_image.image_ops()
+                profile_image.save()
+                updated_contact.profile_image = profile_image
+            elif form.cleaned_data.get('clear_image'):
+                updated_contact.profile_image.delete()
+                updated_contact.profile_image.save()
+                updated_contact.profile_image = None
+
+            updated_contact.save()
+
+            messages.success(request, 'You have successfully updated %s.' % contact.full_name)
+        else:
+            messages.error(request, 'There was an error updating %s.' % contact.full_name)
+
+            return render(request, 'home/update_contact.html', {
+                'contact': contact,
+                'form': form,
+                'title': '',
+                'name': NAME,
+                'year': datetime.now(TZ).year,
+            })
+    else:
+        return HttpResponseBadRequest()
+
+    return redirect('home:people-to-know')
+
+def delete_contact(request, contact_id):
+    if request.method != 'GET':
+        return HttpResponseBadRequest()
+
+    if not request.user.is_superuser:
+        return HttpResponseForbidden()
+
+    contact = get_object_or_404(Contact, id=contact_id)
+
+    name = contact.full_name
+    contact.delete()
+
+    messages.success(request, 'You have successfully deleted %s.' % name)
+
+    return redirect('home:about')
 
 def category(request, slug):
     if request.method != 'GET':

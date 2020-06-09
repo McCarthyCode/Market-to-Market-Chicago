@@ -1,0 +1,45 @@
+<form id="createContactForm" action="{% url 'home:create-contact' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ create_contact_form.non_field_errors }}
+  {{ create_contact_form.prefix.errors }}
+  {{ create_contact_form.first_name.errors }}
+  {{ create_contact_form.last_name.errors }}
+  {{ create_contact_form.suffix.errors }}
+  <div class="name">
+    {{ create_contact_form.prefix }}
+    {{ create_contact_form.first_name }}
+    {{ create_contact_form.last_name }}
+    {{ create_contact_form.suffix }}
+  </div>
+  {{ create_contact_form.image.errors }}
+  <div class="row">
+    <label class="col-12 col-md-4 form-control" for="{{ create_contact_form.image.id_for_label }}">{{ create_contact_form.image.label }}</label>
+    {{ create_contact_form.image }}
+  </div>
+  {{ create_contact_form.title.errors }}
+  {{ create_contact_form.title }}
+  {{ create_contact_form.bio.errors }}
+  {{ create_contact_form.bio }}
+  {{ create_contact_form.facebook.errors }}
+  <div class="row social">
+    <label class="col-12 col-md-6 form-control" for="{{ create_contact_form.facebook.id_for_label }}">{{ create_contact_form.facebook.label }}</label>
+    {{ create_contact_form.facebook }}
+  </div>
+  {{ create_contact_form.instagram.errors }}
+  <div class="row social">
+    <label class="col-12 col-md-6 form-control" for="{{ create_contact_form.instagram.id_for_label }}">{{ create_contact_form.instagram.label }}</label>
+    {{ create_contact_form.instagram }}
+  </div>
+  {{ create_contact_form.twitter.errors }}
+  <div class="row social">
+    <label class="col-12 col-md-6 form-control" for="{{ create_contact_form.twitter.id_for_label }}">{{ create_contact_form.twitter.label }}</label>
+    {{ create_contact_form.twitter }}
+  </div>
+  {{ create_contact_form.website.errors }}
+  {{ create_contact_form.website }}
+  {{ create_contact_form.phone.errors }}
+  {{ create_contact_form.phone }}
+  {{ create_contact_form.email.errors }}
+  {{ create_contact_form.email }}
+  <input class="btn btn-primary form-control" type="submit" value="Submit">
+</form>
