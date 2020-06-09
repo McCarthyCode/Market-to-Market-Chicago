@@ -424,14 +424,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   max-width: 320px;
 }
 
-#createPersonForm,
-#createAuthorForm,
-#createArticleForm,
-#createInvitesForm,
-#viewInvitesTable,
-#createEventForm,
-#createLocationForm,
-#createAlbumForm {
+.container > div:not(.alert) > :not(:first-child) {
   display: none;
 }
 

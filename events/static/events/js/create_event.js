@@ -4,14 +4,6 @@ $(document).ready(() => {
   $("#dateEnd").datetimepicker();
   $("#endsOn").datetimepicker();
 
-  // Show/hide Create Event form
-  $('#createEvent .h3').click(function () {
-    $('#createEventForm').slideToggle(500, function () {
-      $('#createEvent .h3 i')
-        .toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
-    });
-  });
-
   // Hide End Date/Time on All Day checked
   $('#allDay').change(() => $('#dateEndInputGroup').slideToggle(500));
 
