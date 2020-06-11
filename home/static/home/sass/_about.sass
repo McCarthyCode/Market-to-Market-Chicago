@@ -1,0 +1,38 @@
+#about
+  .info-flex
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-evenly
+    align-items: center
+    
+    & > *
+      margin-bottom: 1rem
+
+    & > div
+      text-align: center
+      margin-right: .5rem
+
+      h5.h5
+        color: $yellow
+
+      h5.h5, h6.h6:not(:first-of-type)
+        margin-bottom: .125rem
+
+      h6.h6:not(:first-of-type)
+        display: flex
+        justify-content: flex-start
+
+        & > i
+          width: 1rem
+          margin-right: .5rem
+          color: $green
+        
+        & > a
+          flex-grow: 1
+          margin-right: 1.5rem
+
+    & > a
+      margin-left: .5rem
+
+  .card:not(:last-child)
+    margin-bottom: .5rem

@@ -2,18 +2,11 @@
 
 ## High Priorities
 
-- Hamburger
-- Ads
-  - Cram
-  - R Public House
-  - Lark (https://larkchicago.com)
-  - Kit Kat (https://kitkatchicago.com)
-  - MWD
-- Wait on Bill
-  - Site Tour
-    - Schedule
-    - Remote desktop install
-    - Walkthrough
+- Contact page
+  - Order by date created
+  - Adjust h5/h6 margins
+  - Social links
+  - Bring phone to top
 
 ## Medium Priorities
 
