@@ -608,7 +608,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-right: 0.5em;
 }
 .contact h5.h5 > a {
-  color: #569cd6;
+  color: #97d5f7;
 }
 .contact h5.h5:last-of-type {
   margin-bottom: 0;
@@ -619,6 +619,45 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     grid-column-start: sidebar-right;
   }
 }
+#about .info-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#about .info-flex > * {
+  margin-bottom: 1rem;
+}
+#about .info-flex > div {
+  text-align: center;
+  margin-right: 0.5rem;
+}
+#about .info-flex > div h5.h5 {
+  color: #dcdcaa;
+}
+#about .info-flex > div h5.h5, #about .info-flex > div h6.h6:not(:first-of-type) {
+  margin-bottom: 0.125rem;
+}
+#about .info-flex > div h6.h6:not(:first-of-type) {
+  display: flex;
+  justify-content: flex-start;
+}
+#about .info-flex > div h6.h6:not(:first-of-type) > i {
+  width: 1rem;
+  margin-right: 0.5rem;
+  color: #679452;
+}
+#about .info-flex > div h6.h6:not(:first-of-type) > a {
+  flex-grow: 1;
+  margin-right: 1.5rem;
+}
+#about .info-flex > a {
+  margin-left: 0.5rem;
+}
+#about .card:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
 #locations {
   margin-bottom: 1rem;
 }
@@ -886,24 +925,6 @@ ul.bulleted li.empty::marker {
 
 a.profile-image {
   margin: 0 auto 1rem auto;
-}
-
-.about .info-flex {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-.about .info-flex > div {
-  text-align: center;
-  margin-right: 0.5rem;
-}
-.about .info-flex > a {
-  margin-left: 0.5rem;
-}
-.about .card:not(:last-child) {
-  margin-bottom: 0.5rem;
 }
 
 @media screen and (min-width: 768px) {

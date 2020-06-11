@@ -31,7 +31,7 @@
   {# include 'home/ads/medium_rectangle39.html' #}
   {# include 'home/ads/medium_rectangle40.html' #}
 </div>
-<section class="about">
+<section id="about">
   <h3 class="h3">About Us</h3>
   <div class="card">
     <h5 class="h5">MTM Chicago</h5>
@@ -50,18 +50,25 @@
     <div class="info-flex">
       <div>
         <h5 class="h5">{{ contact.full_name }}</h5>
-        <p>
-          {{ contact.title }}<br>
-          {% if contact.email %}
-          <a href="mailto:{{ contact.email }}">{{ contact.email }}</a><br>
-          {% endif %}
-          {% if contact.phone %}
-          <a href="tel:+1{{ contact.phone }}">{{ contact.display_phone }}</a><br>
-          {% endif %}
-          {% if contact.website %}
-          <a href="{{ contact.website }}">{{ contact.website }}</a><br>
-          {% endif %}
-        </p>
+        <h6 class="h6">{{ contact.title }}</h6>
+        {% if contact.phone %}
+        <h6 class="h6"><i class="fa fa-mobile"></i><a href="tel:+1{{ contact.phone }}">{{ contact.display_phone }}</a></h6>
+        {% endif %}
+        {% if contact.email %}
+        <h6 class="h6"><i class="fa fa-envelope"></i><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></h6>
+        {% endif %}
+        {% if contact.website %}
+        <h6 class="h6"><i class="fa fa-link"></i><a href="{{ contact.website }}">{{ contact.website }}</a></h6>
+        {% endif %}
+        {% if contact.facebook %}
+        <h6 class="h6"><i class="fab fa-facebook-f"></i><a href="https://facebook.com/{{ contact.facebook }}">@{{ contact.facebook }}</a></h6>
+        {% endif %}
+        {% if contact.twitter %}
+        <h6 class="h6"><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ contact.twitter }}">@{{ contact.twitter }}</a></h6>
+        {% endif %}
+        {% if contact.instagram %}
+        <h6 class="h6"><i class="fab fa-instagram"></i><a href="https://instagram.com/{{ contact.instagram }}">@{{ contact.instagram }}</a></h6>
+        {% endif %}
       </div>
       <a data-fancybox="gallery" href="{{ contact.profile_image.image.url }}">
         <img src="{{ contact.profile_image.thumbnail.url }}">
