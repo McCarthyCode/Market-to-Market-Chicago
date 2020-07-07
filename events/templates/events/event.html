@@ -95,12 +95,14 @@
   </div>
 </div>
 {% endif %}
+{% comment %}
 {% if event.location %}
 <h3 class="h3">Map</h3>
 <div id="map" class="card">
   <iframe src="https://www.google.com/maps/embed/v1/place?q={{ event.location.name|urlencode }}%20{{ event.location.address1|urlencode }}%20{{ event.location.city|urlencode }}%2C%20{{ event.location.state|urlencode }}{% if event.location.zip_code %}%20{{ event.location.zip_code|urlencode }}{% endif %}&key={{ GOOGLE_MAPS_API_KEY }}" allowfullscreen></iframe>
 </div>
 {% endif %}
+{% endcomment %}
 {% if request.user.is_superuser %}
 <h3 class="h3">Update Event</h3>
 {% include 'events/update_event.html' %}
