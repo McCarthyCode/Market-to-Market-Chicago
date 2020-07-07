@@ -663,6 +663,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   font-style: italic;
   color: #818181;
   text-align: center;
+  list-style: none;
 }
 
 #map {
