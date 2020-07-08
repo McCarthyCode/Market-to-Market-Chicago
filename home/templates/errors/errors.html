@@ -1,0 +1,16 @@
+{% extends 'home/global_base.html' %}{% load static %}
+
+{% block internal_stylesheets %}  <!-- Home App CSS -->
+  <link rel="stylesheet" href="{% static 'home/css/home.min.css' %}">
+
+{% endblock %}
+
+{% block body %}
+<section id="page">
+  <div class="container">
+    <h1 class="h1">HTTP {% block code %}{% endblock %} <span class="text-nowrap">({% block description %}{% endblock %}) <i class="fas {% block icon %}{% endblock %}"></i></span></h1>
+    <p>{% block message %}{% endblock %} You may return to the home page by <a href="{% url 'home:index' %}">clicking here</a>.</p>
+  </div>
+  </div>
+</section>
+{% endblock %}

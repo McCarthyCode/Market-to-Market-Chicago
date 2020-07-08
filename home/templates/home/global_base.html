@@ -10,7 +10,7 @@
   <title>Market to Market Chicago</title>
   <link rel="icon" href="{% static 'home/img/favicon.ico' %}" type="image/x-icon">
 
-  <!-- =============== -->
+{% block head %}  <!-- =============== -->
   <!-- = Stylesheets = -->
   <!-- =============== -->
 
@@ -118,7 +118,7 @@
 
 {% block external_script_libraries %}{% endblock %}{% endif %}  <!-- Page-specific Scripts -->
 {% block js %}  <!-- (empty) -->
-{% endblock %}</head>
+{% endblock %}{% endblock %}</head>
 <body>{% block body %}
   <div id="grid">
     {% include 'home/navbar.html' %}
