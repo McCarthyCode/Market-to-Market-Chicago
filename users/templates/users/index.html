@@ -1,5 +1,8 @@
-{% extends 'users/base.html' %}
-{% load static %}
+{% extends 'users/base.html' %}{% load static %}
+
+{% block js %}{% if request.user.is_superuser %}  <!-- TinyMCE Initialization JS -->
+  <script type="text/javascript" src="{% static 'lib/tinymce/js/tinymce_init.min.js' %}"></script>{% endif %}{% endblock %}
+
 {% block content %}
 {% if not request.user.is_authenticated %}
 <div class="container logged-out">

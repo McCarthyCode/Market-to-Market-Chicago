@@ -2,7 +2,11 @@
 
 ## High Priorities
 
-- Refactor base.html templates
+- Add styling
+  - Article body
+  - Article NewsFeed item
+  - TinyMCE div
+- Fix author bug in update article form
 - Events forms
   - Change All-day to holiday
   - Allow holiday edit

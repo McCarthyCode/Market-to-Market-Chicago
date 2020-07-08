@@ -20,6 +20,11 @@
 {# include 'home/ads/medium_rectangle53a.html' #}
 {% endblock %}
 
+{% block js %}{% if request.user.is_superuser %}  <!-- TinyMCE Initialization JS -->
+  <script type="text/javascript" src="{% static 'lib/tinymce/js/tinymce_init.min.js' %}"></script>
+
+{% endif %}{% endblock %}
+
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
@@ -31,7 +36,7 @@
     <img src="{{ article.author.profile_image.thumbnail.url }}">
   </a>
   {% endif %}
-  {{ article.body|linebreaks }}
+  {{ article.body|safe }}
 </article>
 <div class="rectangles">
   {# include 'home/ads/medium_rectangle53b.html' #}

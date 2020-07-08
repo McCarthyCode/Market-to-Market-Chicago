@@ -47,7 +47,12 @@
     type="text/javascript"
     src="{% static '/lib/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js' %}"></script>
 
-{% endblock %}
+{% if request.user.is_superuser %}  <!-- TinyMCE JS -->
+  <script
+    type="text/javascript"
+    src="{% static 'lib/tinymce/js/tinymce.min.js' %}"></script>
+
+{% endif %}{% endblock %}
 
 {% block external_script_libraries %}  <!-- Moment.js JS -->
   <script
@@ -63,7 +68,14 @@
     integrity="sha384-97pmbvZb0qdIXSwrjd4JuG6+4TJhp4eL0totTka0FF1Bf2E42dPiSXsqq09yQxjD"
     crossorigin="anonymous"></script>
 
-{% endblock %}
+{% if request.user.is_superuser %}  <!-- TinyMCE JS -->
+  <script
+    type="text/javascript"
+    src="https://cdn.tiny.cloud/1/apy2ip7pf3f8h7hotnuy1ir341jcqsu7hl13jhou7v3ua756/tinymce/5/tinymce.min.js"
+    integrity="sha384-Vx90J8DUeVh3yYBDj8rlVjTQZqGty2hJZVt1Kp1tA11/CITrnihrEykHYHoxb0Jf"
+    referrerpolicy="origin"></script>
+
+{% endif %}{% endblock %}
 
 {% block body %}
   <div id="grid">
