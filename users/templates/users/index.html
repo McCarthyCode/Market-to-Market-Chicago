@@ -5,7 +5,7 @@
 <div class="container logged-out">
   {% include 'home/messages.html' %}
   <h1 class="h1 text-center">Login</h1>
-  <p class="text-center">This page is intended for authors and site administators. If you would like to return to the home page, you may do so by clicking <a href="{% url 'home:index' %}">here</a>.</p>
+  <p class="text-center">This page is intended for authors and site administrators. If you would like to return to the home page, you may do so by clicking <a href="{% url 'home:index' %}">here</a>.</p>
   <form method="POST" action="{% url 'users:login' %}">
     {% csrf_token %}
     <input class="form-control" placeholder="Username" type="text" name="username">

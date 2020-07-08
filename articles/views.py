@@ -76,7 +76,7 @@ def create(request):
 
         title = article.title
         punctuation = title[-1]
-        messages.success(request, 'You have sucessfully created an article titled "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
+        messages.success(request, 'You have successfully created an article titled "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
         return HttpResponseRedirect(
             reverse('articles:article', args=[article.slug, article.id])
@@ -104,7 +104,7 @@ def update(request, slug, article_id):
 
         title = article.title
         punctuation = title[-1]
-        messages.success(request, 'You have sucessfully updated "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
+        messages.success(request, 'You have successfully updated "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
     else:
         messages.error(request, 'The data entered was not valid.')
 

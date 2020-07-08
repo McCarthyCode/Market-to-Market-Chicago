@@ -101,7 +101,7 @@ def create_location(request):
 
         name = location.name
         punctuation = name[-1]
-        messages.success(request, 'You have sucessfully created a location named "%s%s"' % (name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
+        messages.success(request, 'You have successfully created a location named "%s%s"' % (name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
         return redirect('locations:location',
             CATEGORIES[location.category], location.slug, location.id)
@@ -134,7 +134,7 @@ def update_location(request, category_slug, location_slug, location_id):
 
         name = location.name
         punctuation = name[-1]
-        messages.success(request, 'You have sucessfully updated "%s%s"' % (name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
+        messages.success(request, 'You have successfully updated "%s%s"' % (name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
     else:
         name = location.name
         punctuation = name[-1]
@@ -152,6 +152,6 @@ def delete_location(request, category_slug, location_slug, location_id):
     location.delete()
 
     punctuation = name[-1]
-    messages.success(request, 'You have sucessfully deleted the location "%s%s"' % (name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
+    messages.success(request, 'You have successfully deleted the location "%s%s"' % (name, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
     return redirect('users:index')

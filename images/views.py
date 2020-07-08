@@ -89,7 +89,7 @@ def update(request, slug, album_id):
 
         title = _album.title
         punctuation = title[-1]
-        messages.success(request, 'You have sucessfully updated "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
+        messages.success(request, 'You have successfully updated "%s%s"' % (title, '' if punctuation == '?' or punctuation == '!' or punctuation == '.' else '.'))
 
         return HttpResponseRedirect(
             reverse('images:album', args=[slug, album_id])
