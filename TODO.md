@@ -2,11 +2,12 @@
 
 ## High Priorities
 
-- Contact page
-  - Order by date created
-  - Adjust h5/h6 margins
-  - Social links
-  - Bring phone to top
+- Refactor base.html templates
+- Events forms
+  - Change All-day to holiday
+  - Allow holiday edit
+  - Add all-day field
+  - Delete RepeatInfo along with RecurringEvent
 
 ## Medium Priorities
 
@@ -14,11 +15,8 @@
 - Autocorrect bugs
   - Double text on enter
   - Double selection on hover
-- Dashboard
-  - Consolidate expand/contract scripts
 - Events
-  - Home page item
-  - Delete RepeatInfo along with RecurringEvent
+  - Home page news feed item
   - Individual location page
     - Make pretty
       - Add visual month and dates
@@ -44,10 +42,7 @@
 
 - Change title variables to title template blocks
 - Events
-  - Add holiday field
   - All events page
-    - Prevent scroll to top on tab selection (previous code? iPhone model?)
-    - Fix bug where tapping a link scrolls to top and doesn't follow link
     - Add search/filters
     - Empty responses
       - Handle with proper status code (204)
@@ -62,12 +57,12 @@
 - Locations
   - Individual location page
     - Events
-      - Add paginiation
+      - Add pagination
         - Front end (see more link)
         - Back end
   - Neighborhood page
     - Events
-      - Add paginiation
+      - Add pagination
         - Front end (see more link)
         - Back end
 - Move CATEGORIES to Location model
