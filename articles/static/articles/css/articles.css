@@ -770,28 +770,27 @@ body a:hover {
   text-decoration: underline;
 }
 
-h1.h1, h3.h3, h5.h5 {
+h1.h1, h2.h2, h3.h3, h4.h4, h5.h5, h6.h6 {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
 }
-
-h1.h1, h1.h1 > a {
-  color: #dcdcaa;
-}
-
-h1.h1 > a {
+h1.h1 > a, h2.h2 > a, h3.h3 > a, h4.h4 > a, h5.h5 > a, h6.h6 > a {
   text-decoration: underline;
   -webkit-transition: color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out;
 }
-h1.h1 > a:hover {
+h1.h1 > a:hover, h2.h2 > a:hover, h3.h3 > a:hover, h4.h4 > a:hover, h5.h5 > a:hover, h6.h6 > a:hover {
   color: #569cd6;
 }
 
-h3.h3, h3.h3 > a {
+h1.h1, h1.h1 > a, h2.h2, h2.h2 > a {
+  color: #dcdcaa;
+}
+
+h3.h3, h3.h3 > a, h4.h4, h4.h4 > a {
   color: #bb846e;
 }
 
-h5.h5, h5.h5 > a {
+h5.h5, h5.h5 > a, h6.h6, h6.h6 > a {
   color: #679452;
 }
 
