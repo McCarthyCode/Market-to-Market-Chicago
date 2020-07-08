@@ -130,13 +130,14 @@
     </section>
     <section id="content">
       <div class="container">
-        <h1 class="h1 text-center">{{ title }}</h1>
+        <h1 class="h1 text-center">{% block h1 %}{% endblock %}</h1>
+        {% block large_mobile_banner1 %}{% endblock %}
+        {% block leaderboard1 %}{% endblock %}
+        {% block content %}
+        {% endblock %}
       </div>
-      {% block large_mobile_banner1 %}{% endblock %}
-      {% block leaderboard1 %}{% endblock %}
-      <div class="container">
-        {% block content %}{% endblock %}
-      </div>
+      {% block large_mobile_banner2 %}{% endblock %}
+      {% block leaderboard2 %}{% endblock %}
     </section>
     {% include 'home/footer.html' %}
   </div>
