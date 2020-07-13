@@ -12,7 +12,7 @@ nav .navbar-brand {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
   -webkit-transition: color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out;
-  color: #dcdcaa !important;
+  color: #d1d18b !important;
 }
 nav .navbar-brand:hover {
   color: #ffffff !important;
@@ -367,7 +367,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 
 .container .mwd-table thead {
-  color: #dcdcaa;
+  color: #d1d18b;
   font-weight: bold;
 }
 .container .mwd-table thead td, .container .mwd-table thead th {
@@ -546,7 +546,7 @@ h1.h1, h3.h3 {
 }
 
 h1.h1 {
-  color: #dcdcaa;
+  color: #d1d18b;
 }
 
 h3.h3 {

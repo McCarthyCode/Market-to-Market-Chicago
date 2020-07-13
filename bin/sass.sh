@@ -26,6 +26,10 @@ sass_input_articles="$project_dir/articles/static/articles/sass/base.sass"
 sass_output_articles="$project_dir/articles/static/articles/css/articles.css"
 sass_output_articles_compressed="$project_dir/articles/static/articles/css/articles.min.css"
 
+sass_input_tinyMCE="$project_dir/home/static/home/sass/tinyMCE.sass"
+sass_output_tinyMCE="$project_dir/home/static/home/css/tinyMCE.css"
+sass_output_tinyMCE_compressed="$project_dir/home/static/home/css/tinyMCE.min.css"
+
 declare -a args=(
   "$sass_input_home:$sass_output_home"
   "--style=compressed $sass_input_home:$sass_output_home_compressed"
@@ -39,6 +43,8 @@ declare -a args=(
   "--style=compressed $sass_input_images:$sass_output_images_compressed"
   "$sass_input_articles:$sass_output_articles"
   "--style=compressed $sass_input_articles:$sass_output_articles_compressed"
+  "$sass_input_tinyMCE:$sass_output_tinyMCE"
+  "--style=compressed $sass_input_tinyMCE:$sass_output_tinyMCE_compressed"
 )
 
 for i in "${args[@]}"; do

@@ -315,7 +315,7 @@ nav .navbar-brand {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
   -webkit-transition: color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out;
-  color: #dcdcaa !important;
+  color: #d1d18b !important;
 }
 nav .navbar-brand:hover {
   color: #ffffff !important;
@@ -470,10 +470,10 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-right: 0.25rem solid #bb846e;
 }
 #topics ul.topics li:nth-child(4) {
-  border-left: 0.25rem solid #dcdcaa;
+  border-left: 0.25rem solid #d1d18b;
 }
 #topics ul.topics li:nth-child(4):hover, #topics ul.topics li:nth-child(4).active {
-  border-right: 0.25rem solid #dcdcaa;
+  border-right: 0.25rem solid #d1d18b;
 }
 #topics ul.topics li:nth-child(5) {
   border-left: 0.25rem solid #679452;
@@ -649,7 +649,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   background-color: #bb846e;
 }
 #calendarGrid .header.col2 {
-  background-color: #dcdcaa;
+  background-color: #d1d18b;
 }
 #calendarGrid .header.col3 {
   background-color: #679452;
@@ -768,7 +768,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   top: 15px;
   left: 1rem;
   width: 2rem;
-  color: #dcdcaa;
+  color: #d1d18b;
   line-height: 1;
 }
 .container #byDateView .card ul.events {
@@ -813,7 +813,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   top: -1px;
   left: -3rem;
   width: 2rem;
-  color: #dcdcaa;
+  color: #d1d18b;
   line-height: 1;
 }
 #byLocationView .card > ul.day li ul.events {
@@ -1041,7 +1041,7 @@ h1.h1, h3.h3 {
 }
 
 h1.h1 {
-  color: #dcdcaa;
+  color: #d1d18b;
 }
 
 h3.h3, h3.h3 > a, h3.h3 > a:hover {

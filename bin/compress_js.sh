@@ -3,7 +3,7 @@
 closure_compiler="bin/closure-compiler-v20200504.jar"
 
 declare -a files=(
-  "home/static/lib/tinymce/js/tinymce_init"
+  "home/static/home/js/tinymce_init"
   "home/static/home/js/global"
   "home/static/home/js/infinite_scroll_home"
   "home/static/home/js/infinite_scroll_category"

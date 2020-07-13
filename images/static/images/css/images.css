@@ -151,7 +151,7 @@ nav .navbar-brand {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
   -webkit-transition: color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out;
-  color: #dcdcaa !important;
+  color: #d1d18b !important;
 }
 nav .navbar-brand:hover {
   color: #ffffff !important;
@@ -306,10 +306,10 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-right: 0.25rem solid #bb846e;
 }
 #topics ul.topics li:nth-child(4) {
-  border-left: 0.25rem solid #dcdcaa;
+  border-left: 0.25rem solid #d1d18b;
 }
 #topics ul.topics li:nth-child(4):hover, #topics ul.topics li:nth-child(4).active {
-  border-right: 0.25rem solid #dcdcaa;
+  border-right: 0.25rem solid #d1d18b;
 }
 #topics ul.topics li:nth-child(5) {
   border-left: 0.25rem solid #679452;
@@ -610,7 +610,7 @@ h1.h1, h3.h3 {
 }
 
 h1.h1 {
-  color: #dcdcaa;
+  color: #d1d18b;
 }
 
 h3.h3 {

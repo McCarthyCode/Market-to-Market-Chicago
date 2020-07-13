@@ -3,10 +3,9 @@
 ## High Priorities
 
 - Add styling
-  - Article body
   - Article NewsFeed item
-  - TinyMCE div
 - Fix author bug in update article form
+- Move libraries to lib directory
 - Events forms
   - Change All-day to holiday
   - Allow holiday edit
