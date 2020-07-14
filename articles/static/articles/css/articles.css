@@ -604,6 +604,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   color: #d5697d;
   margin-bottom: 0.5rem;
 }
+#content .container form .alert {
+  margin-bottom: 0.5rem;
+}
 
 @media screen and (min-width: 768px) {
   #content .container form .city-state-zip > :not(:last-child),
@@ -683,6 +686,9 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 .formatted-text h1 > a:hover, .formatted-text h2 > a:hover, .formatted-text h3 > a:hover, .formatted-text h4 > a:hover, .formatted-text h5 > a:hover, .formatted-text h6 > a:hover {
   color: #569cd6;
+}
+.formatted-text > *:last-child {
+  margin-bottom: 0;
 }
 .formatted-text h1, .formatted-text h1 > a, .formatted-text h2, .formatted-text h2 > a {
   color: #d1d18b;

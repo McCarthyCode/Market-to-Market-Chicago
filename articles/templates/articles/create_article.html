@@ -10,6 +10,12 @@
   {% elif field.id_for_label == 'id_album' %}
   {{ field }}
   <div id="albumAutocomplete"></div>
+  {% elif field.id_for_label == 'id_body' %}
+  <div class="alert alert-info" role="alert">
+    <a href="javascript:void(0);" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+    <p><i class="fas fa-info-circle"></i> Note that a heading will already be applied with the title provided above. The article page uses a level 1 heading and the home page uses a level 3.</p>
+  </div>
+  {{ field }}
   {% elif field.id_for_label == 'id_category' %}
   <div class="row select">
     <label id="categoryLabel" class="form-control col-12 col-md-6" for="id_category">{{ field.label }}</label>

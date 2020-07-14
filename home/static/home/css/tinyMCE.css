@@ -3,6 +3,8 @@ body {
   background-color: #444444;
   color: #ffffff;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
+  padding: 0.5rem;
+  line-height: 1.2;
 }
 body a {
   color: #569cd6;
@@ -10,6 +12,7 @@ body a {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
+  margin-bottom: 0.5rem;
 }
 h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
   text-decoration: underline;
@@ -32,8 +35,32 @@ h5, h5 > a, h6, h6 > a {
   color: #679452;
 }
 
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
 h6 {
-  font-size: 2rem !important;
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
 }
 
 em {
@@ -42,6 +69,7 @@ em {
 
 ul, ol {
   padding-left: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 ul {
@@ -52,19 +80,11 @@ ol {
   list-style-type: decimal;
 }
 
-pre {
-  padding: 1rem;
-  border: 1px solid #818181;
-  border-radius: 0.25rem;
-  color: #818181;
-  background-color: #1e1e1e;
-}
-
 blockquote {
-  margin-left: 18px;
   border-left: 0.25rem solid #9f62c2;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 2.25rem;
   background-color: #333333;
+  margin-bottom: 1rem;
 }
 blockquote > *:last-child {
   margin-bottom: 0;

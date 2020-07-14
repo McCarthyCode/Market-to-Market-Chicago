@@ -2,10 +2,9 @@
 
 ## High Priorities
 
-- Add styling
-  - Article NewsFeed item
-  - Hide tox-silver-sink class
-- Fix author bug in update article form
+- Change path to static files in staging/production
+- Readjust positioning of alert contents
+- Truncate slug to 80 characters
 - Move libraries to lib directory
 - Events forms
   - Change All-day to holiday
