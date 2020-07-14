@@ -4,6 +4,7 @@
 
 - Add styling
   - Article NewsFeed item
+  - Hide tox-silver-sink class
 - Fix author bug in update article form
 - Move libraries to lib directory
 - Events forms
