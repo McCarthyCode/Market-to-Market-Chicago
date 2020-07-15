@@ -3,7 +3,6 @@
 ## High Priorities
 
 - Change path to static files in staging/production
-- Readjust positioning of alert contents
 - Truncate slug to 80 characters
 - Move libraries to lib directory
 - Events forms

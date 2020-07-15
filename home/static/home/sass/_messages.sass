@@ -1,10 +1,19 @@
 #content .container
   .alert
+    display: flex
+    gap: 1rem
+    justify-content: space-between
+
+    & > div:first-child
+      display: flex
+      align-items: center
+
     p
+      flex-grow: 1
       margin: 0
 
-    a:not(.close)
-      text-decoration: underline
+      a:not(.close)
+        text-decoration: underline
 
   .alert-danger
     p, a

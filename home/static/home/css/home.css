@@ -341,10 +341,20 @@
     border-bottom-left-radius: 0;
   }
 }
+#content .container .alert {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+#content .container .alert > div:first-child {
+  display: flex;
+  align-items: center;
+}
 #content .container .alert p {
+  flex-grow: 1;
   margin: 0;
 }
-#content .container .alert a:not(.close) {
+#content .container .alert p a:not(.close) {
   text-decoration: underline;
 }
 #content .container .alert-danger p, #content .container .alert-danger a {

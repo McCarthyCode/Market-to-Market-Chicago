@@ -353,10 +353,20 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     border-bottom-left-radius: 0;
   }
 }
+#content .container .alert {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+#content .container .alert > div:first-child {
+  display: flex;
+  align-items: center;
+}
 #content .container .alert p {
+  flex-grow: 1;
   margin: 0;
 }
-#content .container .alert a:not(.close) {
+#content .container .alert p a:not(.close) {
   text-decoration: underline;
 }
 #content .container .alert-danger p, #content .container .alert-danger a {
@@ -630,10 +640,6 @@ h3.h3 {
   grid-template-columns: [left] auto [right];
   grid-template-rows: [top] 69px [nav-bottom] auto [footer-top] 49px [bottom];
   height: 100vh;
-}
-
-.alert .close {
-  padding-left: 0.5rem;
 }
 
 /*# sourceMappingURL=users.css.map */
