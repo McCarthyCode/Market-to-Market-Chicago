@@ -67,7 +67,7 @@ def index(request):
             locations,
             people,
         ),
-        key=attrgetter('date_updated'),
+        key=attrgetter('date_created'),
         reverse=True,
     )
 
@@ -487,7 +487,7 @@ def news_feed(request):
             articles,
             locations,
         ),
-        key=attrgetter('date_updated'),
+        key=attrgetter('date_created'),
         reverse=True,
     )
 
