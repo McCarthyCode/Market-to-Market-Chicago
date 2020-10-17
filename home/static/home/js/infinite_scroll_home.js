@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(() => {
   // determine if element is in viewport
   $.fn.isInViewport = function () {
     if (!$(this).is(':visible')) {
@@ -16,7 +16,6 @@ $(document).ready(function () {
   // infinite scrolling
   let $content = $('#content');
   let $newsFeed = $('#newsFeed');
-  let $lastItem = $('#newsFeed > li:last-of-type');
 
   let newsFeedEmpty = false;
   let ajaxInProgress = false;

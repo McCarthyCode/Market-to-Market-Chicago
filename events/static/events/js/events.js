@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(() => {
   // show appropriate view based on document hash
   let $calendar = $('#calendarView');
   let $byDate = $('#byDateView');

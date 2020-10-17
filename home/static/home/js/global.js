@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(() => {
   const breakpointMd = 768;
 
   console.log('This site brought to you by McCarthy Web Design.');
