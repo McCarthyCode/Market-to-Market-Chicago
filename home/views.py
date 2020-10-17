@@ -441,7 +441,7 @@ def category(request, slug):
             albums,
             articles,
         ),
-        key=attrgetter('date_updated'),
+        key=attrgetter('date_created'),
         reverse=True,
     )[:NEWS_ITEMS_PER_PAGE]
 
@@ -529,7 +529,7 @@ def category_feed(request, slug, page):
             albums,
             articles,
         ),
-        key=attrgetter('date_updated'),
+        key=attrgetter('date_created'),
         reverse=True,
     )
 

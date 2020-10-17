@@ -2,7 +2,7 @@
 
 ## High Priorities
 
-- Change path to static files in staging/production
+- Render articles as HTML on category page
 - Truncate slug to 80 characters
 - Move libraries to lib directory
 - Events forms

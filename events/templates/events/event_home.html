@@ -1,6 +1,6 @@
 <li class="event card">
   <h3 class="h3"><a href="{% url 'events:event' event.location.category_slug event.location.slug event.slug event.id %}">{{ event.name }} at {{ event.location.name }}</a></h3>
-  <p class="info">Created on {{ event.date_created|date:"N j, Y." }}{% if event.updated_later %} <span class="text-nowrap">Updated {{ event.date_updated|date:"N j, Y." }}</span>{% endif %}</p>
+  <p class="info">Created on {{ event.date_created|date:"N j, Y." }}</p>
   <div class="cal-preview">
     <h5 class="h5 text-center">{{ event.date_start|date:"D. N" }}</h5>
     <h1 class="h1 text-center">{{ event.date_start|date:"j" }}</h1>
