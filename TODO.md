@@ -2,17 +2,20 @@
 
 ## High Priorities
 
-- Render articles as HTML on category page
-- Truncate slug to 80 characters
-- Move libraries to lib directory
+- Change float rules to flex on Dashboard
+- Replace Sass symlinks with path
+- Move globals to lib directory
+- Remove Events links when inactive
+- Add emoji support
+- Truncate article slug to 80 characters
+
+## Medium Priorities
+
 - Events forms
   - Change All-day to holiday
   - Allow holiday edit
   - Add all-day field
   - Delete RepeatInfo along with RecurringEvent
-
-## Medium Priorities
-
 - Take update author redirect to author page
 - Autocorrect bugs
   - Double text on enter

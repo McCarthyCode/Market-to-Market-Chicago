@@ -37,7 +37,7 @@
   <i class="fas fa-chevron-right"></i>
   {{ event.name }}
 </p>
-<h3 class="h3">Details</h3>
+<h2 class="h2">Details</h2>
 <div class="card">
   <p class="info">Created on {{ event.date_created|date:"N j, Y." }}{% if event.updated_later %} <span class="text-nowrap">Updated {{ event.date_updated|date:"N j, Y." }}</span>{% endif %} <span class="text-nowrap"></span></p>
   <table id="details">
@@ -75,7 +75,7 @@
   {# include 'home/ads/medium_rectangle52.html' #}
 </div>
 {% if event.album %}
-<h3 class="h3"><a href="{% url 'images:album' event.album.slug event.album.id %}">{{ event.album.title }}</a></h3>
+<h2 class="h2"><a href="{% url 'images:album' event.album.slug event.album.id %}">{{ event.album.title }}</a></h2>
 <div class="card">
   <div id="album">
   {% for image in images_preview %}
@@ -97,16 +97,16 @@
 {% endif %}
 {% comment %}
 {% if event.location %}
-<h3 class="h3">Map</h3>
+<h2 class="h2">Map</h2>
 <div id="map" class="card">
   <iframe src="https://www.google.com/maps/embed/v1/place?q={{ event.location.name|urlencode }}%20{{ event.location.address1|urlencode }}%20{{ event.location.city|urlencode }}%2C%20{{ event.location.state|urlencode }}{% if event.location.zip_code %}%20{{ event.location.zip_code|urlencode }}{% endif %}&key={{ GOOGLE_MAPS_API_KEY }}" allowfullscreen></iframe>
 </div>
 {% endif %}
 {% endcomment %}
 {% if request.user.is_superuser %}
-<h3 class="h3">Update Event</h3>
+<h2 class="h2">Update Event</h2>
 {% include 'events/update_event.html' %}
-<h3 class="h3">Delete Event</h3>
+<h2 class="h2">Delete Event</h2>
 <div class="card">
   {% include 'events/delete_event_form.html' %}
   <button id="deleteEventButton" class="btn btn-danger form-control" data-toggle="modal" data-target="#deleteEventModal">Delete</button>

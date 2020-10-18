@@ -48,7 +48,7 @@ declare -a args=(
 )
 
 for i in "${args[@]}"; do
-  sass --watch $i &
+  sass --watch -I $project_dir/home/static/home/sass $i &
 done
 
 clear

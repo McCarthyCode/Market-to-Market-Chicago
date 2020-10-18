@@ -1,15 +1,15 @@
 {% for location in by_location.locations %}
 {% if location.event_tree|length > 0 %}
 <div class="card">
-  <a href="{% url 'locations:location' location.category location.location.slug location.location.id %}"><h3 class="h3">{{ location.location.name }}</h3></a>
+  <a href="{% url 'locations:location' location.category location.location.slug location.location.id %}"><h2 class="h2">{{ location.location.name }}</h2></a>
   {% for day in location.event_tree %}
   <ul class="day">
     <li>
-      <h3 class="h3 text-center">{{ day.date|date:"j" }}</h3>
+      <h2 class="h2 text-center">{{ day.date|date:"j" }}</h2>
       <ul class="events">
       {% for event in day.events %}
         <li>
-          <h5 class="h5"><a href="{% url 'events:event' event.category event.event.location.slug event.event.slug event.event.id %}" tabindex="{{ event.tabindex }}">{{ event.event.name }} <span class="text-nowrap">{% if event.event.all_day %}(All Day){% else %}({{ event.event.date_start|date:"g:i a" }}{% if event.event.date_end %}&ndash;{{ event.event.date_end|date:"g:i a" }}{% endif %}){% endif %}</span></a></h5>
+          <h3 class="h3"><a href="{% url 'events:event' event.category event.event.location.slug event.event.slug event.event.id %}" tabindex="{{ event.tabindex }}">{{ event.event.name }} <span class="text-nowrap">{% if event.event.all_day %}(All Day){% else %}({{ event.event.date_start|date:"g:i a" }}{% if event.event.date_end %}&ndash;{{ event.event.date_end|date:"g:i a" }}{% endif %}){% endif %}</span></a></h3>
         </li>
       {% endfor %}
       </ul>

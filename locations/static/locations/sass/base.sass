@@ -1,57 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Patua+One|Roboto')
-
-@import 'variables'
-@import 'mixins'
+@import 'global'
 
 @import 'ads'
 @import 'autocomplete'
 @import 'card'
-@import 'footer'
 @import 'forms'
-@import 'navbar'
 @import 'sidebar'
 @import 'modals'
 
 @import 'locations'
-
-html, body
-  max-height: 100%
-
-// anchor rules added to body tag for higher specificity
-body
-  a, a:hover
-    color: $cyan
-
-  a
-    text-decoration: none
-
-  a:hover
-    text-decoration: underline
-
-h1.h1, h3.h3
-  font-family: $font-title
-
-h1.h1
-  color: $yellow
-
-h3.h3
-  color: $orange
-
-ul.bulleted
-  list-style: disc inside
-
-  li::marker
-    color: $light-gray
-
-  li.empty::marker
-    display: none
-
-.fa-external-link-alt
-  display: inline
-  vertical-align: 1px
-  font-size: 8px
-  color: $cyan
-  cursor: pointer
 
 #content .container
   .alert p

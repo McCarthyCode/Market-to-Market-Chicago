@@ -24,35 +24,41 @@ h1, h2, h3, h4, h5, h6
     &:hover
       color: $light-blue
 
-h1, h2
-  &, & > a
-    color: $yellow
-
-h3, h4
-  &, & > a
-    color: $orange
-
-h5, h6
-  &, & > a
-    color: $green
-
 h1
   font-size: 2.5rem
+
+  &, & > a
+    color: $yellow
 
 h2
   font-size: 2rem
 
+  &, & > a
+    color: $orange
+
 h3
   font-size: 1.75rem
+
+  &, & > a
+    color: $pink
 
 h4
   font-size: 1.5rem
 
+  &, & > a
+    color: $purple
+
 h5
   font-size: 1.25rem
 
+  &, & > a
+    color: $light-blue
+
 h6
   font-size: 1rem
+
+  &, & > a
+    color: $green
 
 p
   margin-bottom: 1rem
@@ -70,11 +76,18 @@ ul
 ol
   list-style-type: decimal
 
-blockquote
-  border-left: .25rem solid $purple
-  padding: 1rem 1rem 1rem 2.25rem
-  background-color: $dark-gray
+pre, blockquote
+  display: block
   margin-bottom: 1rem
+  margin-left: 1.25rem
+  border-left: .25rem solid $blue
+  padding: 1rem
+  background-color: $dark-gray
 
   & > *:last-child
     margin-bottom: 0
+
+pre
+  font-family: 'Roboto Mono', monospace
+  color: $light-gray
+  font-size: 87.5%

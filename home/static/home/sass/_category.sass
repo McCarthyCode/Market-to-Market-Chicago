@@ -24,8 +24,35 @@
   li.category
     margin-bottom: .5rem
 
-    h5.h5 > a
-      color: $yellow
+    h1
+      font-size: 2rem
+
+    h2
+      font-size: 1.75rem
+
+    h3:not(:first-child)
+      font-size: 1.5rem
+
+      &, & > a
+        color: $purple
+
+    h4
+      font-size: 1.25rem
+
+      &, & > a
+        color: $light-blue
+
+    h5
+      font-size: 1rem
+
+      &, & > a
+        color: $green
+
+    h6
+      font-size: .9rem
+
+      &, & > a
+        color: $light-gray
 
 @media screen and (min-width: $breakpoint-sm)
   #byNeighborhood

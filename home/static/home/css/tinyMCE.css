@@ -23,40 +23,46 @@ h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hov
   color: #569cd6;
 }
 
-h1, h1 > a, h2, h2 > a {
-  color: #d1d18b;
-}
-
-h3, h3 > a, h4, h4 > a {
-  color: #bb846e;
-}
-
-h5, h5 > a, h6, h6 > a {
-  color: #679452;
-}
-
 h1 {
   font-size: 2.5rem;
+}
+h1, h1 > a {
+  color: #d1d18b;
 }
 
 h2 {
   font-size: 2rem;
 }
+h2, h2 > a {
+  color: #bb846e;
+}
 
 h3 {
   font-size: 1.75rem;
+}
+h3, h3 > a {
+  color: #db82bd;
 }
 
 h4 {
   font-size: 1.5rem;
 }
+h4, h4 > a {
+  color: #9f62c2;
+}
 
 h5 {
   font-size: 1.25rem;
 }
+h5, h5 > a {
+  color: #569cd6;
+}
 
 h6 {
   font-size: 1rem;
+}
+h6, h6 > a {
+  color: #679452;
 }
 
 p {
@@ -80,14 +86,22 @@ ol {
   list-style-type: decimal;
 }
 
-blockquote {
-  border-left: 0.25rem solid #9f62c2;
-  padding: 1rem 1rem 1rem 2.25rem;
-  background-color: #333333;
+pre, blockquote {
+  display: block;
   margin-bottom: 1rem;
+  margin-left: 1.25rem;
+  border-left: 0.25rem solid #007bff;
+  padding: 1rem;
+  background-color: #333333;
 }
-blockquote > *:last-child {
+pre > *:last-child, blockquote > *:last-child {
   margin-bottom: 0;
+}
+
+pre {
+  font-family: "Roboto Mono", monospace;
+  color: #818181;
+  font-size: 87.5%;
 }
 
 /*# sourceMappingURL=tinyMCE.css.map */

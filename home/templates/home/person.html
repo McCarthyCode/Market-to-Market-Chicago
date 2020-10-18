@@ -1,5 +1,5 @@
 <li class="person card">
-  <h3 class="h3">{{ person.full_name }}</h3>
+  <h2 class="h2">{{ person.full_name }}</h2>
   <p class="info">Created on {{ person.date_created|date:"N j, Y." }}{% if person.updated_later %} <span class="text-nowrap">Updated {{ person.date_updated|date:"N j, Y." }}</span>{% endif %} <span class="text-nowrap">From <a href="{% url 'home:people-to-know' %}">People to Know</a>.</span></p>
   {% if person.profile_image.image and person.profile_image.thumbnail %}
   <a class="profile-image" style="max-width: {{ person.profile_image.thumbnail.width }}px;" data-fancybox="gallery" href="{{ person.profile_image.image.url }}">
@@ -8,30 +8,30 @@
   {% endif %}
   {{ person.bio|linebreaks }}
   {% if person.phone or person.email or person.website or person.facebook or person.twitter or person.instagram %}
-  <h3 class="h3">Contact</h3>
+  <h2 class="h2">Contact</h2>
   <div class="contact">
     {% if person.phone %}
-    <h5 class="h5 text-center"><i class="fa fa-mobile" aria-hidden="true"></i><a href="tel:+1{{ person.phone }}">{{ person.display_phone }}</a></h5>
+    <h3 class="h3 text-center"><i class="fa fa-mobile" aria-hidden="true"></i><a href="tel:+1{{ person.phone }}">{{ person.display_phone }}</a></h3>
     {% endif %}
     {% if person.email %}
-    <h5 class="h5 text-center"><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:{{ person.email }}">{{ person.email }}</a></h5>
+    <h3 class="h3 text-center"><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:{{ person.email }}">{{ person.email }}</a></h3>
     {% endif %}
     {% if person.facebook %}
-    <h5 class="h5 text-center"><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/{{ person.facebook }}">@{{ person.facebook }}</a></h5>
+    <h3 class="h3 text-center"><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/{{ person.facebook }}">@{{ person.facebook }}</a></h3>
     {% endif %}
     {% if person.twitter %}
-    <h5 class="h5 text-center"><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ person.twitter }}">@{{ person.twitter }}</a></h5>
+    <h3 class="h3 text-center"><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ person.twitter }}">@{{ person.twitter }}</a></h3>
     {% endif %}
     {% if person.instagram %}
-    <h5 class="h5 text-center"><i class="fab fa-instagram"></i><a href="https://www.instagram.com/{{ person.instagram }}">@{{ person.instagram }}</a></h5>
+    <h3 class="h3 text-center"><i class="fab fa-instagram"></i><a href="https://www.instagram.com/{{ person.instagram }}">@{{ person.instagram }}</a></h3>
     {% endif %}
     {% if person.website %}
-    <h5 class="h5 text-center"><i class="fas fa-link"></i><a href="{{ person.website }}">{{ person.website }}</a></h5>
+    <h3 class="h3 text-center"><i class="fas fa-link"></i><a href="{{ person.website }}">{{ person.website }}</a></h3>
     {% endif %}
   </div>
   {% endif %}
   {% if request.user.is_superuser %}
-  <h3 class="h3">Actions</h3>
+  <h2 class="h2">Actions</h2>
   <div class="row actions">
     <a href="{% url 'home:update-person' person.id %}" class="btn btn-secondary">Update</a>
     <button id="deletePersonButton" class="btn btn-danger" data-toggle="modal" data-target="#deletePersonModal{{ person.id }}">Delete</button>

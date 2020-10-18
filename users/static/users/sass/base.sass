@@ -1,10 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Patua+One|Roboto')
-
-@import 'variables'
-@import 'mixins'
-
-@import 'navbar'
-@import 'footer'
+@import 'global'
 
 @import 'autocomplete'
 @import 'forms'
@@ -16,36 +10,6 @@
 @import 'create_event'
 
 @import 'tinyMCE'
-
-html, body
-  height: 100%
-
-// anchor rules added to body tag for higher specificity
-body
-  a, a:hover
-    color: $cyan
-
-  a
-    text-decoration: none
-
-  a:hover
-    text-decoration: underline
-
-h1.h1, h3.h3
-  font-family: $font-title
-
-h1.h1
-  color: $yellow
-
-h3.h3
-  color: $orange
-
-.fa-external-link-alt
-  display: inline
-  vertical-align: 1px
-  font-size: 8px
-  color: $cyan
-  cursor: pointer
 
 #grid
   display: grid

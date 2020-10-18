@@ -59,12 +59,12 @@
 {% include 'home/messages.html' %}
 {% if title != 'Editorials & Opinions' %}
 <section id="locations">
-  <h3 class="h3">Locations</h3>
+  <h2 class="h2">Locations</h2>
   <ul id="byNeighborhood">
     {% for neighborhood in locations_by_neighborhood %}
     {% if neighborhood.locations %}
     <li class="card">
-      <h5 class="h5"><a href="{% url 'locations:neighborhood' neighborhood.neighborhood.slug neighborhood.neighborhood.id %}">{{ neighborhood.neighborhood.name }}</a></h5>
+      <h3 class="h3"><a href="{% url 'locations:neighborhood' neighborhood.neighborhood.slug neighborhood.neighborhood.id %}">{{ neighborhood.neighborhood.name }}</a></h3>
       <ul class="bulleted">
         {% for location in neighborhood.locations %}
         <li{% if category_slug == 'restaurants' and location.category == 2 and location.no_kitchen %} class="asterisk"{% endif %}><a href="{% if location.category == 2 %}{% url 'locations:location' 'nightlife-restaurants' location.slug location.id %}{% else %}{% url 'locations:location' category_slug location.slug location.id %}{% endif %}">{{ location.name }}</a></li>
@@ -121,7 +121,7 @@
 </section>
 <section id="feed">
   <input type="hidden" name="category-slug" value="{{ category_slug }}">
-  <h3 class="h3">Articles & Photo Albums</h3>
+  <h2 class="h2">Articles & Photo Albums</h2>
   <ul id="categoryFeed">
     {% include 'home/category_feed.html' %}
   </ul>

@@ -1,11 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Patua+One|Roboto')
-
-@import 'variables'
-@import 'mixins'
+@import 'global'
 
 @import 'ads'
-@import 'footer'
-@import 'navbar'
 @import 'sidebar'
 
 @import 'album'
@@ -21,52 +16,6 @@
 @import 'article_album'
 
 @import 'author'
-
-html, body
-  max-height: 100%
-
-// anchor rules added to body tag for higher specificity
-body
-  a, a:hover
-    color: $cyan
-
-  a
-    text-decoration: none
-
-  a:hover
-    text-decoration: underline
-
-  & > *
-    margin: 0 !important
-
-h1.h1, h2.h2, h3.h3, h4.h4, h5.h5, h6.h6
-  font-family: $font-title
-
-  & > a
-    text-decoration: underline
-    @include transition(color, .15s)
-
-    &:hover
-      color: $light-blue
-
-h1.h1, h2.h2
-  &, & > a
-    color: $yellow
-
-h3.h3, h4.h4
-  &, & > a
-    color: $orange
-
-h5.h5, h6.h6
-  &, & > a
-    color: $green
-
-.fa-external-link-alt
-  display: inline
-  vertical-align: 1px
-  font-size: 8px
-  color: $cyan
-  cursor: pointer
 
 #grid
   display: grid

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Patua+One|Roboto");
+@import url("https://fonts.googleapis.com/css?family=Patua+One|Roboto|Roboto+Mono");
 nav {
   grid-column-start: left;
   grid-column-end: right;
@@ -108,10 +108,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   }
 }
 #footer {
-  grid-column-start: left;
-  grid-column-end: right;
-  grid-row-start: footer-top;
-  grid-row-end: bottom;
+  position: fixed;
   padding: 0.25rem;
   background-color: #1e1e1e;
   right: 0;
@@ -132,7 +129,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
 }
 #footer .footer-list {
-  max-width: 14.5rem;
+  max-width: 12rem;
   position: relative;
   margin: auto;
   overflow: hidden;
@@ -152,7 +149,106 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin: 0.25em 0;
   padding: 0 0.5rem;
   text-align: center;
-  border-left: 1px solid white;
+  border-left: 1px solid #444444;
+}
+
+@media screen and (min-width: 768px) {
+  #footer {
+    position: unset;
+    grid-column-start: left;
+    grid-column-end: sidebar-right;
+    grid-row-start: footer-tall-top;
+    grid-row-end: bottom;
+    border-right: 1px solid #818181;
+  }
+}
+html, body {
+  max-height: 100%;
+}
+
+body a, body a:hover {
+  color: #97d5f7;
+}
+body a {
+  text-decoration: none;
+}
+body a:hover {
+  text-decoration: underline;
+}
+body > * {
+  margin: 0 !important;
+}
+
+h1.h1, h2.h2, h3.h3, h4.h4, h5.h5, h6.h6 {
+  font-family: "Patua One", Helvetica, Arial, sans-serif;
+}
+h1.h1 > a, h2.h2 > a, h3.h3 > a, h4.h4 > a, h5.h5 > a, h6.h6 > a {
+  text-decoration: underline;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
+}
+h1.h1 > a:hover, h2.h2 > a:hover, h3.h3 > a:hover, h4.h4 > a:hover, h5.h5 > a:hover, h6.h6 > a:hover {
+  color: #569cd6;
+}
+
+h1.h1, h1.h1 > a {
+  color: #d1d18b;
+}
+
+h2.h2, h2.h2 > a {
+  color: #bb846e;
+}
+
+h3.h3, h3.h3 > a {
+  color: #db82bd;
+}
+
+h4.h4, h4.h4 > a {
+  color: #9f62c2;
+}
+
+h5.h5, h5.h5 > a {
+  color: #007bff;
+}
+
+h6.h6, h6.h6 > a {
+  color: #679452;
+}
+
+.info {
+  color: #679452;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+.info a {
+  color: #679452;
+  text-decoration: underline;
+}
+.info a:hover {
+  color: #97d5f7;
+}
+
+ul.bulleted {
+  list-style: disc inside;
+}
+ul.bulleted li::marker {
+  color: #818181;
+}
+ul.bulleted li.empty::marker {
+  display: none;
+}
+
+pre {
+  font-family: "Roboto Mono", monospace;
+}
+
+.fa-external-link-alt {
+  display: inline;
+  vertical-align: 1px;
+  font-size: 8px;
+  color: #97d5f7;
+  cursor: pointer;
 }
 
 #locationAutocomplete,
@@ -313,7 +409,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   border-top-left-radius: 0;
 }
 #content .container form .errorlist {
-  color: #d5697d;
+  color: #e76179;
   margin-bottom: 0.5rem;
 }
 #content .container form .alert {
@@ -410,10 +506,10 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   padding: 2rem 1rem;
   max-width: 720px;
 }
-#content .container .h1 {
+#content .container h1.h1 {
   margin-bottom: 1rem;
 }
-#content .container .h3 {
+#content .container h2.h2 {
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -421,7 +517,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   -o-user-select: none;
   user-select: none;
 }
-#content .container .h3 i {
+#content .container h2.h2 i {
   float: right;
 }
 #content .container p {
@@ -437,6 +533,14 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   max-width: 320px;
 }
 
+#footer {
+  position: unset;
+  grid-column-start: left;
+  grid-column-end: right;
+  grid-row-start: footer-top;
+  grid-row-end: bottom;
+}
+
 .container > div:not(.alert) > :not(:first-child) {
   display: none;
 }
@@ -445,7 +549,7 @@ nav #navbarCollapse ul .nav-item a.nav-link {
   margin-bottom: 0.5rem;
 }
 #viewInvitesTable .delete, #viewInvitesTable .delete:hover {
-  color: #d5697d;
+  color: #e76179;
 }
 
 #createEventForm input[name=address1] {
@@ -540,48 +644,85 @@ nav #navbarCollapse ul .nav-item a.nav-link {
     border-bottom-left-radius: 0;
   }
 }
-.formatted-text h1, .formatted-text h2, .formatted-text h3, .formatted-text h4, .formatted-text h5, .formatted-text h6 {
+.formatted-text h1, .formatted-text h2, .formatted-text h3, .formatted-text h4, .formatted-text h5, .formatted-text h6, .article h1, .article h2, .article h3, .article h4, .article h5, .article h6 {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
+  margin-bottom: 0.5rem;
 }
-.formatted-text h1 > a, .formatted-text h2 > a, .formatted-text h3 > a, .formatted-text h4 > a, .formatted-text h5 > a, .formatted-text h6 > a {
+.formatted-text h1 > a, .formatted-text h2 > a, .formatted-text h3 > a, .formatted-text h4 > a, .formatted-text h5 > a, .formatted-text h6 > a, .article h1 > a, .article h2 > a, .article h3 > a, .article h4 > a, .article h5 > a, .article h6 > a {
   text-decoration: underline;
   -webkit-transition: color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out;
 }
-.formatted-text h1 > a:hover, .formatted-text h2 > a:hover, .formatted-text h3 > a:hover, .formatted-text h4 > a:hover, .formatted-text h5 > a:hover, .formatted-text h6 > a:hover {
+.formatted-text h1 > a:hover, .formatted-text h2 > a:hover, .formatted-text h3 > a:hover, .formatted-text h4 > a:hover, .formatted-text h5 > a:hover, .formatted-text h6 > a:hover, .article h1 > a:hover, .article h2 > a:hover, .article h3 > a:hover, .article h4 > a:hover, .article h5 > a:hover, .article h6 > a:hover {
   color: #569cd6;
 }
-.formatted-text > *:last-child {
-  margin-bottom: 0;
+.formatted-text h1, .article h1 {
+  font-size: 2.5rem;
 }
-.formatted-text h1, .formatted-text h1 > a, .formatted-text h2, .formatted-text h2 > a {
+.formatted-text h1, .formatted-text h1 > a, .article h1, .article h1 > a {
   color: #d1d18b;
 }
-.formatted-text h3, .formatted-text h3 > a, .formatted-text h4, .formatted-text h4 > a {
+.formatted-text h2, .article h2 {
+  font-size: 2rem;
+}
+.formatted-text h2, .formatted-text h2 > a, .article h2, .article h2 > a {
   color: #bb846e;
 }
-.formatted-text h5, .formatted-text h5 > a, .formatted-text h6, .formatted-text h6 > a {
+.formatted-text h3, .article h3 {
+  font-size: 1.75rem;
+}
+.formatted-text h3, .formatted-text h3 > a, .article h3, .article h3 > a {
+  color: #db82bd;
+}
+.formatted-text h4, .article h4 {
+  font-size: 1.5rem;
+}
+.formatted-text h4, .formatted-text h4 > a, .article h4, .article h4 > a {
+  color: #9f62c2;
+}
+.formatted-text h5, .article h5 {
+  font-size: 1.25rem;
+}
+.formatted-text h5, .formatted-text h5 > a, .article h5, .article h5 > a {
+  color: #569cd6;
+}
+.formatted-text h6, .article h6 {
+  font-size: 1rem;
+}
+.formatted-text h6, .formatted-text h6 > a, .article h6, .article h6 > a {
   color: #679452;
 }
-.formatted-text em {
+.formatted-text p, .article p {
+  margin-bottom: 1rem;
+}
+.formatted-text em, .article em {
   font-style: italic;
 }
-.formatted-text ul, .formatted-text ol {
+.formatted-text ul, .formatted-text ol, .article ul, .article ol {
   padding-left: 2.5rem;
+  margin-bottom: 1rem;
 }
-.formatted-text ul {
+.formatted-text ul, .article ul {
   list-style-type: disc;
 }
-.formatted-text ol {
+.formatted-text ol, .article ol {
   list-style-type: decimal;
 }
-.formatted-text blockquote {
-  border-left: 0.25rem solid #9f62c2;
-  padding: 1rem 1rem 1rem 2.25rem;
+.formatted-text pre, .formatted-text blockquote, .article pre, .article blockquote {
+  display: block;
+  margin-bottom: 1rem;
+  margin-left: 1.25rem;
+  border-left: 0.25rem solid #007bff;
+  padding: 1rem;
   background-color: #333333;
 }
-.formatted-text blockquote > *:last-child {
-  margin-bottom: 0 !important;
+.formatted-text pre > *:last-child, .formatted-text blockquote > *:last-child, .article pre > *:last-child, .article blockquote > *:last-child {
+  margin-bottom: 0;
+}
+.formatted-text pre, .article pre {
+  font-family: "Roboto Mono", monospace;
+  color: #818181;
+  font-size: 87.5%;
 }
 
 .tox {
@@ -599,40 +740,6 @@ nav #navbarCollapse ul .nav-item a.nav-link {
 }
 .tox .tox-statusbar svg {
   fill: #6c757d !important;
-}
-
-html, body {
-  height: 100%;
-}
-
-body a, body a:hover {
-  color: #97d5f7;
-}
-body a {
-  text-decoration: none;
-}
-body a:hover {
-  text-decoration: underline;
-}
-
-h1.h1, h3.h3 {
-  font-family: "Patua One", Helvetica, Arial, sans-serif;
-}
-
-h1.h1 {
-  color: #d1d18b;
-}
-
-h3.h3 {
-  color: #bb846e;
-}
-
-.fa-external-link-alt {
-  display: inline;
-  vertical-align: 1px;
-  font-size: 8px;
-  color: #97d5f7;
-  cursor: pointer;
 }
 
 #grid {
