@@ -2,7 +2,6 @@
 
 ## High Priorities
 
-- Change float rules to flex on Dashboard
 - Replace Sass symlinks with path
 - Move globals to lib directory
 - Remove Events links when inactive

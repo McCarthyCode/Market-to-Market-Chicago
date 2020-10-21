@@ -517,9 +517,6 @@ pre {
   -o-user-select: none;
   user-select: none;
 }
-#content .container h2.h2 i {
-  float: right;
-}
 #content .container p {
   color: #ffffff;
 }
@@ -541,7 +538,13 @@ pre {
   grid-row-end: bottom;
 }
 
-.container > div:not(.alert) > :not(:first-child) {
+.container > ul > li h2.h2 {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.container > ul > li > :not(:first-child) {
   display: none;
 }
 

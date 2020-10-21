@@ -1,5 +1,12 @@
-.container > div:not(.alert) > :not(:first-child)
-  display: none
+.container > ul > li
+  h2.h2
+    display: flex
+    gap: 1rem
+    align-items: center
+    justify-content: space-between
+
+  & > :not(:first-child)
+    display: none
 
 #viewInvitesTable
   margin-bottom: .5rem
