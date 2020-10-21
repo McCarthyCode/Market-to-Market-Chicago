@@ -17,15 +17,15 @@
   <!-- Internal Stylesheets -->
 
   <!-- Reset CSS -->
-  <link rel="stylesheet" href="{% static 'home/css/reset.min.css' %}">
+  <link rel="stylesheet" href="{% static 'lib/css/reset.min.css' %}">
 
 {% block internal_stylesheets %}{% endblock %}{% if STAGE == 'development' %}  <!-- Internal Stylesheet Libraries -->
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'lib/css/bootstrap.min.css' %}">
 
   <!-- fancybox CSS -->
-  <link rel="stylesheet" href="{% static 'home/css/jquery.fancybox.min.css' %}">
+  <link rel="stylesheet" href="{% static 'lib/css/jquery.fancybox.min.css' %}">
 
 {% block internal_stylesheet_libraries %}{% endblock %}
 {% else %}  <!-- External Stylesheet Libraries -->

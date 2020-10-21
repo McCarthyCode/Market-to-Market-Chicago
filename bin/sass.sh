@@ -26,9 +26,9 @@ sass_input_articles="$project_dir/articles/static/articles/sass/base.sass"
 sass_output_articles="$project_dir/articles/static/articles/css/articles.css"
 sass_output_articles_compressed="$project_dir/articles/static/articles/css/articles.min.css"
 
-sass_input_tinyMCE="$project_dir/home/static/home/sass/tinyMCE.sass"
-sass_output_tinyMCE="$project_dir/home/static/home/css/tinyMCE.css"
-sass_output_tinyMCE_compressed="$project_dir/home/static/home/css/tinyMCE.min.css"
+sass_input_tinyMCE="$project_dir/home/static/lib/sass/tinyMCE.sass"
+sass_output_tinyMCE="$project_dir/home/static/lib/css/tinyMCE.css"
+sass_output_tinyMCE_compressed="$project_dir/home/static/lib/css/tinyMCE.min.css"
 
 declare -a args=(
   "$sass_input_home:$sass_output_home"
@@ -47,8 +47,22 @@ declare -a args=(
   "--style=compressed $sass_input_tinyMCE:$sass_output_tinyMCE_compressed"
 )
 
+declare -a path=(
+  "home/static/lib/sass"
+  "home/static/home/sass"
+  "users/static/users/sass"
+  "articles/static/articles/sass"
+  "events/static/events/sass"
+  "locations/static/locations/sass"
+  "images/static/images/sass"
+)
+
+includes=$(printf -- " -I $project_dir/%s" ${path[@]})
+includes=${includes:1}
+
 for i in "${args[@]}"; do
-  sass --watch -I $project_dir/home/static/home/sass $i &
+  sass --watch $includes $i &
+  echo "sass --watch $includes $i &"
 done
 
 clear

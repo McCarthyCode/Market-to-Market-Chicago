@@ -2,8 +2,7 @@
 
 ## High Priorities
 
-- Replace Sass symlinks with path
-- Move globals to lib directory
+- Update styling on Events page
 - Remove Events links when inactive
 - Add emoji support
 - Truncate article slug to 80 characters
