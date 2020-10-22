@@ -9,6 +9,7 @@
 
 ## Medium Priorities
 
+- Move ads template folder to parent directory
 - Events forms
   - Change All-day to holiday
   - Allow holiday edit

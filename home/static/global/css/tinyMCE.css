@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css?family=Patua+One|Roboto|Roboto+Mono");
+body {
+  background-color: #444444;
+  color: #ffffff;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  padding: 0.5rem;
+  line-height: 1.2;
+}
+body a {
+  color: #569cd6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Patua One", Helvetica, Arial, sans-serif;
+  margin-bottom: 0.5rem;
+}
+h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
+  text-decoration: underline;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
+}
+h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hover {
+  color: #569cd6;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+h1, h1 > a {
+  color: #d1d18b;
+}
+
+h2 {
+  font-size: 2rem;
+}
+h2, h2 > a {
+  color: #bb846e;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+h3, h3 > a {
+  color: #db82bd;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+h4, h4 > a {
+  color: #9f62c2;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+h5, h5 > a {
+  color: #569cd6;
+}
+
+h6 {
+  font-size: 1rem;
+}
+h6, h6 > a {
+  color: #679452;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+em {
+  font-style: italic;
+}
+
+ul, ol {
+  padding-left: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+pre, blockquote {
+  display: block;
+  margin-bottom: 1rem;
+  margin-left: 1.25rem;
+  border-left: 0.25rem solid #007bff;
+  padding: 1rem;
+  background-color: #333333;
+}
+pre > *:last-child, blockquote > *:last-child {
+  margin-bottom: 0;
+}
+
+pre {
+  font-family: "Roboto Mono", monospace;
+  color: #818181;
+  font-size: 87.5%;
+}
+
+/*# sourceMappingURL=tinyMCE.css.map */

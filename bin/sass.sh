@@ -26,9 +26,9 @@ sass_input_articles="$project_dir/articles/static/articles/sass/base.sass"
 sass_output_articles="$project_dir/articles/static/articles/css/articles.css"
 sass_output_articles_compressed="$project_dir/articles/static/articles/css/articles.min.css"
 
-sass_input_tinyMCE="$project_dir/home/static/lib/sass/tinyMCE.sass"
-sass_output_tinyMCE="$project_dir/home/static/lib/css/tinyMCE.css"
-sass_output_tinyMCE_compressed="$project_dir/home/static/lib/css/tinyMCE.min.css"
+sass_input_tinyMCE="$project_dir/home/static/global/sass/tinyMCE.sass"
+sass_output_tinyMCE="$project_dir/home/static/global/css/tinyMCE.css"
+sass_output_tinyMCE_compressed="$project_dir/home/static/global/css/tinyMCE.min.css"
 
 declare -a args=(
   "$sass_input_home:$sass_output_home"
@@ -48,7 +48,7 @@ declare -a args=(
 )
 
 declare -a path=(
-  "home/static/lib/sass"
+  "home/static/global/sass"
   "home/static/home/sass"
   "users/static/users/sass"
   "articles/static/articles/sass"
@@ -62,7 +62,9 @@ includes=${includes:1}
 
 for i in "${args[@]}"; do
   sass --watch $includes $i &
-  echo "sass --watch $includes $i &"
+  echo -e "sass --watch $includes $i &\n" >&2
 done
 
-clear
+trap 'echo; pkill $$' SIGINT
+
+wait

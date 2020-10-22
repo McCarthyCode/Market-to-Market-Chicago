@@ -12,7 +12,7 @@ tinymce.init({
   skin: 'mwd-dark',
   skin_url: '/static/lib/tinymce/skins/mwd-dark',
   content_css: [
-    '/static/lib/css/reset.min.css',
-    '/static/lib/css/tinyMCE.min.css',
+    '/static/lib/reset/reset.min.css',
+    '/static/global/css/tinyMCE.min.css',
   ],
 });
