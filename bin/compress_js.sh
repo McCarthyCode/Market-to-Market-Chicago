@@ -18,14 +18,19 @@ declare -a files=(
   "articles/static/articles/js/article_autocomplete"
 )
 
-for i in "${files[@]}"; do
-  input="$i.js"
-  output="$i.min.js"
+trap 'echo -e "\nExiting…" >&2; pkill $$; exit' SIGINT
 
-  cmd="java -jar $closure_compiler --js $input --js_output_file $output"
+while true; do
+  for i in "${files[@]}"; do
+    input="$i.js"
+    output="$i.min.js"
+    cmd="java -jar $closure_compiler --js $input --js_output_file $output"
 
-  if [ $input -nt $output ]; then
-    echo "$cmd" >&2
-    $cmd
-  fi
+    if [ $input -nt $output ]; then
+      echo "[$(date -Iseconds)] $cmd" >&2
+      $cmd
+    fi
+  done
+
+  sleep 1
 done

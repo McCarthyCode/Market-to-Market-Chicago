@@ -4,17 +4,23 @@
 
 - Update styling on Events page
 - Remove Events links when inactive
-- Add emoji support
+- Move grid Sass to its own file
+- Reorder Article page contents
+  1. Album
+  2. Article
+  3. About
 - Truncate article slug to 80 characters
 
 ## Medium Priorities
 
 - Move ads template folder to parent directory
+- Move manager logic to forms and models
 - Events forms
   - Change All-day to holiday
   - Allow holiday edit
   - Add all-day field
   - Delete RepeatInfo along with RecurringEvent
+- Add emoji support
 - Take update author redirect to author page
 - Autocorrect bugs
   - Double text on enter

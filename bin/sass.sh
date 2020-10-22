@@ -65,6 +65,6 @@ for i in "${args[@]}"; do
   echo -e "sass --watch $includes $i &\n" >&2
 done
 
-trap 'echo; pkill $$' SIGINT
+trap 'echo -e "\nExiting…" >&2; pkill $$' SIGINT
 
 wait
