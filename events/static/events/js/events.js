@@ -29,7 +29,7 @@ $(() => {
   function tabsChildrenClick($tab) {
     $tabsChildren.each(function () {
       $($(this).data('href') + 'View').hide();
-      $(this).removeClass('active')
+      $(this).removeClass('active');
     });
 
     let view = $tab.data('href');
@@ -59,16 +59,16 @@ $(() => {
 
   $tabsChildren.on('touchend', function (event) {
     let changes = event.changedTouches[0];
-    let $endElement = $(document.elementFromPoint(changes.pageX, changes.pageY));
+    let $endElement = $(
+      document.elementFromPoint(changes.pageX, changes.pageY),
+    );
 
     if ($endElement.parent('#tabs').length) {
       tabsChildrenClick($(this));
 
-      $tabsChildren
-        .removeClass('active')
-        .each(function () {
-          $($(this).data('href') + 'View').hide();
-        });
+      $tabsChildren.removeClass('active').each(function () {
+        $($(this).data('href') + 'View').hide();
+      });
 
       $activeTab = $endElement;
       $endElement.addClass('active');
@@ -94,60 +94,25 @@ $(() => {
     $('#month input[name="year"]').val(context['year']);
     $('#month input[name="month"]').val(context['month']);
 
-    let date = new Date(context['year'], context['month'] - 1, 1);
-    let fullMonth = '';
+    const date = new Date(context['year'], context['month'] - 1, 1);
+    const fullMonth = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
 
-    switch (date.getMonth() + 1) {
-      case 1:
-        fullMonth = 'January';
-        break;
-
-      case 2:
-        fullMonth = 'February';
-        break;
-
-      case 3:
-        fullMonth = 'March';
-        break;
-
-      case 4:
-        fullMonth = 'April';
-        break;
-
-      case 5:
-        fullMonth = 'May';
-        break;
-
-      case 6:
-        fullMonth = 'June';
-        break;
-
-      case 7:
-        fullMonth = 'July';
-        break;
-
-      case 8:
-        fullMonth = 'August';
-        break;
-
-      case 9:
-        fullMonth = 'September';
-        break;
-
-      case 10:
-        fullMonth = 'October';
-        break;
-
-      case 11:
-        fullMonth = 'November';
-        break;
-
-      case 12:
-        fullMonth = 'December';
-        break;
-    }
-
-    $('#calendarControls h3').text(`${fullMonth} ${date.getFullYear()}`);
+    $('#calendarControls h2').text(
+      `${fullMonth[date.getMonth()]} ${date.getFullYear()}`,
+    );
 
     $.get('/events/month/', context, function (response) {
       $calendar.empty();
@@ -167,11 +132,9 @@ $(() => {
       $byDate.empty();
       $byDate.append(response);
 
-      $tabsChildren
-        .removeClass('active')
-        .each(function () {
-          $($(this).data('href') + 'View').hide();
-        });
+      $tabsChildren.removeClass('active').each(function () {
+        $($(this).data('href') + 'View').hide();
+      });
 
       $activeTab = $tabsByDate;
 
@@ -254,8 +217,8 @@ $(() => {
     $navButtons.removeClass('disabled');
 
     updateDate({
-      'year': $button.data('year'),
-      'month': $button.data('month'),
+      year: $button.data('year'),
+      month: $button.data('month'),
     });
   });
 
@@ -267,11 +230,9 @@ $(() => {
     if (currentYear !== context['year'] || currentMonth !== context['month']) {
       updateAndShowDate(context);
     } else {
-      $tabsChildren
-        .removeClass('active')
-        .each(function () {
-          $($(this).data('href') + 'View').hide();
-        });
+      $tabsChildren.removeClass('active').each(function () {
+        $($(this).data('href') + 'View').hide();
+      });
 
       $activeTab = $tabsByDate;
 
@@ -290,9 +251,9 @@ $(() => {
     let date = new Date(year, month - 1, day);
     let today = new Date();
 
-    today.setHours(0)
-    today.setMinutes(0)
-    today.setSeconds(0)
+    today.setHours(0);
+    today.setMinutes(0);
+    today.setSeconds(0);
     today.setMilliseconds(0);
 
     if (date < today) {
@@ -300,9 +261,9 @@ $(() => {
     }
 
     showDate({
-      'year': year,
-      'month': month,
-      'day': day,
+      year: year,
+      month: month,
+      day: day,
     });
   });
 });

@@ -1,20 +1,42 @@
-{% for card in by_date.calendar %}
-{% if card.events|length > 0 %}
+{% for card in by_date.calendar %} {% if card.events|length > 0 %}
 <div id="{{ card.date.day }}" class="card">
-  <h2 class="h2 text-center">{{ card.date.day }}</h2>
+  <h3 class="h3 text-center">{{ card.date.day }}</h3>
   <ul class="events">
     {% for event in card.events %}
     <li>
-      {% if event.event.all_day and event.event.location == none %}
+      {% if event.event.holiday %}
       <h3 class="h3 holiday">{{ event.event.name }}</h3>
       {% elif event.event.location == none %}
-      <h3 class="h3"><a href="{% url 'events:event' 'events' 'undefined' event.event.slug event.event.id %}" tabindex="{{ event.tabindex }}">{{ event.event.name }} <span class="text-nowrap">{% if event.event.all_day %}(All Day){% else %}({{ event.event.date_start|date:"g:i a" }}{% if event.event.date_end %}&ndash;{{ event.event.date_end|date:"g:i a" }}{% endif %}){% endif %}</span></a></h3>
+      <h4 class="h4">
+        <a
+          href="{% url 'events:event' 'events' 'undefined' event.event.slug event.event.id %}"
+          tabindex="{{ event.tabindex }}"
+          >{{ event.event.name }}
+          <span class="text-nowrap">
+            {% if event.event.all_day %}(All Day){% else %}({{event.event.date_start|date:"g:i a" }}{% if event.event.date_end %}&ndash;{{ event.event.date_end|date:"g:i a" }}{% endif %}){% endif %}</span
+          >
+        </a>
+      </h4>
       {% else %}
-      <h3 class="h3"><a href="{% url 'events:event' event.category event.event.location.slug event.event.slug event.event.id %}" tabindex="{{ event.tabindex }}">{{ event.event.name }}{% if event.event.location %} at <span data-id="{{ event.event.location.id }}">{{ event.event.location.name }}</span>{% endif %} <span class="text-nowrap">{% if event.event.all_day %}(All Day){% else %}({{ event.event.date_start|date:"g:i a" }}{% if event.event.date_end %}&ndash;{{ event.event.date_end|date:"g:i a" }}{% endif %}){% endif %}</span></a></h3>
+      <h4 class="h4">
+        <a
+          href="{% url 'events:event' event.category event.event.location.slug event.event.slug event.event.id %}"
+          tabindex="{{ event.tabindex }}"
+          >{{ event.event.name }}{% if event.event.location %} at
+          <span data-id="{{ event.event.location.id }}"
+            >{{ event.event.location.name }}</span
+          >{% endif %}
+          <span class="text-nowrap"
+            >{% if event.event.all_day %}(All Day){% else %}({{
+            event.event.date_start|date:"g:i a" }}{% if event.event.date_end
+            %}&ndash;{{ event.event.date_end|date:"g:i a" }}{% endif %}){% endif
+            %}
+          </span>
+        </a>
+      </h4>
       {% endif %}
     </li>
     {% endfor %}
   </ul>
 </div>
-{% endif %}
-{% endfor %}
+{% endif %} {% endfor %}

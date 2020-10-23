@@ -1058,9 +1058,6 @@ pre {
 .container #byDateView .card h3.holiday {
   color: #679452;
 }
-.container #byDateView .card h3, .container #byDateView .card h3 > a {
-  color: #d1d18b;
-}
 .container #byDateView .card ul.events {
   flex-grow: 1;
 }
@@ -1068,7 +1065,11 @@ pre {
   margin-bottom: 0.5rem;
 }
 .container #byDateView .card ul.events li h4, .container #byDateView .card ul.events li h4 > a:not(:hover) {
-  color: #bb846e;
+  color: #569cd6;
+  text-decoration: none;
+}
+.container #byDateView .card ul.events li h4 > a:hover {
+  text-decoration: underline;
 }
 .container #byDateView .card ul.events li p {
   margin-bottom: 0.5rem;

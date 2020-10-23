@@ -2,6 +2,8 @@
 
 ## High Priorities
 
+- Add empty events messages
+- Remove links to index when no events are active
 - Update styling on Events page
 - Remove Events links when inactive
 - Move grid Sass to its own file

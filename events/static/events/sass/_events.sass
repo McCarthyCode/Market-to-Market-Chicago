@@ -203,9 +203,6 @@
     &.holiday
       color: $green
 
-    &, & > a
-      color: $yellow
-
   ul.events
     flex-grow: 1
 
@@ -214,7 +211,11 @@
 
       h4
         &, & > a:not(:hover)
-          color: $orange
+          color: $light-blue
+          text-decoration: none
+
+        & > a:hover
+          text-decoration: underline
 
       p
         margin-bottom: .5rem

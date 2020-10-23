@@ -13,6 +13,7 @@ class Event(TimestampedModel, NewsItem):
     name = models.CharField(max_length=255)
     slug = models.SlugField(default='', max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    holiday = models.BooleanField(default=False)
     all_day = models.BooleanField(default=False)
     date_start = models.DateTimeField()
     date_end = models.DateTimeField(null=True, blank=True)
@@ -22,6 +23,10 @@ class Event(TimestampedModel, NewsItem):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
+
+        if self.holiday:
+            self.all_day = True
+
         super().save(*args, **kwargs)
 
     def render(self, request):
