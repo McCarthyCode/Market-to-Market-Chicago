@@ -16,51 +16,6 @@
   .h1
     margin-bottom: 1rem
 
-  .h3 a
-    color: $orange
-
-  p
-    color: $white
-
-  p.info
-    color: $green
-    font-style: italic
-    margin-bottom: .5rem
-
-    a
-      color: $green
-      text-decoration: underline
-
-    p.read-more
-      margin: 0
-
-  form
-    input[type="text"], input[type="number"], input[type="password"],
-    input[type="submit"], textarea, select, :not(.m-bottom-0) label
-      margin-bottom: .5rem
-
-    input[type="text"], input[type="number"], input[type="password"],
-    textarea, select, label
-      color: $white
-      border-color: $light-gray
-      background-color: $dark-gray
-
-    .input-group-append
-      width: 40px
-      height: 38px
-      z-index: 3
-
-      .input-group-text
-        color: $white
-        border-color: $light-gray
-        background-color: $light-gray
-
-        i
-          min-width: 14px
-
-    .input-group-append:not(.default-cursor)
-      cursor: pointer
-
 #tabs
   display: grid
   grid-template-columns: 1fr 1fr 1fr
@@ -75,7 +30,7 @@
     text-align: center
     line-height: 2
     cursor: pointer
-    @include transition(background-color, .15s)
+    @include transition(background-color)
 
   li.active, li:hover
     background-color: $blue
@@ -118,26 +73,26 @@
     font-weight: bold
     text-shadow: 0px 0px 2px $darker-gray
 
-  .header.col0
-    background-color: $red
+    &.col0
+      background-color: $red
 
-  .header.col1
-    background-color: $orange
+    &.col1
+      background-color: $orange
 
-  .header.col2
-    background-color: $yellow
+    &.col2
+      background-color: $yellow
 
-  .header.col3
-    background-color: $green
+    &.col3
+      background-color: $green
 
-  .header.col4
-    background-color: $cyan
+    &.col4
+      background-color: $cyan
 
-  .header.col5
-    background-color: $light-blue
+    &.col5
+      background-color: $light-blue
 
-  .header.col6
-    background-color: $purple
+    &.col6
+      background-color: $purple
 
   .row0
     grid-row-start: row0
@@ -195,8 +150,8 @@
   position: relative
   background-color: $mid-gray
   color: $white
-  @include user-select-none
   cursor: pointer
+  @include user-select-none
 
   span.date
     padding-left: .25rem
@@ -230,29 +185,36 @@
   margin-bottom: 1rem
 
 .container #byDateView .card
+  display: flex
+  align-items: start
+  justify-content: space-between
+  gap: 1rem
   margin-bottom: .5rem
+  flex-direction: row
+
+  & > *
+    margin-bottom: 0
 
   h3
-    position: absolute
-    top: 15px
-    left: 1rem
-    width: 2rem
-    color: $yellow
     line-height: 1
+    min-width: 2rem
+    text-align: center
+
+    &.holiday
+      color: $green
+
+    &, & > a
+      color: $yellow
 
   ul.events
-    margin-bottom: 0
-    margin-left: 3rem
+    flex-grow: 1
 
     li
       margin-bottom: .5rem
 
-      h5 a
-        color: $light-blue
-        line-height: 28px
-
-      .holiday
-        color: $orange
+      h4
+        &, & > a:not(:hover)
+          color: $orange
 
       p
         margin-bottom: .5rem

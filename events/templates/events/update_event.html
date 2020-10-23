@@ -3,7 +3,7 @@
   <input type="hidden" name="id" value="{{ event.id }}">
   <input class="form-control" type="text" name="name" placeholder="Name" value="{{ event.name }}" required>
   <textarea class="form-control" name="description" placeholder="Description (optional)" rows="5" maxlength="1000">{% if event.description != None %}{{ event.description }}{% endif %}</textarea>
-  <div id="allDayInputGroup" class="input-group" data-target-input="nearest">
+  <div id="allDayInputGroup" class="input-group input-group-checkbox" data-target-input="nearest">
     <label class="form-control" for="allDay">All Day</label>
     <div class="input-group-append">
       {% if event.all_day %}
@@ -16,27 +16,21 @@
   <div id="dateStartInputGroup" class="input-group" data-target-input="nearest">
     <input id="dateStart" class="form-control datetimepicker-input" type="text" name="date-start" value="{{ event.date_start|date:'m/d/Y g:i A' }}" placeholder="Start Date/Time (click icon to show date picker)" data-target="#dateStartInputGroup" autocomplete="off" required>
     <div class="input-group-append" data-target="#dateStartInputGroup" data-toggle="datetimepicker">
-      <div class="form-control input-group-text">
-        <i class="fa fa-calendar text-center"></i>
-      </div>
+      <i class="fa fa-calendar text-center"></i>
     </div>
   </div>
   {% if event.all_day %}
   <div id="dateEndInputGroup" class="input-group" style="display: none" data-target-input="nearest">
     <input id="dateEnd" class="form-control datetimepicker-input" type="text" name="date-end" autocomplete="off" placeholder="End Date/Time (optional)" data-target="#dateEndInputGroup">
     <div class="input-group-append" data-target="#dateEndInputGroup" data-toggle="datetimepicker">
-      <div class="form-control input-group-text">
-        <i class="fa fa-calendar"></i>
-      </div>
+      <i class="fa fa-calendar"></i>
     </div>
   </div>
   {% else %}
   <div id="dateEndInputGroup" class="input-group" data-target-input="nearest">
     <input id="dateEnd" class="form-control datetimepicker-input" type="text" name="date-end" value="{{ event.date_end|date:'m/d/Y g:i A' }}" placeholder="End Date/Time (optional)" autocomplete="off" data-target="#dateEndInputGroup">
     <div class="input-group-append" data-target="#dateEndInputGroup" data-toggle="datetimepicker">
-      <div class="form-control input-group-text">
-        <i class="fa fa-calendar"></i>
-      </div>
+      <i class="fa fa-calendar"></i>
     </div>
   </div>
   {% endif %}
@@ -50,9 +44,7 @@
     <input id="locationName" class="form-control" type="text" name="location-name" placeholder="Location (search for existing)" autocomplete="off">
   {% endif %}
     <div id="locationToggle" class="input-group-append default-cursor">
-      <div class="form-control input-group-text">
-        <i class="fas fa-map-marker-alt"></i>
-      </div>
+      <i class="fas fa-map-marker-alt"></i>
     </div>
   </div>
   <div id="locationAutocomplete"></div>
@@ -66,25 +58,25 @@
     <input id="albumName" class="form-control" type="text" name="album-name" placeholder="Album (search for existing)" autocomplete="off">
   {% endif %}
     <div id="albumToggle" class="input-group-append default-cursor">
-      <div class="form-control input-group-text">
-        <i class="fas fa-images"></i>
-      </div>
+      <i class="fas fa-images"></i>
     </div>
   </div>
   <div id="albumAutocompleteEvent"></div>
   {% if recurring %}
-  <div id="singleEventInputGroupUpdate" class="input-group m-bottom-0">
-    <label class="form-control" for="singleEventUpdate">Update only this instance</label>
-    <div class="input-group-append">
-      <input id="singleEventUpdate" type="radio" name="update" value="single-event">
-    </div>
-  </div>
-  <div id="allEventsInputGroupUpdate" class="input-group">
-    <label class="form-control" for="allEventsUpdate">Update this instance and all following instances</label>
-    <div class="input-group-append">
-      <input id="allEventsUpdate" type="radio" name="update" value="multiple-events">
-    </div>
-  </div>
+  <ul class="input-group-radio">
+    <li id="singleEventInputGroupUpdate" class="input-group">
+      <label class="form-control" for="singleEventUpdate">Update only this instance</label>
+      <div class="input-group-append">
+        <input id="singleEventUpdate" type="radio" name="update" value="single-event">
+      </div>
+    </li>
+    <li id="allEventsInputGroupUpdate" class="input-group">
+      <label class="form-control" for="allEventsUpdate">Update this instance and all following instances</label>
+      <div class="input-group-append">
+        <input id="allEventsUpdate" type="radio" name="update" value="multiple-events">
+      </div>
+    </li>
+  </ul>
   {% endif %}
   <input class="btn btn-primary" type="submit" value="Update">
 </form>

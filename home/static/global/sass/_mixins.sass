@@ -5,9 +5,9 @@
   -o-user-select: none
   user-select: none
 
-@mixin transition($property, $duration)
-  -webkit-transition: $property $duration ease-in-out
-  transition: $property $duration ease-in-out
+@mixin transition($property, $duration: .15s, $behavior: ease-in-out)
+  -webkit-transition: $property $duration $behavior
+  transition: $property $duration $behavior
 
 @mixin transform($properties...)
   -webkit-transform: $properties

@@ -29,84 +29,169 @@
     label
       cursor: pointer
 
-    .input-group-append
-      border-color: $light-gray
-      background-color: $light-gray
+    &-append
+      border: solid $light-gray
+      border-width: 1px 1px 1px 0
+      background-color: $dark-gray
       width: 40px
       height: 38px
       border-top-right-radius: .25rem
       border-bottom-right-radius: .25rem
       z-index: 3
+      display: flex
+      align-items: center
+      justify-content: center
 
-      input[type="radio"], input[type="checkbox"], .calendar
+      i
+        min-width: 14px
+        color: $light-gray
+
+        &.fa-calendar
+          cursor: pointer
+
+      input[type="checkbox"], input[type="radio"]
+        position: absolute
+        z-index: 2
+        opacity: 0
+        height: 0
+        width: 0
         cursor: pointer
-        color: $white
+
+        &, & ~ .checkbox, & ~ .radio
+          width: 16px
+          height: 16px
+
+        & ~ .checkbox, & ~ .radio
+          display: block
+          position: relative
+          cursor: pointer
+          @include transition(background-color)
+
+      input[type="checkbox"]
+        & ~ .checkbox
+          background-color: $light-gray
+          border-radius: 2px
+
+        &:hover, &:checked
+          & ~ .checkbox::after
+            content: ''
+            position: absolute
+            display: block
+            top: 1px
+            left: 5px
+            width: 7px
+            height: 12px
+            border-style: solid
+            border-width: 0 3px 3px 0
+            // @include transition(border-color)
+            @include transform(rotate(45deg))
+
+        &:hover ~ .checkbox
+          background-color: $light-gray
+
+          &::after
+            border-color: $dark-gray
+
+        &:checked ~ .checkbox
+          background-color: $blue
+
+          &::after
+            border-color: $white
 
       input[type="radio"]
-        height: 16px
-        margin: auto
+        & ~ .radio
+          background-color: $light-gray
+          border-radius: .5rem
+          @include transition(background-color)
 
-      .input-group-text
-        color: $white
-        border-color: $light-gray
-        background-color: $light-gray
+          &::before, &::after
+            content: ''
+            position: absolute
+            background-color: $dark-gray
+            @include transition(background-color)
 
-        i
-          min-width: 14px
+          &::before
+            top: 1px
+            left: 1px
+            width: 14px
+            height: 14px
+            border-radius: 7px
 
-  .input-group-checkbox .input-group-append
-    padding: 11px .75rem
+          &::after
+            top: 4px
+            left: 4px
+            z-index: 1
+            width: .5rem
+            height: .5rem
+            border-radius: .25rem
 
-  .radio
-    margin-bottom: 0
+        &:hover:not(:checked) ~ .radio
+          &::after
+            background-color: $light-gray
 
-    li:not(.top) // li:not(:first-child) not working
-      label
-        border-top-left-radius: 0
+        &:checked ~ .radio
+          &, &::before
+            background-color: $blue
 
-      .input-group-append
-        border-top-right-radius: 0
+          &::after
+            background-color: $white
 
-    li:not(:last-child)
-      label
+
+    &-checkbox, &-radio
+      margin-bottom: .5rem
+
+      *
         margin-bottom: 0
-        border-bottom: 0
-        border-bottom-left-radius: 0
 
-      .input-group-append
-        border-bottom-right-radius: 0
+      li:not(:first-child)
+        label
+          border-top-left-radius: 0
+
+        .input-group-append
+          border-top-right-radius: 0
+
+      li:not(:last-child)
+        label
+          margin-bottom: 0
+          border-bottom: 0
+          border-bottom-left-radius: 0
+
+        .input-group-append
+          border-bottom-right-radius: 0
+          margin-bottom: 0
+          border-bottom: 0
 
   .address,
   .password-confirm,
   .name
-    > :not(:last-child)
+    & > :not(:last-child)
       border-bottom-right-radius: 0
       border-bottom-left-radius: 0
       border-bottom: 0
       margin-bottom: -1px
 
-    > :not(:first-child)
+    & > :not(:first-child)
       border-top-right-radius: 0
       border-top-left-radius: 0
 
   .city-state-zip
-    > :nth-child(2)
+    & > :nth-child(2)
       border-top-right-radius: 0
       border-bottom-right-radius: 0
 
-    > :last-child
+    & > :last-child
       border-top-left-radius: 0
       border-bottom-left-radius: 0
 
   .select,
   .social
-    > :not(:last-child)
+    & > :not(:last-child)
       border-bottom-right-radius: 0
       border-bottom-left-radius: 0
       border-bottom: 0
       margin-bottom: 0
 
-    > :not(:first-child)
+    & > :not(:first-child)
       border-top-right-radius: 0
       border-top-left-radius: 0
 
@@ -121,29 +206,29 @@
   #content .container form
     .city-state-zip,
     .number
-      > :not(:last-child)
+      & > :not(:last-child)
         border-top-right-radius: 0
         border-bottom-right-radius: 0
 
-      > :not(:first-child)
+      & > :not(:first-child)
         border-top-left-radius: 0
         border-bottom-left-radius: 0
 
     .select,
     .social
-      > :first-child
+      & > :first-child
         border-top-left-radius: .25rem
         border-bottom-left-radius: .25rem
 
-      > :last-child
+      & > :last-child
         border-top-right-radius: .25rem
         border-bottom-right-radius: .25rem
 
-      > :not(:last-child)
+      & > :not(:last-child)
         border-bottom: 1px solid $light-gray
         border-top-right-radius: 0
         margin-bottom: .5rem
 
-      > :not(:first-child)
+      & > :not(:first-child)
         border-left: 0
         border-bottom-left-radius: 0

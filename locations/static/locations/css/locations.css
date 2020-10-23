@@ -446,50 +446,135 @@ pre {
 #content .container form .input-group label {
   cursor: pointer;
 }
-#content .container form .input-group .input-group-append {
-  border-color: #818181;
-  background-color: #818181;
+#content .container form .input-group-append {
+  border: solid #818181;
+  border-width: 1px 1px 1px 0;
+  background-color: #333333;
   width: 40px;
   height: 38px;
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#content .container form .input-group .input-group-append input[type=radio], #content .container form .input-group .input-group-append input[type=checkbox], #content .container form .input-group .input-group-append .calendar {
+#content .container form .input-group-append i {
+  min-width: 14px;
+  color: #818181;
+}
+#content .container form .input-group-append i.fa-calendar {
   cursor: pointer;
-  color: #ffffff;
 }
-#content .container form .input-group .input-group-append input[type=radio] {
+#content .container form .input-group-append input[type=checkbox], #content .container form .input-group-append input[type=radio] {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  cursor: pointer;
+}
+#content .container form .input-group-append input[type=checkbox], #content .container form .input-group-append input[type=checkbox] ~ .checkbox, #content .container form .input-group-append input[type=checkbox] ~ .radio, #content .container form .input-group-append input[type=radio], #content .container form .input-group-append input[type=radio] ~ .checkbox, #content .container form .input-group-append input[type=radio] ~ .radio {
+  width: 16px;
   height: 16px;
-  margin: auto;
 }
-#content .container form .input-group .input-group-append .input-group-text {
-  color: #ffffff;
-  border-color: #818181;
+#content .container form .input-group-append input[type=checkbox] ~ .checkbox, #content .container form .input-group-append input[type=checkbox] ~ .radio, #content .container form .input-group-append input[type=radio] ~ .checkbox, #content .container form .input-group-append input[type=radio] ~ .radio {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
+}
+#content .container form .input-group-append input[type=checkbox] ~ .checkbox {
+  background-color: #818181;
+  border-radius: 2px;
+}
+#content .container form .input-group-append input[type=checkbox]:hover ~ .checkbox::after, #content .container form .input-group-append input[type=checkbox]:checked ~ .checkbox::after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 1px;
+  left: 5px;
+  width: 7px;
+  height: 12px;
+  border-style: solid;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+#content .container form .input-group-append input[type=checkbox]:hover ~ .checkbox {
   background-color: #818181;
 }
-#content .container form .input-group .input-group-append .input-group-text i {
-  min-width: 14px;
+#content .container form .input-group-append input[type=checkbox]:hover ~ .checkbox::after {
+  border-color: #333333;
 }
-#content .container form .input-group-checkbox .input-group-append {
-  padding: 11px 0.75rem;
+#content .container form .input-group-append input[type=checkbox]:checked ~ .checkbox {
+  background-color: #007bff;
 }
-#content .container form .radio {
+#content .container form .input-group-append input[type=checkbox]:checked ~ .checkbox::after {
+  border-color: #ffffff;
+}
+#content .container form .input-group-append input[type=radio] ~ .radio {
+  background-color: #818181;
+  border-radius: 0.5rem;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
+}
+#content .container form .input-group-append input[type=radio] ~ .radio::before, #content .container form .input-group-append input[type=radio] ~ .radio::after {
+  content: "";
+  position: absolute;
+  background-color: #333333;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
+}
+#content .container form .input-group-append input[type=radio] ~ .radio::before {
+  top: 1px;
+  left: 1px;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+}
+#content .container form .input-group-append input[type=radio] ~ .radio::after {
+  top: 4px;
+  left: 4px;
+  z-index: 1;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 0.25rem;
+}
+#content .container form .input-group-append input[type=radio]:hover:not(:checked) ~ .radio::after {
+  background-color: #818181;
+}
+#content .container form .input-group-append input[type=radio]:checked ~ .radio, #content .container form .input-group-append input[type=radio]:checked ~ .radio::before {
+  background-color: #007bff;
+}
+#content .container form .input-group-append input[type=radio]:checked ~ .radio::after {
+  background-color: #ffffff;
+}
+#content .container form .input-group-checkbox, #content .container form .input-group-radio {
+  margin-bottom: 0.5rem;
+}
+#content .container form .input-group-checkbox *, #content .container form .input-group-radio * {
   margin-bottom: 0;
 }
-#content .container form .radio li:not(.top) label {
+#content .container form .input-group-checkbox li:not(:first-child) label, #content .container form .input-group-radio li:not(:first-child) label {
   border-top-left-radius: 0;
 }
-#content .container form .radio li:not(.top) .input-group-append {
+#content .container form .input-group-checkbox li:not(:first-child) .input-group-append, #content .container form .input-group-radio li:not(:first-child) .input-group-append {
   border-top-right-radius: 0;
 }
-#content .container form .radio li:not(:last-child) label {
+#content .container form .input-group-checkbox li:not(:last-child) label, #content .container form .input-group-radio li:not(:last-child) label {
   margin-bottom: 0;
   border-bottom: 0;
   border-bottom-left-radius: 0;
 }
-#content .container form .radio li:not(:last-child) .input-group-append {
+#content .container form .input-group-checkbox li:not(:last-child) .input-group-append, #content .container form .input-group-radio li:not(:last-child) .input-group-append {
   border-bottom-right-radius: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
 }
 #content .container form .address > :not(:last-child),
 #content .container form .password-confirm > :not(:last-child),
@@ -668,7 +753,7 @@ pre {
   }
 }
 .modal {
-  background-color: #33333380;
+  background-color: rgba(51, 51, 51, 0.5);
 }
 .modal .modal-content {
   background-color: #444444;
