@@ -243,6 +243,10 @@ pre {
   font-family: "Roboto Mono", monospace;
 }
 
+em {
+  font-style: italic;
+}
+
 .fa-external-link-alt {
   display: inline;
   vertical-align: 1px;

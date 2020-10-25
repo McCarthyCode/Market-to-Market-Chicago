@@ -243,6 +243,10 @@ pre {
   font-family: "Roboto Mono", monospace;
 }
 
+em {
+  font-style: italic;
+}
+
 .fa-external-link-alt {
   display: inline;
   vertical-align: 1px;
@@ -714,6 +718,32 @@ pre {
     border-bottom-left-radius: 0;
   }
 }
+#content .container .alert {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+#content .container .alert > div:first-child {
+  display: flex;
+  align-items: center;
+}
+#content .container .alert p {
+  flex-grow: 1;
+  margin: 0;
+}
+#content .container .alert p a:not(.close) {
+  text-decoration: underline;
+}
+#content .container .alert-danger p, #content .container .alert-danger a {
+  color: #721c24;
+}
+#content .container .alert-success p, #content .container .alert-success a {
+  color: #155724;
+}
+#content .container .alert-info p, #content .container .alert-info a {
+  color: #0c5460;
+}
+
 .modal {
   background-color: rgba(51, 51, 51, 0.5);
 }
@@ -905,13 +935,20 @@ pre {
 }
 
 #calendarGrid {
-  width: 100%;
+  width: calc(1rem + 100%);
   height: 576px;
   background-color: #818181;
   display: grid;
   grid-template: [top] 2rem [row0] 1fr [row1] 1fr [row2] 1fr [row3] 1fr [row4] 1fr [row5] 1fr [row6]/[col0] 1fr [col1] 1fr [col2] 1fr [col3] 1fr [col4] 1fr [col5] 1fr [col6] 1fr [end];
   gap: 1px;
   padding: 1px;
+  margin: 0 -0.5rem;
+}
+@media screen and (min-width: 576px) {
+  #calendarGrid {
+    width: 100%;
+    margin: 0;
+  }
 }
 #calendarGrid .header {
   grid-row-start: top;
@@ -994,8 +1031,7 @@ pre {
   grid-column-start: col6;
   grid-column-end: end;
 }
-
-#calendarGrid > div {
+#calendarGrid > div:not(disabled) {
   position: relative;
   background-color: #444444;
   color: #ffffff;
@@ -1006,17 +1042,17 @@ pre {
   -o-user-select: none;
   user-select: none;
 }
-#calendarGrid > div span.date {
+#calendarGrid > div:not(disabled) span.date {
   padding-left: 0.25rem;
 }
-#calendarGrid > div ul.events {
+#calendarGrid > div:not(disabled) ul.events {
   max-width: 100%;
   position: absolute;
   top: 1.5rem;
   right: 0;
   left: 0;
 }
-#calendarGrid > div ul.events li {
+#calendarGrid > div:not(disabled) ul.events li {
   background-color: #007bff;
   border-radius: 0.5rem;
   padding: 0 0.5rem;
@@ -1027,16 +1063,50 @@ pre {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#calendarGrid > div ul.events li small {
+#calendarGrid > div:not(disabled) ul.events li small {
   vertical-align: 1px;
 }
-#calendarGrid > div ul.events .holiday {
+#calendarGrid > div:not(disabled) ul.events .holiday {
   background-color: #9f62c2;
+}
+#calendarGrid > div:not(disabled).disabled {
+  color: #818181;
+}
+#calendarGrid > div:not(disabled).disabled, #calendarGrid > div:not(disabled).disabled ul.events li {
+  background-color: #333333;
+}
+#calendarGrid > div:not(disabled).disabled ul.events li {
+  padding: 0 0.25rem;
+}
+#calendarGrid > div:not(disabled).no-events {
+  pointer-events: none;
+  z-index: 1;
+  grid-row-start: row0;
+  grid-row-end: row6;
+  grid-column-start: col0;
+  grid-column-end: end;
+  background-color: rgba(51, 51, 51, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#calendarGrid > div:not(disabled).no-events em {
+  border: 2px solid #444444;
+  border-radius: 0.25rem;
+  background-color: #333333;
+  padding: 0.5rem;
+  color: #818181;
 }
 
 #calendarView, #byDateView, #byLocationView {
   display: none;
   margin-bottom: 1rem;
+}
+#calendarView > p, #byDateView > p, #byLocationView > p {
+  text-align: center;
+}
+#calendarView > p em, #byDateView > p em, #byLocationView > p em {
+  color: #818181;
 }
 
 .container #byDateView .card {

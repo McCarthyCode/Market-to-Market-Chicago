@@ -1,4 +1,4 @@
-{% for card in by_date.calendar %} {% if card.events|length > 0 %}
+{% for card in by_date.calendar %}
 <div id="{{ card.date.day }}" class="card">
   <h3 class="h3 text-center">{{ card.date.day }}</h3>
   <ul class="events">
@@ -39,4 +39,8 @@
     {% endfor %}
   </ul>
 </div>
-{% endif %} {% endfor %}
+{% empty %}
+<p>
+  <em>There are no events scheduled this month.</em>
+</p>
+{% endfor %}

@@ -1,8 +1,9 @@
 import pytz
+
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
-
 from django.db import models
+from django.db.models import Q
 
 from mtm.settings import TZ
 
@@ -526,6 +527,10 @@ class EventManager(models.Manager):
             'date': first_of_month,
             'calendar': calendar,
             'days_of_week': DOW,
+            'has_events': Event.objects.filter(
+                Q(date_start__gte=first_of_month)
+                & Q(date_start__lt=(first_of_month + relativedelta(months=1)))
+            ).exists()
         }
 
     def by_date(self, request):

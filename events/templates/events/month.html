@@ -2,8 +2,13 @@
   {% for day in calendar.days_of_week %}
   <div class="header col{{ day.col }}">{{ day.dow }}</div>
   {% endfor %}
+  {% if not calendar.has_events %}
+  <div class="no-events">
+    <em>There are no events scheduled this month.</em>
+  </div>
+  {% endif %}
   {% for cell in calendar.calendar %}
-  <div class="row{{ cell.row }} col{{ cell.col }}" data-year="{{ cell.date.year }}" data-month="{{ cell.date.month }}" data-day="{{ cell.date.day }}">
+  <div class="row{{ cell.row }} col{{ cell.col }}{% if cell.date.month != calendar.date.month %} disabled{% endif %}" data-year="{{ cell.date.year }}" data-month="{{ cell.date.month }}" data-day="{{ cell.date.day }}">
     <span class="date">{{ cell.date.day }}</span>
     <ul class="events">
     {% for event in cell.events %}

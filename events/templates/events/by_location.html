@@ -1,5 +1,4 @@
 {% for location in by_location.locations %}
-{% if location.event_tree|length > 0 %}
 <div class="card">
   <a href="{% url 'locations:location' location.category location.location.slug location.location.id %}"><h2 class="h2">{{ location.location.name }}</h2></a>
   {% for day in location.event_tree %}
@@ -17,5 +16,8 @@
   </ul>
   {% endfor %}
 </div>
-{% endif %}
+{% empty %}
+<p>
+  <em>There are no locations with events scheduled this month.</em>
+</p>
 {% endfor %}

@@ -2,11 +2,8 @@
 
 ## High Priorities
 
-- Add empty events messages
-- Remove links to index when no events are active
-- Update styling on Events page
-- Remove Events links when inactive
 - Move grid Sass to its own file
+- Remove Events links when inactive
 - Reorder Article page contents
   1. Album
   2. Article
@@ -15,6 +12,7 @@
 
 ## Medium Priorities
 
+- Change behavior of disabled cell click
 - Move ads template folder to parent directory
 - Move manager logic to forms and models
 - Events forms
