@@ -2,7 +2,6 @@
 
 ## High Priorities
 
-- Fix fancybox 404
 - Reorder Article page contents
   1. Album
   2. Article
