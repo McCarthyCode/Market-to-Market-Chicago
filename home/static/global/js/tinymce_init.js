@@ -8,7 +8,7 @@ tinymce.init({
     'advlist autolink autosave fullscreen help link lists paste preview searchreplace table visualblocks wordcount',
   ],
   toolbar:
-    'fullscreen | undo redo | formatselect | bold italic underline | strikethrough  subscript superscript blockquote | link | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat help',
+    'fullscreen | undo redo | formatselect | bold italic underline | strikethrough subscript superscript blockquote | link | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat help',
   skin: 'mwd-dark',
   skin_url: '/static/lib/tinymce/skins/mwd-dark',
   content_css: [

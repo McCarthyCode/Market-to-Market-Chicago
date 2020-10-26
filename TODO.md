@@ -2,6 +2,7 @@
 
 ## High Priorities
 
+- Fix fancybox 404
 - Move grid Sass to its own file
 - Remove Events links when inactive
 - Reorder Article page contents
