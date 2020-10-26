@@ -1,40 +1,15 @@
+// global styling
 @import 'global'
 
+// specialized global partials
 @import 'ads'
 @import 'autocomplete'
 @import 'card'
 @import 'forms'
-@import 'sidebar'
+@import 'grid'
+@import 'messages'
 @import 'modals'
+@import 'sidebar'
 
+// app-specific styling
 @import 'locations'
-
-#content .container
-  .alert p
-    margin: 0
-
-  .alert-danger p
-    color: #721c24
-
-  .alert-success p
-    color: #155724
-
-  .alert-info p
-    color: #0c5460
-
-#grid
-  display: grid
-  grid-template-columns: [left] 301px [sidebar-right] auto [right]
-  grid-template-rows: [top] 69px [nav-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
-  height: 100vh
-
-@media screen and (min-width: $breakpoint-md)
-  #content
-    grid-column-start: sidebar-right
-
-    .container
-      padding: 1rem
-
-  #grid
-    grid-template-rows: [top] 69px [nav-bottom] 264px [topics-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
-    min-height: 669px

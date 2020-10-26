@@ -1,36 +1,29 @@
+// global styling
 @import 'global'
 
+// specialized global partials
 @import 'ads'
 @import 'card'
 @import 'errors'
 @import 'forms'
+@import 'grid'
 @import 'messages'
 @import 'modals'
 @import 'sidebar'
 @import '_tinyMCE'
 
+// app-specific styling
 @import 'home'
+
+// app-specific partials
 @import 'about'
-@import 'category'
-@import 'article'
 @import 'person'
+
+// cross-app partials
+@import 'article'
+@import 'category'
+
+// cross-app, homepage-specific partials
 @import 'album_home'
 @import 'event_home'
 @import 'location_home'
-
-#content .container
-  padding: 0 1rem
-
-#grid
-  display: grid
-  grid-template-columns: [left] 301px [sidebar-right] auto [right]
-  grid-template-rows: [top] 69px [nav-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
-  height: 100vh
-
-a.profile-image
-  margin: 0 auto 1rem auto
-
-@media screen and (min-width: $breakpoint-md)
-  #grid
-    grid-template-rows: [top] 69px [nav-bottom] 264px [topics-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
-    min-height: 669px

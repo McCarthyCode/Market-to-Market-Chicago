@@ -247,6 +247,13 @@ em {
   font-style: italic;
 }
 
+a.profile-image {
+  margin: 0 auto 1rem auto;
+}
+a.profile-image img {
+  width: 100%;
+}
+
 .fa-external-link-alt {
   display: inline;
   vertical-align: 1px;
@@ -584,158 +591,6 @@ em {
   font-style: italic;
 }
 
-#content {
-  grid-column-start: left;
-  grid-column-end: right;
-  grid-row-start: nav-bottom;
-  grid-row-end: footer-top;
-  background-color: #333333;
-}
-#content .container {
-  padding: 2rem 1rem;
-  max-width: 720px;
-}
-#content .container h1.h1 {
-  margin-bottom: 1rem;
-}
-#content .container h2.h2 {
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-#content .container p {
-  color: #ffffff;
-}
-#content .container .card {
-  background-color: #444444;
-  border: 1px solid #818181;
-  padding: 1rem 1rem 0.5rem 1rem;
-  margin-bottom: 1rem;
-}
-#content .container.logged-out {
-  max-width: 320px;
-}
-
-#footer {
-  position: unset;
-  grid-column-start: left;
-  grid-column-end: right;
-  grid-row-start: footer-top;
-  grid-row-end: bottom;
-}
-
-.container > ul > li h2.h2 {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
-}
-.container > ul > li > :not(:first-child) {
-  display: none;
-}
-
-#viewInvitesTable {
-  margin-bottom: 0.5rem;
-}
-#viewInvitesTable .delete, #viewInvitesTable .delete:hover {
-  color: #e76179;
-}
-
-#createEventForm input[name=address1] {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-#createEventForm input[name=address2] {
-  margin-top: -9px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-#createEventForm input[name=frequency], #createEventForm input[name=state] {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-#createEventForm select[name=frequency-units], #createEventForm input[name=zip-code] {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-#createEventForm button {
-  color: #ffffff;
-  background-color: #818181;
-  margin-bottom: 0.5rem;
-  -webkit-transition: background-color 0.15s ease-in-out;
-  transition: background-color 0.15s ease-in-out;
-}
-#createEventForm button:hover {
-  background-color: #007bff;
-}
-
-#allDayInputGroup label {
-  cursor: pointer;
-}
-#allDayInputGroup .input-group-append {
-  border-color: #818181;
-  background-color: #818181;
-  padding: 11px 0.75rem;
-  border-top-right-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
-}
-
-#advancedRepeatCollapse, #locationCollapse, #endsOnContainer, #endsAfter {
-  display: none;
-}
-
-#weekdayList {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto 0.5rem auto;
-  max-width: 520px;
-}
-#weekdayList li label {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 1rem;
-  line-height: 2rem;
-  margin-top: 0.5rem;
-  vertical-align: middle;
-  text-align: center;
-  background-color: #818181 !important;
-  -webkit-transition: background-color 0.15s ease-in-out;
-  transition: background-color 0.15s ease-in-out;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  cursor: pointer;
-}
-#weekdayList li label.active, #weekdayList li label.hover {
-  background-color: #007bff !important;
-}
-#weekdayList li input[type=checkbox] {
-  display: none;
-}
-
-@media screen and (min-width: 576px) {
-  #weekdayList li label {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 1.25rem;
-    line-height: 2.5rem;
-  }
-}
-@media screen and (min-width: 768px) {
-  #createEventForm label[for=frequency], #createEventForm input[name=city] {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-  #createEventForm input[name=frequency], #createEventForm input[name=state] {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-}
 .formatted-text h1, .formatted-text h2, .formatted-text h3, .formatted-text h4, .formatted-text h5, .formatted-text h6, .article h1, .article h2, .article h3, .article h4, .article h5, .article h6 {
   font-family: "Patua One", Helvetica, Arial, sans-serif;
   margin-bottom: 0.5rem;
@@ -839,6 +694,66 @@ em {
   grid-template-columns: [left] auto [right];
   grid-template-rows: [top] 69px [nav-bottom] auto [footer-top] 49px [bottom];
   height: 100vh;
+}
+
+#content {
+  grid-column-start: left;
+  grid-column-end: right;
+  grid-row-start: nav-bottom;
+  grid-row-end: footer-top;
+  background-color: #333333;
+}
+#content .container {
+  padding: 2rem 1rem;
+  max-width: 720px;
+}
+#content .container h1.h1 {
+  margin-bottom: 1rem;
+}
+#content .container h2.h2 {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+#content .container p {
+  color: #ffffff;
+}
+#content .container .card {
+  background-color: #444444;
+  border: 1px solid #818181;
+  padding: 1rem 1rem 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+#content .container.logged-out {
+  max-width: 320px;
+}
+
+#footer {
+  position: unset;
+  grid-column-start: left;
+  grid-column-end: right;
+  grid-row-start: footer-top;
+  grid-row-end: bottom;
+}
+
+.container > ul > li h2.h2 {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.container > ul > li > :not(:first-child) {
+  display: none;
+}
+
+#viewInvitesTable {
+  margin-bottom: 0.5rem;
+}
+#viewInvitesTable .delete, #viewInvitesTable .delete:hover {
+  color: #e76179;
 }
 
 /*# sourceMappingURL=users.css.map */

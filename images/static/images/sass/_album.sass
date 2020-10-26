@@ -1,54 +1,28 @@
-#content .container
-  margin: 0
-  padding: 0
+#album
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+  gap: .5rem
+  margin-bottom: .5rem
 
-  #album
-    display: grid
-    grid-template-columns: 1fr 1fr 1fr
-    gap: .5rem
-    margin-bottom: .5rem
+  p.empty
+    grid-column-start: 1
+    grid-column-end: span 3
+    color: $light-gray
+    font-style: italic
 
-    p.empty
-      grid-column-start: 1
-      grid-column-end: span 3
-      color: $light-gray
-      font-style: italic
+  a.active
+    border: .5rem solid $blue
 
-    a.active
-      border: 8px solid $blue
+  & > div
+    align-self: center
+    display: flex
+    justify-content: center
+    align-items: center
 
-    > div
-      align-self: center
-      display: flex
-      justify-content: center
-      align-items: center
+    & > a > img
+      width: 100%
 
-      > a > img
-        width: 100%
-
-#controls
-  text-align: center
-  margin-bottom: .75rem
-
-  .btn
-    margin-bottom: .25rem
-
-#updateAlbum, #addImages, #deleteImages
-  display: none
-
-#deleteImagesForm input[type="checkbox"]
-  display: none
-
-@media screen and (min-width: $breakpoint-sm)
-  #content .container
-    margin: 0 auto
-    padding: .5rem 0
-
-  #album
-    gap: .5rem
-
-@media screen and (min-width: 1634px)
-  #album
+  @media screen and (min-width: 1634px)
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr
 
     p.empty

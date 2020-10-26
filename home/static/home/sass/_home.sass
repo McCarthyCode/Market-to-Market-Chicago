@@ -1,14 +1,5 @@
-#content
-  grid-column-start: left
-  grid-column-end: right
-  grid-row-start: nav-bottom
-  grid-row-end: bottom
-  background-color: $dark-gray
-  overflow-y: scroll
-  -webkit-overflow-scrolling: touch
-
-  .container
-    padding: 0 1rem
+#content .container
+  padding: 0 1rem
 
   .h1
     margin: 2rem 0
@@ -25,9 +16,5 @@
   h5.h5 > a
     color: $cyan
 
-  h5.h5:last-of-type
+  h5.h5:last-child
     margin-bottom: 0
-
-@media screen and (min-width: $breakpoint-md)
-  #content
-    grid-column-start: sidebar-right

@@ -1,32 +1,12 @@
 #content
-  grid-column-start: left
-  grid-column-end: right
-  grid-row-start: nav-bottom
-  grid-row-end: bottom
-  background-color: $dark-gray
-  overflow-y: scroll
-  -webkit-overflow-scrolling: touch
-
   .container
     padding: .5rem
 
+    @media screen and (min-width: $breakpoint-md)
+      padding: 1rem
+
   .h1
     margin-bottom: 1rem
-
-  .h3 a
-    color: $orange
-
-  p
-    color: $white
-
-  p.info
-    color: $green
-    font-style: italic
-    margin-bottom: .5rem
-
-    a
-      color: $green
-      text-decoration: underline
 
 #breadcrumbs
   margin: 0 auto

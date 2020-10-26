@@ -1,49 +1,17 @@
+// global styling
 @import 'global'
 
+// specialized global partials
 @import 'ads'
+@import 'card'
+@import 'forms'
+@import 'grid'
+@import 'messages'
+@import 'modals'
 @import 'sidebar'
 
-@import 'messages'
-@import 'forms'
-@import 'modals'
+// app-specific styling
+@import 'images'
 
+// app-specific partials
 @import 'album'
-
-#grid
-  display: grid
-  grid-template-columns: [left] 301px [sidebar-right] auto [right]
-  grid-template-rows: [top] 69px [nav-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
-  height: 100vh
-
-#content
-  grid-column-start: left
-  grid-column-end: right
-  grid-row-start: nav-bottom
-  grid-row-end: bottom
-  background-color: $dark-gray
-  overflow-y: scroll
-  -webkit-overflow-scrolling: touch
-
-  .container
-    padding: .5rem 0
-
-#content .container .card
-  background-color: $mid-gray
-  border: 1px solid $light-gray
-  padding: 1rem 1rem .5rem 1rem
-  margin-bottom: 1rem
-
-  p
-    color: $white
-    margin-bottom: .5rem
-
-@media screen and (min-width: $breakpoint-md)
-  #grid
-    grid-template-rows: [top] 69px [nav-bottom] 264px [topics-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
-    min-height: 669px
-
-  #content
-    grid-column-start: sidebar-right
-
-    .container
-      padding: 1rem

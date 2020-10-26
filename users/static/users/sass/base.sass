@@ -1,18 +1,15 @@
+// global styling
 @import 'global'
 
+// specialized global partials
 @import 'autocomplete'
 @import 'forms'
 @import 'messages'
 @import 'tables'
-
-@import 'users'
-@import 'dashboard'
-@import 'create_event'
-
 @import '_tinyMCE'
 
-#grid
-  display: grid
-  grid-template-columns: [left] auto [right]
-  grid-template-rows: [top] 69px [nav-bottom] auto [footer-top] 49px [bottom]
-  height: 100vh
+// app-specific styling
+@import 'users'
+
+// app-specific partials
+@import 'dashboard'

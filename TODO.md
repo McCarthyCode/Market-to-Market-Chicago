@@ -3,8 +3,7 @@
 ## High Priorities
 
 - Fix fancybox 404
-- Move grid Sass to its own file
-- Remove Events links when inactive
+- Remove Events sections from Location and Neighborhood pages
 - Reorder Article page contents
   1. Album
   2. Article
@@ -13,6 +12,7 @@
 
 ## Medium Priorities
 
+- Add transition to checkmark
 - Change behavior of disabled cell click
 - Move ads template folder to parent directory
 - Move manager logic to forms and models
@@ -21,7 +21,6 @@
   - Allow holiday edit
   - Add all-day field
   - Delete RepeatInfo along with RecurringEvent
-- Add emoji support
 - Take update author redirect to author page
 - Autocorrect bugs
   - Double text on enter
