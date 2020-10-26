@@ -62,14 +62,14 @@
   {# include 'home/ads/medium_rectangle47.html' #}
   {# include 'home/ads/medium_rectangle48.html' #}
 </div>
-<h2 class="h2">Events</h2>
+{% comment %}<h2 class="h2">Events</h2>
 <ul id="events" class="card bulleted">
 {% for event in events %}
 <li><a href="{% url 'events:event' category_slug location.slug event.slug event.id %}" tabindex="{{ forloop.counter0 }}">{{ event.name }} &ndash; {{ event.date_start|date:"D. n/j/y" }}{% if not event.all_day %} ({{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}){% endif %}</a></li>
 {% empty %}
 <li class="empty">There are no upcoming events scheduled at {{ location.name }}.</li>
 {% endfor %}
-</ul>{% comment %}
+</ul>
 <h2 class="h2">Map</h2>
 <div id="map">
   <iframe src="https://www.google.com/maps/embed/v1/place?q={{ location.name|urlencode }}%20{{ location.address1|urlencode }}%20{{ location.city|urlencode }}%2C%20{{ location.state|urlencode }}{% if location.zip_code %}%20{{ location.zip_code|urlencode }}{% endif %}&key={{ GOOGLE_MAPS_API_KEY }}" allowfullscreen></iframe>
