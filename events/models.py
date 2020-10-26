@@ -11,7 +11,7 @@ from mtm.settings import TZ
 
 class Event(TimestampedModel, NewsItem):
     name = models.CharField(max_length=255)
-    slug = models.SlugField(default='', max_length=255, null=True, blank=True)
+    slug = models.SlugField(default='', max_length=80, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     holiday = models.BooleanField(default=False)
     all_day = models.BooleanField(default=False)

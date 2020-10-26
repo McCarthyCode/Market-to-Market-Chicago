@@ -6,7 +6,6 @@
   1. Album
   2. Article
   3. About
-- Truncate article slug to 80 characters
 
 ## Medium Priorities
 
