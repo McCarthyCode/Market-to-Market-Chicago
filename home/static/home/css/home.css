@@ -469,32 +469,36 @@ a.profile-image img {
   transition: background-color 0.15s ease-in-out;
 }
 #content .container form .input-group-append input[type=checkbox] ~ .checkbox {
-  background-color: #818181;
+  background-color: #333333;
+  border: 1px solid #818181;
   border-radius: 2px;
+  -webkit-transition: border-color 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out;
 }
-#content .container form .input-group-append input[type=checkbox]:hover ~ .checkbox::after, #content .container form .input-group-append input[type=checkbox]:checked ~ .checkbox::after {
+#content .container form .input-group-append input[type=checkbox] ~ .checkbox::after {
   content: "";
   position: absolute;
   display: block;
-  top: 1px;
-  left: 5px;
+  top: 0px;
+  left: 4px;
   width: 7px;
   height: 12px;
   border-style: solid;
   border-width: 0 3px 3px 0;
+  border-color: #333333;
+  -webkit-transition: border-color 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-#content .container form .input-group-append input[type=checkbox]:hover ~ .checkbox {
-  background-color: #818181;
-}
 #content .container form .input-group-append input[type=checkbox]:hover ~ .checkbox::after {
-  border-color: #333333;
+  border-color: #818181;
 }
 #content .container form .input-group-append input[type=checkbox]:checked ~ .checkbox {
+  border-color: #007bff;
   background-color: #007bff;
 }
 #content .container form .input-group-append input[type=checkbox]:checked ~ .checkbox::after {

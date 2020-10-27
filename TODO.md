@@ -2,7 +2,7 @@
 
 ## High Priorities
 
-- Add transition to checkmark
+- *None at this time*
 
 ## Medium Priorities
 
