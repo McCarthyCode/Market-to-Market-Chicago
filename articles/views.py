@@ -270,7 +270,7 @@ def update_author(request, slug, author_id):
         else:
             messages.error(request, 'There was an error updating %s.' % author.full_name)
 
-            return render(request, 'home/update_author.html', {
+            return render(request, 'articles/update_author.html', {
                 'author': author,
                 'form': form,
                 'name': NAME,

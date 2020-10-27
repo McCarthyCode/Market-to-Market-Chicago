@@ -2,14 +2,13 @@
 
 ## High Priorities
 
-- Reorder Article page contents
-  1. Album
-  2. Article
-  3. About
+- Add transition to checkmark
 
 ## Medium Priorities
 
-- Add transition to checkmark
+- Update Author page
+  - Add infinitely scrolling articles
+  - Separate sections into different cards
 - Change behavior of disabled cell click
 - Move ads template folder to parent directory
 - Move manager logic to forms and models

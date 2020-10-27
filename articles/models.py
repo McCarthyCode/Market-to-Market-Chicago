@@ -3,6 +3,7 @@ import re
 from slugify import slugify
 
 from django.db import models
+from django.db.models import Q
 from django.shortcuts import render
 
 from home.models import TimestampedModel, NewsItem

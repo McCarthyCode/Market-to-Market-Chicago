@@ -1015,12 +1015,17 @@ a.profile-image img {
 .person p:not(.info) br, .author p:not(.info) br {
   margin-bottom: 1rem;
 }
-.person .contact h5.h5 i, .author .contact h5.h5 i {
-  color: #d1d18b;
+.person .contact h3.h3 i, .person .contact h4.h4 i, .author .contact h3.h3 i, .author .contact h4.h4 i {
   margin-right: 0.5em;
+  color: #bbbbbb;
+  vertical-align: bottom;
 }
-.person .contact h5.h5 a, .author .contact h5.h5 a {
+.person .contact h3.h3 > a, .person .contact h4.h4 > a, .author .contact h3.h3 > a, .author .contact h4.h4 > a {
   color: #569cd6;
+  text-decoration: none;
+}
+.person .contact h3.h3 > a:hover, .person .contact h4.h4 > a:hover, .author .contact h3.h3 > a:hover, .author .contact h4.h4 > a:hover {
+  text-decoration: underline;
 }
 .person .actions, .author .actions {
   margin: 0 -0.25rem;

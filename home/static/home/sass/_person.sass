@@ -6,13 +6,19 @@
     br
       margin-bottom: 1rem
 
-  .contact h5.h5
-    i
-      color: $yellow
-      margin-right: .5em
+  .contact
+    h3.h3, h4.h4
+      i
+        margin-right: .5em
+        color: $lighter-gray
+        vertical-align: bottom
 
-    a
-      color: $light-blue
+      & > a
+        color: $light-blue
+        text-decoration: none
+
+        &:hover
+          text-decoration: underline
 
   .actions
     margin: 0 -.25rem
