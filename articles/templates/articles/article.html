@@ -70,7 +70,7 @@
 </div>
 <h2 class="h2">Details</h2>
 <div class="card{% if article.author %} author{% endif %}">
-  <p class="info">{% if article.author %}By <a href="{% url 'articles:author' article.author.slug article.author.id %}">{{ article.author }}</a>{% else %}Author deleted{% endif %}. Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} <span class="text-nowrap">Updated {{ article.date_updated|date:"N j, Y." }}</span>{% endif %} From <a href="{% if article.category == 0 %}{% url 'home:category' 'nightlife' %}{% elif article.category == 1 %}{% url 'home:category' 'restaurants' %}{% elif article.category == 3 %}{% url 'home:category' 'arts-and-entertainment' %}{% elif article.category == 4 %}{% url 'home:category' 'health-and-fitness' %}{% elif article.category == 5 %}{% url 'home:category' 'sports' %}{% elif article.category == 6 %}{% url 'home:category' 'non-profit' %}{% elif article.category == 7 %}{% url 'home:category' 'editorials-and-opinions' %}{% endif %}">{{ article.get_category_display }}</a>.</p>
+  <p class="info">{% if article.author %}By <a href="{% url 'articles:author' article.author.slug article.author.id %}">{{ article.author }}</a>{% else %}Author not found{% endif %}. Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} <span class="text-nowrap">Updated {{ article.date_updated|date:"N j, Y." }}</span>{% endif %} From <a href="{% if article.category == 0 %}{% url 'home:category' 'nightlife' %}{% elif article.category == 1 %}{% url 'home:category' 'restaurants' %}{% elif article.category == 3 %}{% url 'home:category' 'arts-and-entertainment' %}{% elif article.category == 4 %}{% url 'home:category' 'health-and-fitness' %}{% elif article.category == 5 %}{% url 'home:category' 'sports' %}{% elif article.category == 6 %}{% url 'home:category' 'non-profit' %}{% elif article.category == 7 %}{% url 'home:category' 'editorials-and-opinions' %}{% endif %}">{{ article.get_category_display }}</a>.</p>
   {% if article.author %}
   {% if article.author.profile_image or article.author.bio %}
   <h3 class="h3">About the Author</h3>
@@ -85,26 +85,26 @@
   {% endif %}
   {% if article.author.phone or article.author.email or article.author.website or article.author.facebook or article.author.twitter or article.author.instagram %}
   <h3 class="h3">Contact the Author</h3>
-  <div class="contact">
+  <ul class="contact-list">
     {% if article.author.phone %}
-    <h4 class="h4 text-center"><i class="fa fa-mobile" aria-hidden="true"></i><a href="tel:+1{{ article.author.phone }}">{{ article.author.display_phone }}</a></h4>
+    <li><i class="fa fa-mobile" aria-hidden="true"></i><a href="tel:+1{{ article.author.phone }}">{{ article.author.display_phone }}</a></li>
     {% endif %}
     {% if article.author.email %}
-    <h4 class="h4 text-center"><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:{{ article.author.email }}">{{ article.author.email }}</a></h4>
+    <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:{{ article.author.email }}">{{ article.author.email }}</a></li>
     {% endif %}
     {% if article.author.facebook %}
-    <h4 class="h4 text-center"><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/{{ article.author.facebook }}">@{{ article.author.facebook }}</a></h4>
+    <li><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/{{ article.author.facebook }}">@{{ article.author.facebook }}</a></li>
     {% endif %}
     {% if article.author.twitter %}
-    <h4 class="h4 text-center"><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ article.author.twitter }}">@{{ article.author.twitter }}</a></h4>
+    <li><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ article.author.twitter }}">@{{ article.author.twitter }}</a></li>
     {% endif %}
     {% if article.author.instagram %}
-    <h4 class="h4 text-center"><i class="fab fa-instagram"></i><a href="https://www.instagram.com/{{ article.author.instagram }}">@{{ article.author.instagram }}</a></h4>
+    <li><i class="fab fa-instagram"></i><a href="https://www.instagram.com/{{ article.author.instagram }}">@{{ article.author.instagram }}</a></li>
     {% endif %}
     {% if article.author.website %}
-    <h4 class="h4 text-center"><i class="fas fa-link"></i><a href="{{ article.author.website }}">{{ article.author.website }}</a></h4>
+    <li><i class="fas fa-link"></i><a href="{{ article.author.website }}">{{ article.author.website }}</a></li>
     {% endif %}
-  </div>
+  </ul>
   {% endif %}
   {% endif %}
 </div>

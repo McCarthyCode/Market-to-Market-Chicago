@@ -2,7 +2,7 @@
 
 ## High Priorities
 
-- *None at this time*
+- Add warning about importing plain vs. rich text
 
 ## Medium Priorities
 

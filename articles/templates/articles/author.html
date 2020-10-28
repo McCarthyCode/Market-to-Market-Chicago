@@ -29,26 +29,26 @@
   {% endif %}
   {% if author.phone or author.email or author.website or author.facebook or author.twitter or author.instagram %}
   <h2 class="h2">Contact</h2>
-  <div class="contact">
+  <ul class="contact-list">
     {% if author.phone %}
-    <h3 class="h3 text-center"><i class="fa fa-mobile" aria-hidden="true"></i><a href="tel:+1{{ author.phone }}">{{ author.display_phone }}</a></h3>
+    <li><i class="fa fa-mobile" aria-hidden="true"></i><a href="tel:+1{{ author.phone }}">{{ author.display_phone }}</a></li>
     {% endif %}
     {% if author.email %}
-    <h3 class="h3 text-center"><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:{{ author.email }}">{{ author.email }}</a></h3>
+    <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:{{ author.email }}">{{ author.email }}</a></li>
     {% endif %}
     {% if author.facebook %}
-    <h3 class="h3 text-center"><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/{{ author.facebook }}">@{{ author.facebook }}</a></h3>
+    <li><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/{{ author.facebook }}">@{{ author.facebook }}</a></li>
     {% endif %}
     {% if author.twitter %}
-    <h3 class="h3 text-center"><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ author.twitter }}">@{{ author.twitter }}</a></h3>
+    <li><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ author.twitter }}">@{{ author.twitter }}</a></li>
     {% endif %}
     {% if author.instagram %}
-    <h3 class="h3 text-center"><i class="fab fa-instagram"></i><a href="https://www.instagram.com/{{ author.instagram }}">@{{ author.instagram }}</a></h3>
+    <li><i class="fab fa-instagram"></i><a href="https://www.instagram.com/{{ author.instagram }}">@{{ author.instagram }}</a></li>
     {% endif %}
     {% if author.website %}
-    <h3 class="h3 text-center"><i class="fas fa-link"></i><a href="{{ author.website }}">{{ author.website }}</a></h3>
+    <li><i class="fas fa-link"></i><a href="{{ author.website }}">{{ author.website }}</a></li>
     {% endif %}
-  </div>
+  </ul>
   {% endif %}
   {% if request.user.is_superuser %}
   <h2 class="h2">Actions</h2>

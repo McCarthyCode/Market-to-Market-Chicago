@@ -1,7 +1,7 @@
 <form id="deleteArticleForm" action="{% url 'articles:delete' article.slug article.id %}" method="POST">
   {% csrf_token %}
   {% if article.album %}
-  <ul class="radio">
+  <ul class="input-group-radio">
     <li id="keepAlbumInputGroup" class="input-group top">
       <label class="form-control" for="keepAlbum">Keep corresponding album</label>
       <div class="input-group-append">

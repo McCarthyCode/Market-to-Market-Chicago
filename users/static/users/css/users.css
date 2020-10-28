@@ -200,7 +200,7 @@ h2.h2, h2.h2 > a {
 }
 
 h3.h3, h3.h3 > a {
-  color: #db82bd;
+  color: #f2758b;
 }
 
 h4.h4, h4.h4 > a {
@@ -509,7 +509,7 @@ a.profile-image img {
   border-top-left-radius: 0;
 }
 #content .container form .errorlist {
-  color: #e76179;
+  color: #f2758b;
   margin-bottom: 0.5rem;
 }
 #content .container form .alert {
@@ -623,7 +623,7 @@ a.profile-image img {
   font-size: 1.75rem;
 }
 .formatted-text h3, .formatted-text h3 > a, .article h3, .article h3 > a {
-  color: #db82bd;
+  color: #f2758b;
 }
 .formatted-text h4, .article h4 {
   font-size: 1.5rem;
@@ -757,7 +757,7 @@ a.profile-image img {
   margin-bottom: 0.5rem;
 }
 #viewInvitesTable .delete, #viewInvitesTable .delete:hover {
-  color: #e76179;
+  color: #f2758b;
 }
 
 /*# sourceMappingURL=users.css.map */
