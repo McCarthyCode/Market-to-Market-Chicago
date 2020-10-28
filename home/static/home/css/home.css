@@ -671,6 +671,18 @@ a.profile-image img {
   gap: 1rem;
   justify-content: space-between;
 }
+#content .container .alert-danger p, #content .container .alert-danger a {
+  color: #721c24;
+}
+#content .container .alert-warning p, #content .container .alert-warning a {
+  color: #856404;
+}
+#content .container .alert-success p, #content .container .alert-success a {
+  color: #155724;
+}
+#content .container .alert-info p, #content .container .alert-info a {
+  color: #0c5460;
+}
 #content .container .alert > div:first-child {
   display: flex;
   align-items: center;
@@ -681,15 +693,6 @@ a.profile-image img {
 }
 #content .container .alert p a:not(.close) {
   text-decoration: underline;
-}
-#content .container .alert-danger p, #content .container .alert-danger a {
-  color: #721c24;
-}
-#content .container .alert-success p, #content .container .alert-success a {
-  color: #155724;
-}
-#content .container .alert-info p, #content .container .alert-info a {
-  color: #0c5460;
 }
 
 .modal {

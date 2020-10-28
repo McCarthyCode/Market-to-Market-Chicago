@@ -4,6 +4,22 @@
     gap: 1rem
     justify-content: space-between
 
+    &-danger
+      p, a
+        color: #721c24
+
+    &-warning
+      p, a
+        color: #856404
+
+    &-success
+      p, a
+        color: #155724
+
+    &-info
+      p, a
+        color: #0c5460
+
     & > div:first-child
       display: flex
       align-items: center
@@ -14,15 +30,3 @@
 
       a:not(.close)
         text-decoration: underline
-
-  .alert-danger
-    p, a
-      color: #721c24
-
-  .alert-success
-    p, a
-      color: #155724
-
-  .alert-info
-    p, a
-      color: #0c5460
