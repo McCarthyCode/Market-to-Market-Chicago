@@ -475,7 +475,7 @@ def news_feed(request):
     ads_order = [int(i) for i in ads_order]
 
     albums = []
-    for album in Album.objects.all():
+    for album in Album.objects.filter(feed=True):
         if Image.objects.filter(album=album):
             albums.append(album)
     articles = Article.objects.all()
