@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(() => {
   // Populate hidden input with author value
   let $id_author = $('#id_author');
   let $id_author_id = $('#id_author_id');

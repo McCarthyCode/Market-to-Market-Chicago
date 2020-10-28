@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(() => {
   // determine if element is in viewport
   $.fn.isInViewport = function () {
     if (!$(this).is(':visible')) {

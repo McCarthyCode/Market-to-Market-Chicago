@@ -1,110 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Patua+One|Roboto')
+// global styling
+@import 'global'
 
-@import '_variables'
-@import '_mixins'
+// specialized global partials
+@import 'ads'
+@import 'card'
+@import 'forms'
+@import 'grid'
+@import 'messages'
+@import 'modals'
+@import 'sidebar'
 
-@import '_ads'
-@import '_footer'
-@import '_navbar'
-@import '_sidebar'
+// app-specific styling
+@import 'images'
 
-@import '_messages'
-@import '_forms'
-@import '_modals'
-
-@import '_album'
-
-html, body
-  max-height: 100%
-
-// anchor rules added to body tag for higher specificity
-body
-  a, a:hover
-    color: $cyan
-
-  a
-    text-decoration: none
-
-  a:hover
-    text-decoration: underline
-
-h1.h1, h3.h3
-  font-family: $font-title
-
-h1.h1
-  color: $yellow
-
-h3.h3
-  color: $orange
-
-.fa-external-link-alt
-  display: inline
-  vertical-align: 1px
-  font-size: 8px
-  color: $cyan
-  cursor: pointer
-
-#grid
-  display: grid
-  grid-template-columns: [left] 301px [sidebar-right] auto [right]
-  grid-template-rows: [top] 69px [nav-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
-  height: 100vh
-
-#content
-  grid-column-start: left
-  grid-column-end: right
-  grid-row-start: nav-bottom
-  grid-row-end: bottom
-  background-color: $dark-gray
-  overflow-y: scroll
-  -webkit-overflow-scrolling: touch
-
-  .container
-    padding: .5rem 0
-
-    .card
-      .h1
-        margin-bottom: 1rem
-
-      .h3 a
-        color: $orange
-
-      p
-        color: $white
-
-      p.info
-        color: $green
-        font-size: 1rem
-        font-style: italic
-        margin-bottom: .5rem
-
-        a
-          color: $green
-          text-decoration: underline
-
-        a:hover
-          color: $cyan
-
-  .container > :last-child, .alert p
-    margin-bottom: 0
-
-#content .container .card
-  background-color: $mid-gray
-  border: 1px solid $light-gray
-  padding: 1rem 1rem .5rem 1rem
-  margin-bottom: 1rem
-
-  p
-    color: $white
-    margin-bottom: .5rem
-
-@media screen and (min-width: $breakpoint-md)
-  #grid
-    grid-template-rows: [top] 69px [nav-bottom] 264px [topics-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
-    min-height: 669px
-
-  #content
-    grid-column-start: sidebar-right
-
-    .container
-      padding: 1rem
+// app-specific partials
+@import 'album'

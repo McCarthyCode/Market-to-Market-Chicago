@@ -1,81 +1,30 @@
-@import url('https://fonts.googleapis.com/css?family=Patua+One|Roboto')
+// global styling
+@import 'global'
 
-@import '_variables'
-@import '_mixins'
+// specialized global partials
+@import 'ads'
+@import 'card'
+@import 'errors'
+@import 'forms'
+@import 'grid'
+@import 'messages'
+@import 'modals'
+@import 'sidebar'
+@import '_tinyMCE'
 
-@import '_ads'
-@import '_card'
-@import '_errors'
-@import '_footer'
-@import '_forms'
-@import '_messages'
-@import '_modals'
-@import '_navbar'
-@import '_sidebar'
+// app-specific styling
+@import 'home'
 
-@import '_home'
-@import '_about'
-@import '_category'
-@import '_article'
-@import '_person'
-@import '_album_home'
-@import '_event_home'
-@import '_location_home'
+// app-specific partials
+@import 'about'
+@import 'person'
+@import 'contact_list'
 
-html, body
-  height: 100%
+// cross-app partials
+@import 'article'
+@import 'category'
 
-// anchor rules added to body tag for higher specificity
-body
-  a, a:hover
-    color: $cyan
-
-  a
-    text-decoration: none
-
-  a:hover
-    text-decoration: underline
-
-h1.h1, h3.h3, h5.h5
-  font-family: $font-title
-
-h1.h1, h1.h1 > a,
-h5.h5, h5.h5 > a
-  color: $yellow
-
-h3.h3, h3.h3 > a
-  color: $orange
-
-ul.bulleted
-  list-style: disc
-  padding-left: 1em
-
-  li::marker
-    color: $light-gray
-
-  li.empty::marker
-    display: none
-
-.fa-external-link-alt
-  display: inline
-  vertical-align: 1px
-  font-size: 8px
-  color: $cyan
-  cursor: pointer
-
-#content .container
-  padding: 0 1rem
-
-#grid
-  display: grid
-  grid-template-columns: [left] 301px [sidebar-right] auto [right]
-  grid-template-rows: [top] 69px [nav-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
-  height: 100vh
-
-a.profile-image
-  margin: 0 auto 1rem auto
-
-@media screen and (min-width: $breakpoint-md)
-  #grid
-    grid-template-rows: [top] 69px [nav-bottom] 264px [topics-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
-    min-height: 669px
+// cross-app, homepage-specific partials
+@import 'album_home'
+@import 'event_home'
+@import 'location_home'

@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(() => {
   // Search for existing authors;
   // select from autocomplete list on arrow key event
   let authorPosition = -1;

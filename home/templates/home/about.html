@@ -15,14 +15,15 @@
 {% block content %}
 {% include 'home/messages.html' %}
 <section class="contact">
-  <h3 class="h3">Contact</h3>
+  <h2 class="h2">Contact</h2>
   <div class="text-center card">
-    <h5 class="h5">
+    <ul class="contact-list-big">
+    <li>
       <i class="fa fa-mobile"></i><a href="tel:+12244040873">(224) 404-0873</a>
-    </h5>
-    <h5 class="h5">
+    </li>
+    <li>
       <i class="fa fa-envelope"></i><a href="mailto:info@mtmchicago.com">info@mtmchicago.com</a>
-    </h5>
+    </li>
   </div>
 </section>
 <div class="rectangles">
@@ -32,9 +33,9 @@
   {# include 'home/ads/medium_rectangle40.html' #}
 </div>
 <section id="about">
-  <h3 class="h3">About Us</h3>
+  <h2 class="h2">About Us</h2>
   <div class="card">
-    <h5 class="h5">MTM Chicago</h5>
+    <h3 class="h3">MTM Chicago</h3>
     <p>
       MTM Chicago. We are a website dedicated to the LGBT community in Chicago, the State of Illinois, and the surrounding region. We will be focusing on nightlife, dining, arts and entertainment, sports, mental and physical health, fitness, travel, fashion, retail and non-profit work.
     </p>
@@ -49,25 +50,27 @@
   <div class="card">
     <div class="info-flex">
       <div>
-        <h5 class="h5">{{ contact.full_name }}</h5>
-        <h6 class="h6">{{ contact.title }}</h6>
-        {% if contact.phone %}
-        <h6 class="h6"><i class="fa fa-mobile"></i><a href="tel:+1{{ contact.phone }}">{{ contact.display_phone }}</a></h6>
-        {% endif %}
-        {% if contact.email %}
-        <h6 class="h6"><i class="fa fa-envelope"></i><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></h6>
-        {% endif %}
-        {% if contact.website %}
-        <h6 class="h6"><i class="fa fa-link"></i><a href="{{ contact.website }}">{{ contact.website }}</a></h6>
-        {% endif %}
-        {% if contact.facebook %}
-        <h6 class="h6"><i class="fab fa-facebook-f"></i><a href="https://facebook.com/{{ contact.facebook }}">@{{ contact.facebook }}</a></h6>
-        {% endif %}
-        {% if contact.twitter %}
-        <h6 class="h6"><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ contact.twitter }}">@{{ contact.twitter }}</a></h6>
-        {% endif %}
-        {% if contact.instagram %}
-        <h6 class="h6"><i class="fab fa-instagram"></i><a href="https://instagram.com/{{ contact.instagram }}">@{{ contact.instagram }}</a></h6>
+        <h3 class="h3">{{ contact.full_name }}</h3>
+        <h4 class="h4">{{ contact.title }}</h4>
+        <ul class="contact-list">
+          {% if contact.phone %}
+          <li><i class="fa fa-mobile"></i><a href="tel:+1{{ contact.phone }}">{{ contact.display_phone }}</a></li>
+          {% endif %}
+          {% if contact.email %}
+          <li><i class="fa fa-envelope"></i><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></li>
+          {% endif %}
+          {% if contact.website %}
+          <li><i class="fa fa-link"></i><a href="{{ contact.website }}">{{ contact.website }}</a></li>
+          {% endif %}
+          {% if contact.facebook %}
+          <li><i class="fab fa-facebook-f"></i><a href="https://facebook.com/{{ contact.facebook }}">@{{ contact.facebook }}</a></li>
+          {% endif %}
+          {% if contact.twitter %}
+          <li><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ contact.twitter }}">@{{ contact.twitter }}</a></li>
+          {% endif %}
+          {% if contact.instagram %}
+          <li><i class="fab fa-instagram"></i><a href="https://instagram.com/{{ contact.instagram }}">@{{ contact.instagram }}</a></li>
+        </ul>
         {% endif %}
       </div>
       <a data-fancybox="gallery" href="{{ contact.profile_image.image.url }}">
@@ -76,7 +79,7 @@
     </div>
     {{ contact.bio|linebreaks }}
     {% if request.user.is_superuser %}
-    <h3 class="h3">Actions</h3>
+    <h2 class="h2">Actions</h2>
     <div class="btn-container">
       <a class="btn btn-secondary" href="{% url 'home:update-contact' contact.id %}">Update</a>
       <a class="btn btn-danger" href="{% url 'home:delete-contact' contact.id %}">Delete</a>

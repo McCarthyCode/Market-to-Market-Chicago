@@ -18,7 +18,7 @@ CATEGORIES = [
 
 class Neighborhood(TimestampedModel):
     name = models.CharField(max_length=100)
-    slug = models.SlugField(default='', editable=False, max_length=100, null=True, blank=True)
+    slug = models.SlugField(default='', editable=False, max_length=80, null=True, blank=True)
     objects = NeighborhoodManager()
 
     def save(self, *args, **kwargs):
@@ -40,7 +40,7 @@ class Location(TimestampedModel, NewsItem):
     ]
 
     name = models.CharField(max_length=100)
-    slug = models.SlugField(default='', editable=False, max_length=100, null=True, blank=True)
+    slug = models.SlugField(default='', editable=False, max_length=80, null=True, blank=True)
     category = models.PositiveSmallIntegerField(choices=CATEGORY_CHOICES)
     neighborhood = models.ForeignKey(Neighborhood, null=True, blank=True, on_delete=models.SET_NULL)
     address1 = models.CharField(max_length=200)

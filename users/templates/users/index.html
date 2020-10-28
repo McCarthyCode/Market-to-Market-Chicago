@@ -1,11 +1,14 @@
-{% extends 'users/base.html' %}
-{% load static %}
+{% extends 'users/base.html' %}{% load static %}
+
+{% block js %}{% if request.user.is_superuser %}  <!-- TinyMCE Initialization JS -->
+  <script type="text/javascript" src="{% static 'global/js/tinymce_init.min.js' %}"></script>{% endif %}{% endblock %}
+
 {% block content %}
 {% if not request.user.is_authenticated %}
 <div class="container logged-out">
   {% include 'home/messages.html' %}
   <h1 class="h1 text-center">Login</h1>
-  <p class="text-center">This page is intended for authors and site administators. If you would like to return to the home page, you may do so by clicking <a href="{% url 'home:index' %}">here</a>.</p>
+  <p class="text-center">This page is intended for authors and site administrators. If you would like to return to the home page, you may do so by clicking <a href="{% url 'home:index' %}">here</a>.</p>
   <form method="POST" action="{% url 'users:login' %}">
     {% csrf_token %}
     <input class="form-control" placeholder="Username" type="text" name="username">
@@ -17,44 +20,46 @@
 <div class="container logged-in">
   <h1 class="h1 text-center">Dashboard</h1>
   {% include 'home/messages.html' %}
-  {% if request.user.is_superuser %}
-  <div id="createPerson" class="card">
-    <h3 class="h3">Create Person to Know<i class="fa fa-chevron-down"></i></h3>
-    {% include 'home/create_person.html' %}
-  </div>
-  <div id="createContact" class="card">
-    <h3 class="h3">Create About Page Contact<i class="fa fa-chevron-down"></i></h3>
-    {% include 'home/create_contact.html' %}
-  </div>
-  <div id="createAuthor" class="card">
-    <h3 class="h3">Create Author<i class="fa fa-chevron-down"></i></h3>
-    {% include 'articles/create_author.html' %}
-  </div>
-  <div id="createArticle" class="card">
-    <h3 class="h3">Create Article <i class="fa fa-chevron-down"></i></h3>
-    {% include 'articles/create_article.html' %}
-  </div>
-  <div id="createInvites" class="card">
-    <h3 class="h3">Create Invites <i class="fa fa-chevron-down"></i></h3>
-    {% include 'users/create_invites.html' %}
-  </div>
-  <div id="viewInvites" class="card">
-    <h3 class="h3">View Invites <i class="fa fa-chevron-down"></i></h3>
-    {% include 'users/view_invites.html' %}
-  </div>
-  {% endif %}
-  <div id="createEvent" class="card">
-    <h3 class="h3">Create Event <i class="fa fa-chevron-down"></i></h3>
-    {% include 'events/create_event.html' %}
-  </div>
-  <div id="createLocation" class="card">
-    <h3 class="h3">Create Location <i class="fa fa-chevron-down"></i></h3>
-    {% include 'locations/create_location.html' %}
-  </div>
-  <div id="createAlbum" class="card">
-    <h3 class="h3">Create Photo Album <i class="fa fa-chevron-down"></i></h3>
-    {% include 'images/create_album.html' %}
-  </div>
+  <ul>
+    {% if request.user.is_superuser %}
+    <li id="createPerson" class="card">
+      <h2 class="h2"><span>Create Person to Know</span><i class="fa fa-chevron-down"></i></h2>
+      {% include 'home/create_person.html' %}
+    </li>
+    <li id="createContact" class="card">
+      <h2 class="h2"><span>Create About Page Contact</span><i class="fa fa-chevron-down"></i></h2>
+      {% include 'home/create_contact.html' %}
+    </li>
+    <li id="createAuthor" class="card">
+      <h2 class="h2"><span>Create Author</span><i class="fa fa-chevron-down"></i></h2>
+      {% include 'articles/create_author.html' %}
+    </li>
+    <li id="createArticle" class="card">
+      <h2 class="h2"><span>Create Article</span><i class="fa fa-chevron-down"></i></h2>
+      {% include 'articles/create_article.html' %}
+    </li>
+    <li id="createInvites" class="card">
+      <h2 class="h2"><span>Create Invites</span><i class="fa fa-chevron-down"></i></h2>
+      {% include 'users/create_invites.html' %}
+    </li>
+    <li id="viewInvites" class="card">
+      <h2 class="h2"><span>View Invites</span><i class="fa fa-chevron-down"></i></h2>
+      {% include 'users/view_invites.html' %}
+    </li>
+    {% endif %}
+    <!-- <li id="createEvent" class="card">
+      <h2 class="h2"><span>Create Event</span><i class="fa fa-chevron-down"></i></h2>
+      {% include 'events/create_event.html' %}
+    </li> -->
+    <li id="createLocation" class="card">
+      <h2 class="h2"><span>Create Location</span><i class="fa fa-chevron-down"></i></h2>
+      {% include 'locations/create_location.html' %}
+    </li>
+    <li id="createAlbum" class="card">
+      <h2 class="h2"><span>Create Photo Album</span><i class="fa fa-chevron-down"></i></h2>
+      {% include 'images/create_album.html' %}
+    </li>
+  </ul>
 </div>
 {% endif %}
 {% endblock %}

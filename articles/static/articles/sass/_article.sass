@@ -1,20 +1,16 @@
 #content .container
+  padding: .5rem
+
+  & > :last-child, .alert p
+    margin-bottom: 0
+
   article, .article
-    .info
-      color: $green
-      font-size: 1rem
-      font-style: italic
-      margin-bottom: .5rem
-
-      a
-        color: $green
-        text-decoration: underline
-
-      a:hover
-        color: $cyan
-
-    a.profile-image
-      margin: 0 auto 1rem auto
-
     p:not(.info)
       text-align: justify
+
+  .h1
+    margin-bottom: 1rem
+
+@media screen and (min-width: $breakpoint-md)
+  #content .container
+      padding: 1rem

@@ -30,7 +30,7 @@ class Album(TimestampedModel, NewsItem):
     ]
 
     title = models.CharField(max_length=255)
-    slug = models.SlugField(default='', max_length=255, null=True, blank=True)
+    slug = models.SlugField(default='', max_length=80, null=True, blank=True)
     category = models.PositiveSmallIntegerField(default=0, choices=CATEGORY_CHOICES)
     feed = models.BooleanField(default=False)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)

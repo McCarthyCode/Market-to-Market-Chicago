@@ -1,20 +1,20 @@
 {% if messages %}
 {% for message in messages %}
-{% if 'error' in message.tags %}
-<div class="alert alert-danger" role="alert">
+{% if 'success' in message.tags or 'error' in message.tags or 'info' in message.tags %}
+<div class="alert alert-{% if 'success' in message.tags %}success{% elif 'warning' in message.tags %}warning{% elif 'error' in message.tags %}danger{% elif 'info' in message.tags %}info{% endif %}" role="alert">
+  <div>
+    <i class="fas fa-{% if 'success' in message.tags %}check{% elif 'warning' in message.tags or 'error' in message.tags %}exclamation{% elif 'info' in message.tags %}info{% endif %}-{% if 'warning' in message.tags %}triangle{% else %}circle{% endif %}"></i>
+  </div>
+  <p>{% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</p>
   <a href="javascript:void(0);" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
-  <p><i class="fas fa-exclamation-circle"></i> {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</p>
-</div>
-{% elif 'success' in message.tags  %}
-<div class="alert alert-success" role="alert">
-  <a href="javascript:void(0);" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
-  <p><i class="fas fa-check-circle"></i> {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</p>
-</div>
-{% elif 'info' in message.tags %}
-<div class="alert alert-info" role="alert">
-  <a href="javascript:void(0);" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
-  <p><i class="fas fa-info-circle"></i> {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</p>
 </div>
 {% endif %}
 {% endfor %}
 {% endif %}
+<!-- <div class="alert alert-info" role="alert">
+  <div>
+    <i class="fas fa-info-circle"></i>
+  </div>
+  <p>This is just a formatting test.<br/>It has two lines to show if the elements within the alert are being displayed correctly.</p>
+  <a href="javascript:void(0);" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+</div> -->

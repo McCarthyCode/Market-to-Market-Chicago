@@ -3,6 +3,7 @@ import re
 from slugify import slugify
 
 from django.db import models
+from django.db.models import Q
 from django.shortcuts import render
 
 from home.models import TimestampedModel, NewsItem
@@ -50,7 +51,7 @@ class Article(TimestampedModel, NewsItem):
     ]
 
     title = models.CharField(max_length=255)
-    slug = models.SlugField(default='', max_length=255, null=True, blank=True)
+    slug = models.SlugField(default='', max_length=80, null=True, blank=True)
     body = models.TextField()
     album = models.ForeignKey(Album, null=True, blank=True, on_delete=models.SET_NULL)
     category = models.PositiveSmallIntegerField(default=0, choices=CATEGORY_CHOICES)

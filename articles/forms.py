@@ -165,7 +165,6 @@ class ArticleForm(forms.ModelForm):
         label='',
         widget=forms.Textarea(attrs={
             'class': 'form-control',
-            'placeholder': 'Body',
         }),
     )
     album = forms.CharField(

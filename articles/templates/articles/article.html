@@ -20,19 +20,15 @@
 {# include 'home/ads/medium_rectangle53a.html' #}
 {% endblock %}
 
+{% block js %}{% if request.user.is_superuser %}  <!-- TinyMCE Initialization JS -->
+  <script type="text/javascript" src="{% static 'global/js/tinymce_init.min.js' %}"></script>
+
+{% endif %}{% endblock %}
+
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
 {% include 'home/messages.html' %}
-<article class="card">
-  <p class="info">{% if article.author %}By <a href="{% url 'articles:author' article.author.slug article.author.id %}">{{ article.author }}</a>{% else %}Author deleted{% endif %}. Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} <span class="text-nowrap">Updated {{ article.date_updated|date:"N j, Y." }}</span>{% endif %} From <a href="{% if article.category == 0 %}{% url 'home:category' 'nightlife' %}{% elif article.category == 1 %}{% url 'home:category' 'restaurants' %}{% elif article.category == 3 %}{% url 'home:category' 'arts-and-entertainment' %}{% elif article.category == 4 %}{% url 'home:category' 'health-and-fitness' %}{% elif article.category == 5 %}{% url 'home:category' 'sports' %}{% elif article.category == 6 %}{% url 'home:category' 'non-profit' %}{% elif article.category == 7 %}{% url 'home:category' 'editorials-and-opinions' %}{% endif %}">{{ article.get_category_display }}</a>.</p>
-  {% if article.author.profile_image %}
-  <a class="profile-image" data-fancybox="gallery" href="{{ article.author.profile_image.image.url }}">
-    <img src="{{ article.author.profile_image.thumbnail.url }}">
-  </a>
-  {% endif %}
-  {{ article.body|linebreaks }}
-</article>
 <div class="rectangles">
   {# include 'home/ads/medium_rectangle53b.html' #}
   {# include 'home/ads/medium_rectangle54.html' #}
@@ -40,7 +36,7 @@
   {# include 'home/ads/medium_rectangle56.html' #}
 </div>
 {% if article.album %}
-<h3 class="h3"><a href="{% url 'images:album' article.album.slug article.album.id %}">{{ article.album.title }} <span class="text-nowrap">({{ images|length }} image{% if images|length != 1 %}s{% endif %})</span></a></h3>
+<h2 class="h2"><a href="{% url 'images:album' article.album.slug article.album.id %}">{{ images|length }} image{% if images|length != 1 %}s{% endif %}</span></a></h2>
 {% if images_preview %}
 <div class="card">
   <div id="album">
@@ -68,10 +64,54 @@
 {% endif %}
 {% endif %}
 {% endif %}
+<h2 class="h2">Article</h2>
+<div class="card formatted-text">
+  {{ article.body|safe }}
+</div>
+<h2 class="h2">Details</h2>
+<div class="card{% if article.author %} author{% endif %}">
+  <p class="info">{% if article.author %}By <a href="{% url 'articles:author' article.author.slug article.author.id %}">{{ article.author }}</a>{% else %}Author not found{% endif %}. Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} <span class="text-nowrap">Updated {{ article.date_updated|date:"N j, Y." }}</span>{% endif %} From <a href="{% if article.category == 0 %}{% url 'home:category' 'nightlife' %}{% elif article.category == 1 %}{% url 'home:category' 'restaurants' %}{% elif article.category == 3 %}{% url 'home:category' 'arts-and-entertainment' %}{% elif article.category == 4 %}{% url 'home:category' 'health-and-fitness' %}{% elif article.category == 5 %}{% url 'home:category' 'sports' %}{% elif article.category == 6 %}{% url 'home:category' 'non-profit' %}{% elif article.category == 7 %}{% url 'home:category' 'editorials-and-opinions' %}{% endif %}">{{ article.get_category_display }}</a>.</p>
+  {% if article.author %}
+  {% if article.author.profile_image or article.author.bio %}
+  <h3 class="h3">About the Author</h3>
+  {% endif %}
+  {% if article.author.profile_image %}
+  <a class="profile-image" data-fancybox="gallery" href="{{ article.author.profile_image.image.url }}">
+    <img src="{{ article.author.profile_image.thumbnail.url }}">
+  </a>
+  {% endif %}
+  {% if article.author.bio %}
+  {{ article.author.bio|linebreaks }}
+  {% endif %}
+  {% if article.author.phone or article.author.email or article.author.website or article.author.facebook or article.author.twitter or article.author.instagram %}
+  <h3 class="h3">Contact the Author</h3>
+  <ul class="contact-list">
+    {% if article.author.phone %}
+    <li><i class="fa fa-mobile" aria-hidden="true"></i><a href="tel:+1{{ article.author.phone }}">{{ article.author.display_phone }}</a></li>
+    {% endif %}
+    {% if article.author.email %}
+    <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:{{ article.author.email }}">{{ article.author.email }}</a></li>
+    {% endif %}
+    {% if article.author.facebook %}
+    <li><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/{{ article.author.facebook }}">@{{ article.author.facebook }}</a></li>
+    {% endif %}
+    {% if article.author.twitter %}
+    <li><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ article.author.twitter }}">@{{ article.author.twitter }}</a></li>
+    {% endif %}
+    {% if article.author.instagram %}
+    <li><i class="fab fa-instagram"></i><a href="https://www.instagram.com/{{ article.author.instagram }}">@{{ article.author.instagram }}</a></li>
+    {% endif %}
+    {% if article.author.website %}
+    <li><i class="fas fa-link"></i><a href="{{ article.author.website }}">{{ article.author.website }}</a></li>
+    {% endif %}
+  </ul>
+  {% endif %}
+  {% endif %}
+</div>
 {% if request.user.is_superuser %}
-<h3 class="h3">Update</h3>
+<h2 class="h2">Update</h2>
 {% include 'articles/update_article.html' %}
-<h3 class="h3">Delete</h3>
+<h2 class="h2">Delete</h2>
 <div class="card">
   {% include 'articles/delete_article_form.html' %}
   <button id="deleteArticleButton" class="btn btn-danger" data-toggle="modal" data-target="#deleteArticleModal">Delete Article</button>

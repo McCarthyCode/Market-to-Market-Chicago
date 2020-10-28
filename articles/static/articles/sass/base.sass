@@ -1,100 +1,24 @@
-@import url('https://fonts.googleapis.com/css?family=Patua+One|Roboto')
+// global styling
+@import 'global'
 
-@import '_variables'
-@import '_mixins'
+// specialized global partials
+@import 'ads'
+@import 'autocomplete'
+@import 'card'
+@import 'forms'
+@import 'grid'
+@import 'messages'
+@import 'modals'
+@import 'sidebar'
+@import '_tinyMCE'
 
-@import '_ads'
-@import '_footer'
-@import '_navbar'
-@import '_sidebar'
+// app-specific styling
+@import 'article'
 
-@import '_album'
-@import '_autocomplete'
-@import '_card'
-@import '_forms'
-@import '_messages'
-@import '_modals'
+// app-specific partials
+@import 'article_album'
 
-@import '_article'
-@import '_article_album'
-
-@import '_author'
-
-html, body
-  max-height: 100%
-
-// anchor rules added to body tag for higher specificity
-body
-  a, a:hover
-    color: $cyan
-
-  a
-    text-decoration: none
-
-  a:hover
-    text-decoration: underline
-
-h1.h1, h3.h3, h5.h5
-  font-family: $font-title
-
-h1.h1, h1.h1 > a
-  color: $yellow
-
-h1.h1 >
-  a
-    text-decoration: underline
-    @include transition(color, .15s)
-
-  a:hover
-    color: $light-blue
-
-h3.h3, h3.h3 > a
-  color: $orange
-
-h5.h5, h5.h5 > a
-  color: $green
-
-.fa-external-link-alt
-  display: inline
-  vertical-align: 1px
-  font-size: 8px
-  color: $cyan
-  cursor: pointer
-
-#grid
-  display: grid
-  grid-template-columns: [left] 301px [sidebar-right] auto [right]
-  grid-template-rows: [top] 69px [nav-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
-  height: 100vh
-
-#content
-  grid-column-start: left
-  grid-column-end: right
-  grid-row-start: nav-bottom
-  grid-row-end: bottom
-  background-color: $dark-gray
-  overflow-y: scroll
-  -webkit-overflow-scrolling: touch
-
-  .container
-    padding: .5rem
-
-  .container > :last-child, .alert p
-    margin-bottom: 0
-
-  .h1
-    margin-bottom: 1rem
-
-  .h3 a
-    color: $orange
-
-@media screen and (min-width: $breakpoint-md)
-  #grid
-    grid-template-rows: [top] 69px [nav-bottom] 264px [topics-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
-    min-height: 669px
-
-  #content
-    grid-column-start: sidebar-right
-
-    .container
-      padding: 1rem
+// cross-app partials
+@import 'album'
+@import 'person'
+@import 'contact_list'

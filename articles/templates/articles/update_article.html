@@ -1,17 +1,43 @@
 <form id="updateArticleForm" class="card" action="{% url 'articles:update' article.slug article.id %}" method="POST">
   {% csrf_token %}
   {% for hidden in update_article_form.hidden_fields %}
+  {% if article.author and hidden.id_for_label == 'id_author_id' %}
+  <input type="hidden" name="author_id" autocomplete="off" id="id_author_id" value="{{ article.author.id }}">
+  {% elif article.album and hidden.id_for_label == 'id_album_id' %}
+  <input type="hidden" name="album_id" autocomplete="off" id="id_album_id" value="{{ article.album.id }}">
+  {% else %}
   {{ hidden }}
+  {% endif %}
   {% endfor %}
-  <input type="hidden" id="albumTitle" value="{% if article.album %}{{ article.album.title }}{% else %}0{% endif %}">
-  <input type="hidden" id="authorName" value="{% if article.author %}{{ article.author.full_name }}{% else %}0{% endif %}">
+  <input type="hidden" id="authorName" value="{% if article.author %}{{ article.author.full_name }}{% endif %}">
+  <input type="hidden" id="albumTitle" value="{% if article.album %}{{ article.album.title }}{% endif %}">
   {% for field in update_article_form.visible_fields %}
   {% if field.id_for_label == 'id_author' %}
-  {{ field }}
+  <input type="text" name="author" value="{{ article.author.full_name }}" class="form-control" placeholder="Author" autocomplete="off" required="" id="id_author">
   <div id="authorAutocomplete"></div>
   {% elif field.id_for_label == 'id_album' %}
-  {{ field }}
+  <input type="text" name="album" value="{{ article.album.title }}" class="form-control" placeholder="Photo Album (search for existing or leave blank)" autocomplete="off" id="id_album">
   <div id="albumAutocomplete"></div>
+  {% elif field.id_for_label == 'id_body' %}
+  <div class="alert alert-warning" role="alert">
+    <div>
+      <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <p>
+      Warning: this editor is best used by composing and formatting text directly in the editor or by pasting <em>plain text</em> into the editor and formatting. Changes to formatting made in an external editor (e.g. Microsoft Word) will not be copied over.
+    </p>
+    <a href="javascript:void(0);" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+  </div>
+  <div class="alert alert-info" role="alert">
+    <div>
+      <i class="fas fa-info-circle"></i>
+    </div>
+    <p>
+      For best results, start headings at level 3 and work your way down without skipping any levels.
+    </p>
+    <a href="javascript:void(0);" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+  </div>
+  {{ field }}
   {% elif field.id_for_label == 'id_category' %}
   <div class="row select">
     <label class="form-control col-12 col-md-6" for="id_category">{{ field.label }}</label>

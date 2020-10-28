@@ -1,0 +1,48 @@
+#topics
+  display: none
+  position: relative
+  grid-column-start: left
+  grid-column-end: sidebar-right
+  grid-row-start: nav-bottom
+  grid-row-end: topics-bottom
+  background-color: $dark-gray
+  color: $white
+  margin: 0
+  border-right: 1px solid $light-gray
+
+  ul.topics
+    margin: 0
+    padding-bottom: 1px
+    background-color: $light-gray
+
+    li
+      padding: 2px 0
+      background-color: $mid-gray
+      border-right: .25rem solid $mid-gray
+      @include transition(border-right-color)
+      @include user-select-none
+      text-align: center
+      cursor: pointer
+
+      a
+        display: block
+        color: $white
+
+        &:hover
+          text-decoration: none
+
+      &:not(:last-child)
+        margin-bottom: 1px
+
+      $colors: [ $red, $orange, $yellow, $green, $pale-green, $cyan, $light-blue, $purple, $pink ]
+
+      @for $i from 1 through length($colors)
+        &:nth-child(#{length($colors)}n + #{$i})
+          border-left: .25rem solid nth($colors, $i)
+
+          &:hover, &.active
+            border-right-color: nth($colors, $i)
+
+@media screen and (min-width: $breakpoint-md)
+  #topics
+    display: block

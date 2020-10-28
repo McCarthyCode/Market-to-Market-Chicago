@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(() => {
   // Search for existing neighborhoods;
   // select from autocomplete list on arrow key event
   let neighborhoodPosition = -1;

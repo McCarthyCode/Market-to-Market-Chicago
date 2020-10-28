@@ -1,5 +1,5 @@
 <li class="card article category">
-  <h5 class="h5"><a href="{% url 'articles:article' article.slug article.id %}">{{ article.title }}</a></h5>
-  <p class="info">{% if article.author %}By <a href="{% url 'articles:author' article.author.slug article.author.id %}">{{ article.author }}</a>{% else %}Author deleted{% endif %}. Created on {{ article.date_created|date:"N j, Y." }}{% if article.updated_later %} <span class="text-nowrap">Updated {{ article.date_updated|date:"N j, Y." }}</span>{% endif %}</p>
-  {{ article.body|linebreaks|truncatewords:100 }}
+  <h3 class="h3"><a href="{% url 'articles:article' article.slug article.id %}">{{ article.title }}</a></h3>
+  <p class="info">{% if article.author %}By <a href="{% url 'articles:author' article.author.slug article.author.id %}">{{ article.author }}</a>{% else %}Author not found{% endif %}. Created on {{ article.date_created|date:"N j, Y." }}</p>
+  {{ article.body|safe|truncatewords:100 }}
 </li>

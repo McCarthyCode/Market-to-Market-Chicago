@@ -20,8 +20,8 @@
 {# include 'home/ads/medium_rectangle41a.html' #}
 {% endblock %}
 
-{% block content %}
-<h3 class="h3"><a href="{% url 'events:index' %}#byLocation">Events</a></h3>
+{% block content %}{% comment %}
+<h2 class="h2"><a href="{% url 'events:index' %}#byLocation">Events</a></h2>
 <ul id="events" class="card bulleted">
   {% for event in events %}
   <li><a href="{% url 'events:event' event.location.category_slug event.location.slug event.slug event.id %}" tabindex="{{ forloop.counter0 }}">{{ event.name }} at {{ event.location.name }} &ndash; {{ event.date_start|date:"D. n/j/y" }}{% if not event.all_day %} ({{ event.date_start|date:"g:i a" }}{% if event.date_end %}&ndash;{{ event.date_end|date:"g:i a" }}{% endif %}){% endif %}</a></li>
@@ -34,8 +34,8 @@
   {# include 'home/ads/medium_rectangle42.html' #}
   {# include 'home/ads/medium_rectangle43.html' #}
   {# include 'home/ads/medium_rectangle44.html' #}
-</div>
-<h3 class="h3">Locations</h3>
+</div>{% endcomment %}
+<h2 class="h2">Locations</h2>
 <ul id="locations" class="card bulleted">
 {% for location in locations %}
   <li><a href="{% url 'locations:location' location.category_slug location.slug location.id %}">{{ location.name }}</a></li>

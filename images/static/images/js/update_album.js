@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(() => {
   // Buttons
   let $updateAlbumButton = $('#updateAlbumButton');
   let $addImagesButton = $('#addImagesButton');

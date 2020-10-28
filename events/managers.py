@@ -1,8 +1,9 @@
 import pytz
+
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
-
 from django.db import models
+from django.db.models import Q
 
 from mtm.settings import TZ
 
@@ -150,7 +151,7 @@ class EventManager(models.Manager):
                 errors.append('Please enter a date to end on.')
 
             if ends == 2 and ends_after == 0:
-                errors.append('Please enter a number of occurences.')
+                errors.append('Please enter a number of occurrences.')
 
         if ends == '':
             errors.append('Please enter an end condition.')
@@ -526,6 +527,10 @@ class EventManager(models.Manager):
             'date': first_of_month,
             'calendar': calendar,
             'days_of_week': DOW,
+            'has_events': Event.objects.filter(
+                Q(date_start__gte=first_of_month)
+                & Q(date_start__lt=(first_of_month + relativedelta(months=1)))
+            ).exists()
         }
 
     def by_date(self, request):
@@ -883,7 +888,7 @@ class RecurringEventManager(models.Manager):
                             date.replace(tzinfo=None) +
                             rd_values[frequency_units]
                         )
-        elif ends == 2: # ends after a number of occurences
+        elif ends == 2: # ends after a number of occurrences
             if 'ends_after' not in kwargs:
                 raise TypeError("create_recurring_event() missing 1 required keyword argument 'ends_after'")
 
@@ -1157,7 +1162,7 @@ class RepeatInfoManager(models.Manager):
                 info.ends_on = kwargs['ends_on']
             else:
                 raise TypeError("create_repeat_info() missing 1 required keyword argument 'ends_on'")
-        elif ends == 2: # ends after a number of occurences
+        elif ends == 2: # ends after a number of occurrences
             if 'ends_after' in kwargs:
                 info.ends_after = kwargs['ends_after']
             else:

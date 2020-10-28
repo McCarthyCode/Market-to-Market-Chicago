@@ -3,7 +3,8 @@
 closure_compiler="bin/closure-compiler-v20200504.jar"
 
 declare -a files=(
-  "home/static/home/js/global"
+  "home/static/global/js/tinymce_init"
+  "home/static/global/js/global"
   "home/static/home/js/infinite_scroll_home"
   "home/static/home/js/infinite_scroll_category"
   "users/static/users/js/dashboard"
@@ -17,14 +18,19 @@ declare -a files=(
   "articles/static/articles/js/article_autocomplete"
 )
 
-for i in "${files[@]}" ; do
-  input="$i.js"
-  output="$i.min.js"
+trap 'echo -e "\nExiting…" >&2; pkill $$; exit' SIGINT
 
-  cmd="java -jar $closure_compiler --js $input --js_output_file $output"
+while true; do
+  for i in "${files[@]}"; do
+    input="$i.js"
+    output="$i.min.js"
+    cmd="java -jar $closure_compiler --js $input --js_output_file $output"
 
-  if [ $input -nt $output ] ; then
-    echo "$cmd"
-    $cmd
-  fi
+    if [ $input -nt $output ]; then
+      echo "[$(date -Iseconds)] $cmd" >&2
+      $cmd
+    fi
+  done
+
+  sleep 1
 done

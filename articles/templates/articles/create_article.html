@@ -10,6 +10,26 @@
   {% elif field.id_for_label == 'id_album' %}
   {{ field }}
   <div id="albumAutocomplete"></div>
+  {% elif field.id_for_label == 'id_body' %}
+  <div class="alert alert-warning" role="alert">
+    <div>
+      <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <p>
+      Warning: this editor is best used by composing and formatting text directly in the editor or by pasting <em>plain text</em> into the editor and formatting. Changes to formatting made in an external editor (e.g. Microsoft Word) will not be copied over.
+    </p>
+    <a href="javascript:void(0);" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+  </div>
+  <div class="alert alert-info" role="alert">
+    <div>
+      <i class="fas fa-info-circle"></i>
+    </div>
+    <p>
+      For best results, start headings at level 3 and work your way down without skipping any levels.
+    </p>
+    <a href="javascript:void(0);" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+  </div>
+  {{ field }}
   {% elif field.id_for_label == 'id_category' %}
   <div class="row select">
     <label id="categoryLabel" class="form-control col-12 col-md-6" for="id_category">{{ field.label }}</label>

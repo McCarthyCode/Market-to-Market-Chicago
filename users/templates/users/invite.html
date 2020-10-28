@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container">
   {% include 'home/messages.html' %}
-  <h3 class="h3">Registration</h3>
+  <h2 class="h2">Registration</h2>
   <form class="card" action="{% url 'users:invite' code %}" method="POST">
     {% csrf_token %}
     {{ form.username.errors }}

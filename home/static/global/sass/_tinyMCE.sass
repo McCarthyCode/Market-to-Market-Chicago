@@ -1,0 +1,97 @@
+.formatted-text, .article
+  h1, h2, h3, h4, h5, h6
+    font-family: $font-title
+    margin-bottom: .5rem
+
+    & > a
+      text-decoration: underline
+      @include transition(color)
+
+      &:hover
+        color: $light-blue
+
+  h1
+    font-size: 2.5rem
+
+    &, & > a
+      color: $yellow
+
+  h2
+    font-size: 2rem
+
+    &, & > a
+      color: $orange
+
+  h3
+    font-size: 1.75rem
+
+    &, & > a
+      color: $red
+
+  h4
+    font-size: 1.5rem
+
+    &, & > a
+      color: $purple
+
+  h5
+    font-size: 1.25rem
+
+    &, & > a
+      color: $light-blue
+
+  h6
+    font-size: 1rem
+
+    &, & > a
+      color: $green
+
+  p
+    margin-bottom: 1rem
+
+  em
+    font-style: italic
+
+  ul, ol
+    padding-left: 2.5rem
+    margin-bottom: 1rem
+
+  ul
+    list-style-type: disc
+
+  ol
+    list-style-type: decimal
+
+  pre, blockquote
+    display: block
+    margin-bottom: 1rem
+    margin-left: 1.25rem
+    border-left: .25rem solid $blue
+    padding: 1rem
+    background-color: $dark-gray
+
+    & > *:last-child
+      margin-bottom: 0
+
+  pre
+    font-family: $font-monospace
+    color: $light-gray
+    font-size: 87.5%
+
+.tox
+  margin-bottom: .5rem
+  border-radius: .25rem !important
+
+  .tox-notification
+    *
+      color: $darker-gray !important
+
+    svg
+      fill: $darker-gray !important
+
+  .tox-statusbar
+    *
+      color: $inactive-gray !important
+
+    svg
+      fill: $inactive-gray !important

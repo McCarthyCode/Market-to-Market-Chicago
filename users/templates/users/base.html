@@ -1,189 +1,77 @@
-<!DOCTYPE html>{% load static %}
-<html lang="en">
-<head>
-  <!--Meta Tags-->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+{% extends 'home/global_base.html' %}{% load static %}
 
-  <!--Title & Favicon-->
-  <title>Market to Market Chicago</title>
-  <link rel="icon" href="{% static 'home/img/favicon.ico' %}" type="image/x-icon">
-
-  <!--------------->
-  <!--Stylesheets-->
-  <!--------------->
-
-  <!--Internal Stylesheets (compressed)-->
-
-  <!--Reset CSS-->
-  <!--<link rel="stylesheet" href="{% static 'home/css/reset.css' %}">-->
-
-  <!--Users App CSS-->
-  <!--<link rel="stylesheet" href="{% static 'users/css/users.css' %}">-->
-
-  <!--Internal Stylesheets (compressed)-->
-
-  <!--Reset CSS-->
-  <link rel="stylesheet" href="{% static 'home/css/reset.min.css' %}">
-
-  <!--Users App CSS-->
+{% block internal_stylesheets %}  <!-- Users App CSS -->
   <link rel="stylesheet" href="{% static 'users/css/users.min.css' %}">
 
-  <!--Internal Stylesheet Libraries (compressed)-->
+{% endblock %}
 
-  <!--Bootstrap CSS-->
-  <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}">
-
-  <!--Font Awesome CSS-->
-  <link rel="stylesheet" href="{% static 'home/css/font-awesome.min.css' %}">
-
-  <!--fancybox CSS-->
-  <link rel="stylesheet" href="{% static 'home/css/jquery.fancybox.min.css' %}">
-
-  <!--External Stylesheet Libraries (compressed)-->
-
-  <!--Bootstrap CSS-->
+{% block internal_stylesheet_libraries %}  <!-- Tempus Dominus CSS -->
   <link
     rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
+    href="{% static '/lib/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css' %}">
 
-  <!--Font Awesome CSS-->
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    crossorigin="anonymous">
+{% endblock %}
 
-  <!--fancybox CSS-->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"
-    crossorigin="anonymous">
-
-  <!--Tempus Dominus CSS-->
+{% block external_stylesheet_libraries %}  <!-- Tempus Dominus CSS -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css"
+    integrity="sha384-Re/I8sla3AIFEoz6DrgkHWaLDSWKXaLOYm5yn3Gwmf/QhWS3/ajG7O2qr1zBmF3d"
     crossorigin="anonymous">
 
-  <!----------->
-  <!--Scripts-->
-  <!----------->
+{% endblock %}
 
-  <!--Internal Script Libraries (compressed)-->
-
-  <!--jQuery JS-->
-  <script
-    type="text/javascript"
-    src="{% static 'home/js/jquery-3.3.1.min.js' %}"
-    crossorigin="anonymous"></script>
-
-  <!--Bootstrap JS-->
-  <script
-    type="text/javascript"
-    src="{% static 'home/js/bootstrap.min.js' %}"
-    crossorigin="anonymous"></script>
-
-  <!--Font Awesome JS-->
-  <script
-    type="text/javascript"
-    src="{% static 'home/js/3c68f13de5.js' %}"
-    crossorigin="anonymous"></script>
-
-  <!--fancybox JS-->
-  <script
-    type="text/javascript"
-    src="{% static 'home/js/jquery.fancybox.min.js' %}"
-    crossorigin="anonymous"></script>
-
-  <!--Internal Scripts (uncompressed)-->
-
-  <!--Cross-App JS-->
-  <!--<script type="text/javascript" src="{% static 'home/js/global.js' %}"></script>-->
-
-  <!--Users App JS-->
-  <!-- <script type="text/javascript" src="{% static 'users/js/dashboard.js' %}"></script> -->
-
-  <!--Locations App JS-->
-  <!--<script type="text/javascript" src="{% static 'locations/js/create_location.js' %}"></script>-->
-
-  <!--Events App JS-->
-  <!--<script type="text/javascript" src="{% static 'events/js/create_event.js' %}"></script>-->
-
-  {% if request.user.is_superuser %}<!--Articles App JS-->
-  <!--<script type="text/javascript" src="{% static 'articles/js/article_autocomplete.js' %}"></script>-->
-
-  {% endif %}<!--Internal Scripts (compressed)-->
-
-  <!--Cross-App JS-->
-  <script type="text/javascript" src="{% static 'home/js/global.min.js' %}"></script>
-
-  <!--Users App JS-->
+{% block internal_scripts %}  <!-- Users App JS -->
   <script type="text/javascript" src="{% static 'users/js/dashboard.min.js' %}"></script>
 
-  <!--Locations App JS-->
+  <!-- Locations App JS -->
   <script type="text/javascript" src="{% static 'locations/js/create_location.min.js' %}"></script>
 
-  <!--Events App JS-->
+  <!-- Events App JS -->
   <script type="text/javascript" src="{% static 'events/js/create_event.min.js' %}"></script>
 
-  {% if request.user.is_superuser %}<!--Articles App JS-->
+{% if request.user.is_superuser %}  <!-- Articles App JS -->
   <script type="text/javascript" src="{% static 'articles/js/article_autocomplete.min.js' %}"></script>
 
-  {% endif %}<!--External Script Libraries (compressed)-->
+{% endif %}{% endblock %}
 
-  <!--jQuery JS-->
+{% block internal_script_libraries %}  <!-- Internal Script Libraries -->
+
+  <!-- Moment.js JS -->
   <script
     type="text/javascript"
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+    src="{% static '/lib/moment.js/2.23.0/moment.min.js' %}"></script>
 
-  <!--Bootstrap JS-->
+  <!-- Tempus Dominus JS -->
   <script
     type="text/javascript"
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    src="{% static '/lib/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js' %}"></script>
 
-  <!--Font Awesome JS-->
-  <script type="text/javascript" src="https://kit.fontawesome.com/3c68f13de5.js" crossorigin="anonymous"></script>
+{% endblock %}
 
-  <!--fancybox JS-->
-  <script
-    type="text/javascript"
-    src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"
-    crossorigin="anonymous"></script>
-
-  <!--Moment.js JS-->
+{% block external_script_libraries %}  <!-- Moment.js JS -->
   <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"
-    integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA="
+    integrity="sha384-bunvTFmdcliXRaa0bTXLrjm90OPHwbRgMLqTq9px8MTIpcfU60gnln3k+XsjG1th"
     crossorigin="anonymous"></script>
 
-  <!--Tempus Dominus JS-->
+  <!-- Tempus Dominus JS -->
   <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"
+    integrity="sha384-97pmbvZb0qdIXSwrjd4JuG6+4TJhp4eL0totTka0FF1Bf2E42dPiSXsqq09yQxjD"
     crossorigin="anonymous"></script>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+{% if request.user.is_superuser %}  <!-- TinyMCE JS -->
   <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=UA-167451008-1"
-    crossorigin="anonymous"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    type="text/javascript"
+    src="https://cdn.tiny.cloud/1/apy2ip7pf3f8h7hotnuy1ir341jcqsu7hl13jhou7v3ua756/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
 
-    gtag('config', 'UA-167451008-1');
-  </script>
-</head>
-<body>
+{% endif %}{% endblock %}
+
+{% block body %}
   <div id="grid">
     {% include 'home/navbar.html' %}
     <section id="content">
@@ -192,5 +80,4 @@
     </section>
     {% include 'home/footer.html' %}
   </div>
-</body>
-</html>
+{% endblock %}

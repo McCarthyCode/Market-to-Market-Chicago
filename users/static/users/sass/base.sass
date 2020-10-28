@@ -1,55 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Patua+One|Roboto')
+// global styling
+@import 'global'
 
-@import '_variables'
-@import '_mixins'
+// specialized global partials
+@import 'autocomplete'
+@import 'forms'
+@import 'messages'
+@import 'tables'
+@import '_tinyMCE'
 
-@import '_navbar'
-@import '_footer'
+// app-specific styling
+@import 'users'
 
-@import '_autocomplete'
-@import '_forms'
-@import '_messages'
-@import '_tables'
-
-@import '_users'
-@import '_dashboard'
-@import '_create_event'
-
-html, body
-  height: 100%
-
-// anchor rules added to body tag for higher specificity
-body
-  a, a:hover
-    color: $cyan
-
-  a
-    text-decoration: none
-
-  a:hover
-    text-decoration: underline
-
-h1.h1, h3.h3
-  font-family: $font-title
-
-h1.h1
-  color: $yellow
-
-h3.h3
-  color: $orange
-
-.fa-external-link-alt
-  display: inline
-  vertical-align: 1px
-  font-size: 8px
-  color: $cyan
-  cursor: pointer
-
-#grid
-  display: grid
-  grid-template-columns: [left] auto [right]
-  grid-template-rows: [top] 69px [nav-bottom] auto [footer-top] 49px [bottom]
-  height: 100vh
-
-.alert .close
-  padding-left: .5rem
+// app-specific partials
+@import 'dashboard'

@@ -1,34 +1,25 @@
+#contact > div > h3.h3
+  & > i
+    color: $cyan
+    margin-right: .5rem
+
+  &, & > a
+    color: $light-blue !important
+
 #about
   .info-flex
     display: flex
     flex-wrap: wrap
     justify-content: space-evenly
     align-items: center
-
-    & > *
-      margin-bottom: 1rem
+    gap: 1rem
+    margin-bottom: 1rem
 
     & > div
       text-align: center
-      margin-right: .5rem
 
-      h5.h5
-        color: $yellow
-
-      h5.h5, h6.h6:not(:first-of-type)
-        margin-bottom: .125rem
-
-      h6.h6:not(:first-of-type)
-        & > i
-          width: 1rem
-          margin-right: .5rem
-          color: $green
-
-        & > a
-          margin-right: 1.5rem
-
-    & > a
-      margin-left: .5rem
+      ul
+        margin-bottom: 0
 
   .card:not(:last-child)
     margin-bottom: .5rem

@@ -36,16 +36,16 @@ from mtm.settings import (
 )
 
 def handler400(request, exception=None):
-    return render(request, 'home/errors/400.html', status=200)
+    return render(request, 'errors/400.html', status=400)
 
 def handler403(request, exception=None):
-    return render(request, 'home/errors/403.html', status=200)
+    return render(request, 'errors/403.html', status=403)
 
 def handler404(request, exception=None):
-    return render(request, 'home/errors/404.html', status=200)
+    return render(request, 'errors/404.html', status=404)
 
 def handler500(request, exception=None):
-    return render(request, 'home/errors/500.html', status=200)
+    return render(request, 'errors/500.html', status=500)
 
 def index(request):
     if request.method != 'GET':
@@ -67,7 +67,7 @@ def index(request):
             locations,
             people,
         ),
-        key=attrgetter('date_updated'),
+        key=attrgetter('date_created'),
         reverse=True,
     )
 
@@ -441,7 +441,7 @@ def category(request, slug):
             albums,
             articles,
         ),
-        key=attrgetter('date_updated'),
+        key=attrgetter('date_created'),
         reverse=True,
     )[:NEWS_ITEMS_PER_PAGE]
 
@@ -475,7 +475,7 @@ def news_feed(request):
     ads_order = [int(i) for i in ads_order]
 
     albums = []
-    for album in Album.objects.all():
+    for album in Album.objects.filter(feed=True):
         if Image.objects.filter(album=album):
             albums.append(album)
     articles = Article.objects.all()
@@ -487,7 +487,7 @@ def news_feed(request):
             articles,
             locations,
         ),
-        key=attrgetter('date_updated'),
+        key=attrgetter('date_created'),
         reverse=True,
     )
 
@@ -529,7 +529,7 @@ def category_feed(request, slug, page):
             albums,
             articles,
         ),
-        key=attrgetter('date_updated'),
+        key=attrgetter('date_created'),
         reverse=True,
     )
 

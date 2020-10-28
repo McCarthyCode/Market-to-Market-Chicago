@@ -2,18 +2,20 @@
   {% csrf_token %}
   <input type="hidden" name="id" value="{{ event.id }}">
   {% if recurring %}
-  <div id="singleEventInputGroupDelete" class="input-group m-bottom-0">
-    <label class="form-control" for="singleEventDelete">Delete only this instance</label>
-    <div class="input-group-append">
-      <input id="singleEventDelete" type="radio" name="delete" value="single-event">
-    </div>
-  </div>
-  <div id="allEventsInputGroupDelete" class="input-group">
-    <label class="form-control" for="allEventsDelete">Delete this instance and all following instances</label>
-    <div class="input-group-append">
-      <input id="allEventsDelete" type="radio" name="delete" value="multiple-events">
-    </div>
-  </div>
+  <ul class="input-group-radio">
+    <li id="singleEventInputGroupDelete" class="input-group m-bottom-0">
+      <label class="form-control" for="singleEventDelete">Delete only this instance</label>
+      <div class="input-group-append">
+        <input id="singleEventDelete" type="radio" name="delete" value="single-event">
+      </div>
+    </li>
+    <li id="allEventsInputGroupDelete" class="input-group">
+      <label class="form-control" for="allEventsDelete">Delete this instance and all following instances</label>
+      <div class="input-group-append">
+        <input id="allEventsDelete" type="radio" name="delete" value="multiple-events">
+      </div>
+    </li>
+  </ul>
   {% else %}
   <input type="hidden" name="delete" value="single-event">
   {% endif %}

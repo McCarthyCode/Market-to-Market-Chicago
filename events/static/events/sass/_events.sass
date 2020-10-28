@@ -1,65 +1,11 @@
-#content
-  grid-column-start: left
-  grid-column-end: right
-  grid-row-start: nav-bottom
-  grid-row-end: bottom
-  background-color: $dark-gray
-  overflow-y: scroll
-  -webkit-overflow-scrolling: touch
+#content .container
+  padding: .5rem
 
-  .container
-    padding: .5rem
-
-  .container > :last-child, .alert p
+  & > :last-child, .alert p
     margin-bottom: 0
 
   .h1
     margin-bottom: 1rem
-
-  .h3 a
-    color: $orange
-
-  p
-    color: $white
-
-  p.info
-    color: $green
-    font-style: italic
-    margin-bottom: .5rem
-
-    a
-      color: $green
-      text-decoration: underline
-
-    p.read-more
-      margin: 0
-
-  form
-    input[type="text"], input[type="number"], input[type="password"],
-    input[type="submit"], textarea, select, :not(.m-bottom-0) label
-      margin-bottom: .5rem
-
-    input[type="text"], input[type="number"], input[type="password"],
-    textarea, select, label
-      color: $white
-      border-color: $light-gray
-      background-color: $dark-gray
-
-    .input-group-append
-      width: 40px
-      height: 38px
-      z-index: 3
-
-      .input-group-text
-        color: $white
-        border-color: $light-gray
-        background-color: $light-gray
-
-        i
-          min-width: 14px
-
-    .input-group-append:not(.default-cursor)
-      cursor: pointer
 
 #tabs
   display: grid
@@ -75,7 +21,7 @@
     text-align: center
     line-height: 2
     cursor: pointer
-    @include transition(background-color, .15s)
+    @include transition(background-color)
 
   li.active, li:hover
     background-color: $blue
@@ -102,13 +48,18 @@
   right: 1rem
 
 #calendarGrid
-  width: 100%
+  width: calc(1rem + 100%)
   height: 576px
   background-color: $light-gray
   display: grid
   grid-template: [top] 2rem [row0] 1fr [row1] 1fr [row2] 1fr [row3] 1fr [row4] 1fr [row5] 1fr [row6] / [col0] 1fr [col1] 1fr [col2] 1fr [col3] 1fr [col4] 1fr [col5] 1fr [col6] 1fr [end]
   gap: 1px
   padding: 1px
+  margin: 0 -.5rem
+
+  @media screen and (min-width: $breakpoint-sm)
+    width: 100%
+    margin: 0
 
   .header
     grid-row-start: top
@@ -118,26 +69,26 @@
     font-weight: bold
     text-shadow: 0px 0px 2px $darker-gray
 
-  .header.col0
-    background-color: $red
+    &.col0
+      background-color: $red
 
-  .header.col1
-    background-color: $orange
+    &.col1
+      background-color: $orange
 
-  .header.col2
-    background-color: $yellow
+    &.col2
+      background-color: $yellow
 
-  .header.col3
-    background-color: $green
+    &.col3
+      background-color: $green
 
-  .header.col4
-    background-color: $cyan
+    &.col4
+      background-color: $cyan
 
-  .header.col5
-    background-color: $light-blue
+    &.col5
+      background-color: $light-blue
 
-  .header.col6
-    background-color: $purple
+    &.col6
+      background-color: $purple
 
   .row0
     grid-row-start: row0
@@ -191,68 +142,111 @@
     grid-column-start: col6
     grid-column-end: end
 
-#calendarGrid > div
-  position: relative
-  background-color: $mid-gray
-  color: $white
-  @include user-select-none
-  cursor: pointer
+  & > div:not(disabled)
+    position: relative
+    background-color: $mid-gray
+    color: $white
+    cursor: pointer
+    @include user-select-none
 
-  span.date
-    padding-left: .25rem
+    span.date
+      padding-left: .25rem
 
-  ul.events
-    max-width: 100%
-    position: absolute
-    top: 1.5rem
-    right: 0
-    left: 0
+    ul.events
+      max-width: 100%
+      position: absolute
+      top: 1.5rem
+      right: 0
+      left: 0
 
-    li
-      background-color: $blue
-      border-radius: .5rem
-      padding: 0 .5rem
-      margin-bottom: .25rem
-      height: 1rem
-      line-height: 1
-      white-space: nowrap
-      overflow: hidden
-      text-overflow: ellipsis
+      li
+        background-color: $blue
+        border-radius: .5rem
+        padding: 0 .5rem
+        margin-bottom: .25rem
+        height: 1rem
+        line-height: 1
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
 
-      small
-        vertical-align: 1px
+        small
+          vertical-align: 1px
 
-    .holiday
-      background-color: $purple
+      .holiday
+        background-color: $purple
+
+    &.disabled
+      color: $light-gray
+
+      &, ul.events li
+        background-color: $dark-gray
+
+      ul.events li
+        padding: 0 .25rem
+
+    &.no-events
+      pointer-events: none
+      z-index: 1
+      grid-row-start: row0
+      grid-row-end: row6
+      grid-column-start: col0
+      grid-column-end: end
+      background-color: $dark-gray-50
+      display: flex
+      align-items: center
+      justify-content: center
+
+      em
+        border: 2px solid $mid-gray
+        border-radius: .25rem
+        background-color: $dark-gray
+        padding: .5rem
+        color: $light-gray
+
 
 #calendarView, #byDateView, #byLocationView
   display: none
   margin-bottom: 1rem
 
+  & > p
+    text-align: center
+
+    em
+      color: $light-gray
+
 .container #byDateView .card
+  display: flex
+  align-items: start
+  justify-content: space-between
+  gap: 1rem
   margin-bottom: .5rem
+  flex-direction: row
+
+  & > *
+    margin-bottom: 0
 
   h3
-    position: absolute
-    top: 15px
-    left: 1rem
-    width: 2rem
-    color: $yellow
     line-height: 1
+    min-width: 2rem
+    text-align: center
+
+    &.holiday
+      color: $green
 
   ul.events
-    margin-bottom: 0
-    margin-left: 3rem
+    flex-grow: 1
 
     li
       margin-bottom: .5rem
 
-      h5 a
-        color: $light-blue
-        line-height: 28px
+      h4
+        &, & > a:not(:hover)
+          color: $light-blue
+          text-decoration: none
 
-      .holiday
-        color: $orange
+        & > a:hover
+          text-decoration: underline
 
       p
         margin-bottom: .5rem
@@ -357,6 +351,7 @@
     width: 100%
     height: 100%
     border: 0
+
 
 @media screen and (min-width: $breakpoint-md)
   #content

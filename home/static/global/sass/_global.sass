@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Patua+One|Roboto|Roboto+Mono')
+
+@import 'variables'
+@import 'mixins'
+@import 'navbar'
+@import 'footer'
+
+html, body
+  max-height: 100%
+
+// anchor rules added to body tag for higher specificity
+body
+  a, a:hover
+    color: $cyan
+
+  a
+    text-decoration: none
+
+  a:hover
+    text-decoration: underline
+
+  & > *
+    margin: 0 !important
+
+h1.h1, h2.h2, h3.h3, h4.h4, h5.h5, h6.h6
+  font-family: $font-title
+
+  & > a
+    text-decoration: underline
+    @include transition(color)
+
+    &:hover
+      color: $light-blue
+
+h1.h1
+  &, & > a
+    color: $yellow
+
+h2.h2
+  &, & > a
+    color: $orange
+
+h3.h3
+  &, & > a
+    color: $red
+
+h4.h4
+  &, & > a
+    color: $purple
+
+h5.h5
+  &, & > a
+    color: $blue
+
+h6.h6
+  &, & > a
+    color: $green
+
+.info
+  color: $green
+  font-size: 1rem
+  font-style: italic
+  margin-bottom: .5rem
+
+  a
+    color: $green
+    text-decoration: underline
+
+  a:hover
+    color: $cyan
+
+ul.bulleted
+  list-style: disc inside
+
+  li::marker
+    color: $light-gray
+
+  li.empty::marker
+    display: none
+
+pre
+  font-family: $font-monospace
+
+em
+  font-style: italic
+
+a.profile-image
+  margin: 0 auto 1rem auto
+
+  img
+    width: 100%
+
+.fa-external-link-alt
+  display: inline
+  vertical-align: 1px
+  font-size: 8px
+  color: $cyan
+  cursor: pointer

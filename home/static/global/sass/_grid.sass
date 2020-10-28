@@ -1,0 +1,24 @@
+#grid
+  position: fixed
+  display: grid
+  grid-template-columns: [left] 301px [sidebar-right] auto [right]
+  grid-template-rows: [top] 69px [nav-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+
+  #content
+    grid-column-start: left
+    grid-column-end: right
+    grid-row-start: nav-bottom
+    grid-row-end: bottom
+    background-color: $dark-gray
+    overflow-y: scroll
+    -webkit-overflow-scrolling: touch
+
+  @media screen and (min-width: $breakpoint-md)
+    grid-template-rows: [top] 69px [nav-bottom] 264px [topics-bottom] auto [footer-tall-top] 68.2px - 49px [footer-short-top] 49px - 32px [gradient-top] 32px [bottom]
+
+    #content
+      grid-column-start: sidebar-right
