@@ -1,17 +1,22 @@
 .contact-list
-  list-style: none
+  &, &-big
+    list-style: none
 
-  li
-    text-align: center
+    li
+      text-align: center
 
-    i
-      margin-right: .5rem
-      color: $cyan
-      vertical-align: middle
-
-    a
-      color: $light-blue
-      @include transition(color)
-
-      &:hover
+      i
+        margin-right: .5rem
         color: $cyan
+        vertical-align: middle
+
+      a
+        color: $light-blue
+        @include transition(color)
+
+        &:hover
+          color: $cyan
+
+  &-big
+    font-family: $font-title
+    font-size: 1.75rem

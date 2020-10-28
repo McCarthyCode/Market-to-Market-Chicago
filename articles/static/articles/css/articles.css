@@ -1041,24 +1041,28 @@ a.profile-image img {
   margin: 0 0.25rem;
 }
 
-.contact-list {
+.contact-list, .contact-list-big {
   list-style: none;
 }
-.contact-list li {
+.contact-list li, .contact-list-big li {
   text-align: center;
 }
-.contact-list li i {
+.contact-list li i, .contact-list-big li i {
   margin-right: 0.5rem;
   color: #97d5f7;
   vertical-align: middle;
 }
-.contact-list li a {
+.contact-list li a, .contact-list-big li a {
   color: #569cd6;
   -webkit-transition: color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out;
 }
-.contact-list li a:hover {
+.contact-list li a:hover, .contact-list-big li a:hover {
   color: #97d5f7;
+}
+.contact-list-big {
+  font-family: "Patua One", Helvetica, Arial, sans-serif;
+  font-size: 1.75rem;
 }
 
 /*# sourceMappingURL=articles.css.map */

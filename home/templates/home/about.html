@@ -17,12 +17,13 @@
 <section class="contact">
   <h2 class="h2">Contact</h2>
   <div class="text-center card">
-    <h3 class="h3">
+    <ul class="contact-list-big">
+    <li>
       <i class="fa fa-mobile"></i><a href="tel:+12244040873">(224) 404-0873</a>
-    </h3>
-    <h3 class="h3">
+    </li>
+    <li>
       <i class="fa fa-envelope"></i><a href="mailto:info@mtmchicago.com">info@mtmchicago.com</a>
-    </h3>
+    </li>
   </div>
 </section>
 <div class="rectangles">
@@ -50,24 +51,26 @@
     <div class="info-flex">
       <div>
         <h3 class="h3">{{ contact.full_name }}</h3>
-        <h6 class="h6">{{ contact.title }}</h6>
-        {% if contact.phone %}
-        <h6 class="h6"><i class="fa fa-mobile"></i><a href="tel:+1{{ contact.phone }}">{{ contact.display_phone }}</a></h6>
-        {% endif %}
-        {% if contact.email %}
-        <h6 class="h6"><i class="fa fa-envelope"></i><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></h6>
-        {% endif %}
-        {% if contact.website %}
-        <h6 class="h6"><i class="fa fa-link"></i><a href="{{ contact.website }}">{{ contact.website }}</a></h6>
-        {% endif %}
-        {% if contact.facebook %}
-        <h6 class="h6"><i class="fab fa-facebook-f"></i><a href="https://facebook.com/{{ contact.facebook }}">@{{ contact.facebook }}</a></h6>
-        {% endif %}
-        {% if contact.twitter %}
-        <h6 class="h6"><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ contact.twitter }}">@{{ contact.twitter }}</a></h6>
-        {% endif %}
-        {% if contact.instagram %}
-        <h6 class="h6"><i class="fab fa-instagram"></i><a href="https://instagram.com/{{ contact.instagram }}">@{{ contact.instagram }}</a></h6>
+        <h4 class="h4">{{ contact.title }}</h4>
+        <ul class="contact-list">
+          {% if contact.phone %}
+          <li><i class="fa fa-mobile"></i><a href="tel:+1{{ contact.phone }}">{{ contact.display_phone }}</a></li>
+          {% endif %}
+          {% if contact.email %}
+          <li><i class="fa fa-envelope"></i><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></li>
+          {% endif %}
+          {% if contact.website %}
+          <li><i class="fa fa-link"></i><a href="{{ contact.website }}">{{ contact.website }}</a></li>
+          {% endif %}
+          {% if contact.facebook %}
+          <li><i class="fab fa-facebook-f"></i><a href="https://facebook.com/{{ contact.facebook }}">@{{ contact.facebook }}</a></li>
+          {% endif %}
+          {% if contact.twitter %}
+          <li><i class="fab fa-twitter"></i><a href="https://twitter.com/{{ contact.twitter }}">@{{ contact.twitter }}</a></li>
+          {% endif %}
+          {% if contact.instagram %}
+          <li><i class="fab fa-instagram"></i><a href="https://instagram.com/{{ contact.instagram }}">@{{ contact.instagram }}</a></li>
+        </ul>
         {% endif %}
       </div>
       <a data-fancybox="gallery" href="{{ contact.profile_image.image.url }}">
